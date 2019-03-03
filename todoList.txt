@@ -1,0 +1,34 @@
+Refactor Code
+  figure out compose function
+  add selectors
+  figure out best way to do redux stuff
+  remove ticking from redux
+  change setInterval to be exact time between beats
+  separate metronome component to smart and dumb components
+
+New Code
+  how to add assets? (mp3 for metronome, png for chords)
+  make button component
+  how do i want to do chords?
+    - CURRENT: function that takes in parameters and creates string representation
+    - static images for each chord
+    - dynamically create the image for each chord (basically overlaying images on top of each other)
+
+Refactor Front End
+  make metronome component prettier
+  metronome: could replace current stuff with animation instead of constantly changing radius?
+  make bpm a edittext input
+
+Features
+  - Chord List
+    - select all the chords they wish to practice
+  - Chord Picture
+    chord pics for each chord
+  ✔ Connect metronome to chords
+    ✔ time signature
+    ✔ change chords each measure
+  - Metronome sound
+    - multiple choices
+  
+
+  
