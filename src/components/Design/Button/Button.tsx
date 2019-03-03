@@ -53,4 +53,4 @@ const styles = {
   },
 };
 
-export const Button =  injectSheet(styles)(DumbButton);
+export const Button = injectSheet(styles)(DumbButton);
