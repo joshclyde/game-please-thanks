@@ -7,7 +7,7 @@ import thunkMiddleware from "redux-thunk";
 import { reducers as allReducers } from "^redux/index";
 import { setSize } from "^redux/ui/actions";
 
-import { AlbumPage, HomePage } from "./Pages";
+import { AlbumPage, FlashcardPage, HomePage, UkulelePage } from "./Pages";
 
 const reducers = combineReducers({
   ...allReducers,
@@ -36,6 +36,8 @@ const App = () => (
       {/* TODO make innerWidth and innerHeight redux */}
       <div>
         <Switch>
+          <Route path="/flashcards" component={FlashcardPage} />
+          <Route path="/ukulele" component={UkulelePage} />
           <Route path="/albums" component={AlbumPage} />
           <Route path="/" component={HomePage} />
         </Switch>

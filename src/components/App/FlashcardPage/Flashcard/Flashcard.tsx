@@ -1,7 +1,6 @@
 import * as React from "react";
 import { SFC } from "react";
 import injectSheet from "react-jss";
-import { HeaderLink } from "./HeaderLink";
 
 type Props = {
   classes: {
@@ -9,16 +8,13 @@ type Props = {
     discoBall: string;
     pageLink: string;
   };
-  color?: string;
-  disabled?: boolean;
+  question: string;
+  answer: string;
 };
 
-const DumbHeader: SFC<Props> = ({ classes }) => (
+const DumbFlashcard: SFC<Props> = ({ classes, question, answer }) => (
   <div className={classes.container}>
-    <HeaderLink href="/">Home</HeaderLink>
-    <HeaderLink href="/ukulele">Ukulele</HeaderLink>
-    <HeaderLink href="/albums">Albums</HeaderLink>
-    <HeaderLink href="/flashcards">Flashcards</HeaderLink>
+    HDflaksjdlf;jaslkdfjlkasdfklaskldfklasdjfkljaslkdfjlksj
   </div>
 );
 
@@ -43,4 +39,4 @@ const styles = {
   },
 };
 
-export const Header = injectSheet(styles)(DumbHeader);
+export const Header = injectSheet(styles)(DumbFlashcard);
