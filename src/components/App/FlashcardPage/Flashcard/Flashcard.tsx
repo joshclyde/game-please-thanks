@@ -15,7 +15,8 @@ type Props = {
 const DumbFlashcard: SFC<Props> = ({ classes, question, answer }) => (
   <div className={classes.container}>
     HDflaksjdlf;jaslkdfjlkasdfklaskldfklasdjfkljaslkdfjlksj
-    {question}{answer}
+    {question}
+    {answer}
   </div>
 );
 
