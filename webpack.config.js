@@ -18,7 +18,7 @@ var config = {
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
-    plugins: [ new TsConfigPathsPlugin() ],
+    plugins: [new TsConfigPathsPlugin()],
   },
   devServer: {
     contentBase: [path.join(__dirname, "public"), path.join(__dirname, "build")],
@@ -35,9 +35,7 @@ var config = {
     ],
   },
 
-  plugins: [
-    new CopyWebpackPlugin([{ from: "assets", to: "assets" }]),
-  ],
+  plugins: [new CopyWebpackPlugin([{ from: "assets", to: "assets" }])],
 };
 
 module.exports = config;

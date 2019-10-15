@@ -1,6 +1,6 @@
-import { multiclass } from "^utils/multiclass";
+import { multiclass } from "@utils/multiclass";
 import * as React from "react";
-import { SFC } from "react";
+import { FunctionComponent } from "react";
 import injectSheet from "react-jss";
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
   };
 };
 
-const DumbAlbum: SFC<Props> = ({ className, classes }) => (
+const DumbAlbum: FunctionComponent<Props> = ({ className, classes }) => (
   <div className={multiclass(className, classes.container)}>
     <img className={classes.albumCover} src="assets/albums/love-yourself-tear.jpeg" />
   </div>

@@ -1,6 +1,6 @@
 module.exports = {
   arrowParens: "always",
   parser: "typescript",
-  printWidth: 120,
+  printWidth: 90,
   trailingComma: "all",
 };

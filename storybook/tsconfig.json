@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "./dist/",
@@ -11,10 +12,12 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
+      "@Components/*": ["../src/Components/*"],
+      "@Design/*": ["../src/Design/*"],
+      "@Routes/*": ["../src/Routes/*"],
       "@redux/*": ["../src/redux/*"],
       "@utils/*": ["../src/utils/*"],
       "@hocs/*": ["../src/hocs/*"],
-      "@components/*": ["../src/components/*"]
     }
   },
   "include": [

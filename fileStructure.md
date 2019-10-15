@@ -1,0 +1,28 @@
+- build/dist ???
+- node_modules
+- public/assets ???
+- storybook/ (storybook config stuff)
+- scripts/
+  - anything i guess
+- src/ (where basically everything is)
+  - index.tsx (the index)
+  - Routes/ (top level routes)
+  - Components/
+    - MyComponent/
+      - duck
+        - __tests__
+          - same
+        - actions.ts
+        - index.ts
+        - thunks.ts
+        - reducers.ts
+        - selectors.ts
+        - types.ts
+        - utils.ts
+      - component
+        - index.tsx
+        - view.tsx
+        - container.ts
+        - __tests__
+          - same
+  - Design/

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SFC } from "react";
+import { FunctionComponent } from "react";
 import injectSheet from "react-jss";
 import { HeaderLink } from "./HeaderLink";
 
@@ -13,7 +13,7 @@ type Props = {
   disabled?: boolean;
 };
 
-const DumbHeader: SFC<Props> = ({ classes }) => (
+const DumbHeader: FunctionComponent<Props> = ({ classes }) => (
   <div className={classes.container}>
     <HeaderLink href="/">Home</HeaderLink>
     <HeaderLink href="/ukulele">Ukulele</HeaderLink>

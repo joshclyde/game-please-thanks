@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SFC } from "react";
+import { FunctionComponent } from "react";
 import injectSheet from "react-jss";
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
   answer: string;
 };
 
-const DumbFlashcard: SFC<Props> = ({ classes, question, answer }) => (
+const DumbFlashcard: FunctionComponent<Props> = ({ classes, question, answer }) => (
   <div className={classes.container}>
     HDflaksjdlf;jaslkdfjlkasdfklaskldfklasdjfkljaslkdfjlksj
     {question}

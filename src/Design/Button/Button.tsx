@@ -1,17 +1,30 @@
+import { multiclass } from "@utils/multiclass";
 import * as React from "react";
-import { SFC } from "react";
+import { FunctionComponent } from "react";
 import injectSheet from "react-jss";
 
 type Props = {
+  className?: string;
   classes: {
     button: string;
   };
   color?: string;
   disabled?: boolean;
+  onClick?: () => void;
 };
 
-const DumbButton: SFC<Props> = ({ classes, children, disabled }) => (
-  <button className={classes.button} disabled={disabled}>
+const BaseButton: FunctionComponent<Props> = ({
+  className,
+  classes,
+  children,
+  disabled,
+  onClick,
+}) => (
+  <button
+    className={multiclass(classes.button, className)}
+    disabled={disabled}
+    onClick={onClick}
+  >
     {children}
   </button>
 );
@@ -24,7 +37,7 @@ const styles = {
     padding: "8px 20px",
     cursor: "pointer",
     fontSize: 14,
-    borderRadius: 30,
+    borderRadius: 8,
     transitionDuration: "0.2s",
     webkitTransitionDuration: "0.2s" /* Safari */,
     "&:not(:disabled)": {
@@ -35,15 +48,8 @@ const styles = {
         backgroundColor: "#C5C4C1",
       },
       "&:focus": {
-        // transitionDuration: "0s",
-        // webkitTransitionDuration: "0s" /* Safari */,
-        // outline: 0,
         transition: "outline 0s",
         outline: "2px solid #B2B2FF;",
-        // color: "#F7F5F2",
-        // backgroundColor: "#B2B2FF",
-        // border: "solid",
-        // borderColor: "#B2B2FF",
       },
     },
     "&:disabled": {
@@ -53,4 +59,4 @@ const styles = {
   },
 };
 
-export const Button = injectSheet(styles)(DumbButton);
+export const Button = injectSheet(styles)(BaseButton);

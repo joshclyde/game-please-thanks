@@ -5,4 +5,8 @@ export const SET_HEIGHT = "SET_HEIGHT";
 export const setHeight = (height: number) => ({ type: SET_HEIGHT, height });
 
 export const SET_SIZE = "SET_SIZE";
-export const setSize = (width: number, height: number) => ({ type: SET_SIZE, width, height });
+export const setSize = (width: number, height: number) => ({
+  type: SET_SIZE,
+  width,
+  height,
+});

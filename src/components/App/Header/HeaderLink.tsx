@@ -1,6 +1,6 @@
-import { multiclass } from "^utils/multiclass";
+import { multiclass } from "@utils/multiclass";
 import * as React from "react";
-import { SFC } from "react";
+import { FunctionComponent } from "react";
 import injectSheet from "react-jss";
 import { Link } from "react-router-dom";
 
@@ -14,7 +14,12 @@ type Props = {
   disabled?: boolean;
 };
 
-const DumbHeaderLink: SFC<Props> = ({ className, classes, href, children }) => (
+const DumbHeaderLink: FunctionComponent<Props> = ({
+  className,
+  classes,
+  href,
+  children,
+}) => (
   <Link className={multiclass(className, classes.container)} to={href}>
     {children}
   </Link>
