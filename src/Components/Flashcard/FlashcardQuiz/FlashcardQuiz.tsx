@@ -7,15 +7,21 @@ import { multiclass } from "@Utils";
 import Flashcard from "../Flashcard";
 
 const styles = {
+  realContainer: {
+    display: "flex",
+    flexFlow: "column nowrap",
+    height: "100vh",
+  },
   container: {
     display: "flex",
     flexFlow: "row nowrap",
     alignItems: "stretch",
     width: "100%",
-    height: "100%",
+    // height: "100%",
   },
   sharedButton: {
-    width: 50,
+    height: 150,
+    width: "50%",
   },
   incrementButton: {
     backgroundColor: "#CDECDD",
@@ -38,6 +44,7 @@ const styles = {
 
 type Props = {
   classes: {
+    realContainer: string;
     container: string;
     sharedButton: string;
     incrementButton: string;
@@ -60,28 +67,34 @@ const FlashcardQuiz: FunctionComponent<Props> = ({ classes, flashcardContents })
     [],
   );
 
-  return (
-    <div className={classes.container}>
-      <Button
-        className={multiclass(classes.sharedButton, classes.decrementButton)}
-        disabled={flashcardIndex === 0}
-        onClick={decrementFlashcardIndex}
-      >
-        -
-      </Button>
+  return flashcardIndex < 1000 ? (
+    <div className={classes.realContainer}>
       <Flashcard
         className={classes.flashcard}
         {...flashcardContents[flashcardIndex]}
         frontClassName={classes.frontClassName}
         backClassName={classes.backClassName}
       />
-      <Button
-        className={multiclass(classes.sharedButton, classes.incrementButton)}
-        disabled={flashcardIndex === flashcardContents.length - 1}
-        onClick={incrementFlashcardIndex}
-      >
-        +
-      </Button>
+      <div className={classes.container}>
+        <Button
+          className={multiclass(classes.sharedButton, classes.decrementButton)}
+          disabled={flashcardIndex === 0}
+          onClick={decrementFlashcardIndex}
+        >
+          -
+        </Button>
+        <Button
+          className={multiclass(classes.sharedButton, classes.incrementButton)}
+          disabled={flashcardIndex === flashcardContents.length - 1}
+          onClick={incrementFlashcardIndex}
+        >
+          +
+        </Button>
+      </div>
+    </div>
+  ) : (
+    <div>
+      <p>HELLO</p>
     </div>
   );
 };

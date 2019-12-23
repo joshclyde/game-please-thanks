@@ -24,7 +24,7 @@ const styles = {
     border: "none",
     color: "#313130",
     padding: "8px 20px",
-    fontSize: 14,
+    fontSize: "3em",
     borderRadius: 8,
   },
 };

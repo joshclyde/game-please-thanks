@@ -21,6 +21,7 @@ type Props = {
 
 const TileWithMarkdown: FunctionComponent<Props> = ({ className, input, onClick }) => (
   <Tile className={className} onClick={onClick}>
+    {/* {input} */}
     <ReactMarkdown source={input} />
   </Tile>
 );

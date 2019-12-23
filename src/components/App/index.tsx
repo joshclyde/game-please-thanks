@@ -28,19 +28,19 @@ window.addEventListener("resize", () => {
 });
 
 const App = () => (
-  <div>
-    <Provider store={store}>
-      {/* TODO make innerWidth and innerHeight redux */}
-      <div>
-        <Switch>
-          {/* <Route path="/flashcards" component={FlashcardPage} />
+  // <div>
+  <Provider store={store}>
+    {/* TODO make innerWidth and innerHeight redux */}
+    {/* <div> */}
+    <Switch>
+      {/* <Route path="/flashcards" component={FlashcardPage} />
           <Route path="/ukulele" component={UkulelePage} />
           <Route path="/albums" component={AlbumPage} /> */}
-          <Route path="/" component={HomePage} />
-        </Switch>
-      </div>
-    </Provider>
-  </div>
+      <Route path="/" component={HomePage} />
+    </Switch>
+    {/* </div> */}
+  </Provider>
+  // </div>
 );
 
 export default App;

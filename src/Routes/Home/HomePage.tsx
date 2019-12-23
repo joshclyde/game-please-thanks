@@ -62,7 +62,7 @@ const flashcardContents = [
 ];
 
 export const HomePage: FunctionComponent<Props> = () => (
-  <div>
-    <FlashcardQuiz flashcardContents={flashcardContents} />
-  </div>
+  // <div>
+  <FlashcardQuiz flashcardContents={flashcardContents} />
+  // </div>
 );
