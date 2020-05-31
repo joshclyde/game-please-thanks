@@ -14,9 +14,10 @@
     "paths": {
       "@Components/*": ["./src/Components/*"],
       "@Design/*": ["./src/Design/*"],
-      "@Routes/*": ["./src/Routes/*"],
+      "@Design": ["./src/Design/index"],
+      "@Routes": ["./src/Routes"],
       "@redux/*": ["./src/redux/*"],
-      "@utils/*": ["./src/utils/*"],
+      "@Redux": ["./src/redux/index"],
       "@Utils": ["./src/utils/index"],
       "@hocs/*": ["./src/hocs/*"]
     }

@@ -1,5 +1,5 @@
 import TileWithMarkdown from "@Design/Tile/TileWithMarkdown";
-import { multiclass } from "@utils/multiclass";
+import { cx } from "@Utils";
 import * as React from "react";
 import { FunctionComponent, useCallback, useState } from "react";
 import injectSheet from "react-jss";
@@ -29,7 +29,7 @@ const Flashcard: FunctionComponent<Props> = ({
 
   return (
     <TileWithMarkdown
-      className={multiclass(className, isFacingFront ? frontClassName : backClassName)}
+      className={cx(className, isFacingFront ? frontClassName : backClassName)}
       onClick={onClick}
       input={isFacingFront ? front : back}
     />

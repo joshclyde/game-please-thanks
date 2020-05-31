@@ -1,4 +1,4 @@
-import { multiclass } from "@utils/multiclass";
+import { cx } from "@Utils";
 import * as React from "react";
 import { FunctionComponent } from "react";
 import injectSheet from "react-jss";
@@ -20,11 +20,7 @@ const BaseButton: FunctionComponent<Props> = ({
   disabled,
   onClick,
 }) => (
-  <button
-    className={multiclass(classes.button, className)}
-    disabled={disabled}
-    onClick={onClick}
-  >
+  <button className={cx(classes.button, className)} disabled={disabled} onClick={onClick}>
     {children}
   </button>
 );

@@ -1,4 +1,4 @@
-import { multiclass } from "@utils/multiclass";
+import { cx } from "@Utils";
 import * as React from "react";
 import { FunctionComponent } from "react";
 import injectSheet from "react-jss";
@@ -13,7 +13,7 @@ type Props = {
 };
 
 const Tile: FunctionComponent<Props> = ({ className, classes, children, onClick }) => (
-  <div className={multiclass(classes.container, className)} onClick={onClick}>
+  <div className={cx(classes.container, className)} onClick={onClick}>
     {children}
   </div>
 );
@@ -24,7 +24,7 @@ const styles = {
     border: "none",
     color: "#313130",
     padding: "8px 20px",
-    fontSize: "3em",
+    // fontSize: "3em",
     borderRadius: 8,
   },
 };

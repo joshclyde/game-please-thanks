@@ -8,8 +8,7 @@ import withToggleOnClickReducers from "@hocs/withToggleOnClick/duck/reducers";
 import { reducers as allReducers } from "@redux/index";
 import { setSize } from "@redux/ui/actions";
 
-import { HomePage } from "@Routes/Home/HomePage";
-// import { AlbumPage, FlashcardPage, HomePage, UkulelePage } from "./Pages";
+import { BookmarksRoute, FlashcardsRoute, HomePage } from "@Routes";
 
 const reducers = combineReducers({
   ...withToggleOnClickReducers,
@@ -33,10 +32,10 @@ const App = () => (
     {/* TODO make innerWidth and innerHeight redux */}
     {/* <div> */}
     <Switch>
-      {/* <Route path="/flashcards" component={FlashcardPage} />
-          <Route path="/ukulele" component={UkulelePage} />
-          <Route path="/albums" component={AlbumPage} /> */}
-      <Route path="/" component={HomePage} />
+      <Route path="/flashcards" component={FlashcardsRoute} />
+      <Route path="/bookmarks" component={BookmarksRoute} />
+      <Route path="/" component={BookmarksRoute} />
+      {/* <Route path="/" component={HomePage} /> */}
     </Switch>
     {/* </div> */}
   </Provider>

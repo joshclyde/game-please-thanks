@@ -16,9 +16,9 @@ type Props = {
 const DumbHeader: FunctionComponent<Props> = ({ classes }) => (
   <div className={classes.container}>
     <HeaderLink href="/">Home</HeaderLink>
-    <HeaderLink href="/ukulele">Ukulele</HeaderLink>
-    <HeaderLink href="/albums">Albums</HeaderLink>
+    <HeaderLink href="/bookmarks">Bookmarks</HeaderLink>
     <HeaderLink href="/flashcards">Flashcards</HeaderLink>
+    {/* <HeaderLink href="/ukulele">Ukulele</HeaderLink> */}
   </div>
 );
 

@@ -1,4 +1,4 @@
-import { multiclass } from "@utils/multiclass";
+import { cx } from "@Utils";
 import * as React from "react";
 import { FunctionComponent } from "react";
 import injectSheet from "react-jss";
@@ -20,7 +20,7 @@ const DumbHeaderLink: FunctionComponent<Props> = ({
   href,
   children,
 }) => (
-  <Link className={multiclass(className, classes.container)} to={href}>
+  <Link className={cx(className, classes.container)} to={href}>
     {children}
   </Link>
 );

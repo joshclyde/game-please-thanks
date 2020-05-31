@@ -9,6 +9,12 @@
   - Routes/ (top level routes)
   - Components/
     - MyComponent/
+      - __tests__
+        - same...
+      - index.ts
+      - MyComponent.tsx (view and container)
+      - MoreComponents/
+        - etc...
       - duck
         - __tests__
           - same
@@ -19,10 +25,4 @@
         - selectors.ts
         - types.ts
         - utils.ts
-      - component
-        - index.tsx
-        - view.tsx
-        - container.ts
-        - __tests__
-          - same
   - Design/

@@ -2,7 +2,7 @@ import React, { FunctionComponent, useCallback, useState } from "react";
 import injectSheet from "react-jss";
 
 import { Button } from "@Design/index";
-import { multiclass } from "@Utils";
+import { cx } from "@Utils";
 
 import Flashcard from "../Flashcard";
 
@@ -67,7 +67,7 @@ const FlashcardQuiz: FunctionComponent<Props> = ({ classes, flashcardContents })
     [],
   );
 
-  return flashcardIndex < 1000 ? (
+  return (
     <div className={classes.realContainer}>
       <Flashcard
         className={classes.flashcard}
@@ -77,24 +77,20 @@ const FlashcardQuiz: FunctionComponent<Props> = ({ classes, flashcardContents })
       />
       <div className={classes.container}>
         <Button
-          className={multiclass(classes.sharedButton, classes.decrementButton)}
+          className={cx(classes.sharedButton, classes.decrementButton)}
           disabled={flashcardIndex === 0}
           onClick={decrementFlashcardIndex}
         >
           -
         </Button>
         <Button
-          className={multiclass(classes.sharedButton, classes.incrementButton)}
+          className={cx(classes.sharedButton, classes.incrementButton)}
           disabled={flashcardIndex === flashcardContents.length - 1}
           onClick={incrementFlashcardIndex}
         >
           +
         </Button>
       </div>
-    </div>
-  ) : (
-    <div>
-      <p>HELLO</p>
     </div>
   );
 };
