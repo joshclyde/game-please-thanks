@@ -14,4 +14,21 @@ export const makeActionSetFlashcardQuizId = (quizId: string) => ({
   },
 });
 
-export type Actions = ReturnType<typeof makeActionSetFlashcardQuizId>;
+export const SET_CARD_RESPONSE_IS_CORRECT = "SET_CARD_RESPONSE_IS_CORRECT";
+export const makeActionSetCardResponseIsCorrect = (
+  flashcardId: string,
+  isCorrect: boolean,
+) => ({
+  type: SET_CARD_RESPONSE_IS_CORRECT,
+  payload: {
+    flashcardId,
+    isCorrect,
+  },
+});
+
+export type ActionSetFlashcardQuizId = ReturnType<typeof makeActionSetFlashcardQuizId>;
+export type ActionSetCardResponseIsCorrect = ReturnType<
+  typeof makeActionSetCardResponseIsCorrect
+>;
+
+export type Actions = ActionSetFlashcardQuizId | ActionSetCardResponseIsCorrect;

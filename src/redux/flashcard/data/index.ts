@@ -1,7 +1,9 @@
+import { flexboxData } from "./flexboxData";
 import { typescriptData } from "./typescriptData";
 
 export const data = {
   ...typescriptData,
+  ...flexboxData,
   set1: {
     title: "Set 1",
     flashcards: {

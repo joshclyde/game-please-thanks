@@ -1,2 +1,6 @@
 export * from "./selectors";
-export { navigateToFlashcardQuiz, makeActionSetFlashcardQuizId } from "./actions";
+export {
+  navigateToFlashcardQuiz,
+  makeActionSetFlashcardQuizId,
+  makeActionSetCardResponseIsCorrect,
+} from "./actions";
