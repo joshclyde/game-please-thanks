@@ -18,6 +18,7 @@ const DumbHeader: FunctionComponent<Props> = ({ classes }) => (
     <HeaderLink href="/">Home</HeaderLink>
     <HeaderLink href="/bookmarks">Bookmarks</HeaderLink>
     <HeaderLink href="/flashcards">Flashcards</HeaderLink>
+    <HeaderLink href="/smite/gods">Smite</HeaderLink>
     {/* <HeaderLink href="/ukulele">Ukulele</HeaderLink> */}
   </div>
 );
