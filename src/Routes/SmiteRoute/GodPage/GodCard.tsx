@@ -15,7 +15,7 @@ const connector = connect(mapState);
 interface PropsForReals extends Props, ConnectedProps<typeof connector> {}
 
 const GodCardFC: FC<PropsForReals> = ({ godCardUrl }) => {
-  return <img src={godCardUrl} />;
+  return <img src={godCardUrl} width={180} height={335} />;
 };
 
 export const GodCard = connector(GodCardFC);

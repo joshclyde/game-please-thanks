@@ -32,7 +32,7 @@ const styles = {
     alignItems: "center",
     width: 100,
     height: "100%",
-    color: "#000000",
+    color: "white",
     textDecoration: "none", // remove underline
     borderStyle: "solid",
     borderColor: "rgba(0, 0, 0, 0.2)",

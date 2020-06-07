@@ -2,6 +2,9 @@ import { State, selectGodAbilityImageUrl } from "@Redux";
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
+// import css from "./GodAbilityImage.css";
+import "./GodAbilityImage.css";
+
 interface Props {
   godName: string;
   abilityIndex: number;

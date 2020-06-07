@@ -25,22 +25,12 @@ const DumbHeader: FunctionComponent<Props> = ({ classes }) => (
 
 const styles = {
   container: {
-    backgroundColor: "#D7BDE2",
-    height: 32,
+    backgroundColor: "black",
+    height: 42,
     display: "flex",
-    // flexDirection: "row",
-    // flexWrap: "nowrap",
     flexFlow: "row nowrap",
     justifyContent: "flex-start",
     alignItems: "center",
-  },
-  discoBall: {
-    height: "100%",
-    // opacity: 0.6,
-  },
-  pageLink: {
-    height: "32",
-    verticalAlign: "middle",
   },
 };
 

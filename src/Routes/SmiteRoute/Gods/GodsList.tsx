@@ -4,6 +4,8 @@ import { connect, ConnectedProps } from "react-redux";
 
 import { GodOnGodsList } from "./GodOnGodsList";
 
+import "./GodsList.css";
+
 const mapState = (state: State) => ({
   godNames: selectAllGodNames(state),
 });
@@ -15,7 +17,11 @@ interface Props {}
 interface PropsForReals extends Props, ConnectedProps<typeof connector> {}
 
 const GodsListFC: FC<PropsForReals> = ({ godNames }) => {
-  return <div>{godNames.map((name) => <GodOnGodsList godName={name} />)}</div>;
+  return (
+    <div className="GodsList">
+      {godNames.map((name) => <GodOnGodsList godName={name} />)}
+    </div>
+  );
 };
 
 export const GodsList = connector(GodsListFC);

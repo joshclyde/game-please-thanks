@@ -1,7 +1,7 @@
-var path = require("path");
+const path = require("path");
 // var webpack = require("webpack");
-var CopyWebpackPlugin = require("copy-webpack-plugin");
-var { TsConfigPathsPlugin } = require("awesome-typescript-loader");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { TsConfigPathsPlugin } = require("awesome-typescript-loader");
 // config.plugins = config.plugins.concat([
 //   new CopyWebpackPlugin([
 //     { from: 'client/assets', to: 'assets' }
@@ -9,7 +9,7 @@ var { TsConfigPathsPlugin } = require("awesome-typescript-loader");
 // ...
 // ]);
 
-var config = {
+const config = {
   mode: "development",
   entry: ["./src/index.tsx"],
   output: {
@@ -30,6 +30,11 @@ var config = {
       {
         test: /\.tsx?$/,
         loader: "ts-loader",
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css?$/,
+        use: ["style-loader", "css-loader"],
         exclude: /node_modules/,
       },
     ],
