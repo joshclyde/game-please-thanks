@@ -22,9 +22,9 @@ const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
 
 // everytime the browser resizes the width and height in redux adjusts accordingly
-window.addEventListener("resize", () => {
-  store.dispatch(setSize(window.innerWidth, window.innerHeight));
-});
+// window.addEventListener("resize", () => {
+//   store.dispatch(setSize(window.innerWidth, window.innerHeight));
+// });
 
 const App = () => (
   // <div>

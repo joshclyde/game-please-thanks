@@ -5,6 +5,7 @@ import { connect, ConnectedProps } from "react-redux";
 import injectSheet from "react-jss";
 import { GodCard } from "./GodCard";
 import { GodAbilities } from "./GodAbilities";
+import { GodStats } from "./GodStats";
 
 interface Props {
   godName: string;
@@ -30,6 +31,7 @@ const GodPageFC: FC<PropsForReals> = ({ godName, classes }) => {
         <GodCard godName={godName} />
         <GodAbilities godName={godName} />
       </div>
+      <GodStats godName={godName} />
     </div>
   );
 };
