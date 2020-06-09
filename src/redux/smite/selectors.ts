@@ -82,3 +82,5 @@ export const selectGodAbilityStatsMore = (
   abilityIndex: number,
 ) =>
   selectAbilityData(state, godName, abilityIndex).Description.itemDescription.menuitems;
+
+export const selectSmiteSearchTerm = (state: StateJustSmite) => state.smite.search.term;

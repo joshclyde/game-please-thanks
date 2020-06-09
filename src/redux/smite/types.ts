@@ -21,15 +21,7 @@ export interface SmiteState {
     ret_msg: string;
   }>;
   gods: any;
+  search: {
+    term: string;
+  };
 }
-
-// export interface FlashcardStartQuizAction {
-//   type: string;
-//   setId: string;
-// }
-
-// export interface Actions {
-//   type: string;
-//   width?: number;
-//   height?: number;
-// }
