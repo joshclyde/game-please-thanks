@@ -1,2 +1,2 @@
 export * from "./selectors";
-export { makeActionSetSmiteSearchTerm } from "./actions";
+export { makeActionSetSmiteSearchTerm, makeActionSetBuildItemsFilter } from "./actions";

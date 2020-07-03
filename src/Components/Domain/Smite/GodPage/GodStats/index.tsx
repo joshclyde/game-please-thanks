@@ -1,7 +1,10 @@
-import { State, selectGodData } from "@Redux";
+import { State, selectGodData, selectAllItems } from "@Redux";
 import React, { FC, useState, useCallback } from "react";
 import { connect, ConnectedProps } from "react-redux";
+import { ItemBuild } from "./itemsBuild";
 import { calculateBasicAttackDamage } from "./utils";
+
+import "./index.css";
 
 interface Props {
   godName: string;
@@ -9,6 +12,7 @@ interface Props {
 
 const mapState = (state: State, { godName }: Props) => ({
   godData: selectGodData(state, godName),
+  items: selectAllItems(state),
 });
 
 const connector = connect(mapState);
@@ -28,7 +32,7 @@ Actual Defense = (Protection × (1-%Reduction) - Flat Reduction) × (1-%Pen) - F
 
 */
 
-const GodStatsFC: FC<PropsForReals> = ({ godData }) => {
+const GodStatsFC: FC<PropsForReals> = ({ godData, items, godName }) => {
   const [level, setLevel] = useState(0);
   const onChange = useCallback(
     (event) => {
@@ -39,6 +43,7 @@ const GodStatsFC: FC<PropsForReals> = ({ godData }) => {
 
   return (
     <div>
+      <br />
       <li>Level 0 Attack Speed: {godData.AttackSpeed}</li>
       <li>Attack Speed per Level: {godData.AttackSpeedPerLevel}</li>
       <li>Level 0 Physical Power: {godData.PhysicalPower}</li>
@@ -63,6 +68,7 @@ const GodStatsFC: FC<PropsForReals> = ({ godData }) => {
             (19 + 100)}
         </li>
       </li>
+      <ItemBuild buildKey={godName} godName={godName} />
     </div>
   );
 };

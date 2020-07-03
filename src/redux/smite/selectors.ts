@@ -1,6 +1,9 @@
 import { State } from "../types";
+import { BuildItems } from "./types";
 
 export type StateJustSmite = Pick<State, "smite">;
+
+export const selectAllItems = (state: StateJustSmite) => state.smite.items;
 
 export const selectAllGodNames = (state: StateJustSmite): Array<string> =>
   state.smite.gods.map(({ Name }: { Name: string }) => Name);
@@ -75,3 +78,9 @@ export const selectGodAbilityStatsMore = (
   selectAbilityData(state, godName, abilityIndex).Description.itemDescription.menuitems;
 
 export const selectSmiteSearchTerm = (state: StateJustSmite) => state.smite.search.term;
+
+export const selectSmiteBuildFilter = (
+  state: StateJustSmite,
+  buildKey: string,
+  filterKey: keyof BuildItems["filters"],
+) => state.smite.buildItems[buildKey]?.filters?.[filterKey];
