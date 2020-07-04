@@ -5,6 +5,6 @@ module.exports = {
   transform: {
     "^.+\\.tsx?$": "ts-jest",
   },
-  // moduleFileExtensions: [...defaults.moduleFileExtensions, "ts", "tsx"],
+  moduleFileExtensions: [...defaults.moduleFileExtensions, "ts", "tsx"],
   verbose: true,
 };

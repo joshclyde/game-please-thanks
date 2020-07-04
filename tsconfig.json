@@ -7,8 +7,8 @@
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    // "noUnusedLocals": true, // lint will catch this
+    // "noUnusedParameters": true, // lint will catch this
     "noImplicitAny": true,
     "baseUrl": ".",
     "paths": {
