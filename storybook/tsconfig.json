@@ -15,7 +15,6 @@
       "@Components/*": ["../src/Components/*"],
       "@Design/*": ["../src/Design/*"],
       "@Routes/*": ["../src/Routes/*"],
-      "@redux/*": ["../src/redux/*"],
       "@utils/*": ["../src/utils/*"],
       "@hocs/*": ["../src/hocs/*"],
     }

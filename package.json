@@ -8,6 +8,7 @@
     "build": "webpack",
     "test": "jest",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "types": "tsc --noEmit",
     "precommit": "yarn lint",
     "storybook:design": "start-storybook -p 9001 -c storybook",
     "storybook": "start-storybook -p 9001 -c storybook"

@@ -13,15 +13,45 @@ interface WhereAmI {
   getAllChildrenWhereAmI: () => Array<WhereAmI>;
 }
 
-interface ExpectedStructureEntry {
+export interface ExpectedFile {
+  name: string;
+  description: string;
+  fileExtension: Array<string>;
+}
+
+export interface ExpectedStructureEntry {
   name: string;
   description: string;
   structure: ArrayOfExpected;
 }
 
-export type ArrayOfExpected = Array<
-  ExpectedStructureEntry | string | ((whereAmI: WhereAmI) => ExpectedStructureEntry)
->;
+type ExpectedEntry =
+  | ExpectedStructureEntry
+  | ExpectedFile
+  | string
+  | ((whereAmI: WhereAmI) => ExpectedStructureEntry);
+
+export const isFile = (entry: ExpectedEntry) => {
+  try {
+    // @ts-ignore
+    return entry.fileExtension;
+  } catch (error) {}
+  return false;
+};
+
+export type ArrayOfExpected = Array<ExpectedEntry>;
+
+const indexFile: ExpectedFile = {
+  name: `index`,
+  description: `The index file`,
+  fileExtension: [`ts`, `tsx`],
+};
+
+const typesFile: ExpectedFile = {
+  name: `index`,
+  description: `The types file`,
+  fileExtension: [`ts`],
+};
 
 const directory: ArrayOfExpected = [
   {
@@ -43,8 +73,8 @@ const directory: ArrayOfExpected = [
       },
     ],
   },
-  `index.ts`,
-  `types.ts`,
+  indexFile,
+  typesFile,
 ];
 
 const directories: ArrayOfExpected = [
@@ -74,6 +104,11 @@ const domainDirectories: ArrayOfExpected = [
 export const projectFileStructure: ArrayOfExpected = [
   ...directory,
   {
+    name: `Constants`,
+    description: `Constants. No dependencies allowed.`,
+    structure: [...directory, ...directories],
+  },
+  {
     name: `Utils`,
     description: `Functions. No react, no redux.`,
     structure: [...directory, ...directories],
@@ -93,7 +128,7 @@ export const projectFileStructure: ArrayOfExpected = [
               { name: `actions`, description: `Actions!`, structure: [...directory] },
               { name: `reducers`, description: `Reducers!`, structure: [...directory] },
               {
-                name: `selectores`,
+                name: `selectors`,
                 description: `Selectors!`,
                 structure: [...directory],
               },
@@ -108,7 +143,11 @@ export const projectFileStructure: ArrayOfExpected = [
     description: `Higher-Order Components`,
     structure: [...directory, ...directories],
   },
-  { name: `Hooks`, description: `Hooks!`, structure: [...directory, ...directories] },
+  {
+    name: `Hooks`,
+    description: `Hooks!`,
+    structure: [...directory, ...directories],
+  },
   {
     name: `Components`,
     description: `Contains all react components.`,

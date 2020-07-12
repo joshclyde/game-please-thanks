@@ -12,14 +12,13 @@
     "noImplicitAny": true,
     "baseUrl": ".",
     "paths": {
-      "@Components/*": ["./src/Components/*"],
-      "@Design/*": ["./src/Design/*"],
-      "@Design": ["./src/Design/index"],
-      "@Routes": ["./src/Routes"],
-      "@redux/*": ["./src/redux/*"],
-      "@Redux": ["./src/redux/index"],
       "@Utils": ["./src/Utils/index"],
-      "@hocs/*": ["./src/hocs/*"]
+      "@Redux": ["./src/Redux/index"],
+      "@Hocs": ["./src/Hocs/index"],
+      "@Design": ["./src/Components/Design/index"],
+      "@Common": ["./src/Components/Common/index"],
+      "@Domain": ["./src/Components/Domain/index"],
+      "@Routes": ["./src/Components/Routes/index"],
     }
   },
   "include": [

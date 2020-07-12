@@ -1,1 +1,0 @@
-export { BookmarksRoute } from "./BookmarksRoute";

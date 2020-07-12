@@ -12,5 +12,6 @@
 - [] lint rules for file structure
 - [] lint rules for file contents
 - [] vscode custom explorer view
+- [] vscode custom icons
 - [] unit tests
 - [] switch to nvm instead of brew

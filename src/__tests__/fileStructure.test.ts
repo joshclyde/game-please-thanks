@@ -1,6 +1,12 @@
 import fs from "fs-extra";
 // import fs from "fs";
-import { projectFileStructure, ArrayOfExpected } from "./types";
+import {
+  projectFileStructure,
+  ArrayOfExpected,
+  ExpectedFile,
+  ExpectedStructureEntry,
+  isFile,
+} from "./types";
 
 // TODO: don't hardcode this
 const ROOT_DIR = "/Users/joshclyde/stuff/repos/all-the-things-ui/src";
@@ -48,10 +54,13 @@ const findEntryInExpectedStructure = (entry: StructureEntry) => {
     let foundExpected;
     for (const expectedEntry of currentExpectedStructure) {
       if (typeof expectedEntry === "string") {
+        if (isFile && expectedEntry === innerPathName) {
+          return true;
+        }
         // END OF THE LINE
         expectedEntry;
       } else if (typeof expectedEntry === "function") {
-        const possibleEntry = expectedEntry();
+        // const possibleEntry = expectedEntry();
       }
       // if (expectedEntry.name === innerPathName) {
       // }
@@ -61,8 +70,27 @@ const findEntryInExpectedStructure = (entry: StructureEntry) => {
 
 const testStructure = (structure: Array<StructureEntry>) => {
   const errors: Array<string> = [];
+  if (!structure) {
+    return [];
+  }
   for (const entry of structure) {
-    findEntryInExpectedStructure(entry);
+    // findEntryInExpectedStructure(entry);
+    if (
+      !projectFileStructure.find((expectedEntry) => {
+        if (typeof expectedEntry === "string") {
+          return expectedEntry === entry.name;
+        } else if (typeof expectedEntry === "function") {
+          return false;
+        } else if (isFile(expectedEntry)) {
+          return (expectedEntry as ExpectedFile).name === entry.name;
+        } else {
+          return (expectedEntry as ExpectedStructureEntry).name === entry.name;
+        }
+      })
+    ) {
+      errors.push(`Failed on ${entry.name}`);
+    }
+    // errors.push(...testStructure(entry.structure));
   }
   return errors;
 };
@@ -70,9 +98,22 @@ const testStructure = (structure: Array<StructureEntry>) => {
 describe("Project File Structure", () => {
   test("Test it all!!", async () => {
     const structure = getCurrentStucture(ROOT_DIR, ROOT_DIR);
-    console.log(JSON.stringify(structure, null, 2));
+    // console.log(JSON.stringify(structure, null, 2));
     // console.log(structure);
     // console.log(expectedStructure);
-    const blah = testStructure(structure);
+    const errors = testStructure(structure);
+    if (errors.length > 0) {
+      throw new Error(JSON.stringify(errors, null, 2));
+    }
   });
+  // test("Test utils", async () => {
+  //   const structure = getCurrentStucture(ROOT_DIR, ROOT_DIR);
+  //   console.log(JSON.stringify(structure, null, 2));
+  //   // console.log(structure);
+  //   // console.log(expectedStructure);
+  //   const errors = testStructure(structure);
+  //   if (errors.length > 0) {
+  //     throw new Error(JSON.stringify(errors));
+  //   }
+  // });
 });
