@@ -5,7 +5,7 @@
 - scripts/
   - anything i guess
 - src/ (where basically everything is)
-  - index.tsx (the index)
+  - index.tsx (the entry file for the site)
   - Routes/ (top level routes)
   - Components/
     - MyComponent/

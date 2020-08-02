@@ -1,1 +1,0 @@
-export { SmiteRoute } from "./SmiteRoute";

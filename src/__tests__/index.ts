@@ -1,6 +1,4 @@
-// tslint:disable-next-line: no-var-requires
 const { readdirSync, statSync } = require("fs");
-// tslint:disable-next-line: no-var-requires
 const { join } = require("path");
 import { difference } from "lodash/fp";
 
@@ -30,7 +28,10 @@ const testFolders = (
   });
 };
 
-describe("base stuff", () => {
+describe("Project File Structure", () => {
+  describe("testing", () => {
+    test("the test", () => {});
+  });
   describe("root", () => {
     describe("folders", () => {
       const required = ["public", "assets", "storybook", "src", "scripts"];

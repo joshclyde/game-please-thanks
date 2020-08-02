@@ -1,4 +1,6 @@
-export const items = [
+import { ItemData } from "../types/itemData";
+
+export const items: Array<ItemData> = [
   {
     ActiveFlag: "y",
     ChildItemId: 0,

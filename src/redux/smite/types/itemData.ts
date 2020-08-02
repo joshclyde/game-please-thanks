@@ -17,4 +17,5 @@ export interface ItemData {
   Type: string;
   itemIcon_URL: string;
   ret_msg: null;
+  StartingItem: boolean;
 }

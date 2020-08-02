@@ -1,15 +1,16 @@
 module.exports = {
-  parser: "@typescript-eslint/parser",
+  parser: `@typescript-eslint/parser`,
   parserOptions: {
     ecmaVersion: 6,
-    sourceType: "module",
+    sourceType: `module`,
     ecmaFeatures: {
       jsx: true,
     },
   },
-  plugins: ["prettier"],
-  extends: ["prettier", "prettier/@typescript-eslint", "prettier/react"],
+  plugins: [`prettier`],
+  extends: [`prettier`, `prettier/@typescript-eslint`, `prettier/react`],
   rules: {
-    "prettier/prettier": "error",
+    "prettier/prettier": `error`,
+    // quotes: [`error`, `backtick`],
   },
 };

@@ -1,4 +1,6 @@
-export const gods = [
+import { GodData } from "../types/godData";
+
+export const gods: Array<GodData> = [
   {
     Ability1: "Shield of Achilles",
     Ability2: "Radiant Glory",
