@@ -25,10 +25,7 @@ const mapDispatch = {
   setCardResponseIsCorrect: makeActionSetCardResponseIsCorrect,
 };
 
-const connector = connect(
-  mapState,
-  mapDispatch,
-);
+const connector = connect(mapState, mapDispatch);
 
 interface FlashcardQuizProps {
   quizId: string;
@@ -61,22 +58,16 @@ const FlashcardQuizFC: FC<FlashcardForRealProps> = ({
 
   const [flashcardIndex, setFlashcardIndex] = useState(0);
 
-  const onClickWrong = useCallback(
-    () => {
-      setFlashcardIndex((previousValue) => previousValue + 1);
-      // setFlashcardIndex((previousValue) => Math.min(previousValue + 1, quizLength - 1));
-      setCardResponseIsCorrect(Object.keys(flashcardContents)[flashcardIndex], false);
-    },
-    [flashcardIndex],
-  );
-  const onClickCorrect = useCallback(
-    () => {
-      setFlashcardIndex((previousValue) => previousValue + 1);
-      // setFlashcardIndex((previousValue) => Math.min(previousValue + 1, quizLength - 1));
-      setCardResponseIsCorrect(Object.keys(flashcardContents)[flashcardIndex], true);
-    },
-    [flashcardIndex],
-  );
+  const onClickWrong = useCallback(() => {
+    setFlashcardIndex((previousValue) => previousValue + 1);
+    // setFlashcardIndex((previousValue) => Math.min(previousValue + 1, quizLength - 1));
+    setCardResponseIsCorrect(Object.keys(flashcardContents)[flashcardIndex], false);
+  }, [flashcardIndex]);
+  const onClickCorrect = useCallback(() => {
+    setFlashcardIndex((previousValue) => previousValue + 1);
+    // setFlashcardIndex((previousValue) => Math.min(previousValue + 1, quizLength - 1));
+    setCardResponseIsCorrect(Object.keys(flashcardContents)[flashcardIndex], true);
+  }, [flashcardIndex]);
 
   const numberOfCorrect = Object.values(flashcardContents).filter(
     ({ isCorrect }) => isCorrect,

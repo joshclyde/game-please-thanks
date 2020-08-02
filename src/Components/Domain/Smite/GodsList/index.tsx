@@ -27,7 +27,9 @@ const GodsListFC: FC<PropsForReals> = ({ godNames, searchTerm }) => {
     <div>
       <GodsSearchBar />
       <div className="GodsList">
-        {filteredGodNames.map((name) => <GodOnGodsList godName={name} key={name} />)}
+        {filteredGodNames.map((name) => (
+          <GodOnGodsList godName={name} key={name} />
+        ))}
       </div>
     </div>
   );

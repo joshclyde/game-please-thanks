@@ -9,14 +9,22 @@ storiesOf("Design/Tile", module).add("tile", () => (
     <Tile>I am a Tile</Tile>
     <Tile>I am a disabled Tile</Tile>
     <Tile>
-      I am a very very very long Tile<br />
-      I am a very very very long Tile<br />
-      I am a very very very long Tile<br />
-      I am a very very very long Tile<br />
-      I am a very very very long Tile<br />
-      I am a very very very long Tile<br />
-      I am a very very very long Tile<br />
-      I am a very very very long Tile<br />
+      I am a very very very long Tile
+      <br />
+      I am a very very very long Tile
+      <br />
+      I am a very very very long Tile
+      <br />
+      I am a very very very long Tile
+      <br />
+      I am a very very very long Tile
+      <br />
+      I am a very very very long Tile
+      <br />
+      I am a very very very long Tile
+      <br />
+      I am a very very very long Tile
+      <br />
     </Tile>
   </>
 ));

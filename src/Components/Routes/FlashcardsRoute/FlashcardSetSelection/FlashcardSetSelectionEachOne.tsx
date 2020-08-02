@@ -15,10 +15,7 @@ const mapState = (state: State, { setId }: OwnProps) => ({
 
 const mapDispatch = { navigateToFlashcardQuizThing: navigateToFlashcardQuiz };
 
-const connector = connect(
-  mapState,
-  mapDispatch,
-);
+const connector = connect(mapState, mapDispatch);
 
 type OwnProps = { setId: string };
 type FlashcardSetSelectionEachOneProps = ConnectedProps<typeof connector> & OwnProps;

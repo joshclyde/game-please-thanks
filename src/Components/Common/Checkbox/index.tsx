@@ -15,10 +15,7 @@ const mapDispatch = {
   setValue: makeActionSetSharedFilter,
 };
 
-const connector = connect(
-  mapState,
-  mapDispatch,
-);
+const connector = connect(mapState, mapDispatch);
 
 interface PropsForReals
   extends Props,
@@ -39,12 +36,9 @@ const CheckboxFC: FC<PropsForReals> = ({
     setValue(entityKey, attributeKey, false);
   }, []);
 
-  const onChange = useCallback(
-    () => {
-      setValue(entityKey, attributeKey, !checkboxValue);
-    },
-    [entityKey, attributeKey, checkboxValue],
-  );
+  const onChange = useCallback(() => {
+    setValue(entityKey, attributeKey, !checkboxValue);
+  }, [entityKey, attributeKey, checkboxValue]);
 
   return (
     <input {...restProps} type="checkbox" checked={checkboxValue} onChange={onChange} />

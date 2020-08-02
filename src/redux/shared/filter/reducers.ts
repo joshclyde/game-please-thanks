@@ -11,7 +11,7 @@ const reduceSetSharedFilter = (
   return {
     ...state,
     [key]: {
-      ...state?.[key],
+      ...state[key],
       [filterName]: value,
     },
   };

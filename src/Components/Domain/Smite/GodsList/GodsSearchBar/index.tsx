@@ -13,10 +13,7 @@ const mapDispatch = {
   setSmiteSearchTerm: makeActionSetSmiteSearchTerm,
 };
 
-const connector = connect(
-  mapState,
-  mapDispatch,
-);
+const connector = connect(mapState, mapDispatch);
 
 interface PropsForReals extends Props, ConnectedProps<typeof connector> {}
 

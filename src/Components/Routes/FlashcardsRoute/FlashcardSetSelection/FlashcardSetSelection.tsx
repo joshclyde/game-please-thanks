@@ -13,7 +13,9 @@ type FlashcardSetSelectionProps = ConnectedProps<typeof connector> & {};
 
 const FlashcardSetSelectionFC: FC<FlashcardSetSelectionProps> = ({ setIds }) => (
   <Fragment>
-    {setIds.map((setId) => <FlashcardSetSelectionEachOne setId={setId} />)}
+    {setIds.map((setId) => (
+      <FlashcardSetSelectionEachOne setId={setId} />
+    ))}
   </Fragment>
 );
 

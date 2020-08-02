@@ -25,7 +25,7 @@ export interface ExpectedStructureEntry {
   structure: ArrayOfExpected;
 }
 
-export type ExpectedComplexEntry = ((whereAmI: WhereAmI) => ExpectedStructureEntry);
+export type ExpectedComplexEntry = (whereAmI: WhereAmI) => ExpectedStructureEntry;
 
 type ExpectedEntry = ExpectedStructureEntry | ExpectedFile | ExpectedComplexEntry;
 

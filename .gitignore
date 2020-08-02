@@ -13,4 +13,3 @@ yarn-debug.log*
 yarn-error.log*
 /.changelog
 .firebase
-package-lock.json
