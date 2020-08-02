@@ -1,4 +1,4 @@
-import { Checkbox } from "@Components/Shared/Filter/Checkbox";
+import { Checkbox } from "@Common";
 import { State, selectGodData, selectAllItems, selectSharedFilter } from "@Redux";
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
