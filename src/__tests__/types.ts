@@ -25,18 +25,22 @@ export interface ExpectedStructureEntry {
   structure: ArrayOfExpected;
 }
 
-type ExpectedEntry =
-  | ExpectedStructureEntry
-  | ExpectedFile
-  | string
-  | ((whereAmI: WhereAmI) => ExpectedStructureEntry);
+export type ExpectedComplexEntry = ((whereAmI: WhereAmI) => ExpectedStructureEntry);
 
-export const isFile = (entry: ExpectedEntry) => {
-  try {
-    // @ts-ignore
-    return entry.fileExtension;
-  } catch (error) {}
-  return false;
+type ExpectedEntry = ExpectedStructureEntry | ExpectedFile | ExpectedComplexEntry;
+
+export const checkIsDirectory = (
+  entry: ExpectedEntry,
+): entry is ExpectedStructureEntry => {
+  return (entry as ExpectedStructureEntry).structure != null;
+};
+
+export const checkIsFile = (entry: ExpectedEntry): entry is ExpectedFile => {
+  return (entry as ExpectedFile).fileExtension != null;
+};
+
+export const checkIsFunction = (entry: ExpectedEntry): entry is ExpectedComplexEntry => {
+  return typeof (entry as ExpectedComplexEntry) === `function`;
 };
 
 export type ArrayOfExpected = Array<ExpectedEntry>;

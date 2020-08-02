@@ -32,7 +32,7 @@ const GodsSearchBarFC: FC<PropsForReals> = ({ searchTerm, setSmiteSearchTerm }) 
     <input
       type="text"
       value={searchTerm}
-      placeholder="Search for god..."
+      placeholder="Search for a character..."
       onChange={onChange}
     />
   );
