@@ -18,6 +18,7 @@
       "@Design": ["./src/Components/Design/index"],
       "@Common": ["./src/Components/Common/index"],
       "@Domain": ["./src/Components/Domain/index"],
+      "@SmiteCommon": ["./src/Components/Domain/Smite/Common/index"],
       "@Routes": ["./src/Components/Routes/index"],
     }
   },

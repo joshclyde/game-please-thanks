@@ -10,6 +10,13 @@ export interface BuildItems {
   };
 }
 
+export interface BuildAGod {
+  godName?: string;
+  level?: number;
+  items: Array<number>;
+  view: "god" | "item 0" | "item 1" | "item 2" | "item 3" | "item 4" | "item 5";
+}
+
 export interface SmiteState {
   items: Array<ItemData>;
   gods: Array<GodData>;
@@ -18,5 +25,8 @@ export interface SmiteState {
   };
   buildItems: {
     [key: string]: BuildItems;
+  };
+  buildAGod: {
+    [key: string]: BuildAGod;
   };
 }

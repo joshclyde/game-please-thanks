@@ -5,6 +5,14 @@ export type StateJustSmite = Pick<State, "smite">;
 
 export const selectAllItems = (state: StateJustSmite) => state.smite.items;
 
+export const selectSmiteItemImageUrl = (state: StateJustSmite, itemId: number) => {
+  return state.smite.items.find(({ ItemId }) => ItemId === itemId).itemIcon_URL;
+};
+
+export const selectSmiteItemDeviceName = (state: StateJustSmite, itemId: number) => {
+  return state.smite.items.find(({ ItemId }) => ItemId === itemId).DeviceName;
+};
+
 export const selectAllGodNames = (state: StateJustSmite): Array<string> =>
   state.smite.gods.map(({ Name }: { Name: string }) => Name);
 
@@ -84,3 +92,21 @@ export const selectSmiteBuildFilter = (
   buildKey: string,
   filterKey: keyof BuildItems["filters"],
 ) => state.smite.buildItems[buildKey]?.filters?.[filterKey];
+
+export const selectSmiteBuildAGod = (state: StateJustSmite, key: string) =>
+  state.smite.buildAGod[key];
+
+export const selectSmiteBuildAGodGodName = (state: StateJustSmite, key: string) =>
+  state.smite.buildAGod[key].godName;
+
+export const selectSmiteBuildAGodItemsLength = (state: StateJustSmite, key: string) =>
+  selectSmiteBuildAGod(state, key).items.length;
+
+export const selectSmiteBuildAGodView = (state: StateJustSmite, key: string) =>
+  selectSmiteBuildAGod(state, key).view;
+
+export const selectSmiteBuildAGodItem = (
+  state: StateJustSmite,
+  key: string,
+  itemIndex: number,
+) => selectSmiteBuildAGod(state, key).items[itemIndex];

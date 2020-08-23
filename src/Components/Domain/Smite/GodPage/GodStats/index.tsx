@@ -1,7 +1,6 @@
 import { State, selectGodData, selectAllItems } from "@Redux";
 import React, { FC, useState, useCallback } from "react";
 import { connect, ConnectedProps } from "react-redux";
-import { ItemBuild } from "./itemsBuild";
 import { calculateBasicAttackDamage } from "./utils";
 
 import "./index.css";
@@ -68,7 +67,6 @@ const GodStatsFC: FC<PropsForReals> = ({ godData, items, godName }) => {
             (19 + 100)}
         </li>
       </li>
-      <ItemBuild buildKey={godName} godName={godName} />
     </div>
   );
 };

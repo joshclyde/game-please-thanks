@@ -1,7 +1,6 @@
 import React, { FC, useCallback } from "react";
 import { State, makeActionSetSmiteSearchTerm, selectSmiteSearchTerm } from "@Redux";
 import { connect, ConnectedProps } from "react-redux";
-import { Link } from "react-router-dom";
 
 interface Props {}
 
@@ -29,7 +28,7 @@ const GodsSearchBarFC: FC<PropsForReals> = ({ searchTerm, setSmiteSearchTerm }) 
     <input
       type="text"
       value={searchTerm}
-      placeholder="Search for a character..."
+      placeholder="Search for a god..."
       onChange={onChange}
     />
   );

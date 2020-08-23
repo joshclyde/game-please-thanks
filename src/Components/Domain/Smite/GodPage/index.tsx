@@ -6,6 +6,7 @@ import injectSheet from "react-jss";
 import { GodCard } from "./GodCard";
 import { GodAbilities } from "./GodAbilities";
 import { GodStats } from "./GodStats";
+import { BuildAGod } from "./BuildAGod";
 
 interface Props {
   godName: string;
@@ -24,6 +25,7 @@ const connector = connect(mapState);
 interface PropsForReals extends Props, ConnectedProps<typeof connector> {}
 
 const GodPageFC: FC<PropsForReals> = ({ godName, classes }) => {
+  console.log(`HEY: ${godName}`);
   return (
     <div>
       <h1>{godName}</h1>
@@ -32,6 +34,7 @@ const GodPageFC: FC<PropsForReals> = ({ godName, classes }) => {
         <GodAbilities godName={godName} />
       </div>
       <GodStats godName={godName} />
+      <BuildAGod buildAGodKey={godName} />
     </div>
   );
 };

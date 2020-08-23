@@ -1,33 +1,35 @@
 import { Checkbox } from "@Common";
-import { State, selectGodData, selectAllItems, selectSharedFilter } from "@Redux";
+import { State, selectAllItems, selectSharedFilter } from "@Redux";
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
+import { SmiteItemImage } from "../SmiteItemImage";
 
 interface Props {
-  godName: string;
-  buildKey: string;
+  entityKey: string;
+  onClickItemImage?: (itemId: number) => void;
+  // godName: string;
 }
 
-const mapState = (state: State, { godName, buildKey }: Props) => ({
-  godData: selectGodData(state, godName),
+const mapState = (state: State, { entityKey }: Props) => ({
   items: selectAllItems(state),
-  isAttackSpeed: selectSharedFilter(state, buildKey, "isAttackSpeed"),
-  isPhysicalPower: selectSharedFilter(state, buildKey, "isPhysicalPower"),
-  isPhysicalPenetration: selectSharedFilter(state, buildKey, "isPhysicalPenetration"),
-  isPhysicalLifesteal: selectSharedFilter(state, buildKey, "isPhysicalLifesteal"),
+  isAttackSpeed: selectSharedFilter(state, entityKey, "isAttackSpeed"),
+  isPhysicalPower: selectSharedFilter(state, entityKey, "isPhysicalPower"),
+  isPhysicalPenetration: selectSharedFilter(state, entityKey, "isPhysicalPenetration"),
+  isPhysicalLifesteal: selectSharedFilter(state, entityKey, "isPhysicalLifesteal"),
 });
 
 const connector = connect(mapState);
 
 interface PropsForReals extends Props, ConnectedProps<typeof connector> {}
 
-const ItemBuildFC: FC<PropsForReals> = ({
+const ItemSearchFC: FC<PropsForReals> = ({
+  entityKey,
   items,
   isAttackSpeed,
   isPhysicalPower,
   isPhysicalPenetration,
   isPhysicalLifesteal,
-  godName,
+  onClickItemImage,
 }) => {
   const finalItems = items.filter(
     ({ ActiveFlag, ItemTier, ItemDescription, Type }) =>
@@ -67,9 +69,10 @@ const ItemBuildFC: FC<PropsForReals> = ({
   return (
     <>
       <li>
+        {/* TODO: fix htmlFor to be unique */}
         <label htmlFor="Attack Speed">Attack Speed</label>
         <Checkbox
-          entityKey={godName}
+          entityKey={entityKey}
           attributeKey={"isAttackSpeed"}
           id="Attack Speed"
           name="Attack Speed"
@@ -79,7 +82,7 @@ const ItemBuildFC: FC<PropsForReals> = ({
       <li>
         <label htmlFor="Physical Power">Physical Power</label>
         <Checkbox
-          entityKey={godName}
+          entityKey={entityKey}
           attributeKey={"isPhysicalPower"}
           id="Physical Power"
           name="Physical Power"
@@ -89,7 +92,7 @@ const ItemBuildFC: FC<PropsForReals> = ({
       <li>
         <label htmlFor="Physical Penetration">Physical Penetration</label>
         <Checkbox
-          entityKey={godName}
+          entityKey={entityKey}
           attributeKey={"isPhysicalPenetration"}
           id="Physical Penetration"
           name="Physical Penetration"
@@ -99,7 +102,7 @@ const ItemBuildFC: FC<PropsForReals> = ({
       <li>
         <label htmlFor="Physical Lifesteal">Physical Lifesteal</label>
         <Checkbox
-          entityKey={godName}
+          entityKey={entityKey}
           attributeKey={"isPhysicalLifesteal"}
           id="Physical Lifesteal"
           name="Physical Lifesteal"
@@ -107,18 +110,17 @@ const ItemBuildFC: FC<PropsForReals> = ({
         />
       </li>
       <br />
-      {finalItems.map(({ DeviceName, itemIcon_URL }) => (
-        <img
-          src={itemIcon_URL}
+      {finalItems.map(({ ItemId, DeviceName }) => (
+        <SmiteItemImage
+          itemId={ItemId}
           width={64}
           height={64}
           key={DeviceName}
-          alt={DeviceName}
-          title={DeviceName}
+          onClick={() => onClickItemImage(ItemId)}
         />
       ))}
     </>
   );
 };
 
-export const ItemBuild = connector(ItemBuildFC);
+export const ItemSearch = connector(ItemSearchFC);
