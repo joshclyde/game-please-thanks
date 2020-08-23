@@ -32,10 +32,10 @@ interface PropsForReals extends Props, ConnectedProps<typeof connector> {}
 
 const calcText = (abilityIndex: number) => {
   if (abilityIndex === 5) {
-    return "Passive";
+    return `Passive`;
   }
   if (abilityIndex === 4) {
-    return "Ultimate";
+    return `Ultimate`;
   }
   return `Ability ${abilityIndex}`;
 };

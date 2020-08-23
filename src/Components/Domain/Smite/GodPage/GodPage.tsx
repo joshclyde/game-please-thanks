@@ -38,8 +38,8 @@ const GodPageFC: FC<PropsForReals> = ({ godName, classes }) => {
 
 const styles = {
   godCardAndAbilitiesContainer: {
-    display: "flex",
-    flexFlow: "row nowrap",
+    display: `flex`,
+    flexFlow: `row nowrap`,
   },
 };
 

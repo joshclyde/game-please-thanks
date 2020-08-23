@@ -1,14 +1,14 @@
 import { selectFlashcardQuizFlashcards } from "../selectors";
 import { mockFlashcardA } from "./mockData";
 
-describe("selectors", () => {
+describe(`selectors`, () => {
   // test.each(Object.keys(selectors))("selector: %s", (selector) => {
   //   // @ts-ignore
   //   expect(selectors[selector](mockData)).toMatchSnapshot();
   // });
 
-  describe("selectFlashcardQuizFlashcards", () => {
-    test("should return merged flashcard data and quiz data", () => {
+  describe(`selectFlashcardQuizFlashcards`, () => {
+    test(`should return merged flashcard data and quiz data`, () => {
       expect(selectFlashcardQuizFlashcards(mockFlashcardA)).toMatchSnapshot();
     });
   });

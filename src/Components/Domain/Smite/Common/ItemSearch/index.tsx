@@ -12,10 +12,10 @@ interface Props {
 
 const mapState = (state: State, { entityKey }: Props) => ({
   items: selectAllItems(state),
-  isAttackSpeed: selectSharedFilter(state, entityKey, "isAttackSpeed"),
-  isPhysicalPower: selectSharedFilter(state, entityKey, "isPhysicalPower"),
-  isPhysicalPenetration: selectSharedFilter(state, entityKey, "isPhysicalPenetration"),
-  isPhysicalLifesteal: selectSharedFilter(state, entityKey, "isPhysicalLifesteal"),
+  isAttackSpeed: selectSharedFilter(state, entityKey, `isAttackSpeed`),
+  isPhysicalPower: selectSharedFilter(state, entityKey, `isPhysicalPower`),
+  isPhysicalPenetration: selectSharedFilter(state, entityKey, `isPhysicalPenetration`),
+  isPhysicalLifesteal: selectSharedFilter(state, entityKey, `isPhysicalLifesteal`),
 });
 
 const connector = connect(mapState);
@@ -33,37 +33,37 @@ const ItemSearchFC: FC<PropsForReals> = ({
 }) => {
   const finalItems = items.filter(
     ({ ActiveFlag, ItemTier, ItemDescription, Type }) =>
-      ActiveFlag === "y" &&
+      ActiveFlag === `y` &&
       ItemTier === 3 &&
       !ItemDescription.Menuitems.some(({ Description }) =>
-        ["Magical Power", "Magical Lifesteal", "Magical power"].includes(Description),
+        [`Magical Power`, `Magical Lifesteal`, `Magical power`].includes(Description),
       ) &&
       ItemDescription.Menuitems.some(({ Description }) =>
         [
-          "Physical Power",
-          "Physical power",
-          "Attack Speed",
-          "Physical Penetration",
-          "Physical Lifesteal",
+          `Physical Power`,
+          `Physical power`,
+          `Attack Speed`,
+          `Physical Penetration`,
+          `Physical Lifesteal`,
         ].includes(Description),
       ) &&
       (!isAttackSpeed ||
         ItemDescription.Menuitems.some(({ Description }) =>
-          ["Attack Speed"].includes(Description),
+          [`Attack Speed`].includes(Description),
         )) &&
       (!isPhysicalPower ||
         ItemDescription.Menuitems.some(({ Description }) =>
-          ["Physical Power", "Physical power"].includes(Description),
+          [`Physical Power`, `Physical power`].includes(Description),
         )) &&
       (!isPhysicalPenetration ||
         ItemDescription.Menuitems.some(({ Description }) =>
-          ["Physical Penetration"].includes(Description),
+          [`Physical Penetration`].includes(Description),
         )) &&
       (!isPhysicalLifesteal ||
         ItemDescription.Menuitems.some(({ Description }) =>
-          ["Physical Lifesteal"].includes(Description),
+          [`Physical Lifesteal`].includes(Description),
         )) &&
-      Type !== "Active",
+      Type !== `Active`,
   );
 
   return (
@@ -73,7 +73,7 @@ const ItemSearchFC: FC<PropsForReals> = ({
         <label htmlFor="Attack Speed">Attack Speed</label>
         <Checkbox
           entityKey={entityKey}
-          attributeKey={"isAttackSpeed"}
+          attributeKey={`isAttackSpeed`}
           id="Attack Speed"
           name="Attack Speed"
           value="Attack Speed"
@@ -83,7 +83,7 @@ const ItemSearchFC: FC<PropsForReals> = ({
         <label htmlFor="Physical Power">Physical Power</label>
         <Checkbox
           entityKey={entityKey}
-          attributeKey={"isPhysicalPower"}
+          attributeKey={`isPhysicalPower`}
           id="Physical Power"
           name="Physical Power"
           value="Physical Power"
@@ -93,7 +93,7 @@ const ItemSearchFC: FC<PropsForReals> = ({
         <label htmlFor="Physical Penetration">Physical Penetration</label>
         <Checkbox
           entityKey={entityKey}
-          attributeKey={"isPhysicalPenetration"}
+          attributeKey={`isPhysicalPenetration`}
           id="Physical Penetration"
           name="Physical Penetration"
           value="Physical Penetration"
@@ -103,7 +103,7 @@ const ItemSearchFC: FC<PropsForReals> = ({
         <label htmlFor="Physical Lifesteal">Physical Lifesteal</label>
         <Checkbox
           entityKey={entityKey}
-          attributeKey={"isPhysicalLifesteal"}
+          attributeKey={`isPhysicalLifesteal`}
           id="Physical Lifesteal"
           name="Physical Lifesteal"
           value="Physical Lifesteal"

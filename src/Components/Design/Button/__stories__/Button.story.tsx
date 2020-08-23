@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { Button } from "../";
 
-storiesOf("Design/Button", module).add("button", () => (
+storiesOf(`Design/Button`, module).add(`button`, () => (
   <>
     <Button />
     <Button>A</Button>

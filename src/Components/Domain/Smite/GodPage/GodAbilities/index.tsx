@@ -60,12 +60,12 @@ const GodAbilitiesFC: FC<Props> = ({ godName, classes }) => {
 
 const styles = {
   a: {
-    display: "flex",
-    flexFlow: "row nowrap",
+    display: `flex`,
+    flexFlow: `row nowrap`,
   },
   b: {
-    display: "flex",
-    flexFlow: "column nowrap",
+    display: `flex`,
+    flexFlow: `column nowrap`,
   },
 };
 

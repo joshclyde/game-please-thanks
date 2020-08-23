@@ -1,4 +1,4 @@
-export const NAVIGATE_TO_FLASHCARD_QUIZ = "NAVIGATE_TO_FLASHCARD_QUIZ";
+export const NAVIGATE_TO_FLASHCARD_QUIZ = `NAVIGATE_TO_FLASHCARD_QUIZ`;
 export const navigateToFlashcardQuiz = (setId: string) => ({
   type: NAVIGATE_TO_FLASHCARD_QUIZ,
   payload: {
@@ -6,7 +6,7 @@ export const navigateToFlashcardQuiz = (setId: string) => ({
   },
 });
 
-export const SET_FLASHCARD_QUIZ_ID = "SET_FLASHCARD_QUIZ_ID";
+export const SET_FLASHCARD_QUIZ_ID = `SET_FLASHCARD_QUIZ_ID`;
 export const makeActionSetFlashcardQuizId = (quizId: string) => ({
   type: SET_FLASHCARD_QUIZ_ID,
   payload: {
@@ -14,7 +14,7 @@ export const makeActionSetFlashcardQuizId = (quizId: string) => ({
   },
 });
 
-export const SET_CARD_RESPONSE_IS_CORRECT = "SET_CARD_RESPONSE_IS_CORRECT";
+export const SET_CARD_RESPONSE_IS_CORRECT = `SET_CARD_RESPONSE_IS_CORRECT`;
 export const makeActionSetCardResponseIsCorrect = (
   flashcardId: string,
   isCorrect: boolean,

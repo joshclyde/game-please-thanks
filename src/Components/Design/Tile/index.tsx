@@ -25,10 +25,10 @@ const DumbTile: FunctionComponent<Props> = ({
 
 const styles = {
   container: {
-    backgroundColor: "#F7F5F2",
-    border: "none",
-    color: "#313130",
-    padding: "8px 20px",
+    backgroundColor: `#F7F5F2`,
+    border: `none`,
+    color: `#313130`,
+    padding: `8px 20px`,
     // fontSize: "3em",
     borderRadius: 8,
   },

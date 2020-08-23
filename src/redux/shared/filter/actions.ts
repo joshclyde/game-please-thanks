@@ -1,4 +1,4 @@
-export const SET_SHARED_FILTER = "SET_SHARED_FILTER";
+export const SET_SHARED_FILTER = `SET_SHARED_FILTER`;
 export const makeActionSetSharedFilter = (
   key: string,
   filterName: string,

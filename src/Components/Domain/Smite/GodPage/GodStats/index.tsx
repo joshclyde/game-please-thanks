@@ -56,7 +56,7 @@ const GodStatsFC: FC<PropsForReals> = ({ godData, items, godName }) => {
           Physical Power: {godData.PhysicalPower + godData.PhysicalPowerPerLevel * level}
         </li>
         <li>
-          Basic Attack Damage:{" "}
+          Basic Attack Damage:{` `}
           {(calculateBasicAttackDamage({
             baseDamage: godData.PhysicalPower,
             baseDamagePerLevel: godData.PhysicalPowerPerLevel,

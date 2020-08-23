@@ -18,5 +18,5 @@ const BookmarkFC: FC<BookmarkProps> = ({ classes, className, name, url, iconUrl 
 );
 
 export const Bookmark = injectSheet({
-  main: { display: "flex", flexDirection: "column", alignItems: "center" },
+  main: { display: `flex`, flexDirection: `column`, alignItems: `center` },
 })(BookmarkFC);

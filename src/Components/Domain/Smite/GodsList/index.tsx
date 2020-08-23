@@ -20,7 +20,7 @@ interface PropsForReals extends Props, ConnectedProps<typeof connector> {}
 
 const GodsListFC: FC<PropsForReals> = ({ godNames, searchTerm }) => {
   const filteredGodNames = godNames.filter((name) =>
-    new RegExp(searchTerm, "i").test(name),
+    new RegExp(searchTerm, `i`).test(name),
   );
 
   return (

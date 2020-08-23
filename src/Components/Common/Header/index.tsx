@@ -25,12 +25,12 @@ const DumbHeader: FunctionComponent<Props> = ({ classes }) => (
 
 const styles = {
   container: {
-    backgroundColor: "black",
+    backgroundColor: `black`,
     height: 42,
-    display: "flex",
-    flexFlow: "row nowrap",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    display: `flex`,
+    flexFlow: `row nowrap`,
+    justifyContent: `flex-start`,
+    alignItems: `center`,
   },
 };
 

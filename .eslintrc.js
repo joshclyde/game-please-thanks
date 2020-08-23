@@ -7,10 +7,10 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: [`prettier`],
+  plugins: [`prettier`, `@typescript-eslint`],
   extends: [`prettier`, `prettier/@typescript-eslint`, `prettier/react`],
   rules: {
     "prettier/prettier": `error`,
-    // quotes: [`error`, `backtick`],
+    "@typescript-eslint/quotes": [`error`, `backtick`],
   },
 };

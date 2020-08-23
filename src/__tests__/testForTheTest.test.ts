@@ -10,7 +10,7 @@ import {
 } from "./types";
 
 // TODO: don't hardcode this
-const ROOT_DIR = "/Users/joshclyde/stuff/repos/all-the-things-ui/src";
+const ROOT_DIR = `/Users/joshclyde/stuff/repos/all-the-things-ui/src`;
 // const ROOT_DIR = `${__dirname}/../..`;
 
 interface StructureEntry {
@@ -28,7 +28,7 @@ const getCurrentStucture = (path: string, rootPath: string): Array<StructureEntr
     (fsDir): StructureEntry => {
       let childName = fsDir.name;
       const childPath = `${path}/${childName}`;
-      const childInnerPath = childPath.replace(`${rootPath}/`, "");
+      const childInnerPath = childPath.replace(`${rootPath}/`, ``);
       let isDirectory = false;
       let childStructure;
       let fileExtension;
@@ -36,9 +36,9 @@ const getCurrentStucture = (path: string, rootPath: string): Array<StructureEntr
         childStructure = getCurrentStucture(childPath, rootPath);
         isDirectory = true;
       } else {
-        const split = childName.split(".");
+        const split = childName.split(`.`);
         childName = split[0];
-        fileExtension = split.join(".");
+        fileExtension = split.join(`.`);
       }
 
       return {
@@ -55,7 +55,7 @@ const getCurrentStucture = (path: string, rootPath: string): Array<StructureEntr
 };
 
 const findEntryInExpectedStructure = (entry: StructureEntry) => {
-  const innerPathNames = entry.innerPath.split("/");
+  const innerPathNames = entry.innerPath.split(`/`);
   const isDirectory = entry.structure;
   const isFile = !isDirectory;
   let currentExpectedStructure = projectFileStructure;
@@ -66,9 +66,9 @@ const findEntryInExpectedStructure = (entry: StructureEntry) => {
     const isFinalPath = i === innerPathNames.length - 1;
     for (const expectedEntry of currentExpectedStructure) {
       if (isFinalPath && isFile && checkIsFile(expectedEntry)) {
-        const split = innerPathName.split(".");
+        const split = innerPathName.split(`.`);
         const fileName = split[0];
-        const fileExtension = split.slice(1).join(".");
+        const fileExtension = split.slice(1).join(`.`);
         if (
           expectedEntry.name === fileName &&
           expectedEntry.fileExtension.includes(fileExtension)
@@ -107,8 +107,8 @@ const testStructure = (structure: Array<StructureEntry>) => {
   return errors;
 };
 
-describe("Project File Structure", () => {
-  test("Test it all!!", async () => {
+describe(`Project File Structure`, () => {
+  test(`Test it all!!`, async () => {
     // const errors = testStructure(structure);
     // if (errors.length > 0) {
     //   throw new Error(JSON.stringify(errors, null, 2));

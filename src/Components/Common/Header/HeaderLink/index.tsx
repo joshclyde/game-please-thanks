@@ -27,19 +27,19 @@ const DumbHeaderLink: FunctionComponent<Props> = ({
 
 const styles = {
   container: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    display: `flex`,
+    justifyContent: `center`,
+    alignItems: `center`,
     width: 100,
-    height: "100%",
-    color: "white",
-    textDecoration: "none", // remove underline
-    borderStyle: "solid",
-    borderColor: "rgba(0, 0, 0, 0.2)",
-    borderWidth: "0px 2px 0px 0px",
+    height: `100%`,
+    color: `white`,
+    textDecoration: `none`, // remove underline
+    borderStyle: `solid`,
+    borderColor: `rgba(0, 0, 0, 0.2)`,
+    borderWidth: `0px 2px 0px 0px`,
 
     "&:hover": {
-      backgroundColor: "rgba(255, 255, 255, 0.3)",
+      backgroundColor: `rgba(255, 255, 255, 0.3)`,
     },
     // "&:active": {
     //   backgroundColor: "rgba(255, 255, 255, 0.2)",
@@ -47,9 +47,9 @@ const styles = {
     //   // outline: 0,
     // },
     "&:focus": {
-      backgroundColor: "rgba(255, 255, 255, 0.3)",
+      backgroundColor: `rgba(255, 255, 255, 0.3)`,
       // backgroundColor: "rgba(255, 255, 255, 0.3)",
-      outline: "none",
+      outline: `none`,
       // outline: "2px solid rgba(0, 0, 0, 0.2);",
       // backgroundColor: "rgba(255, 255, 255, 0.5)",
       // transitionDuration: "0s",

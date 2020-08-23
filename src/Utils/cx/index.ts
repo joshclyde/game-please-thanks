@@ -5,4 +5,4 @@ export const cx = (...classes: string[]) =>
     } else {
       return acc;
     }
-  }, "");
+  }, ``);

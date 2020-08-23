@@ -78,7 +78,7 @@ const FlashcardQuizFC: FC<FlashcardForRealProps> = ({
       <div>
         <p>Completed Quiz!</p>
         <p>
-          Grade: {calculateGrade(numberOfCorrect / quizLength)} ({numberOfCorrect} /{" "}
+          Grade: {calculateGrade(numberOfCorrect / quizLength)} ({numberOfCorrect} /{` `}
           {quizLength})
         </p>
         <Link to={`/flashcards`}>
@@ -114,24 +114,24 @@ const FlashcardQuizFC: FC<FlashcardForRealProps> = ({
 export const FlashcardQuiz = connector(
   injectSheet({
     main: {
-      display: "flex",
-      flexDirection: "row",
-      border: "solid",
+      display: `flex`,
+      flexDirection: `row`,
+      border: `solid`,
       "& > *": { margin: 10 },
     },
     flashcard: {
-      width: "100%",
+      width: `100%`,
     },
     flashcardData: {
       width: 200,
     },
     correctButton: {
-      width: "100%",
-      backgroundColor: "#66D14A",
+      width: `100%`,
+      backgroundColor: `#66D14A`,
     },
     wrongButton: {
-      width: "100%",
-      backgroundColor: "#D14A66",
+      width: `100%`,
+      backgroundColor: `#D14A66`,
     },
   })(FlashcardQuizFC),
 );

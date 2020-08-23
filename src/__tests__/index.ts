@@ -1,5 +1,5 @@
-const { readdirSync, statSync } = require("fs");
-const { join } = require("path");
+const { readdirSync, statSync } = require(`fs`);
+const { join } = require(`path`);
 import { difference } from "lodash/fp";
 
 const ROOT_PATH = `${__dirname}/../..`;
@@ -21,39 +21,39 @@ const testFolders = (
       expect(getFolders(testPath)).toContain(folderName);
     });
   });
-  test("unknown", () => {
+  test(`unknown`, () => {
     const allowed = [...requiredFolders, ...optionalFolders];
     const unknownFolders = difference(getFolders(testPath), allowed);
     expect(unknownFolders).toHaveLength(0);
   });
 };
 
-describe("Project File Structure", () => {
-  describe("testing", () => {
-    test("the test", () => {});
+describe(`Project File Structure`, () => {
+  describe(`testing`, () => {
+    test(`the test`, () => {});
   });
-  describe("root", () => {
-    describe("folders", () => {
-      const required = ["public", "assets", "storybook", "src", "scripts"];
-      const optional = ["node_modules", "dist", "build", ".git"];
+  describe(`root`, () => {
+    describe(`folders`, () => {
+      const required = [`public`, `assets`, `storybook`, `src`, `scripts`];
+      const optional = [`node_modules`, `dist`, `build`, `.git`];
       required.forEach((folderName) => {
         test(`required ./${folderName}/`, () => {
           expect(getFolders(ROOT_PATH)).toContain(folderName);
         });
       });
-      test("unknown", () => {
+      test(`unknown`, () => {
         const allowed = [...required, ...optional];
         const unknownFolders = difference(getFolders(ROOT_PATH), allowed);
         expect(unknownFolders).toHaveLength(0);
       });
     });
-    describe("files", () => {
+    describe(`files`, () => {
       // who cares right now
     });
   });
-  describe("src/", () => {
-    describe("folders", () => {
-      testFolders("src/", ["__tests__", "Components", "Routes", "Design"]);
+  describe(`src/`, () => {
+    describe(`folders`, () => {
+      testFolders(`src/`, [`__tests__`, `Components`, `Routes`, `Design`]);
     });
   });
 });

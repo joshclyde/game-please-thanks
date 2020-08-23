@@ -49,7 +49,7 @@ const BuildAGodFC: FC<PropsForReals> = ({
   useEffect(() => {
     if (!hasBuildAGodBeenCreated) {
       createBuildAGod(buildAGodKey);
-      setGodName(buildAGodKey, "Achilles");
+      setGodName(buildAGodKey, `Achilles`);
       setItem(buildAGodKey, 1, 7526);
     }
   }, []);
@@ -96,13 +96,13 @@ const BuildAGodFC: FC<PropsForReals> = ({
         />
       </div>
       <ViewChooser buildAGodKey={buildAGodKey} />
-      {view === "god" ? <div /> : null}
-      {view === "item 0" ? <EditItem buildAGodKey={buildAGodKey} index={0} /> : null}
-      {view === "item 1" ? <EditItem buildAGodKey={buildAGodKey} index={1} /> : null}
-      {view === "item 2" ? <EditItem buildAGodKey={buildAGodKey} index={2} /> : null}
-      {view === "item 3" ? <EditItem buildAGodKey={buildAGodKey} index={3} /> : null}
-      {view === "item 4" ? <EditItem buildAGodKey={buildAGodKey} index={4} /> : null}
-      {view === "item 5" ? <EditItem buildAGodKey={buildAGodKey} index={5} /> : null}
+      {view === `god` ? <div /> : null}
+      {view === `item 0` ? <EditItem buildAGodKey={buildAGodKey} index={0} /> : null}
+      {view === `item 1` ? <EditItem buildAGodKey={buildAGodKey} index={1} /> : null}
+      {view === `item 2` ? <EditItem buildAGodKey={buildAGodKey} index={2} /> : null}
+      {view === `item 3` ? <EditItem buildAGodKey={buildAGodKey} index={3} /> : null}
+      {view === `item 4` ? <EditItem buildAGodKey={buildAGodKey} index={4} /> : null}
+      {view === `item 5` ? <EditItem buildAGodKey={buildAGodKey} index={5} /> : null}
     </>
   ) : null;
 };

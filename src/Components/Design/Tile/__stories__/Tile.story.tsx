@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Tile } from "../";
 
-storiesOf("Design/Tile", module).add("tile", () => (
+storiesOf(`Design/Tile`, module).add(`tile`, () => (
   <>
     <Tile />
     <Tile>A</Tile>

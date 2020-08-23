@@ -8,29 +8,29 @@ import Flashcard from "../Flashcard";
 
 const styles = {
   realContainer: {
-    display: "flex",
-    flexFlow: "column nowrap",
-    height: "100vh",
+    display: `flex`,
+    flexFlow: `column nowrap`,
+    height: `100vh`,
   },
   container: {
-    display: "flex",
-    flexFlow: "row nowrap",
-    alignItems: "stretch",
-    width: "100%",
+    display: `flex`,
+    flexFlow: `row nowrap`,
+    alignItems: `stretch`,
+    width: `100%`,
     // height: "100%",
   },
   sharedButton: {
     height: 150,
-    width: "50%",
+    width: `50%`,
   },
   incrementButton: {
-    backgroundColor: "#CDECDD",
+    backgroundColor: `#CDECDD`,
   },
   decrementButton: {
-    backgroundColor: "#ECCDDC",
+    backgroundColor: `#ECCDDC`,
   },
   flashcard: {
-    height: "100%",
+    height: `100%`,
     flexGrow: 1,
     border: 1,
   },
@@ -38,7 +38,7 @@ const styles = {
     // backgroundColor: "#FFFFFF",
   },
   backClassName: {
-    backgroundColor: "#E5E5E5",
+    backgroundColor: `#E5E5E5`,
   },
 };
 

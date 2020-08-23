@@ -12,7 +12,7 @@ export const findEntryInExpectedStructure = (
   entry: StructureEntry,
   expectedStructure: ArrayOfExpected,
 ) => {
-  const innerPathNames = entry.innerPath.split("/");
+  const innerPathNames = entry.innerPath.split(`/`);
   const isDirectory = entry.structure;
   const isFile = !isDirectory;
   let currentExpectedStructure = expectedStructure;
@@ -43,8 +43,8 @@ export const findEntryInExpectedStructure = (
       }
     }
     if (!foundEntry) {
-      const filePath = innerPathNames.join("/");
-      const furthestMatchedPath = innerPathNames.slice(0, i).join("/");
+      const filePath = innerPathNames.join(`/`);
+      const furthestMatchedPath = innerPathNames.slice(0, i).join(`/`);
       errorMessage = `ERROR: Failed.
 - filePath: ${filePath}
 - furthestMatchedPath: ${furthestMatchedPath}`;

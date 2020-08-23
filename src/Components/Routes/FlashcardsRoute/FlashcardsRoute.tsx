@@ -15,7 +15,7 @@ const FlashcardsRouteFC: FC<{}> = () => {
       <Header />
       <Switch>
         <Route path="/flashcards/quiz">
-          <FlashcardQuiz quizId={query.get("setId")} />
+          <FlashcardQuiz quizId={query.get(`setId`)} />
         </Route>
         <Route exact={true} path="/flashcards">
           <FlashcardSetSelection />

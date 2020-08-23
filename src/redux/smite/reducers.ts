@@ -22,7 +22,7 @@ const initialState: SmiteState = {
   items,
   gods,
   search: {
-    term: "",
+    term: ``,
   },
   buildItems: {},
   buildAGod: {},
@@ -64,7 +64,7 @@ const reduceSetBuildItemsFilter = (
 
 const reduceCreateBuildAGod = (state: SmiteState, { payload }: ActionCreateBuildAGod) => {
   const { key } = payload;
-  const keyObject: BuildAGod = { godName: undefined, level: 1, items: [], view: "god" };
+  const keyObject: BuildAGod = { godName: undefined, level: 1, items: [], view: `god` };
   return {
     ...state,
     buildAGod: {

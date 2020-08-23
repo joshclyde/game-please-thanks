@@ -8,14 +8,14 @@ type BookmarksGridProps = {
 
 const bookmarks = [
   {
-    name: "google",
-    url: "https://www.google.com",
-    iconUrl: "https://www.google.com/favicon.ico",
+    name: `google`,
+    url: `https://www.google.com`,
+    iconUrl: `https://www.google.com/favicon.ico`,
   },
   {
-    name: "kroger",
-    url: "https://www.kroger.com",
-    iconUrl: "https://www.kroger.com/favicon.ico",
+    name: `kroger`,
+    url: `https://www.kroger.com`,
+    iconUrl: `https://www.kroger.com/favicon.ico`,
   },
 ];
 
@@ -29,9 +29,9 @@ export const BookmarksGridFC: FC<BookmarksGridProps> = ({ classes }) => (
 
 export const BookmarksGrid = injectSheet({
   main: {
-    display: "flex",
-    flexDirection: "row",
-    border: "solid",
+    display: `flex`,
+    flexDirection: `row`,
+    border: `solid`,
     "& > *": { margin: 10 },
   },
 })(BookmarksGridFC);
