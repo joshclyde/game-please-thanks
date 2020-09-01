@@ -11,6 +11,10 @@ module.exports = {
   extends: [`prettier`, `prettier/@typescript-eslint`, `prettier/react`],
   rules: {
     "prettier/prettier": `error`,
+    /*
+      Typescript Rules
+      https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin
+    */
     "@typescript-eslint/quotes": [`error`, `backtick`],
   },
 };
