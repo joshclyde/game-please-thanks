@@ -2,7 +2,7 @@ import { Header } from "@Common";
 import React, { FC } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import { FlashcardQuiz } from "./FlashcardQuiz";
-import { FlashcardSetSelection } from "./FlashcardSetSelection";
+import { QuizSelector } from "@Domain";
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -18,7 +18,7 @@ const FlashcardsRouteFC: FC<{}> = () => {
           <FlashcardQuiz quizId={query.get(`setId`)} />
         </Route>
         <Route exact={true} path="/flashcards">
-          <FlashcardSetSelection />
+          <QuizSelector />
         </Route>
       </Switch>
     </div>
