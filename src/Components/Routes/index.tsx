@@ -11,6 +11,7 @@ import { reducers as allReducers } from "@Redux";
 import { BookmarksRoute } from "./BookmarksRoute";
 import { FlashcardsRoute } from "./FlashcardsRoute";
 import { SmiteRoute } from "./SmiteRoute";
+import { ScheduleRoute } from "./ScheduleRoute";
 
 const reducers = combineReducers({
   // ...withToggleOnClickReducers,
@@ -37,6 +38,7 @@ const App = () => (
       <Route path="/flashcards" component={FlashcardsRoute} />
       <Route path="/bookmarks" component={BookmarksRoute} />
       <Route path="/smite" component={SmiteRoute} />
+      <Route path="/schedule" component={ScheduleRoute} />
       <Route path="/" component={BookmarksRoute} />
       {/* <Route path="/" component={HomePage} /> */}
     </Switch>
