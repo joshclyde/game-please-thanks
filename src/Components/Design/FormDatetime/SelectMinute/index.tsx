@@ -2,7 +2,6 @@ import React, { FC, useCallback } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { makeActionSetFormInputValue, State, selectFormInputValue } from "@Redux";
 
-// TODO: make an hoc for [value, setValue] for form stuff?
 const mapState = (state: State, { formId, id }: OwnProps) => ({
   value: selectFormInputValue(state, formId, id),
 });
@@ -11,21 +10,14 @@ const mapDispatch = { setFormInputValue: makeActionSetFormInputValue };
 
 const connector = connect(mapState, mapDispatch);
 
-interface OwnProps
-  extends Omit<
-    React.DetailedHTMLProps<
-      React.InputHTMLAttributes<HTMLInputElement>,
-      HTMLInputElement
-    >,
-    "type" | "value"
-  > {
+interface OwnProps {
   id: string;
   name: string;
   formId: string;
 }
 interface Props extends OwnProps, ConnectedProps<typeof connector> {}
 
-const FormCheckboxFC: FC<Props> = ({
+const SelectMinuteFC: FC<Props> = ({
   id,
   name,
   value,
@@ -35,21 +27,28 @@ const FormCheckboxFC: FC<Props> = ({
 }) => {
   const onChange = useCallback(
     (event: React.FormEvent<HTMLInputElement>) => {
-      setFormInputValue(formId, id, event.currentTarget.checked);
+      const newMinute = parseInt(event.currentTarget.value);
+      if (newMinute >= 0 && newMinute <= 59) {
+        const newValue = value ? new Date((value as Date).getTime()) : new Date();
+        newValue.setMinutes(parseInt(event.currentTarget.value));
+        setFormInputValue(formId, id, newValue);
+      }
     },
-    [formId, id, setFormInputValue],
+    [formId, id, setFormInputValue, value],
   );
 
+  const minuteValue = value ? (value as Date).getMinutes() : 0;
   return (
     <input
-      type="checkbox"
-      id={id}
-      name={name}
-      checked={Boolean(value)}
+      type="number"
+      name={`${name}-minute`}
+      id={`${id}-minute`}
+      min="0"
+      max="59"
+      value={minuteValue}
       onChange={onChange}
-      {...rest}
-    />
+    ></input>
   );
 };
 
-export const FormCheckbox = connector(FormCheckboxFC);
+export const SelectMinute = connector(SelectMinuteFC);

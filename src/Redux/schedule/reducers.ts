@@ -1,4 +1,10 @@
-import { Actions, ActionAddScheduleEvent, ADD_SCHEDULE_EVENT } from "./actions";
+import {
+  Actions,
+  ActionAddScheduleEvent,
+  ActionBulkAddScheduleEvent,
+  ADD_SCHEDULE_EVENT,
+  BULK_ADD_SCHEDULE_EVENT,
+} from "./actions";
 import { ScheduleState } from "./types";
 
 const initialStartDateTime = new Date();
@@ -14,20 +20,7 @@ secondEndDateTime.setHours(23);
 secondEndDateTime.setMonth(10);
 
 const initialState: ScheduleState = {
-  data: {
-    "1": {
-      title: `Working (example)`,
-      description: `Doing some work.`,
-      startDatetime: initialStartDateTime,
-      endDatetime: initialEndDateTime,
-    },
-    "2": {
-      title: `Free time`,
-      description: `Absolutely nothing.`,
-      startDatetime: secondStartDateTime,
-      endDatetime: secondEndDateTime,
-    },
-  },
+  data: {},
 };
 
 const reduceAddScheduleEvent = (
@@ -43,11 +36,23 @@ const reduceAddScheduleEvent = (
   };
 };
 
+const reduceBulkAddScheduleEvent = (
+  state: ScheduleState,
+  { payload: { data } }: ActionBulkAddScheduleEvent,
+) => {
+  return {
+    ...state,
+    data,
+  };
+};
+
 export const schedule = (state = initialState, action: Actions): ScheduleState => {
   const { type } = action;
   switch (type) {
     case ADD_SCHEDULE_EVENT:
       return reduceAddScheduleEvent(state, action as ActionAddScheduleEvent);
+    case BULK_ADD_SCHEDULE_EVENT:
+      return reduceBulkAddScheduleEvent(state, action as ActionBulkAddScheduleEvent);
   }
   return state;
 };

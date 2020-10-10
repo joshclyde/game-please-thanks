@@ -20,6 +20,8 @@
       "@Domain": ["./src/Components/Domain/index"],
       "@SmiteCommon": ["./src/Components/Domain/Smite/Common/index"],
       "@Routes": ["./src/Components/Routes/index"],
+      "@Firebase": ["./src/Firebase/index"],
+      "@DomainData": ["./src/DomainData/index"],
     }
   },
   "include": [

@@ -3,13 +3,15 @@
 How to deploy
 
 ```sh
-yarn build
+npm run build
 # after, copy public/index.html into build/
 
 # will run the site locally to test before deploying
 firebase serve --only hosting --project allthethings-d87f5
 
-# will deploy to firebase
-firebase deploy --project allthethings-d87f5
+# login to google account (might not have to do this)
+firebase login
 
+# deploy firebase application
+firebase deploy
 ```

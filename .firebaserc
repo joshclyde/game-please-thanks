@@ -1,1 +1,5 @@
-{}
+{
+  "projects": {
+    "default": "all-the-things-7e07d"
+  }
+}

@@ -8,7 +8,17 @@ export const makeActionAddScheduleEvent = (id: string, scheduleEvent: ScheduleEv
     scheduleEvent,
   },
 });
-
 export type ActionAddScheduleEvent = ReturnType<typeof makeActionAddScheduleEvent>;
 
-export type Actions = ActionAddScheduleEvent;
+export const BULK_ADD_SCHEDULE_EVENT = `BULK_ADD_SCHEDULE_EVENT`;
+export const makeActionBulkAddScheduleEvent = (data: Record<string, ScheduleEvent>) => ({
+  type: BULK_ADD_SCHEDULE_EVENT,
+  payload: {
+    data,
+  },
+});
+export type ActionBulkAddScheduleEvent = ReturnType<
+  typeof makeActionBulkAddScheduleEvent
+>;
+
+export type Actions = ActionAddScheduleEvent | ActionBulkAddScheduleEvent;
