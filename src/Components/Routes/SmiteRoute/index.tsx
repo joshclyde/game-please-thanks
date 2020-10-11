@@ -1,6 +1,7 @@
-import { Header } from "@Common";
-import { Route, Switch } from "react-router-dom";
 import React, { FC } from "react";
+import { Route, Switch } from "react-router-dom";
+
+import { Header } from "@Common";
 import { GodsList, GodPage } from "@Domain";
 
 import "./index.css";

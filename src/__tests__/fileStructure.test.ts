@@ -1,4 +1,5 @@
-import fs from "fs-extra";
+import { readdirSync } from "fs-extra";
+
 // import fs from "fs";
 import {
   projectFileStructure,
@@ -24,7 +25,7 @@ interface StructureEntry {
 }
 
 const getCurrentStucture = (path: string, rootPath: string): Array<StructureEntry> => {
-  const structure = fs.readdirSync(path, { withFileTypes: true }).map(
+  const structure = readdirSync(path, { withFileTypes: true }).map(
     (fsDir): StructureEntry => {
       let childName = fsDir.name;
       const childPath = `${path}/${childName}`;

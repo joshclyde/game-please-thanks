@@ -1,10 +1,12 @@
-import { pickBy } from "lodash/fp";
+import pickBy from "lodash/fp/pickBy";
+
 import {
   selectSharedIsLoading,
   selectSharedIsLoadSuccessful,
   selectSharedIsLoadFailure,
 } from "../shared";
 import { State } from "../types";
+
 import { FETCH_USER_DATA_SCHEDULE_ID } from "./thunks";
 
 // TODO: look into ReadOnly typescript for selectors?

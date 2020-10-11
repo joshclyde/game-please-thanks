@@ -1,14 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
-import {
-  selectEventsForDate,
-  State,
-  selectScheduleDataIsLoading,
-  selectScheduleDataIsLoadSuccessful,
-  selectScheduleDateIsLoadAttempted,
-  makeThunkFetchUserDataSchedule,
-} from "@Redux";
 import { Link } from "react-router-dom";
+
 import {
   startFirebaseEventListening,
   getSchedule,
@@ -17,6 +10,14 @@ import {
   signOutUser,
   consoleLogCurrentUser,
 } from "@Firebase";
+import {
+  selectEventsForDate,
+  State,
+  selectScheduleDataIsLoading,
+  selectScheduleDataIsLoadSuccessful,
+  selectScheduleDateIsLoadAttempted,
+  makeThunkFetchUserDataSchedule,
+} from "@Redux";
 
 const mapState = (state: State) => ({
   scheduleData: selectEventsForDate(state, new Date()),

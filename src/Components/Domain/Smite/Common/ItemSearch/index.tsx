@@ -1,7 +1,9 @@
-import { Checkbox } from "@Common";
-import { State, selectAllItems, selectSharedFilter } from "@Redux";
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
+
+import { Checkbox } from "@Common";
+import { State, selectAllItems, selectSharedFilter } from "@Redux";
+
 import { SmiteItemImage } from "../SmiteItemImage";
 
 interface Props {

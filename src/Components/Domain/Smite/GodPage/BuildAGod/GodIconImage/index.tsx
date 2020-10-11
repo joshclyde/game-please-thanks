@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
-import { SmiteGodIconImage } from "@SmiteCommon";
+
 import { State, selectSmiteBuildAGodGodName } from "@Redux";
+import { SmiteGodIconImage } from "@SmiteCommon";
 
 interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
   buildAGodKey: string;

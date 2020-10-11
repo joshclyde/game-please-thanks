@@ -1,7 +1,10 @@
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
+
 import { startFirebaseEventListening, getIsUserSignedIn } from "@Firebase";
+
 import { State } from "../types";
+
 import { makeActionSetIsAuthenticated } from "./actions";
 
 // TODO: is this weird?

@@ -1,4 +1,3 @@
-import fs from "fs-extra";
 import { findEntryInExpectedStructure } from "./findEntryInExpectedStructure";
 import { StructureEntry } from "./types";
 

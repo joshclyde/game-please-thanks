@@ -1,5 +1,6 @@
 import React, { FC, useState } from "react";
 import injectSheet from "react-jss";
+
 import { GodAbilityImage } from "./GodAbilityImage";
 import { GodAbilityInformation } from "./GodAbilityInformation";
 

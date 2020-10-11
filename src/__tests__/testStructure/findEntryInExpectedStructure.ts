@@ -4,6 +4,7 @@ import {
   checkIsFunction,
   ArrayOfExpected,
 } from "../types";
+
 import { StructureEntry } from "./types";
 
 const findLayer = () => {};

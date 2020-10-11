@@ -1,7 +1,7 @@
-import { cx } from "@Utils";
-import * as React from "react";
-import { FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import injectSheet from "react-jss";
+
+import { cx } from "@Utils";
 
 type Props = {
   classes: {

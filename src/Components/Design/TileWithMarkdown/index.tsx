@@ -1,10 +1,10 @@
-import * as React from "react";
-import { FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
+
+// TODO: having some sort of issue using `import`, but `require` seeems to work
+import { Tile } from "../Tile";
 // import injectSheet from "react-jss";
 // tslint:disable-next-line:no-var-requires
 const ReactMarkdown = require(`react-markdown`);
-// TODO: having some sort of issue using `import`, but `require` seeems to work
-import { Tile } from "../Tile";
 
 type Props = {
   className?: string;

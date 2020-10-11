@@ -1,6 +1,7 @@
 import React, { FC, useCallback } from "react";
-import { State, makeActionSetSmiteSearchTerm, selectSmiteSearchTerm } from "@Redux";
 import { connect, ConnectedProps } from "react-redux";
+
+import { State, makeActionSetSmiteSearchTerm, selectSmiteSearchTerm } from "@Redux";
 
 interface Props {}
 

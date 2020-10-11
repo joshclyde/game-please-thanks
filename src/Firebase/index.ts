@@ -1,5 +1,5 @@
-import * as firebase from "firebase";
 import { ScheduleEvent } from "@DomainData";
+import { initializeApp, firestore, auth } from "firebase";
 
 /*
   Documentation
@@ -16,9 +16,9 @@ import { ScheduleEvent } from "@DomainData";
 import { firebaseConfig } from "./firebaseConfig";
 
 // Initialize Cloud Firestore through Firebase
-firebase.initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
-const db = firebase.firestore();
+const db = firestore();
 
 export const getSchedule = async () => {
   const querySnapshot = await db.collection(`schedule`).get();
@@ -29,11 +29,11 @@ export const getSchedule = async () => {
 };
 
 export const signInUserThroughGoogle = async () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithRedirect(provider);
+  const provider = new auth.GoogleAuthProvider();
+  auth().signInWithRedirect(provider);
 
   try {
-    const result = await firebase.auth().getRedirectResult();
+    const result = await auth().getRedirectResult();
     if (result.credential) {
       // This gives you a Google Access Token. You can use it to access the Google API.
       // var token = result.credential.accessToken;
@@ -53,14 +53,14 @@ export const signInUserThroughGoogle = async () => {
 
 export const signOutUser = async () => {
   try {
-    await firebase.auth().signOut();
+    await auth().signOut();
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getCurrentUser = () => firebase.auth().currentUser;
-export const getCurrentUserUID = () => getCurrentUser()?.uid;
+const getCurrentUser = () => auth().currentUser;
+const getCurrentUserUID = () => getCurrentUser()?.uid;
 export const getIsUserSignedIn = () => Boolean(getCurrentUser());
 export const consoleLogCurrentUser = () => console.log(getCurrentUser().uid);
 
@@ -86,11 +86,11 @@ export const fetchUserDataSchedule = async (): Promise<Record<string, ScheduleEv
       scheduleData[doc.id] = {
         title,
         description,
-        startDatetime: new firebase.firestore.Timestamp(
+        startDatetime: new firestore.Timestamp(
           startDatetime.seconds,
           startDatetime.nanoseconds,
         ).toDate(),
-        endDatetime: new firebase.firestore.Timestamp(
+        endDatetime: new firestore.Timestamp(
           endDatetime.seconds,
           endDatetime.nanoseconds,
         ).toDate(),
@@ -109,12 +109,12 @@ export const fetchUserDataSchedule = async (): Promise<Record<string, ScheduleEv
 
   Get the currently signed-in user: https://firebase.google.com/docs/auth/web/manage-users#get_the_currently_signed-in_user
 */
-export let isUserSignedIn = false;
+let isUserSignedIn = false;
 export const startFirebaseEventListening = (
   onAuthStateSignedIn: () => void,
   onAuthStateSignedOut: () => void,
 ) => {
-  firebase.auth().onAuthStateChanged((user) => {
+  auth().onAuthStateChanged((user) => {
     if (user) {
       isUserSignedIn = true;
       onAuthStateSignedIn();

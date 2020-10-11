@@ -1,5 +1,7 @@
 import React, { FC, useCallback, useEffect } from "react";
+import { connect, ConnectedProps } from "react-redux";
 import { useHistory } from "react-router-dom";
+
 import {
   Form,
   FormLabel,
@@ -8,7 +10,6 @@ import {
   FormSubmitButton,
   FormDatetime,
 } from "@Design";
-import { connect, ConnectedProps } from "react-redux";
 import {
   makeActionCreateForm,
   State,

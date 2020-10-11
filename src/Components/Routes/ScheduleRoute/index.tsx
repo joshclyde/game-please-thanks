@@ -1,9 +1,11 @@
-import { Header } from "@Common";
-import { Route, Switch } from "react-router-dom";
 import React, { FC } from "react";
+import { Route, Switch } from "react-router-dom";
+
+import { Header } from "@Common";
+
 import { AddEventPage } from "./AddEventPage";
-import { EditScheduleRoute } from "./EditScheduleRoute";
 import { DisplayModeRoute } from "./DisplayModeRoute";
+import { EditScheduleRoute } from "./EditScheduleRoute";
 
 const ScheduleRouteFC: FC<{}> = () => {
   return (

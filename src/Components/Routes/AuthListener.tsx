@@ -1,6 +1,7 @@
 // TODO: Do this differently. Maybe a hoc?
 import React, { FC, useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
+
 import { makeThunkStartListenerForAuth } from "@Redux";
 
 const mapDispatch = {

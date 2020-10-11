@@ -1,6 +1,8 @@
-import { selectFlashcardDataSetIds, State } from "@Redux";
 import React, { FC, Fragment } from "react";
 import { connect, ConnectedProps } from "react-redux";
+
+import { selectFlashcardDataSetIds, State } from "@Redux";
+
 import { QuizEachOne } from "./QuizEachOne";
 
 const mapState = (state: State) => ({

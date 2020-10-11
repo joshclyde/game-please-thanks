@@ -1,4 +1,5 @@
 import { State } from "../types";
+
 import { BuildItems } from "./types";
 
 export type StateJustSmite = Pick<State, "smite">;

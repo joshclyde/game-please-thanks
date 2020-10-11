@@ -1,12 +1,14 @@
-import { State, selectGodCardUrl } from "@Redux";
 import React, { FC } from "react";
-import { useParams } from "react-router-dom";
-import { connect, ConnectedProps } from "react-redux";
 import injectSheet from "react-jss";
-import { GodCard } from "./GodCard";
-import { GodAbilities } from "./GodAbilities";
-import { GodStats } from "./GodStats";
+import { connect, ConnectedProps } from "react-redux";
+import { useParams } from "react-router-dom";
+
+import { State, selectGodCardUrl } from "@Redux";
+
 import { BuildAGod } from "./BuildAGod";
+import { GodAbilities } from "./GodAbilities";
+import { GodCard } from "./GodCard";
+import { GodStats } from "./GodStats";
 
 interface Props {
   godName: string;

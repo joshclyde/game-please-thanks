@@ -1,6 +1,7 @@
-import { cx } from "@Utils";
 import React, { FC } from "react";
 import injectSheet from "react-jss";
+
+import { cx } from "@Utils";
 
 type BookmarkProps = {
   classes: { main: string };

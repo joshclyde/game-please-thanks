@@ -1,16 +1,15 @@
-import { Button } from "@Design";
-import { navigateToFlashcardQuiz, selectFlashcardSetTitle, State } from "@Redux";
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { Link } from "react-router-dom";
+
+import { Button } from "@Design";
+import { selectFlashcardSetTitle, State } from "@Redux";
 
 const mapState = (state: State, { setId }: OwnProps) => ({
   title: selectFlashcardSetTitle(state, setId),
 });
 
-const mapDispatch = { navigateToFlashcardQuizThing: navigateToFlashcardQuiz };
-
-const connector = connect(mapState, mapDispatch);
+const connector = connect(mapState);
 
 type OwnProps = { setId: string };
 type QuizEachOneProps = ConnectedProps<typeof connector> & OwnProps;

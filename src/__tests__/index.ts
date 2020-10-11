@@ -1,6 +1,7 @@
+import difference from "lodash/fp/difference";
+
 const { readdirSync, statSync } = require(`fs`);
 const { join } = require(`path`);
-import { difference } from "lodash/fp";
 
 const ROOT_PATH = `${__dirname}/../..`;
 

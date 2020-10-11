@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { Provider } from "react-redux";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
@@ -25,7 +25,7 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddle
 //   store.dispatch(setSize(window.innerWidth, window.innerHeight));
 // });
 
-const App = () => (
+export const App = () => (
   // <div>
   <Provider store={store}>
     {/* TODO make innerWidth and innerHeight redux */}
@@ -33,5 +33,3 @@ const App = () => (
   </Provider>
   // </div>
 );
-
-export default App;

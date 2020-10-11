@@ -1,14 +1,17 @@
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
+
 import { addScheduleEvent, fetchUserDataSchedule } from "@Firebase";
-import { ScheduleEvent } from "./types";
-import { State } from "../types";
+
 import {
   makeActionSetSharedLoadingInitiate,
   makeActionSetSharedLoadingSuccess,
   makeActionSetSharedLoadingFailure,
 } from "../shared";
+import { State } from "../types";
+
 import { makeActionAddScheduleEvent, makeActionBulkAddScheduleEvent } from "./actions";
+import { ScheduleEvent } from "./types";
 
 export const makeThunkAddScheduleEvent = (
   id: string,

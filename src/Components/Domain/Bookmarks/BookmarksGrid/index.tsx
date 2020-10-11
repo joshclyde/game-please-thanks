@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import injectSheet from "react-jss";
+
 import { Bookmark } from "../Bookmark";
 
 type BookmarksGridProps = {

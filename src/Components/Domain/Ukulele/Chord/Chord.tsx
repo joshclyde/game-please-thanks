@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import { ChordProps } from "./types";
 import { getChordString } from "./utils";

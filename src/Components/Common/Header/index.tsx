@@ -1,6 +1,6 @@
-import React from "react";
-import { FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import injectSheet from "react-jss";
+
 import { HeaderLink } from "./HeaderLink";
 
 type Props = {

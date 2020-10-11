@@ -1,3 +1,6 @@
+import React, { FC } from "react";
+import { connect, ConnectedProps } from "react-redux";
+
 import {
   State,
   selectGodAbilityImageUrl,
@@ -8,8 +11,6 @@ import {
   selectGodAbilityStats,
   selectGodAbilityStatsMore,
 } from "@Redux";
-import React, { FC } from "react";
-import { connect, ConnectedProps } from "react-redux";
 
 interface Props {
   godName: string;

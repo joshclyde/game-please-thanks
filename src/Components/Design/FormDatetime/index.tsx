@@ -1,9 +1,10 @@
 import React, { FC } from "react";
-import { SelectMonth } from "./SelectMonth";
+
 import { SelectDay } from "./SelectDay";
-import { SelectYear } from "./SelectYear";
 import { SelectHour } from "./SelectHour";
 import { SelectMinute } from "./SelectMinute";
+import { SelectMonth } from "./SelectMonth";
+import { SelectYear } from "./SelectYear";
 
 interface OwnProps {
   id: string;

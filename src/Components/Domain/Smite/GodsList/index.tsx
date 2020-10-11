@@ -1,9 +1,10 @@
 import React, { FC } from "react";
-import { State, selectAllGodNames, selectSmiteSearchTerm } from "@Redux";
 import { connect, ConnectedProps } from "react-redux";
-import { GodsSearchBar } from "./GodsSearchBar";
+
+import { State, selectAllGodNames, selectSmiteSearchTerm } from "@Redux";
 
 import { GodOnGodsList } from "./GodOnGodsList";
+import { GodsSearchBar } from "./GodsSearchBar";
 
 import "./index.css";
 

@@ -1,15 +1,15 @@
 import React, { FC } from "react";
-import { Provider } from "react-redux";
+import { Provider, connect, ConnectedProps } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import { connect, ConnectedProps } from "react-redux";
 import thunkMiddleware from "redux-thunk";
+
 import { selectIsAuthenticated, State } from "@Redux";
 
+import { AuthListener } from "./AuthListener";
 import { BookmarksRoute } from "./BookmarksRoute";
 import { FlashcardsRoute } from "./FlashcardsRoute";
-import { SmiteRoute } from "./SmiteRoute";
 import { ScheduleRoute } from "./ScheduleRoute";
-import { AuthListener } from "./AuthListener";
+import { SmiteRoute } from "./SmiteRoute";
 
 const mapState = (state: State) => ({
   isAuthenticated: selectIsAuthenticated(state),

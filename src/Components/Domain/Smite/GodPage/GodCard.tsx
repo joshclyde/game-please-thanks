@@ -1,6 +1,7 @@
-import { State, selectGodCardUrl } from "@Redux";
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
+
+import { State, selectGodCardUrl } from "@Redux";
 
 interface Props {
   godName: string;

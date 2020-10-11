@@ -1,12 +1,13 @@
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
-import { ItemSearch } from "@SmiteCommon";
+
 import {
   State,
   selectSmiteBuildAGodItemsLength,
   selectSmiteBuildAGodItem,
   makeActionSetBuildAGodItem,
 } from "@Redux";
+import { ItemSearch } from "@SmiteCommon";
 
 interface Props {
   buildAGodKey: string;

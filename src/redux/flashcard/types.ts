@@ -18,14 +18,3 @@ export interface FlashcardState {
     cardResponses?: Record<string, { isCorrect: boolean }>;
   };
 }
-
-export interface FlashcardStartQuizAction {
-  type: string;
-  setId: string;
-}
-
-export interface Actions {
-  type: string;
-  width?: number;
-  height?: number;
-}

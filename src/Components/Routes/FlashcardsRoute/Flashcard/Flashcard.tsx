@@ -1,7 +1,8 @@
-import { TileWithMarkdown } from "@Design";
-import { cx } from "@Utils";
 import React, { FC, useCallback, useState } from "react";
 import injectSheet from "react-jss";
+
+import { TileWithMarkdown } from "@Design";
+import { cx } from "@Utils";
 
 type FlashcardProps = {
   classes: {

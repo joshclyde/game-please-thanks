@@ -1,6 +1,8 @@
-import { State, selectGodData, selectAllItems } from "@Redux";
 import React, { FC, useState, useCallback } from "react";
 import { connect, ConnectedProps } from "react-redux";
+
+import { State, selectGodData, selectAllItems } from "@Redux";
+
 import { calculateBasicAttackDamage } from "./utils";
 
 import "./index.css";

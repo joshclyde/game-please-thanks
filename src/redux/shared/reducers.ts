@@ -1,7 +1,7 @@
-import { SharedState } from "./types";
 import { filter } from "./filter/reducers";
 import { forms } from "./forms/reducers";
 import { loading } from "./loading/reducers";
+import { SharedState } from "./types";
 
 const initialState: SharedState = {
   filter: {},

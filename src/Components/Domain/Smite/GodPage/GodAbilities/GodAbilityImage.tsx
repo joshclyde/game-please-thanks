@@ -1,6 +1,7 @@
-import { State, selectGodAbilityImageUrl } from "@Redux";
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
+
+import { State, selectGodAbilityImageUrl } from "@Redux";
 
 // import css from "./GodAbilityImage.css";
 import "./GodAbilityImage.css";

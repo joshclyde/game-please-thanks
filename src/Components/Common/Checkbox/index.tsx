@@ -1,6 +1,7 @@
-import { State, makeActionSetSharedFilter, selectSharedFilter } from "@Redux";
 import React, { FC, useCallback, useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
+
+import { State, makeActionSetSharedFilter, selectSharedFilter } from "@Redux";
 
 interface Props {
   entityKey: string;

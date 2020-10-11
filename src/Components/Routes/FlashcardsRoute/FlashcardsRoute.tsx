@@ -1,8 +1,10 @@
-import { Header } from "@Common";
 import React, { FC } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
-import { FlashcardQuiz } from "./FlashcardQuiz";
+
+import { Header } from "@Common";
 import { QuizSelector } from "@Domain";
+
+import { FlashcardQuiz } from "./FlashcardQuiz";
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);

@@ -1,5 +1,6 @@
 import React, { FC, useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
+
 import {
   State,
   makeActionCreateSmiteBuildAGod,
@@ -9,6 +10,7 @@ import {
   makeActionSetBuildAGodView,
   selectSmiteBuildAGodView,
 } from "@Redux";
+
 import { ChooserButton } from "./ChooserButton";
 
 interface Props {

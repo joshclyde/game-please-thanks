@@ -1,0 +1,25 @@
+// eslint-disable-next-line import/no-commonjs
+module.exports = {
+  rules: {
+    "import/no-unresolved": `off`,
+    "import/named": `off`,
+    "import/default": `off`,
+    "import/namespace": `off`,
+    "import/no-restricted-paths": `off`,
+    "import/no-absolute-path": `off`,
+    "import/no-dynamic-require": `off`,
+    "import/no-internal-modules": `off`,
+    "import/no-webpack-loader-syntax": `off`,
+    "import/no-self-import": `off`,
+    "import/no-cycle": `off`,
+    "import/no-useless-path-segments": `off`,
+    "import/no-relative-parent-imports": `off`,
+    "import/export": `off`,
+    "import/no-named-as-default": `off`,
+    "import/no-named-as-default-member": `off`,
+    "import/no-deprecated": `off`,
+    "import/no-extraneous-dependencies": `off`,
+    "import/no-mutable-exports": `off`,
+    "import/no-unused-modules": `off`,
+  },
+};

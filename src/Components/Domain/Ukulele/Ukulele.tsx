@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import { Chord } from "./Chord";
 import { randomChord } from "./Chord/utils";

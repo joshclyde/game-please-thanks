@@ -1,3 +1,8 @@
+import React, { FC, useCallback, useState } from "react";
+import injectSheet from "react-jss";
+import { connect, ConnectedProps } from "react-redux";
+import { Link } from "react-router-dom";
+
 import { Button } from "@Design";
 import {
   makeActionSetCardResponseIsCorrect,
@@ -7,11 +12,9 @@ import {
   selectFlashcardQuizLength,
   State,
 } from "@Redux";
-import React, { FC, useCallback, useState } from "react";
-import injectSheet from "react-jss";
-import { connect, ConnectedProps } from "react-redux";
-import { Link } from "react-router-dom";
+
 import { Flashcard } from "../Flashcard";
+
 import { calculateGrade } from "./calculateGrade";
 
 const mapState = (state: State) => ({
