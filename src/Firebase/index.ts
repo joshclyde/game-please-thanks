@@ -61,11 +61,7 @@ export const signOutUser = async () => {
 
 export const getCurrentUser = () => firebase.auth().currentUser;
 export const getCurrentUserUID = () => getCurrentUser()?.uid;
-export const getIsUserSignedIn = () => {
-  const isUserSignedIn = Boolean(getCurrentUser());
-  console.log(`Is User Signed In : ${Boolean(getCurrentUser())}`);
-  return isUserSignedIn;
-};
+export const getIsUserSignedIn = () => Boolean(getCurrentUser());
 export const consoleLogCurrentUser = () => console.log(getCurrentUser().uid);
 
 export const addScheduleEvent = async (scheduleEvent: ScheduleEvent) => {

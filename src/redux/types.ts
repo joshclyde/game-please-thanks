@@ -3,6 +3,7 @@ import { UiState } from "./ui/types";
 import { SmiteState } from "./smite/types";
 import { ScheduleState } from "./schedule/types";
 import { SharedState } from "./shared/types";
+import { AuthState } from "./auth/types";
 
 export interface State {
   ui: UiState;
@@ -10,4 +11,5 @@ export interface State {
   smite: SmiteState;
   schedule: ScheduleState;
   shared: SharedState;
+  auth: AuthState;
 }

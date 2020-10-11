@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Provider } from "react-redux";
-import { Route, Switch } from "react-router-dom";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
 
@@ -8,10 +7,7 @@ import thunkMiddleware from "redux-thunk";
 import { reducers as allReducers } from "@Redux";
 // import { setSize } from "@Redux";
 
-import { BookmarksRoute } from "./BookmarksRoute";
-import { FlashcardsRoute } from "./FlashcardsRoute";
-import { SmiteRoute } from "./SmiteRoute";
-import { ScheduleRoute } from "./ScheduleRoute";
+import { AuthRoutes } from "./AuthRoutes";
 
 const reducers = combineReducers({
   // ...withToggleOnClickReducers,
@@ -33,16 +29,7 @@ const App = () => (
   // <div>
   <Provider store={store}>
     {/* TODO make innerWidth and innerHeight redux */}
-    {/* <div> */}
-    <Switch>
-      <Route path="/flashcards" component={FlashcardsRoute} />
-      <Route path="/bookmarks" component={BookmarksRoute} />
-      <Route path="/smite" component={SmiteRoute} />
-      <Route path="/schedule" component={ScheduleRoute} />
-      <Route path="/" component={BookmarksRoute} />
-      {/* <Route path="/" component={HomePage} /> */}
-    </Switch>
-    {/* </div> */}
+    <AuthRoutes />
   </Provider>
   // </div>
 );
