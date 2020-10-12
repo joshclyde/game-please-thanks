@@ -1,4 +1,4 @@
-import { ScheduleEvent } from "@DomainData";
+import { ScheduleEvent } from "@Types";
 import { initializeApp, firestore, auth } from "firebase";
 
 /*
@@ -19,14 +19,6 @@ import { firebaseConfig } from "./firebaseConfig";
 initializeApp(firebaseConfig);
 
 const db = firestore();
-
-export const getSchedule = async () => {
-  const querySnapshot = await db.collection(`schedule`).get();
-  querySnapshot.forEach((doc) => {
-    console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-  });
-  // console.log(querySnapshot);
-};
 
 export const signInUserThroughGoogle = async () => {
   const provider = new auth.GoogleAuthProvider();

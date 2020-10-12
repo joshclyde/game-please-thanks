@@ -15,14 +15,7 @@ module.exports = {
     },
     "import/extensions": [`.js`, `.jsx`, `.ts`, `.tsx`],
   },
-  extends: [
-    // `plugin:import/errors`,
-    // `plugin:import/warnings`,
-    // `plugin:import/typescript`,
-    `prettier`,
-    `prettier/@typescript-eslint`,
-    `prettier/react`,
-  ],
+  extends: [`prettier`, `prettier/@typescript-eslint`, `prettier/react`],
   rules: {
     /*
       Core Rules

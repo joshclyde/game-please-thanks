@@ -11,6 +11,7 @@
 - [ ] eslint typescript rules
 - [ ] eslint lodash rules
 - [ ] eslint jsx-a11y rules
+- [ ] eslint react-redux rules
 
 ### File Structure
 
