@@ -2,19 +2,30 @@
 
 ## Project Foundational Things
 
+### Lint
+
 - [x] eslint prettier
-- [ ] eslint base rules
+- [x] eslint import rules
+- [ ] eslint core rules
 - [ ] eslint react rules
 - [ ] eslint typescript rules
-- [ ] eslint import rules
+- [ ] eslint lodash rules
+- [ ] eslint jsx-a11y rules
+
+### File Structure
+
 - [ ] exact file structure
 - [ ] exact components look (and snippets). unit tests?
 - [ ] lint rules for file structure
 - [ ] lint rules for file contents
-- [ ] vscode custom explorer view
-- [ ] vscode custom icons
+
+### Misc.
+
 - [ ] unit tests
 - [ ] switch to nvm instead of brew
+- [ ] vscode custom explorer view
+- [ ] vscode custom icons
+
 
 ## Project Features/Domains Ideas
 

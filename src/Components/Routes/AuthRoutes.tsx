@@ -10,6 +10,7 @@ import { BookmarksRoute } from "./BookmarksRoute";
 import { FlashcardsRoute } from "./FlashcardsRoute";
 import { ScheduleRoute } from "./ScheduleRoute";
 import { SmiteRoute } from "./SmiteRoute";
+import { StatusRoute } from "./StatusRoute";
 
 const mapState = (state: State) => ({
   isAuthenticated: selectIsAuthenticated(state),
@@ -28,8 +29,8 @@ const AuthRoutesFC: FC<AuthListenerProps> = ({ isAuthenticated }) => (
         <Route path="/bookmarks" component={BookmarksRoute} />
         <Route path="/smite" component={SmiteRoute} />
         <Route path="/schedule" component={ScheduleRoute} />
+        <Route path="/status" component={StatusRoute} />
         <Route path="/" component={BookmarksRoute} />
-        {/* <Route path="/" component={HomePage} /> */}
       </Switch>
     ) : (
       <div>You are not yet authenticated</div>

@@ -2,14 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { Link } from "react-router-dom";
 
-import {
-  startFirebaseEventListening,
-  getSchedule,
-  signInUserThroughGoogle,
-  getIsUserSignedIn,
-  signOutUser,
-  consoleLogCurrentUser,
-} from "@Firebase";
+import { startFirebaseEventListening } from "@Firebase";
 import {
   selectEventsForDate,
   State,
@@ -57,9 +50,6 @@ const DisplayModeRouteFC: FC<DisplayModeRouteProps> = ({
     }
   }, [scheduleDataIsLoadAttempted, isUserSignedIn, fetchUserDataSchedule]);
 
-  console.log(`Schedule Data`);
-  console.log(scheduleData);
-
   if (Object.keys(scheduleData).length === 1) {
     const currentScheduleEvent = Object.values(scheduleData)[0];
     return (
@@ -67,17 +57,12 @@ const DisplayModeRouteFC: FC<DisplayModeRouteProps> = ({
         <Link to={`/schedule/edit`}>Edit Schedule</Link>
         <h1>{currentScheduleEvent.title}</h1>
         <h2>{currentScheduleEvent.description}</h2>
-        <button onClick={getSchedule}>Click Me</button>
-        <button onClick={signInUserThroughGoogle}>Sign In Through Google</button>
-        <button onClick={getIsUserSignedIn}>Is User Signed In</button>
-        <button onClick={consoleLogCurrentUser}>Console Log Current User</button>
-        <button onClick={signOutUser}>Log Out</button>
       </>
     );
   }
 
   if (isUserSignedIn) {
-    return <div>Signed in but Ugh ugh ugh</div>;
+    return <div>Loading schedule data.</div>;
   }
   return <div>Not signed in</div>;
 };

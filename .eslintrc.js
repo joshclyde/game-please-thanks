@@ -24,6 +24,13 @@ module.exports = {
     `prettier/react`,
   ],
   rules: {
+    /*
+      Core Rules
+    */
+
+    /*
+      Prettier
+    */
     "prettier/prettier": `error`,
     /*
       Typescript Rules
