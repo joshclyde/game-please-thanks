@@ -1,7 +1,7 @@
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 
-import { addScheduleEvent, fetchUserDataSchedule } from "@Firebase";
+import { addScheduleEvent, fetchUserDataSchedule, deleteScheduleEvent } from "@Firebase";
 
 import {
   makeActionSetSharedLoadingInitiate,
@@ -10,7 +10,11 @@ import {
 } from "../shared";
 import { State } from "../types";
 
-import { makeActionAddScheduleEvent, makeActionBulkAddScheduleEvent } from "./actions";
+import {
+  makeActionAddScheduleEvent,
+  makeActionBulkAddScheduleEvent,
+  makeActionDeleteScheduleEvent,
+} from "./actions";
 import { ScheduleEvent } from "./types";
 
 export const makeThunkAddScheduleEvent = (
@@ -24,6 +28,19 @@ export const makeThunkAddScheduleEvent = (
     dispatch(makeActionAddScheduleEvent(scheduleEventId, scheduleEvent));
   } catch (error) {
     dispatch(makeActionSetSharedLoadingFailure(id, error));
+  }
+};
+
+export const makeThunkDeleteScheduleEvent = (
+  scheduleEventId: string,
+): ThunkAction<void, State, unknown, Action<string>> => async (dispatch, getState) => {
+  dispatch(makeActionSetSharedLoadingInitiate(scheduleEventId));
+  try {
+    await deleteScheduleEvent(scheduleEventId);
+    dispatch(makeActionSetSharedLoadingSuccess(scheduleEventId));
+    dispatch(makeActionDeleteScheduleEvent(scheduleEventId));
+  } catch (error) {
+    dispatch(makeActionSetSharedLoadingFailure(scheduleEventId, error));
   }
 };
 

@@ -3,6 +3,7 @@ import { connect, ConnectedProps } from "react-redux";
 
 import { selectScheduleDataEvent, State } from "@Redux";
 
+import { DeleteScheduleEvent } from "./DeleteScheduleEvent";
 import "./index.css";
 
 interface Props {
@@ -15,9 +16,10 @@ const mapState = (state: State, { scheduleEventId }: Props) => ({
 
 const connector = connect(mapState);
 
-type EditScheduleRouteEntryProps = ConnectedProps<typeof connector> & {};
+type EditScheduleRouteEntryProps = ConnectedProps<typeof connector> & Props;
 
 const EditScheduleRouteEntryFC: FC<EditScheduleRouteEntryProps> = ({
+  scheduleEventId,
   scheduleEvent: { title, description, startDatetime, endDatetime, routine },
 }) => {
   const isRoutine = Boolean(routine);
@@ -54,6 +56,7 @@ const EditScheduleRouteEntryFC: FC<EditScheduleRouteEntryProps> = ({
           </p>
         </>
       ) : null}
+      <DeleteScheduleEvent scheduleEventId={scheduleEventId} />
     </div>
   );
 };

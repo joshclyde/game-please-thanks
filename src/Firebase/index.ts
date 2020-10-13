@@ -4,6 +4,9 @@ import { initializeApp, firestore, auth } from "firebase";
 /*
   Documentation
 
+  API Docs: https://firebase.google.com/docs/reference/js
+  Firestore API Docs: https://firebase.google.com/docs/reference/js/firebase.firestore
+
   User Authentication: https://firebase.google.com/docs/auth/web/firebaseui
   Cloud Firestore Security Rules: https://firebase.google.com/docs/firestore/security/overview
   Creating References to Collections/Documents: https://firebase.google.com/docs/firestore/data-model#references
@@ -61,6 +64,16 @@ export const addScheduleEvent = async (scheduleEvent: ScheduleEvent) => {
   if (uid != null && uid.length > 0) {
     const docRef = await db.collection(`userData/${uid}/schedule`).add(scheduleEvent);
     return { id: docRef.id };
+  } else {
+    throw new Error(`UID was either nully or had a length of zero!`);
+  }
+};
+
+export const deleteScheduleEvent = async (scheduleEventId: string) => {
+  const uid = getCurrentUserUID();
+  if (uid != null && uid.length > 0) {
+    const docRef = await db.collection(`userData/${uid}/schedule`).doc(scheduleEventId);
+    await docRef.delete();
   } else {
     throw new Error(`UID was either nully or had a length of zero!`);
   }

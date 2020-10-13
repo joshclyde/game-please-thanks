@@ -1,8 +1,12 @@
+import pickBy from "lodash/fp/pickBy";
+
 import {
   Actions,
   ActionAddScheduleEvent,
   ActionBulkAddScheduleEvent,
+  ActionDeleteScheduleEvent,
   ADD_SCHEDULE_EVENT,
+  DELETE_SCHEDULE_EVENT,
   BULK_ADD_SCHEDULE_EVENT,
 } from "./actions";
 import { ScheduleState } from "./types";
@@ -36,6 +40,16 @@ const reduceAddScheduleEvent = (
   };
 };
 
+const reduceDeleteScheduleEvent = (
+  state: ScheduleState,
+  { payload: { id } }: ActionDeleteScheduleEvent,
+) => {
+  return {
+    ...state,
+    data: pickBy((_value, scheduleEventId) => scheduleEventId !== id, state.data),
+  };
+};
+
 const reduceBulkAddScheduleEvent = (
   state: ScheduleState,
   { payload: { data } }: ActionBulkAddScheduleEvent,
@@ -51,6 +65,8 @@ export const schedule = (state = initialState, action: Actions): ScheduleState =
   switch (type) {
     case ADD_SCHEDULE_EVENT:
       return reduceAddScheduleEvent(state, action as ActionAddScheduleEvent);
+    case DELETE_SCHEDULE_EVENT:
+      return reduceDeleteScheduleEvent(state, action as ActionDeleteScheduleEvent);
     case BULK_ADD_SCHEDULE_EVENT:
       return reduceBulkAddScheduleEvent(state, action as ActionBulkAddScheduleEvent);
   }
