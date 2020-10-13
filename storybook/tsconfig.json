@@ -12,11 +12,16 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@Components/*": ["../src/Components/*"],
-      "@Design/*": ["../src/Design/*"],
-      "@Routes/*": ["../src/Routes/*"],
-      "@utils/*": ["../src/utils/*"],
-      "@hocs/*": ["../src/hocs/*"],
+      "@Utils": ["../src/Utils/index"],
+      "@Redux": ["../src/Redux/index"],
+      "@Hocs": ["../src/Hocs/index"],
+      "@Design": ["../src/Components/Design/index"],
+      "@Common": ["../src/Components/Common/index"],
+      "@Domain": ["../src/Components/Domain/index"],
+      "@SmiteCommon": ["../src/Components/Domain/Smite/Common/index"],
+      "@Routes": ["../src/Components/Routes/index"],
+      "@Firebase": ["../src/Firebase/index"],
+      "@Types": ["../src/Types/index"],
     }
   },
   "include": [

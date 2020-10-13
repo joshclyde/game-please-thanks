@@ -27,7 +27,6 @@ const connector = connect(mapState);
 interface PropsForReals extends Props, ConnectedProps<typeof connector> {}
 
 const GodPageFC: FC<PropsForReals> = ({ godName, classes }) => {
-  console.log(`HEY: ${godName}`);
   return (
     <div>
       <h1>{godName}</h1>

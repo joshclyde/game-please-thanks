@@ -7,7 +7,7 @@ export const testStructure = (structure: Array<StructureEntry>) => {
     return [];
   }
   for (const entry of structure) {
-    const isEntryInExpectedStructure = findEntryInExpectedStructure(entry);
+    const isEntryInExpectedStructure = findEntryInExpectedStructure(entry, []);
     if (isEntryInExpectedStructure) {
       errors.push(`Failed on ${entry.name}`);
     }

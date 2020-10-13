@@ -23,7 +23,7 @@ export const makeThunkAddScheduleEvent = (
     dispatch(makeActionSetSharedLoadingSuccess(id));
     dispatch(makeActionAddScheduleEvent(scheduleEventId, scheduleEvent));
   } catch (error) {
-    dispatch(makeActionSetSharedLoadingFailure(id));
+    dispatch(makeActionSetSharedLoadingFailure(id, error));
   }
 };
 
@@ -40,6 +40,6 @@ export const makeThunkFetchUserDataSchedule = (): ThunkAction<
     dispatch(makeActionSetSharedLoadingSuccess(FETCH_USER_DATA_SCHEDULE_ID));
     dispatch(makeActionBulkAddScheduleEvent(data));
   } catch (error) {
-    dispatch(makeActionSetSharedLoadingFailure(FETCH_USER_DATA_SCHEDULE_ID));
+    dispatch(makeActionSetSharedLoadingFailure(FETCH_USER_DATA_SCHEDULE_ID, error));
   }
 };

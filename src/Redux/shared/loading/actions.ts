@@ -21,10 +21,11 @@ export type ActionSetSharedLoadingSuccess = ReturnType<
 >;
 
 export const SET_SHARED_LOADING_FAILURE = `SET_SHARED_LOADING_FAILURE`;
-export const makeActionSetSharedLoadingFailure = (key: string) => ({
+export const makeActionSetSharedLoadingFailure = (key: string, error: Error) => ({
   type: SET_SHARED_LOADING_FAILURE,
   payload: {
     key,
+    error,
   },
 });
 export type ActionSetSharedLoadingFailure = ReturnType<

@@ -72,9 +72,8 @@ export const fetchUserDataSchedule = async (): Promise<Record<string, ScheduleEv
     const querySnapshot = await db.collection(`userData/${uid}/schedule`).get();
     const scheduleData: Record<string, ScheduleEvent> = {};
     querySnapshot.forEach((doc) => {
-      const { title, description, startDatetime, endDatetime } = doc.data();
+      const { title, description, startDatetime, endDatetime, routine } = doc.data();
 
-      console.log(`Start Datetime `, startDatetime);
       scheduleData[doc.id] = {
         title,
         description,
@@ -86,8 +85,8 @@ export const fetchUserDataSchedule = async (): Promise<Record<string, ScheduleEv
           endDatetime.seconds,
           endDatetime.nanoseconds,
         ).toDate(),
+        routine,
       };
-      console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
     });
     return scheduleData;
   } else {

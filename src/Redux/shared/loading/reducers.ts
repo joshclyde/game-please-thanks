@@ -22,6 +22,7 @@ const reduceSetSharedLoadingInitiate = (
       isLoading: true,
       isLoadSuccessful: false,
       isLoadFailure: false,
+      error: undefined,
     },
   };
 };
@@ -37,6 +38,7 @@ const reduceSetSharedLoadingSuccess = (
       isLoading: false,
       isLoadSuccessful: true,
       isLoadFailure: false,
+      error: undefined,
     },
   };
 };
@@ -45,13 +47,14 @@ const reduceSetSharedLoadingFailure = (
   state: SharedLoadingState,
   { payload }: ActionSetSharedLoadingFailure,
 ): SharedLoadingState => {
-  const { key } = payload;
+  const { key, error } = payload;
   return {
     ...state,
     [key]: {
       isLoading: false,
       isLoadSuccessful: false,
       isLoadFailure: true,
+      error,
     },
   };
 };

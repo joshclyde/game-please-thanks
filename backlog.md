@@ -4,6 +4,8 @@
 
 ### Lint
 
+- Checkout out this [awesome-eslint](https://github.com/dustinspecker/awesome-eslint) repo to see a lot of different eslint resources.
+
 - [x] eslint prettier
 - [x] eslint import rules
 - [ ] eslint core rules
@@ -12,6 +14,7 @@
 - [ ] eslint lodash rules
 - [ ] eslint jsx-a11y rules
 - [ ] eslint react-redux rules
+- [ ] eslint jsdoc rules
 
 ### File Structure
 
@@ -22,28 +25,40 @@
 
 ### Misc.
 
+- [ ] decide how to do css
 - [ ] unit tests
 - [ ] switch to nvm instead of brew
 - [ ] vscode custom explorer view
 - [ ] vscode custom icons
 
-
 ## Project Features/Domains Ideas
 
-- schedule
-  - plan out what i'm supposed to do
-  - phone notifications
-  - one or the other? so, say i want to reserve time for the queue. if there's nothing on the queue then maybe i can have a secondary option to do
-  - if i do the schedule first then i can integrate all other features into it
-- health
+### Misc.
+
+- [ ] make header better
+- [ ] make form components better
+- [ ] take out the Components folder and just have all the folders be a base level
+- [ ] branch and commit pattern?
+
+### Schedule
+
+- [ ] add "routine" to add event form
+- [ ] make add event form page pretty looking
+- [ ] notifications on phone
+- [ ] integrate queue into Schedule Event
+- [ ] move any Schedule components to Components/Domain?
+  
+### Health
   - weight
   - food calories/nutrients
   - exercise
-- closet
+
+### Closet
   - pictures of clothes
   - clothes i want
   - links to where i bought clothes
-- queue
+  
+### Queue
   - basically a todo list
   - if i have a schedule then one of the timeslots could be reserved for queue
 - 

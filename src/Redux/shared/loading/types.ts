@@ -3,5 +3,6 @@ export interface SharedLoadingState {
     isLoading: boolean;
     isLoadSuccessful: boolean;
     isLoadFailure: boolean;
+    error?: Error;
   };
 }

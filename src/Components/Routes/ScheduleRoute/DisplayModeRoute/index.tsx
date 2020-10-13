@@ -4,19 +4,21 @@ import { Link } from "react-router-dom";
 
 import { startFirebaseEventListening } from "@Firebase";
 import {
-  selectEventsForDate,
+  selectCurrentEventsForDate,
   State,
   selectScheduleDataIsLoading,
   selectScheduleDataIsLoadSuccessful,
   selectScheduleDateIsLoadAttempted,
   makeThunkFetchUserDataSchedule,
+  selectScheduleDataIsLoadFailure,
 } from "@Redux";
 
 const mapState = (state: State) => ({
-  scheduleData: selectEventsForDate(state, new Date()),
+  currentEvents: selectCurrentEventsForDate(state, new Date()),
   scheduleDataIsLoadAttempted: selectScheduleDateIsLoadAttempted(state),
   scheduleDataIsLoading: selectScheduleDataIsLoading(state),
   scheduleDataIsLoadSuccessful: selectScheduleDataIsLoadSuccessful(state),
+  scheduleDataIsLoadFailure: selectScheduleDataIsLoadFailure(state),
 });
 
 const mapDispatch = {
@@ -28,9 +30,12 @@ const connector = connect(mapState, mapDispatch);
 type DisplayModeRouteProps = ConnectedProps<typeof connector> & {};
 
 const DisplayModeRouteFC: FC<DisplayModeRouteProps> = ({
-  scheduleData,
+  currentEvents,
   fetchUserDataSchedule,
   scheduleDataIsLoadAttempted,
+  scheduleDataIsLoadSuccessful,
+  scheduleDataIsLoading,
+  scheduleDataIsLoadFailure,
 }) => {
   const [isUserSignedIn, setIsUserSignedIn] = useState(false);
   useEffect(() => {
@@ -50,21 +55,36 @@ const DisplayModeRouteFC: FC<DisplayModeRouteProps> = ({
     }
   }, [scheduleDataIsLoadAttempted, isUserSignedIn, fetchUserDataSchedule]);
 
-  if (Object.keys(scheduleData).length === 1) {
-    const currentScheduleEvent = Object.values(scheduleData)[0];
-    return (
-      <>
-        <Link to={`/schedule/edit`}>Edit Schedule</Link>
-        <h1>{currentScheduleEvent.title}</h1>
-        <h2>{currentScheduleEvent.description}</h2>
-      </>
-    );
+  if (!isUserSignedIn) {
+    return <div>Not signed in</div>;
   }
 
-  if (isUserSignedIn) {
+  if (scheduleDataIsLoadSuccessful) {
+    if (Object.keys(currentEvents).length > 0) {
+      // const currentScheduleEvent = Object.values(currentEvents)[0];
+      return (
+        <>
+          <Link to={`/schedule/edit`}>Edit Schedule</Link>
+          {Object.values(currentEvents).map((scheduleEvent) => {
+            return (
+              <div>
+                <h1>{scheduleEvent.title}</h1>
+                <h2>{scheduleEvent.description}</h2>
+              </div>
+            );
+          })}
+
+          {/* <h1>{currentScheduleEvent.currentEvents}</h1>
+          <h2>{currentScheduleEvent.currentEvents}</h2> */}
+        </>
+      );
+    }
+  } else if (scheduleDataIsLoading) {
     return <div>Loading schedule data.</div>;
+  } else if (scheduleDataIsLoadFailure) {
+    return <div>Schedule data failed to load.</div>;
   }
-  return <div>Not signed in</div>;
+  return <div>Nothing</div>;
 };
 
 export const DisplayModeRoute = connector(DisplayModeRouteFC);

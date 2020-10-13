@@ -23,11 +23,8 @@ export const selectScheduleDataEvent = (
   scheduleEventId: string,
 ) => state.schedule.data[scheduleEventId];
 
-export const selectEventsForDate = (state: StateJustSchedule, date: Date) => {
+export const selectCurrentEventsForDate = (state: StateJustSchedule, date: Date) => {
   return pickBy((scheduleEvent) => {
-    console.log(scheduleEvent.startDatetime.getTime());
-    console.log(date.getTime());
-    console.log(scheduleEvent.endDatetime.getTime());
     return (
       scheduleEvent.startDatetime.getTime() <= date.getTime() &&
       scheduleEvent.endDatetime.getTime() > date.getTime()
