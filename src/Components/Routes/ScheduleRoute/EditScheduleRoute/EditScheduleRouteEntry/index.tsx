@@ -42,17 +42,17 @@ const EditScheduleRouteEntryFC: FC<EditScheduleRouteEntryProps> = ({
       {isRoutine ? (
         <>
           <p>
-            <b>Time:</b> {startDatetime.toLocaleTimeString()} -{" "}
+            <b>Time:</b> {startDatetime.toLocaleTimeString()} -{` `}
             {endDatetime.toLocaleTimeString()}
           </p>
           <p>
-            {monday ? <b>M </b> : "M "}
-            {tuesday ? <b>Tu </b> : "Tu "}
-            {wednesday ? <b>W </b> : "W "}
-            {thursday ? <b>Th </b> : "Th "}
-            {friday ? <b>F </b> : "F "}
-            {saturday ? <b>Sa </b> : "Sa "}
-            {sunday ? <b>Su </b> : "Su "}
+            {monday ? <b>M </b> : `M `}
+            {tuesday ? <b>Tu </b> : `Tu `}
+            {wednesday ? <b>W </b> : `W `}
+            {thursday ? <b>Th </b> : `Th `}
+            {friday ? <b>F </b> : `F `}
+            {saturday ? <b>Sa </b> : `Sa `}
+            {sunday ? <b>Su </b> : `Su `}
           </p>
         </>
       ) : null}
