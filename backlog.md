@@ -27,6 +27,8 @@
 
 - [ ] decide how to do css
 - [ ] unit tests
+- [ ] functional tests
+- [ ] ci/cd pipeline
 - [ ] switch to nvm instead of brew
 - [ ] vscode custom explorer view
 - [ ] vscode custom icons
@@ -39,10 +41,13 @@
 - [ ] make form components better
 - [ ] take out the Components folder and just have all the folders be a base level
 - [ ] branch and commit pattern?
+- [ ] fix console warnings/errors
 
 ### Schedule
 
-- [ ] add "routine" to add event form
+- [x] add "routine" to add event form
+- [ ] edit schedule event form
+= [ ] reusable event data
 - [ ] make add event form page pretty looking
 - [ ] notifications on phone
 - [ ] integrate queue into Schedule Event
@@ -52,6 +57,7 @@
   - weight
   - food calories/nutrients
   - exercise
+  - grocery list
 
 ### Closet
   - pictures of clothes
