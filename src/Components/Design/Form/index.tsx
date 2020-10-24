@@ -22,7 +22,7 @@ const FormFC: FC<Props> = ({ createForm, doesFormExist, ...rest }) => {
     if (!doesFormExist) {
       createForm(formId);
     }
-  }, [doesFormExist]);
+  }, [doesFormExist, createForm, formId]);
 
   return <form {...rest} />;
 };

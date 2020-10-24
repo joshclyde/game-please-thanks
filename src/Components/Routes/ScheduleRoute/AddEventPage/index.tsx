@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect } from "react";
+import React, { FC, useCallback, useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -16,7 +16,6 @@ import {
   selectFormInputValue,
   makeThunkAddScheduleEvent,
   selectSharedIsLoading,
-  selectSharedIsLoadSuccessful,
 } from "@Redux";
 
 const formId = `add-event-page-form`;
@@ -103,6 +102,7 @@ const AddEventPageFC: FC<Props> = ({
       event.preventDefault();
     },
     [
+      addScheduleEvent,
       title,
       description,
       startDatetime,
@@ -118,16 +118,16 @@ const AddEventPageFC: FC<Props> = ({
     ],
   );
 
-  let hasNavigated = false;
+  const [hasNavigated, setHasNavigated] = useState(false);
   const history = useHistory();
   useEffect(() => {
     if (isFormSubmissionSuccessful) {
       if (!hasNavigated) {
-        hasNavigated = true;
+        setHasNavigated(true);
         history.push(`/schedule`);
       }
     }
-  }, [isFormSubmissionSuccessful, history]);
+  }, [isFormSubmissionSuccessful, history, hasNavigated, setHasNavigated]);
 
   return (
     <div>

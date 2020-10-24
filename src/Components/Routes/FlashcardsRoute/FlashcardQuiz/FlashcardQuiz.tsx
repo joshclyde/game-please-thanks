@@ -48,23 +48,23 @@ const FlashcardQuizFC: FC<FlashcardForRealProps> = ({
   quizLength,
   flashcardContents,
 }) => {
-  if (quizId !== quizCurrentId) {
-    setFlashcardQuizId(quizId);
-    return null;
-  }
-
   const [flashcardIndex, setFlashcardIndex] = useState(0);
 
   const onClickWrong = useCallback(() => {
     setFlashcardIndex((previousValue) => previousValue + 1);
     // setFlashcardIndex((previousValue) => Math.min(previousValue + 1, quizLength - 1));
     setCardResponseIsCorrect(Object.keys(flashcardContents)[flashcardIndex], false);
-  }, [flashcardIndex]);
+  }, [flashcardIndex, flashcardContents, setCardResponseIsCorrect]);
   const onClickCorrect = useCallback(() => {
     setFlashcardIndex((previousValue) => previousValue + 1);
     // setFlashcardIndex((previousValue) => Math.min(previousValue + 1, quizLength - 1));
     setCardResponseIsCorrect(Object.keys(flashcardContents)[flashcardIndex], true);
-  }, [flashcardIndex]);
+  }, [flashcardIndex, flashcardContents, setCardResponseIsCorrect]);
+
+  if (quizId !== quizCurrentId) {
+    setFlashcardQuizId(quizId);
+    return null;
+  }
 
   const numberOfCorrect = Object.values(flashcardContents).filter(
     ({ isCorrect }) => isCorrect,

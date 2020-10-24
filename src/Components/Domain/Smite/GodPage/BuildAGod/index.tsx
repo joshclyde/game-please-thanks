@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
 import {
@@ -47,14 +47,22 @@ const BuildAGodFC: FC<PropsForReals> = ({
   hasBuildAGodBeenCreated,
   view,
 }) => {
-  console.log(`JOSH: ${buildAGodKey}`);
+  const [hasComponentCreatedBuildAGod, setHasComponentCreatedBuildAGod] = useState(false);
   useEffect(() => {
-    if (!hasBuildAGodBeenCreated) {
+    if (!hasComponentCreatedBuildAGod && !hasBuildAGodBeenCreated) {
+      setHasComponentCreatedBuildAGod(true);
       createBuildAGod(buildAGodKey);
       setGodName(buildAGodKey, `Achilles`);
       setItem(buildAGodKey, 1, 7526);
     }
-  }, []);
+  }, [
+    hasComponentCreatedBuildAGod,
+    hasBuildAGodBeenCreated,
+    createBuildAGod,
+    buildAGodKey,
+    setGodName,
+    setItem,
+  ]);
 
   return hasBuildAGodBeenCreated ? (
     <>

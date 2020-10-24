@@ -15,7 +15,7 @@ type AuthListenerProps = ConnectedProps<typeof connector> & {};
 const AuthListenerFC: FC<AuthListenerProps> = ({ startListenerForAuth }) => {
   useEffect(() => {
     startListenerForAuth();
-  }, []);
+  }, [startListenerForAuth]);
   return null;
 };
 

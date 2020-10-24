@@ -35,11 +35,11 @@ const CheckboxFC: FC<PropsForReals> = ({
 }) => {
   useEffect(() => {
     setValue(entityKey, attributeKey, false);
-  }, []);
+  }, [entityKey, attributeKey, setValue]);
 
   const onChange = useCallback(() => {
     setValue(entityKey, attributeKey, !checkboxValue);
-  }, [entityKey, attributeKey, checkboxValue]);
+  }, [entityKey, attributeKey, checkboxValue, setValue]);
 
   return (
     <input {...restProps} type="checkbox" checked={checkboxValue} onChange={onChange} />

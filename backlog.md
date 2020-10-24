@@ -10,6 +10,7 @@
 - [x] eslint import rules
 - [ ] eslint core rules
 - [ ] eslint react rules
+- [x] eslint react hooks rules
 - [ ] eslint typescript rules
 - [ ] eslint lodash rules
 - [ ] eslint jsx-a11y rules
@@ -28,6 +29,8 @@
 - [ ] decide how to do css (atomic css in js)
 - [ ] unit tests
 - [ ] functional tests
+- [ ] build
+- [ ] performance
 - [ ] ci/cd pipeline
 - [ ] switch to nvm instead of brew
 - [ ] vscode custom explorer view

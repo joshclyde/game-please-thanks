@@ -42,6 +42,7 @@ const DeleteScheduleEventFC: FC<DeleteScheduleEventProps> = ({
   ]);
   const onClickYes = useCallback(() => deleteScheduleEvent(scheduleEventId), [
     deleteScheduleEvent,
+    scheduleEventId,
   ]);
 
   if (isDeletionInProgress) {
