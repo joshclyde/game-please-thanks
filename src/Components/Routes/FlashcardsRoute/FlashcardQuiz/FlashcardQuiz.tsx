@@ -1,5 +1,4 @@
 import React, { FC, useCallback, useState } from "react";
-import injectSheet from "react-jss";
 import { connect, ConnectedProps } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -17,6 +16,8 @@ import { Flashcard } from "../Flashcard";
 
 import { calculateGrade } from "./calculateGrade";
 
+import "./FlashcardQuiz.css";
+
 const mapState = (state: State) => ({
   quizCurrentId: selectFlashcardQuizCurrentId(state),
   quizLength: selectFlashcardQuizLength(state),
@@ -32,13 +33,6 @@ const connector = connect(mapState, mapDispatch);
 
 interface FlashcardQuizProps {
   quizId: string;
-  classes: {
-    main: string;
-    flashcard: string;
-    flashcardData: string;
-    correctButton: string;
-    wrongButton: string;
-  };
 }
 
 interface FlashcardForRealProps
@@ -46,7 +40,7 @@ interface FlashcardForRealProps
     ConnectedProps<typeof connector> {}
 
 const FlashcardQuizFC: FC<FlashcardForRealProps> = ({
-  classes,
+  // classes,
   quizId,
   quizCurrentId,
   setFlashcardQuizId,
@@ -92,21 +86,21 @@ const FlashcardQuizFC: FC<FlashcardForRealProps> = ({
   }
 
   return (
-    <div className={classes.main}>
+    <div className={`FlashcardQuizMain`}>
       <Flashcard
         key={Object.keys(flashcardContents)[flashcardIndex]} // is this weird?
-        className={classes.flashcard}
+        className={`FlashcardQuizFlashcard`}
         front={flashcardContents[Object.keys(flashcardContents)[flashcardIndex]].question}
         back={flashcardContents[Object.keys(flashcardContents)[flashcardIndex]].answer}
       />
-      <div className={classes.flashcardData}>
+      <div className={`FlashcardQuizFlashcardData`}>
         <p>
           Current: {flashcardIndex + 1} / {quizLength}
         </p>
-        <Button className={classes.correctButton} onClick={onClickCorrect}>
+        <Button className={`FlashcardQuizCorrectButton`} onClick={onClickCorrect}>
           Correct.
         </Button>
-        <Button className={classes.wrongButton} onClick={onClickWrong}>
+        <Button className={`FlashcardQuizWrongButton`} onClick={onClickWrong}>
           Wrong!
         </Button>
       </div>
@@ -114,27 +108,4 @@ const FlashcardQuizFC: FC<FlashcardForRealProps> = ({
   );
 };
 
-export const FlashcardQuiz = connector(
-  injectSheet({
-    main: {
-      display: `flex`,
-      flexDirection: `row`,
-      border: `solid`,
-      "& > *": { margin: 10 },
-    },
-    flashcard: {
-      width: `100%`,
-    },
-    flashcardData: {
-      width: 200,
-    },
-    correctButton: {
-      width: `100%`,
-      backgroundColor: `#66D14A`,
-    },
-    wrongButton: {
-      width: `100%`,
-      backgroundColor: `#D14A66`,
-    },
-  })(FlashcardQuizFC),
-);
+export const FlashcardQuiz = connector(FlashcardQuizFC);

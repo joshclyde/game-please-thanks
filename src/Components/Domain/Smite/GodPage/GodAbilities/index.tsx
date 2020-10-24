@@ -1,23 +1,20 @@
 import React, { FC, useState } from "react";
-import injectSheet from "react-jss";
 
 import { GodAbilityImage } from "./GodAbilityImage";
 import { GodAbilityInformation } from "./GodAbilityInformation";
 
+import "./index.css";
+
 interface Props {
   godName: string;
-  classes: {
-    a: string;
-    b: string;
-  };
 }
 
-const GodAbilitiesFC: FC<Props> = ({ godName, classes }) => {
+const GodAbilitiesFC: FC<Props> = ({ godName }) => {
   const [currentIndex, setCurrentIndex] = useState(1);
 
   return (
-    <div className={classes.a}>
-      <div className={classes.b}>
+    <div className={`GodPageGodAbilitiesA`}>
+      <div className={`GodPageGodAbilitiesB`}>
         <GodAbilityImage
           godName={godName}
           abilityIndex={1}
@@ -59,15 +56,4 @@ const GodAbilitiesFC: FC<Props> = ({ godName, classes }) => {
   );
 };
 
-const styles = {
-  a: {
-    display: `flex`,
-    flexFlow: `row nowrap`,
-  },
-  b: {
-    display: `flex`,
-    flexFlow: `column nowrap`,
-  },
-};
-
-export const GodAbilities = injectSheet(styles)(GodAbilitiesFC);
+export const GodAbilities = GodAbilitiesFC;

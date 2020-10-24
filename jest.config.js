@@ -1,10 +1,10 @@
-const { defaults } = require("jest-config");
+const { defaults } = require(`jest-config`);
 
 module.exports = {
-  roots: ["<rootDir>/src"],
+  roots: [`<rootDir>/src`],
   transform: {
-    "^.+\\.tsx?$": "ts-jest",
+    "^.+\\.tsx?$": `ts-jest`,
   },
-  moduleFileExtensions: [...defaults.moduleFileExtensions, "ts", "tsx"],
+  moduleFileExtensions: [...defaults.moduleFileExtensions, `ts`, `tsx`],
   verbose: true,
 };

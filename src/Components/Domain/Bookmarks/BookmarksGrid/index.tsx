@@ -1,11 +1,8 @@
 import React, { FC } from "react";
-import injectSheet from "react-jss";
 
 import { Bookmark } from "../Bookmark";
 
-type BookmarksGridProps = {
-  classes: { main: string };
-};
+import "./index.css";
 
 const bookmarks = [
   {
@@ -20,19 +17,12 @@ const bookmarks = [
   },
 ];
 
-export const BookmarksGridFC: FC<BookmarksGridProps> = ({ classes }) => (
-  <div className={classes.main}>
+export const BookmarksGridFC: FC<{}> = () => (
+  <div className={`BookmarkBookmarksGrid`}>
     {bookmarks.map(({ name, url, iconUrl }) => (
       <Bookmark name={name} url={url} iconUrl={iconUrl} />
     ))}
   </div>
 );
 
-export const BookmarksGrid = injectSheet({
-  main: {
-    display: `flex`,
-    flexDirection: `row`,
-    border: `solid`,
-    "& > *": { margin: 10 },
-  },
-})(BookmarksGridFC);
+export const BookmarksGrid = BookmarksGridFC;

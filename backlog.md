@@ -25,7 +25,7 @@
 
 ### Misc.
 
-- [ ] decide how to do css
+- [ ] decide how to do css (atomic css in js)
 - [ ] unit tests
 - [ ] functional tests
 - [ ] ci/cd pipeline

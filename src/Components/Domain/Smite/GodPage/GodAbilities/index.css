@@ -1,0 +1,9 @@
+.GodPageGodAbilitiesA {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.GodPageGodAbilitiesB {
+  display: flex;
+  flex-flow: column nowrap;
+}

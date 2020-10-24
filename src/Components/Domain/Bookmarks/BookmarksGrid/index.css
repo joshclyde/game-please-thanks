@@ -1,0 +1,7 @@
+.BookmarkBookmarksGrid {
+  display: flex;
+  flex-direction: row;
+  border: solid;
+}
+
+.BookmarkBookmarksGrid > * { margin: 10px; }

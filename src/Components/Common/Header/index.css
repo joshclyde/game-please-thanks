@@ -1,0 +1,13 @@
+.HeaderContainer {
+  background-color: black;
+  height: 42px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.HeaderDisplayLine {
+  background-color: #f885cf;
+  height: 4px;
+}

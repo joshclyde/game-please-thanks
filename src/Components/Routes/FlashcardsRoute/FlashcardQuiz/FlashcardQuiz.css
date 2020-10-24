@@ -1,0 +1,25 @@
+.FlashcardQuizMain {
+  display: flex;
+  flex-direction: row;
+  border: solid;
+}
+
+.FlashcardQuizMain > * { margin: 10px; }
+
+.FlashcardQuizFlashcard {
+  width: 100%;
+}
+
+.FlashcardQuizFlashcardData {
+  width: 200px;
+}
+
+.FlashcardQuizCorrectButton {
+  width: 100%;
+  background-color: #66D14A;
+}
+
+.FlashcardQuizWrongButton {
+  width: 100%;
+  background-color: #D14A66;
+}

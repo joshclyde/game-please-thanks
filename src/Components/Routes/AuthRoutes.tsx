@@ -3,6 +3,7 @@ import { Provider, connect, ConnectedProps } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import thunkMiddleware from "redux-thunk";
 
+import { signInUserThroughGoogle } from "@Firebase";
 import { selectIsAuthenticated, State } from "@Redux";
 
 import { AuthListener } from "./AuthListener";
@@ -33,7 +34,10 @@ const AuthRoutesFC: FC<AuthListenerProps> = ({ isAuthenticated }) => (
         <Route path="/" component={BookmarksRoute} />
       </Switch>
     ) : (
-      <div>You are not yet authenticated</div>
+      <>
+        <div>You are not yet authenticated</div>
+        <button onClick={() => signInUserThroughGoogle()}>Sign In</button>
+      </>
     )}
   </>
 );

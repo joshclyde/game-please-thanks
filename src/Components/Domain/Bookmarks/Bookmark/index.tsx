@@ -1,23 +1,21 @@
 import React, { FC } from "react";
-import injectSheet from "react-jss";
 
 import { cx } from "@Utils";
 
-type BookmarkProps = {
-  classes: { main: string };
+import "./index.css";
+
+interface BookmarkProps {
   className?: string;
   name: string;
   url: string;
   iconUrl: string;
-};
+}
 
-const BookmarkFC: FC<BookmarkProps> = ({ classes, className, name, url, iconUrl }) => (
-  <a className={cx(classes.main, className)} href={url}>
+const BookmarkFC: FC<BookmarkProps> = ({ className, name, url, iconUrl }) => (
+  <a className={cx(`BookmarksBookmark`, className)} href={url}>
     <img src={iconUrl} width={32} height={32} />
     {name}
   </a>
 );
 
-export const Bookmark = injectSheet({
-  main: { display: `flex`, flexDirection: `column`, alignItems: `center` },
-})(BookmarkFC);
+export const Bookmark = BookmarkFC;
