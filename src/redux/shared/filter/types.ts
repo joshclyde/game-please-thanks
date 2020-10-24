@@ -1,5 +1,1 @@
-export interface SharedFilterState {
-  [key: string]: {
-    [key: string]: boolean;
-  };
-}
+export type SharedFilterState = Record<string, Record<string, boolean>>;

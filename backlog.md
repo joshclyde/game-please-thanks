@@ -16,6 +16,7 @@
 - [ ] eslint jsx-a11y rules
 - [ ] eslint react-redux rules
 - [ ] eslint jsdoc rules
+- [ ] eslint import sorting rules (might be more advanced?) https://github.com/lydell/eslint-plugin-simple-import-sort
 
 ### File Structure
 
@@ -35,6 +36,7 @@
 - [ ] switch to nvm instead of brew
 - [ ] vscode custom explorer view
 - [ ] vscode custom icons
+- [ ] get rid of type assertions
 
 ## Project Features/Domains Ideas
 

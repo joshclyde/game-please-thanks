@@ -23,10 +23,6 @@ export interface SmiteState {
   search: {
     term: string;
   };
-  buildItems: {
-    [key: string]: BuildItems;
-  };
-  buildAGod: {
-    [key: string]: BuildAGod;
-  };
+  buildItems: Record<string, BuildItems>;
+  buildAGod: Record<string, BuildAGod>;
 }

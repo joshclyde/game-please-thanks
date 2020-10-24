@@ -11,7 +11,9 @@ const mapState = (state: State, { setId }: OwnProps) => ({
 
 const connector = connect(mapState);
 
-type OwnProps = { setId: string };
+interface OwnProps {
+  setId: string;
+}
 type QuizEachOneProps = ConnectedProps<typeof connector> & OwnProps;
 
 const QuizEachOneFC: FC<QuizEachOneProps> = ({ setId, title }) => (

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { Header } from "@Common";
 import { BookmarksGrid } from "@Domain";
 
-type Props = {};
+interface Props {}
 
 export const BookmarksRoute: FC<Props> = () => (
   <div>

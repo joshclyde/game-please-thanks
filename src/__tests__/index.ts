@@ -6,15 +6,15 @@ const { join } = require(`path`);
 const ROOT_PATH = `${__dirname}/../..`;
 
 const getFolders = (p: string) =>
-  readdirSync(p).filter((f: string[]) => statSync(join(p, f)).isDirectory());
+  readdirSync(p).filter((f: Array<string>) => statSync(join(p, f)).isDirectory());
 // const getFiles = (p: string) =>
 //   readdirSync(p).filter((f: string[]) => statSync(join(p, f)).isFile());
 
 // relatviePath: no / at beginning but / at end, like "src/"
 const testFolders = (
   relativePath: string,
-  requiredFolders: string[],
-  optionalFolders: string[] = [],
+  requiredFolders: Array<string>,
+  optionalFolders: Array<string> = [],
 ) => {
   const testPath = `${ROOT_PATH}/${relativePath}`;
   requiredFolders.forEach((folderName) => {
