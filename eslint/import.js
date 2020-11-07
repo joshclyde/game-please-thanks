@@ -20,7 +20,7 @@ module.exports = {
   "import/no-deprecated": `off`,
   "import/no-extraneous-dependencies": `error`, // TODO: take a look at the configurations for this rule
   "import/no-mutable-exports": `error`,
-  "import/no-unused-modules": [`error`, { missingExports: false, unusedExports: true }],
+  "import/no-unused-modules": [`off`, { missingExports: false, unusedExports: true }], // TODO: i like this rule, but it is annoying during development
 
   // Module Systems
   "import/unambiguous": `off`,

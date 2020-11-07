@@ -37,6 +37,9 @@
 - [ ] vscode custom explorer view
 - [ ] vscode custom icons
 - [ ] get rid of type assertions
+- [ ] typescript namespaces and how they build with webpack
+- [ ] naming conventions for literally everything
+- [ ] chrome debugger and launching from vs code
 
 ## Project Features/Domains Ideas
 
