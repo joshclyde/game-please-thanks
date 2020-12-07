@@ -12,9 +12,11 @@
     "noImplicitAny": true,
     "baseUrl": ".",
     "paths": {
+      "@Api": ["./src/Api/index"],
       "@Utils": ["./src/Utils/index"],
       "@Redux": ["./src/Redux/index"],
       "@Hocs": ["./src/Hocs/index"],
+      "@Hooks": ["./src/Hooks/index"],
       "@Design": ["./src/Components/Design/index"],
       "@Common": ["./src/Components/Common/index"],
       "@Domain": ["./src/Components/Domain/index"],

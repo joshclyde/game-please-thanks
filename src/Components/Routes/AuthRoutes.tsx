@@ -1,7 +1,6 @@
 import React, { FC } from "react";
-import { Provider, connect, ConnectedProps } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import thunkMiddleware from "redux-thunk";
 
 import { signInUserThroughGoogle } from "@Firebase";
 import { selectIsAuthenticated, State } from "@Redux";
@@ -9,6 +8,7 @@ import { selectIsAuthenticated, State } from "@Redux";
 import { AuthListener } from "./AuthListener";
 import { BookmarksRoute } from "./BookmarksRoute";
 import { FlashcardsRoute } from "./FlashcardsRoute";
+import { MusicRoute } from "./MusicRoute";
 import { ScheduleRoute } from "./ScheduleRoute";
 import { SmiteRoute } from "./SmiteRoute";
 import { StatusRoute } from "./StatusRoute";
@@ -26,6 +26,7 @@ const AuthRoutesFC: FC<AuthListenerProps> = ({ isAuthenticated }) => (
     <AuthListener />
     {isAuthenticated ? (
       <Switch>
+        <Route path="/music" component={MusicRoute} />
         <Route path="/flashcards" component={FlashcardsRoute} />
         <Route path="/bookmarks" component={BookmarksRoute} />
         <Route path="/smite" component={SmiteRoute} />

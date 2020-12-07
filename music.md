@@ -99,6 +99,8 @@ Different search experiences for the tree and the library.
 - Spotify does a good job keeping a history of the pages you've visited and going backwards.
 - Hard Connection to spotify artists/albums/songs. Basically if I create a "BTS" label I want it to kinda stay in sync with spotify's BTS artist data, and same with albums (and I guess songs?).
 - keep a history of all tree additions/changes/deletions
+- conversion from existing spotify playlist to tree?
+- can i integrate other things like youtube?
 
 ## Edge/Complex Cases
 
@@ -204,5 +206,66 @@ Lists all the jam sessions. Clicking on one takes you to the jam session page.
 
 ### Jam Session > {jamSessionId}
 
-Show jam session page for {jamSessionId}.
+Show jam session page for {jamSessionId}. Shows a list of each individual song and rule.
 
+```ts
+interface Rule {
+  // TODO
+}
+
+interface JamSession {
+  id: string;
+  // ids to songs
+  songs: Array<string>;
+  rules: Array<Rule>;
+  currentSession: {
+    // ids to all the songs in order of when they should be played
+    songOrder: Array<string>;
+    // id of the current song playing (or to be played). 
+    // any songs before this song in songOrder have already been played
+    // any songs after have not been played
+    currentSong: string; // (should this be the index in songOrder?)
+  }
+}
+```
+
+Need to be able to edit jam session
+- add songs
+- add new rules
+- decide the order
+- reset the session (start back at song 1)
+- should jam session loop or stop when finished
+- 
+
+### Currently Playing
+
+Let's say for now that you can only play a jam session. Basically just need a jam session id.
+- list of songs in order.
+- way to change the order of songs.
+- skip button
+- previous button
+- pause button
+- play button
+- 2 different views? display mode and list view
+- button to go to jam session?
+- reset jam session?
+
+## Beginner Pages
+
+Figured that it may make sense to make some simpler pages first just to test how using the spotify api works.
+
+### Play an album
+
+Have a hardcoded album and be able to play, pause, skip, previous.
+
+Possible additions
+- type in albumId
+- play a song
+
+### Do a search
+
+Display results of hardcoded search term.
+
+Possible additions
+- search input
+- choose album, artist, songs

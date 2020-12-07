@@ -13,6 +13,7 @@ const HeaderFC: FC<{}> = () => (
       <HeaderLink href="/flashcards">Flashcards</HeaderLink>
       <HeaderLink href="/smite/gods">Smite</HeaderLink>
       <HeaderLink href="/schedule">Schedule</HeaderLink>
+      <HeaderLink href="/music">Music</HeaderLink>
     </div>
   </>
 );
