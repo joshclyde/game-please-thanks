@@ -20,5 +20,18 @@
 
     <!-- Initialize Firebase -->
     <script src="/__/firebase/init.js"></script>
+
+    <!-- Initiliazing spotify player. 
+    Go here for more information: https://developer.spotify.com/documentation/web-playback-sdk/reference/
+    -->
+    <script>
+      window.spotifyWebPlaybackSDKReady = false;
+      window.onSpotifyWebPlaybackSDKReady = () => {
+        // You can now initialize Spotify.Player and use the SDK
+        console.log("Spotify Web Playback SDK Ready")
+        window.spotifyWebPlaybackSDKReady = true;
+      };
+      </script>
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
   </body>
 </html>

@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spotify Search should call axios with proper values 1`] = `
+Array [
+  Array [
+    "https://api.spotify.com/v1/search",
+    Object {
+      "headers": Object {
+        "Authorization": "Bearer ACCESSTOKENTESTVALUE",
+      },
+      "params": Object {
+        "include_external": undefined,
+        "limit": 12,
+        "market": "from_token",
+        "offset": undefined,
+        "q": "bts",
+        "type": "album",
+      },
+    },
+  ],
+]
+`;
+
+exports[`Spotify Search should return the response from spotify search 1`] = `"this is the search result"`;

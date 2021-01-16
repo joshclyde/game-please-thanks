@@ -4,7 +4,7 @@ import { SpotifySearchResponse, QueryParams } from "./types";
 
 export interface SpotifySearchParams {
   accessToken: string;
-  q: string | Array<string>;
+  q: string;
   type: "album" | "artist" | "playlist";
   market: "from_token" | "US";
   limit: number;
@@ -27,7 +27,7 @@ export const spotifySearch = async ({
     Authorization: `Bearer ` + accessToken,
   };
   const params: QueryParams = {
-    q: typeof q === `string` ? q.replace(` `, `%20`) : q.join(`%20`).replace(` `, `%20`),
+    q,
     type,
     market,
     limit,
@@ -39,6 +39,5 @@ export const spotifySearch = async ({
     headers,
     params,
   });
-  console.log(a);
   return a;
 };

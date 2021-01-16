@@ -1,7 +1,13 @@
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 
-import { spotifySearch, SpotifySearchParams } from "@Api";
+import {
+  spotifySearch,
+  SpotifySearchParams,
+  getSpotifyPlayerDevices,
+  initializeSpotifyPlayer,
+  spotifyPlayerPlay,
+} from "@Api";
 
 import {
   makeActionSetSharedLoadingInitiate,
@@ -13,7 +19,9 @@ import { State } from "../types";
 import {
   makeActionAddSpotifySearchResults,
   makeActionSetSpotifyAccessToken,
+  makeActionSetSpotifyDevices,
 } from "./actions";
+import { selectSpotifyAccessToken } from "./selectors";
 
 export const makeSpotifySearchResultsKey = ({
   q,
@@ -23,9 +31,7 @@ export const makeSpotifySearchResultsKey = ({
   offset,
   include_external,
 }: SpotifySearchParams) => {
-  const query =
-    typeof q === `string` ? q.replace(` `, `%20`) : q.join(`%20`).replace(` `, `%20`);
-  return `${query}${type}${market}${limit}${offset}${include_external}`;
+  return `${q}${type}${market}${limit}${offset}${include_external}`;
 };
 
 export const makeThunkSetSpotifyAccessToken = ({
@@ -52,5 +58,61 @@ export const makeThunkFetchSpotifySearchResults = (
     dispatch(makeActionAddSpotifySearchResults(searchResultsKey, data));
   } catch (error) {
     dispatch(makeActionSetSharedLoadingFailure(searchResultsKey, error));
+  }
+};
+
+const FETCH_SPOTIFY_DEVICES_ID = `FETCH_SPOTIFY_DEVICES_ID`;
+export const makeThunkFetchSpotifyDevices = (): ThunkAction<
+  void,
+  State,
+  unknown,
+  Action<string>
+> => async (dispatch, getState) => {
+  const state = getState();
+  const accessToken = selectSpotifyAccessToken(state);
+  dispatch(makeActionSetSharedLoadingInitiate(FETCH_SPOTIFY_DEVICES_ID));
+  try {
+    const { data } = await getSpotifyPlayerDevices({ accessToken });
+    dispatch(makeActionSetSharedLoadingSuccess(FETCH_SPOTIFY_DEVICES_ID));
+    dispatch(makeActionSetSpotifyDevices(data.devices));
+  } catch (error) {
+    dispatch(makeActionSetSharedLoadingFailure(FETCH_SPOTIFY_DEVICES_ID, error));
+  }
+};
+
+const INITIALIZE_SPOTIFY_PLAYER = `INITIALIZE_SPOTIFY_PLAYER`;
+export const makeThunkCreateSpotifyPlayer = (): ThunkAction<
+  void,
+  State,
+  unknown,
+  Action<string>
+> => async (dispatch, getState) => {
+  const state = getState();
+  const accessToken = selectSpotifyAccessToken(state);
+  dispatch(makeActionSetSharedLoadingInitiate(INITIALIZE_SPOTIFY_PLAYER));
+  try {
+    await initializeSpotifyPlayer({ accessToken });
+    dispatch(makeActionSetSharedLoadingSuccess(INITIALIZE_SPOTIFY_PLAYER));
+  } catch (error) {
+    dispatch(makeActionSetSharedLoadingFailure(INITIALIZE_SPOTIFY_PLAYER, error));
+  }
+};
+
+const SPOTIFY_PLAYER_PLAY = `SPOTIFY_PLAYER_PLAY`;
+export const makeThunkSpotifyPlayerPlay = ({
+  contextURI,
+  deviceId,
+}: {
+  contextURI: string;
+  deviceId: string;
+}): ThunkAction<void, State, unknown, Action<string>> => async (dispatch, getState) => {
+  const state = getState();
+  const accessToken = selectSpotifyAccessToken(state);
+  dispatch(makeActionSetSharedLoadingInitiate(SPOTIFY_PLAYER_PLAY));
+  try {
+    await spotifyPlayerPlay({ accessToken, contextURI, deviceId });
+    dispatch(makeActionSetSharedLoadingSuccess(SPOTIFY_PLAYER_PLAY));
+  } catch (error) {
+    dispatch(makeActionSetSharedLoadingFailure(SPOTIFY_PLAYER_PLAY, error));
   }
 };

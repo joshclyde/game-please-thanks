@@ -28,6 +28,7 @@ const scopes = [
   `user-library-read`,
   `user-read-email`,
   `user-read-private`,
+  `streaming`,
 ];
 
 /*

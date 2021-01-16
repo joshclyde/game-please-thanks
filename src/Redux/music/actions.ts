@@ -1,4 +1,4 @@
-import { SpotifySearchResponse } from "@Api";
+import { SpotifySearchResponse, SpotifyDevice } from "@Api";
 
 export const SET_SPOTIFY_ACCESS_TOKEN = `SET_SPOTIFY_ACCESS_TOKEN`;
 export const makeActionSetSpotifyAccessToken = (spotifyAccessToken: string) => ({
@@ -26,4 +26,16 @@ export type ActionAddSpotifySearchResults = ReturnType<
   typeof makeActionAddSpotifySearchResults
 >;
 
-export type Actions = ActionSetSpotifyAccessToken | ActionAddSpotifySearchResults;
+export const SET_SPOTIFY_DEVICES = `SET_SPOTIFY_DEVICES`;
+export const makeActionSetSpotifyDevices = (devices: Array<SpotifyDevice>) => ({
+  type: SET_SPOTIFY_DEVICES,
+  payload: {
+    devices,
+  },
+});
+export type ActionSetSpotifyDevices = ReturnType<typeof makeActionSetSpotifyDevices>;
+
+export type Actions =
+  | ActionSetSpotifyAccessToken
+  | ActionAddSpotifySearchResults
+  | ActionSetSpotifyDevices;

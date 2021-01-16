@@ -48,3 +48,31 @@ export const makeSelectSpotifySearchResultsAlbumImageUrl = (
   index: number,
 ) => (state: State) =>
   state.music.spotify.searchResults[searchResultsKey]?.albums.items[index].images[0].url;
+
+const FETCH_SPOTIFY_DEVICES_ID = `FETCH_SPOTIFY_DEVICES_ID`;
+export const selectSpotifyDevicesIsLoading = (state: State) =>
+  selectSharedIsLoading(state, FETCH_SPOTIFY_DEVICES_ID);
+
+export const selectSpotifyDevicesIsLoadSuccessful = (state: State) =>
+  selectSharedIsLoadSuccessful(state, FETCH_SPOTIFY_DEVICES_ID);
+
+export const selectSpotifyDevicesIsLoadFailure = (state: State) =>
+  selectSharedIsLoadFailure(state, FETCH_SPOTIFY_DEVICES_ID);
+
+export const selectSpotifyDevicesIsLoadAttempted = (state: State) =>
+  selectSpotifyDevicesIsLoading(state) ||
+  selectSpotifyDevicesIsLoadSuccessful(state) ||
+  selectSpotifyDevicesIsLoadFailure(state);
+
+export const selectSpotifyDevicesLoadingState = (state: State) => ({
+  isLoading: selectSpotifyDevicesIsLoading(state),
+  isLoadSuccessful: selectSpotifyDevicesIsLoadSuccessful(state),
+  isLoadFailure: selectSpotifyDevicesIsLoadFailure(state),
+  isLoadAttempted: selectSpotifyDevicesIsLoadAttempted(state),
+});
+
+export const selectSpotifyDevices = (state: State) => state.music.spotify.devices;
+
+export const selectSpotifyThisDeviceId = (state: State) =>
+  state.music.spotify?.devices.find(({ name }) => name === `Jams Tree`)?.id;
+// state.music.spotify?.devices.find(({ name }) => name === `iPhone`)?.id;

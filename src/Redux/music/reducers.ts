@@ -2,8 +2,10 @@ import {
   Actions,
   ActionSetSpotifyAccessToken,
   ActionAddSpotifySearchResults,
+  ActionSetSpotifyDevices,
   SET_SPOTIFY_ACCESS_TOKEN,
   ADD_SPOTIFY_SEARCH_RESULTS,
+  SET_SPOTIFY_DEVICES,
 } from "./actions";
 import { MusicState } from "./types";
 
@@ -11,6 +13,7 @@ const initialState: MusicState = {
   spotifyAccessToken: ``,
   spotify: {
     searchResults: {},
+    devices: [],
   },
 };
 
@@ -40,6 +43,19 @@ const reduceAddSpotifySearchResults = (
   };
 };
 
+const reduceSetSpotifyDevices = (
+  state: MusicState,
+  { payload: { devices } }: ActionSetSpotifyDevices,
+) => {
+  return {
+    ...state,
+    spotify: {
+      ...state.spotify,
+      devices,
+    },
+  };
+};
+
 export const music = (state = initialState, action: Actions): MusicState => {
   const { type } = action;
   switch (type) {
@@ -50,6 +66,8 @@ export const music = (state = initialState, action: Actions): MusicState => {
         state,
         action as ActionAddSpotifySearchResults,
       );
+    case SET_SPOTIFY_DEVICES:
+      return reduceSetSpotifyDevices(state, action as ActionSetSpotifyDevices);
   }
   return state;
 };
