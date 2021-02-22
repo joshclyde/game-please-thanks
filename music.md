@@ -100,7 +100,7 @@ Different search experiences for the tree and the library.
 - Hard Connection to spotify artists/albums/songs. Basically if I create a "BTS" label I want it to kinda stay in sync with spotify's BTS artist data, and same with albums (and I guess songs?).
 - keep a history of all tree additions/changes/deletions
 - conversion from existing spotify playlist to tree?
-- can i integrate other things like youtube?
+- can i integrate other things like youtube? your own music?
 
 ## Edge/Complex Cases
 
