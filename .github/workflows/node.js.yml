@@ -3,26 +3,24 @@
 
 name: Node.js CI
 
-on:
-  push:
-    branches: [ main ]
+on: push
 
 jobs:
-  build:
+  Validate-Everything:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x]
-
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 14.x
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
-    - run: yarn ci
-    - run: yarn test
-    - run: yarn types
-    - run: yarn lint
+        node-version: '14.x'
+    - name: Install Dependencies
+      run: yarn --frozen-lockfile
+    - name: Unit Tests
+      run: yarn test
+    - name: Lint
+      run: yarn lint
+    - name: Types
+      run: yarn types
