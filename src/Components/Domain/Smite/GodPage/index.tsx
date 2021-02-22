@@ -27,6 +27,6 @@ const GodPageFC: FC<Props> = ({ godName }) => {
 };
 
 export const GodPage: FC<{}> = () => {
-  const { godName } = useParams();
+  const { godName } = useParams<{ godName: string }>();
   return <GodPageFC godName={godName} />;
 };
