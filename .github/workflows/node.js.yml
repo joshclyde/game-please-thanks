@@ -25,10 +25,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install Dependencies
-    - run: yarn --frozen-lockfile
+      run: yarn --frozen-lockfile
     - name: Unit Tests
-    - run: yarn test
+      run: yarn test
     - name: Types
-    - run: yarn types
+      run: yarn types
     - name: Lint
-    - run: yarn lint
+      run: yarn lint
