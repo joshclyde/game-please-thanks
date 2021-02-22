@@ -83,7 +83,7 @@ const intializePlayerInstance = async ({ accessToken }: { accessToken: string })
   Returns a promise that resolves when the Spotify SDK has loaded.
 */
 const waitForSpotifySDK = () => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     (window as any).onSpotifyWebPlaybackSDKReady = () => {
       resolve();
     };
