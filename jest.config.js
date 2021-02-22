@@ -1,5 +1,6 @@
 const { defaults } = require(`jest-config`);
 
+// eslint-disable-next-line import/no-commonjs
 module.exports = {
   roots: [`<rootDir>/src`],
   transform: {

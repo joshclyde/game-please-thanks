@@ -43,4 +43,5 @@ const config = {
   plugins: [new CopyWebpackPlugin([{ from: `assets`, to: `assets` }])],
 };
 
+// eslint-disable-next-line import/no-commonjs
 module.exports = config;

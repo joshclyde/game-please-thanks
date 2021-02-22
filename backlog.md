@@ -11,35 +11,36 @@
 - [ ] eslint core rules
 - [ ] eslint react rules
 - [x] eslint react hooks rules
-- [ ] eslint typescript rules
+- [ ] eslint typescript rules (i have added some rules, but a lot of the rules are off)
 - [ ] eslint lodash rules
 - [ ] eslint jsx-a11y rules
 - [ ] eslint react-redux rules
 - [ ] eslint jsdoc rules
 - [ ] eslint import sorting rules (might be more advanced?) https://github.com/lydell/eslint-plugin-simple-import-sort
 
+- [ ] eslint monitoring? like, if a new version comes out and has a new rule notify me. make sure i explicity have every rule on/off
+
 ### File Structure
 
-- [ ] exact file structure
+- [ ] lint rules for picky file structure
 - [ ] exact components look (and snippets). unit tests?
-- [ ] lint rules for file structure
 - [ ] lint rules for file contents
 
 ### Misc.
 
-- [ ] decide how to do css (atomic css in js)
-- [ ] unit tests
-- [ ] functional tests
+- [ ] research how I should do css
+- [ ] write unit tests
 - [ ] build
-- [ ] performance
 - [ ] ci/cd pipeline
 - [ ] switch to nvm instead of brew
-- [ ] vscode custom explorer view
-- [ ] vscode custom icons
 - [ ] get rid of type assertions
 - [ ] typescript namespaces and how they build with webpack
 - [ ] naming conventions for literally everything
-- [ ] chrome debugger and launching from vs code
+
+### Performance
+
+- [ ] research things to improve
+- [ ] know what packages are consuming space
 
 ## Project Features/Domains Ideas
 
@@ -47,33 +48,6 @@
 
 - [ ] make header better
 - [ ] make form components better
-- [ ] take out the Components folder and just have all the folders be a base level
+- [ ] take out the Components folder and just have all the folders be a base level (do I want this?)
 - [ ] branch and commit pattern?
 - [ ] fix console warnings/errors
-
-### Schedule
-
-- [x] add "routine" to add event form
-- [ ] edit schedule event form
-= [ ] reusable event data
-- [ ] make add event form page pretty looking
-- [ ] notifications on phone
-- [ ] integrate queue into Schedule Event
-- [ ] move any Schedule components to Components/Domain?
-  
-### Health
-  - weight
-  - food calories/nutrients
-  - exercise
-  - grocery list
-
-### Closet
-  - pictures of clothes
-  - clothes i want
-  - links to where i bought clothes
-  
-### Queue
-  - basically a todo list
-  - if i have a schedule then one of the timeslots could be reserved for queue
-- 
-

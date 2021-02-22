@@ -1,4 +1,6 @@
-# all-the-things-ui
+# jam-banana 🍌
+
+TODO: write a good readme 🙂
 
 How to deploy
 

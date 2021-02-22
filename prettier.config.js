@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-commonjs
 module.exports = {
   arrowParens: `always`,
   parser: `typescript`,
