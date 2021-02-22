@@ -51,7 +51,7 @@ const expectedStructure: ArrayOfExpected = [
   },
 ];
 
-describe(`findEntryInExpectedStructure`, () => {
+describe.skip(`findEntryInExpectedStructure`, () => {
   test(`correct - 1 directory deep`, () => {
     expect(
       findEntryInExpectedStructure(

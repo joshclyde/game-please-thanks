@@ -119,7 +119,7 @@ const testStructure = (structure: Array<StructureEntry>) => {
   return errors;
 };
 
-describe(`Project File Structure`, () => {
+describe.skip(`Project File Structure`, () => {
   test(`Test it all!!`, async () => {
     const structure = getCurrentStucture(ROOT_DIR, ROOT_DIR);
     // console.log(structure);
