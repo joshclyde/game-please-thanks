@@ -1,6 +1,7 @@
 import React, { FC, useCallback, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 import { Button } from "@Design";
 import {
@@ -15,8 +16,6 @@ import {
 import { Flashcard } from "../Flashcard";
 
 import { calculateGrade } from "./calculateGrade";
-
-import "./FlashcardQuiz.css";
 
 const mapState = (state: State) => ({
   quizCurrentId: selectFlashcardQuizCurrentId(state),
@@ -38,6 +37,34 @@ interface FlashcardQuizProps {
 interface FlashcardForRealProps
   extends FlashcardQuizProps,
     ConnectedProps<typeof connector> {}
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  border: solid;
+
+  & > * {
+    margin: 10px;
+  }
+`;
+
+const StyledFlashcard = styled(Flashcard)`
+  width: 100%;
+`;
+
+const StyledData = styled.div`
+  width: 200px;
+`;
+
+const CorrectButton = styled(Button)`
+  width: 100%;
+  background-color: #66d14a;
+`;
+
+const WrongButton = styled(Button)`
+  width: 100%;
+  background-color: #d14a66;
+`;
 
 const FlashcardQuizFC: FC<FlashcardForRealProps> = ({
   // classes,
@@ -86,25 +113,20 @@ const FlashcardQuizFC: FC<FlashcardForRealProps> = ({
   }
 
   return (
-    <div className={`FlashcardQuizMain`}>
-      <Flashcard
+    <Container>
+      <StyledFlashcard
         key={Object.keys(flashcardContents)[flashcardIndex]} // is this weird?
-        className={`FlashcardQuizFlashcard`}
         front={flashcardContents[Object.keys(flashcardContents)[flashcardIndex]].question}
         back={flashcardContents[Object.keys(flashcardContents)[flashcardIndex]].answer}
       />
-      <div className={`FlashcardQuizFlashcardData`}>
+      <StyledData>
         <p>
           Current: {flashcardIndex + 1} / {quizLength}
         </p>
-        <Button className={`FlashcardQuizCorrectButton`} onClick={onClickCorrect}>
-          Correct.
-        </Button>
-        <Button className={`FlashcardQuizWrongButton`} onClick={onClickWrong}>
-          Wrong!
-        </Button>
-      </div>
-    </div>
+        <CorrectButton onClick={onClickCorrect}>Correct.</CorrectButton>
+        <WrongButton onClick={onClickWrong}>Wrong!</WrongButton>
+      </StyledData>
+    </Container>
   );
 };
 

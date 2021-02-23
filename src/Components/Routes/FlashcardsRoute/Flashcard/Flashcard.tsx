@@ -4,7 +4,7 @@ import { TileWithMarkdown } from "@Design";
 import { cx } from "@Utils";
 
 interface Props {
-  className: string;
+  className?: string;
   front: string;
   back: string;
 }

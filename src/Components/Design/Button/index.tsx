@@ -1,19 +1,31 @@
-import React, { FC } from "react";
+import styled from "styled-components";
 
-import { cx } from "@Utils";
+export const Button = styled.button`
+  background-color: #f7f5f2;
+  border: none;
+  color: #313130;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 8px;
+  transition-duration: 0.2s;
+  --webkit-transition-duration: 0.2s /* Safari */;
 
-import "./index.css";
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 
-interface Props {
-  className?: string;
-  disabled?: boolean;
-  onClick?: () => void;
-}
+  &:not(:disabled):hover {
+    background-color: #dedcd9;
+  }
 
-const BaseButtonFC: FC<Props> = ({ className, children, disabled, onClick }) => (
-  <button className={cx(`DesignButton`, className)} disabled={disabled} onClick={onClick}>
-    {children}
-  </button>
-);
+  &:not(:disabled):active {
+    background-color: #c5c4c1;
+  }
 
-export const Button = BaseButtonFC;
+  &:not(:disabled):focus {
+    transition: outline 0s;
+    outline: 2px solid #b2b2ff;
+  }
+`;

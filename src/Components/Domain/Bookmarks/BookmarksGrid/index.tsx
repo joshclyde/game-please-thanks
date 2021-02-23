@@ -1,8 +1,7 @@
 import React, { FC } from "react";
+import styled from "styled-components";
 
 import { Bookmark } from "../Bookmark";
-
-import "./index.css";
 
 const bookmarks = [
   {
@@ -17,12 +16,22 @@ const bookmarks = [
   },
 ];
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  border: solid;
+
+  & > * {
+    margin: 10px;
+  }
+`;
+
 export const BookmarksGridFC: FC<{}> = () => (
-  <div className={`BookmarkBookmarksGrid`}>
+  <Container>
     {bookmarks.map(({ name, url, iconUrl }) => (
       <Bookmark name={name} url={url} iconUrl={iconUrl} />
     ))}
-  </div>
+  </Container>
 );
 
 export const BookmarksGrid = BookmarksGridFC;

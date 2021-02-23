@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
+import styled from "styled-components";
 
 import { selectScheduleDataEvent, State } from "@Redux";
 
 import { DeleteScheduleEvent } from "./DeleteScheduleEvent";
-import "./index.css";
 
 interface Props {
   scheduleEventId: string;
@@ -18,6 +18,10 @@ const connector = connect(mapState);
 
 type EditScheduleRouteEntryProps = ConnectedProps<typeof connector> & Props;
 
+const Container = styled.div`
+  border: 1rem solid #32a1ce;
+`;
+
 const EditScheduleRouteEntryFC: FC<EditScheduleRouteEntryProps> = ({
   scheduleEventId,
   scheduleEvent: { title, description, startDatetime, endDatetime, routine },
@@ -26,7 +30,7 @@ const EditScheduleRouteEntryFC: FC<EditScheduleRouteEntryProps> = ({
   const { monday, tuesday, wednesday, thursday, friday, saturday, sunday } =
     routine || {};
   return (
-    <div className="EditScheduleRouteEnty">
+    <Container>
       <h3>{title}</h3>
       <p>{description}</p>
       {!isRoutine ? (
@@ -57,7 +61,7 @@ const EditScheduleRouteEntryFC: FC<EditScheduleRouteEntryProps> = ({
         </>
       ) : null}
       <DeleteScheduleEvent scheduleEventId={scheduleEventId} />
-    </div>
+    </Container>
   );
 };
 

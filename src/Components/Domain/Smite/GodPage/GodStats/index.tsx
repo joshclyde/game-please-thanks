@@ -5,8 +5,6 @@ import { State, selectGodData, selectAllItems } from "@Redux";
 
 import { calculateBasicAttackDamage } from "./utils";
 
-import "./index.css";
-
 interface Props {
   godName: string;
 }
