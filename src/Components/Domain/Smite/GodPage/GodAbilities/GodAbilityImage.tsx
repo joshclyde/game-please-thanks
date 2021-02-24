@@ -3,9 +3,6 @@ import { connect, ConnectedProps } from "react-redux";
 
 import { State, selectGodAbilityImageUrl } from "@Redux";
 
-// import css from "./GodAbilityImage.css";
-import "./GodAbilityImage.css";
-
 interface Props {
   godName: string;
   abilityIndex: number;

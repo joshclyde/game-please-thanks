@@ -1,5 +1,9 @@
 # Backlog
 
+## High Priority
+
+- [ ] figure out firebaeConfig so that lint and types will work
+
 ## Project Foundational Things
 
 ### Lint
@@ -36,6 +40,7 @@
 - [ ] get rid of type assertions
 - [ ] typescript namespaces and how they build with webpack
 - [ ] naming conventions for literally everything
+- [ ] package.json documentation (I want to have documentation about why I have dependencies but I can't put comments in my package.json)
 
 ### Performance
 

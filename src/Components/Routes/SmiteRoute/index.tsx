@@ -1,16 +1,19 @@
 import React, { FC } from "react";
 import { Route, Switch } from "react-router-dom";
+import styled from "styled-components";
 
 import { Header } from "@Common";
 import { GodsList, GodPage } from "@Domain";
 
-import "./index.css";
+const Container = styled.div`
+  padding: 32px;
+`;
 
 const SmiteRouteFC: FC<{}> = () => {
   return (
     <div>
       <Header />
-      <div className="SmiteRoute">
+      <Container>
         <Switch>
           <Route path="/smite/gods" exact={true}>
             <GodsList />
@@ -19,7 +22,7 @@ const SmiteRouteFC: FC<{}> = () => {
             <GodPage />
           </Route>
         </Switch>
-      </div>
+      </Container>
     </div>
   );
 };

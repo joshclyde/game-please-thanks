@@ -1,8 +1,5 @@
 import React, { FC } from "react";
-
-import { cx } from "@Utils";
-
-import "./index.css";
+import styled from "styled-components";
 
 interface BookmarkProps {
   className?: string;
@@ -11,11 +8,17 @@ interface BookmarkProps {
   iconUrl: string;
 }
 
+const A = styled.a`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const BookmarkFC: FC<BookmarkProps> = ({ className, name, url, iconUrl }) => (
-  <a className={cx(`BookmarksBookmark`, className)} href={url}>
+  <A className={className} href={url}>
     <img src={iconUrl} width={32} height={32} />
     {name}
-  </a>
+  </A>
 );
 
 export const Bookmark = BookmarkFC;

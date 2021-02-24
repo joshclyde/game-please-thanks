@@ -1,20 +1,29 @@
 import React, { FC, useState } from "react";
+import styled from "styled-components";
 
 import { GodAbilityImage } from "./GodAbilityImage";
 import { GodAbilityInformation } from "./GodAbilityInformation";
-
-import "./index.css";
 
 interface Props {
   godName: string;
 }
 
+const Container = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+`;
+
+const ContainerImages = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+`;
+
 const GodAbilitiesFC: FC<Props> = ({ godName }) => {
   const [currentIndex, setCurrentIndex] = useState(1);
 
   return (
-    <div className={`GodPageGodAbilitiesA`}>
-      <div className={`GodPageGodAbilitiesB`}>
+    <Container>
+      <ContainerImages>
         <GodAbilityImage
           godName={godName}
           abilityIndex={1}
@@ -50,9 +59,9 @@ const GodAbilitiesFC: FC<Props> = ({ godName }) => {
           width={64}
           height={64}
         />
-      </div>
+      </ContainerImages>
       <GodAbilityInformation godName={godName} abilityIndex={currentIndex} />
-    </div>
+    </Container>
   );
 };
 

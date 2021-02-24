@@ -1,12 +1,11 @@
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
+import styled from "styled-components";
 
 import { State, selectAllGodNames, selectSmiteSearchTerm } from "@Redux";
 
 import { GodOnGodsList } from "./GodOnGodsList";
 import { GodsSearchBar } from "./GodsSearchBar";
-
-import "./index.css";
 
 const mapState = (state: State) => ({
   godNames: selectAllGodNames(state),
@@ -19,6 +18,13 @@ interface Props {}
 
 interface PropsForReals extends Props, ConnectedProps<typeof connector> {}
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
 const GodsListFC: FC<PropsForReals> = ({ godNames, searchTerm }) => {
   const filteredGodNames = godNames.filter((name) =>
     new RegExp(searchTerm, `i`).test(name),
@@ -27,11 +33,11 @@ const GodsListFC: FC<PropsForReals> = ({ godNames, searchTerm }) => {
   return (
     <div>
       <GodsSearchBar />
-      <div className="GodsList">
+      <Container>
         {filteredGodNames.map((name) => (
           <GodOnGodsList godName={name} key={name} />
         ))}
-      </div>
+      </Container>
     </div>
   );
 };
