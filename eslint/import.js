@@ -33,13 +33,7 @@ module.exports = {
   "import/exports-last": `off`, // TODO: Do i want lint rules on exports?
   "import/no-duplicates": `error`,
   "import/no-namespace": `error`,
-  "import/extensions": [
-    `error`,
-    `never`,
-    {
-      css: `always`,
-    },
-  ],
+  "import/extensions": [`error`, `never`],
   "import/order": [
     `error`,
     {
@@ -51,7 +45,7 @@ module.exports = {
   "import/newline-after-import": [`error`, { count: 1 }],
   "import/prefer-default-export": `off`,
   "import/max-dependencies": `off`,
-  "import/no-unassigned-import": [`error`, { allow: [`**/*.css`] }],
+  "import/no-unassigned-import": [`error`],
   "import/no-named-default": `error`,
   "import/no-default-export": `error`,
   "import/no-named-export": `off`,
