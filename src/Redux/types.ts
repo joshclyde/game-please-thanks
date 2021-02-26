@@ -1,4 +1,5 @@
 import { AuthState } from "./auth/types";
+import { DesignState } from "./design/types";
 import { FlashcardState } from "./flashcard/types";
 import { MusicState } from "./music/types";
 import { ScheduleState } from "./schedule/types";
@@ -12,4 +13,5 @@ export interface State {
   shared: SharedState;
   auth: AuthState;
   music: MusicState;
+  design: DesignState;
 }

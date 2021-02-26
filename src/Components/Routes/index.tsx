@@ -21,8 +21,8 @@ const reducers = combineReducers({
 // https://github.com/zalmoxisus/redux-devtools-extension#11-basic-store
 // this line is so i can see the redux store
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
+
 /*
   Load the spotifyAccessToken from local storage and dispatch
   the set spotify access token action

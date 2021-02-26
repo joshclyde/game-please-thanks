@@ -1,4 +1,5 @@
 import { auth } from "./auth/reducers";
+import { design } from "./design/reducers";
 import { flashcard } from "./flashcard/reducers";
 import { music } from "./music/reducers";
 import { schedule } from "./schedule/reducers";
@@ -12,6 +13,7 @@ const reducers = {
   shared,
   auth,
   music,
+  design,
 };
 
 export { reducers };
@@ -22,4 +24,5 @@ export * from "./schedule";
 export * from "./auth";
 export * from "./music";
 export * from "./youtube";
+export * from "./design";
 export { State } from "./types";

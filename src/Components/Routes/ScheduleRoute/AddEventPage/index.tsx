@@ -3,13 +3,13 @@ import { connect, ConnectedProps } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import {
-  Form,
   FormLabel,
   FormTextInput,
   FormCheckbox,
   FormSubmitButton,
   FormDatetime,
 } from "@Design";
+import { Form } from "@DesignRedux";
 import {
   makeActionCreateForm,
   State,
