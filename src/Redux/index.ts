@@ -21,4 +21,5 @@ export * from "./shared";
 export * from "./schedule";
 export * from "./auth";
 export * from "./music";
+export * from "./youtube";
 export { State } from "./types";

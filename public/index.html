@@ -33,5 +33,18 @@
       };
       </script>
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
+
+    <!-- Load youtube iFrame player api -->
+    <!-- Go here for more info: https://developers.google.com/youtube/iframe_api_reference -->
+    <script>
+      window.isYoutubePlayerApiLoaded = false;
+      window.youtubePlayerApiLoadedEvent = new Event('youtubePlayerApiLoaded')
+      function onYouTubeIframeAPIReady() {
+        console.log("Youtube Player Api Loaded.")
+        window.isYoutubePlayerApiLoaded = true;
+        window.dispatchEvent(youtubePlayerApiLoadedEvent)
+      }
+    </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
   </body>
 </html>
