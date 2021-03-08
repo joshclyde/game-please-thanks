@@ -1,8 +1,6 @@
 import { YoutubePlayer } from "./player";
 // TODO: I feel like this shouldn't belong in API?
 
-// How to play: https://developer.spotify.com/documentation/web-api/reference/player/start-a-users-playback/
-
 /*
   Player Functions: https://developers.google.com/youtube/iframe_api_reference#Playback_controls
 */

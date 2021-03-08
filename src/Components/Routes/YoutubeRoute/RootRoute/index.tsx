@@ -5,7 +5,7 @@ import { YoutubePlayer } from "@Domain";
 const RootRouteFC: FC<{}> = () => {
   return (
     <div>
-      Hi
+      Youtube Player
       <YoutubePlayer />
     </div>
   );
