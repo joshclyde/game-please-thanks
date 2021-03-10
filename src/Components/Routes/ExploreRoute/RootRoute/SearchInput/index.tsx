@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 
 import { IconSearch, TextInputWithIcon, ButtonIcon } from "@Design";
-import { Form, FormTextInput } from "@DesignRedux";
+import { FormTextInput } from "@DesignRedux";
 
 const formId = `explore-form`;
 const inputId = `explore-form-search`;
@@ -21,7 +21,7 @@ const StyledInput = styled.div`
   max-width: 512px;
 `;
 
-const SearchInputFC: FC<{}> = ({ formId, inputId }) => {
+const SearchInputFC: FC<{}> = () => {
   return <StyledInput as={TextInputWithIcon} Input={Input as any} Icon={Icon} />;
 };
 

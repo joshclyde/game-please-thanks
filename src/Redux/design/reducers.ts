@@ -1,13 +1,9 @@
+import { combineReducers } from "redux";
+
 import { form } from "./form/reducers";
-import { DesignState } from "./types";
+import { reducers as iconTabsReducers } from "./iconTabs/reducers";
 
-const initialState: DesignState = {
-  form: {},
-};
-
-export const design = (state = initialState, action: any): DesignState => {
-  return {
-    ...state,
-    form: form(state.form, action),
-  };
-};
+export const design = combineReducers({
+  form,
+  ...iconTabsReducers,
+});

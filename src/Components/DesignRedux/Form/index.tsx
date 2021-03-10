@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useCallback } from "react";
 
 import { useSelectDoesFormExist, useCreateForm } from "@Redux";
 
@@ -7,7 +7,7 @@ interface OwnProps extends React.FormHTMLAttributes<HTMLFormElement> {
 }
 interface Props extends OwnProps {}
 
-const FormFC: FC<Props> = (props) => {
+const FormFC: FC<Props> = ({ onSubmit, ...props }) => {
   const { formId } = props;
   const doesFormExist = useSelectDoesFormExist(formId);
   const createForm = useCreateForm(formId);
@@ -17,7 +17,16 @@ const FormFC: FC<Props> = (props) => {
     }
   }, [doesFormExist, createForm]);
 
-  return <form {...props} />;
+  // will I ever want the default? probably not
+  const onSubmitPreventDefault = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      onSubmit(event);
+    },
+    [onSubmit],
+  );
+
+  return <form {...props} onSubmit={onSubmitPreventDefault} />;
 };
 
 export const Form = FormFC;

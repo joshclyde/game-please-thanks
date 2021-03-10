@@ -2,6 +2,7 @@ export interface IconProps {
   className?: string;
   size?: "small" | "medium" | "large";
   color?: string;
+  onClick?: () => void;
 }
 
 export const dimension = {

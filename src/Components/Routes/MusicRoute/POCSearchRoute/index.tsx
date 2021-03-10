@@ -35,7 +35,6 @@ const POCSearchRouteFC: FC<{}> = () => {
   const searchResultsKey = useMemo(() => {
     if (searchTerm && accessToken) {
       return makeSpotifySearchResultsKey({
-        accessToken,
         q: searchTerm,
         limit: 10,
         market: `from_token`,

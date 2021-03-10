@@ -22,14 +22,16 @@ Same as reddit basically. Lemme know new videos from suscribers.
 
 Maybe?
 
+Maybe a view screen? Doesn't need to be the application that plays the music, but could show what is playing
+and allow the user to customize what the player looks like.
+
+View screen, but instead of letting users customize the screen they can upload a picture to a community of pictures for a song
+that others will also see sometimes see for the song.
+
 ## Markdown Flashcards
 
 Could do this if I wanted to. But there is already an app that seems pretty good for it.
 (spaced repetition)
-
-## Passwords
-
-Could put my passwords in here?
 
 ## TODOs?
 

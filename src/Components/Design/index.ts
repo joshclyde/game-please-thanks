@@ -8,6 +8,7 @@ export * from "./FormCheckbox";
 export * from "./FormSubmitButton";
 export * from "./FormDatetime";
 export * from "./Icons";
+export * from "./IconTabs";
 export * from "./TextInput";
 export * from "./TextInputWithIcon";
 export * from "./Tabs";
