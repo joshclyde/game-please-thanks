@@ -30,7 +30,7 @@ export const makeSpotifySearchResultsKey = ({
   limit,
   offset,
   include_external,
-}: SpotifySearchParams) => {
+}: Omit<SpotifySearchParams, "accessToken">) => {
   return `${q}${type}${market}${limit}${offset}${include_external}`;
 };
 

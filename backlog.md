@@ -3,6 +3,7 @@
 ## High Priority
 
 - [ ] figure out firebaeConfig so that lint and types will work
+- [ ] look closer at Spotify terms and conditions (https://developer.spotify.com/documentation/general/design-and-branding/)
 
 ## Project Foundational Things
 

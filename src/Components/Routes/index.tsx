@@ -2,6 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
+import { ThemeProvider } from "styled-components";
 
 // import withToggleOnClickReducers from "@hocs/withToggleOnClick/duck/reducers";
 import {
@@ -21,8 +22,8 @@ const reducers = combineReducers({
 // https://github.com/zalmoxisus/redux-devtools-extension#11-basic-store
 // this line is so i can see the redux store
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
+
 /*
   Load the spotifyAccessToken from local storage and dispatch
   the set spotify access token action
@@ -54,11 +55,23 @@ store.subscribe(() => {
 //   store.dispatch(setSize(window.innerWidth, window.innerHeight));
 // });
 
+// TODO: get the theme in typescript
+const theme = {
+  brand: `#E6DB78`,
+  base: `#0D0D0D`,
+  // tile: `#1A1A1A`,
+  tile: `#262626`,
+  text: `#CCCCCC`,
+  mellowText: `#8C8C8C`,
+};
+
 export const App = () => (
   // <div>
-  <Provider store={store}>
-    {/* TODO make innerWidth and innerHeight redux */}
-    <AuthRoutes />
-  </Provider>
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
+      {/* TODO make innerWidth and innerHeight redux */}
+      <AuthRoutes />
+    </Provider>
+  </ThemeProvider>
   // </div>
 );

@@ -5,11 +5,11 @@ import {
   ActionCreateForm,
   CREATE_FORM,
 } from "./actions";
-import { SharedFormsState } from "./types";
+import { DesignFormState } from "./types";
 
-const initialState: SharedFormsState = {};
+const initialState: DesignFormState = {};
 
-const reduceCreateForm = (state: SharedFormsState, { payload }: ActionCreateForm) => {
+const reduceCreateForm = (state: DesignFormState, { payload }: ActionCreateForm) => {
   const { formId } = payload;
   return {
     ...state,
@@ -18,7 +18,7 @@ const reduceCreateForm = (state: SharedFormsState, { payload }: ActionCreateForm
 };
 
 const reduceSetFormInputValue = (
-  state: SharedFormsState,
+  state: DesignFormState,
   { payload }: ActionSetFormInputValue,
 ) => {
   const { formId, inputId, value } = payload;
@@ -31,7 +31,7 @@ const reduceSetFormInputValue = (
   };
 };
 
-export const forms = (state = initialState, action: Actions): SharedFormsState => {
+export const form = (state = initialState, action: Actions): DesignFormState => {
   const { type } = action;
   switch (type) {
     case SET_FORM_INPUT_VALUE:
