@@ -2,7 +2,7 @@ import React, { FC, useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
 import {
-  State,
+  RootState,
   makeActionCreateSmiteBuildAGod,
   makeActionSetBuildAGodGodName,
   selectSmiteBuildAGod,

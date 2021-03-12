@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
-import { State, selectSmiteItemImageUrl, selectSmiteItemDeviceName } from "@Redux";
+import { RootState, selectSmiteItemImageUrl, selectSmiteItemDeviceName } from "@Redux";
 
 interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
   itemId: number;
 }
 
-const mapState = (state: State, { itemId }: Props) => ({
+const mapState = (state: RootState, { itemId }: Props) => ({
   imageUrl: selectSmiteItemImageUrl(state, itemId),
   deviceName: selectSmiteItemDeviceName(state, itemId),
 });

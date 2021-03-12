@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
-import { State, selectGodIcon } from "@Redux";
+import { RootState, selectGodIcon } from "@Redux";
 
 interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
   godName: string;
 }
 
-const mapState = (state: State, { godName }: Props) => ({
+const mapState = (state: RootState, { godName }: Props) => ({
   godIcon: selectGodIcon(state, godName),
 });
 

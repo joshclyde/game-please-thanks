@@ -1,16 +1,23 @@
 import React, { FC, useCallback, useState, useMemo } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
-import {
-  selectSpotifyAccessToken,
-  makeThunkFetchSpotifySearchResults,
-  makeSpotifySearchResultsKey,
-} from "@Redux";
+import { SpotifySearchParams } from "@Api";
+import { useLoadSpotifySearchResults } from "@Redux";
 
 import { SpotifySearchResults } from "./SpotifySearchResults";
 
+// TODO: get rid of this
+const makeSpotifySearchResultsKey = ({
+  q,
+  type,
+  market,
+  limit,
+  offset,
+  include_external,
+}: Omit<SpotifySearchParams, "accessToken">) => {
+  return `${q}${type}${market}${limit}${offset}${include_external}`;
+};
+
 const POCSearchRouteFC: FC<{}> = () => {
-  const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState(``);
   const onChangeSearchTerm = useCallback(
     (event) => {
@@ -19,21 +26,13 @@ const POCSearchRouteFC: FC<{}> = () => {
     [setSearchTerm],
   );
 
-  const accessToken = useSelector(selectSpotifyAccessToken);
+  const load = useLoadSpotifySearchResults();
   const onClickSearch = useCallback(() => {
-    dispatch(
-      makeThunkFetchSpotifySearchResults({
-        accessToken,
-        q: searchTerm,
-        limit: 10,
-        market: `from_token`,
-        type: `album`,
-      }),
-    );
-  }, [accessToken, dispatch, searchTerm]);
+    load(searchTerm);
+  }, [load, searchTerm]);
 
   const searchResultsKey = useMemo(() => {
-    if (searchTerm && accessToken) {
+    if (searchTerm) {
       return makeSpotifySearchResultsKey({
         q: searchTerm,
         limit: 10,
@@ -43,7 +42,7 @@ const POCSearchRouteFC: FC<{}> = () => {
     } else {
       return undefined;
     }
-  }, [accessToken, searchTerm]);
+  }, [searchTerm]);
 
   return (
     <div>

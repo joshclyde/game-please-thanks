@@ -4,7 +4,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { Button } from "@Design";
 import {
   selectScheduleDataEvent,
-  State,
+  RootState,
   makeThunkDeleteScheduleEvent,
   selectSharedIsLoading,
 } from "@Redux";
@@ -13,7 +13,7 @@ interface Props {
   scheduleEventId: string;
 }
 
-const mapState = (state: State, { scheduleEventId }: Props) => ({
+const mapState = (state: RootState, { scheduleEventId }: Props) => ({
   scheduleEvent: selectScheduleDataEvent(state, scheduleEventId),
   isDeletionInProgress: selectSharedIsLoading(state, scheduleEventId),
 });

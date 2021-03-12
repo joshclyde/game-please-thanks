@@ -2,7 +2,7 @@ import range from "lodash/fp/range";
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { useSelectSpotifySearchResultsLength } from "@Redux";
+import { useSelectSpotifySearchResultsNumberOfAlbums } from "@Redux";
 
 import { SearchResultsListEntity } from "./SearchResultsListEntity";
 
@@ -18,7 +18,9 @@ const Div = styled.div`
 `;
 
 const SearchResultsFC: FC<SearchResultsProps> = ({ searchResultsKey, className }) => {
-  const searchResultsLength = useSelectSpotifySearchResultsLength(searchResultsKey);
+  const searchResultsLength = useSelectSpotifySearchResultsNumberOfAlbums(
+    searchResultsKey,
+  );
   return (
     <Div className={className}>
       {range(0, searchResultsLength).map((index) => (

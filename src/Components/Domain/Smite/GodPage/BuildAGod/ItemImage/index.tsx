@@ -1,7 +1,11 @@
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
-import { State, selectSmiteBuildAGodItemsLength, selectSmiteBuildAGodItem } from "@Redux";
+import {
+  RootState,
+  selectSmiteBuildAGodItemsLength,
+  selectSmiteBuildAGodItem,
+} from "@Redux";
 import { SmiteItemImage } from "@SmiteCommon";
 
 interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -9,7 +13,7 @@ interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
   index: number;
 }
 
-const mapState = (state: State, { buildAGodKey, index }: Props) => {
+const mapState = (state: RootState, { buildAGodKey, index }: Props) => {
   let itemId;
   if (selectSmiteBuildAGodItemsLength(state, buildAGodKey) > index) {
     itemId = selectSmiteBuildAGodItem(state, buildAGodKey, index);

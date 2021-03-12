@@ -1,20 +1,14 @@
 import React, { FC, useEffect } from "react";
-import { useDispatch } from "react-redux";
 
 import { useGetAccessTokenFromUrl } from "@Hooks";
-import { makeThunkSetSpotifyAccessToken } from "@Redux";
+import { useSetSpotifyAccessToken } from "@Redux";
 
 const SpotifyAuthRedirectFC: FC<{}> = () => {
   const accessToken = useGetAccessTokenFromUrl();
-  const dispatch = useDispatch();
+  const setValue = useSetSpotifyAccessToken();
   useEffect(() => {
-    dispatch(
-      makeThunkSetSpotifyAccessToken({
-        spotifyAccessToken: accessToken,
-        shouldSaveToLocalStorage: true,
-      }),
-    );
-  }, [dispatch, accessToken]);
+    setValue(accessToken);
+  }, [setValue, accessToken]);
 
   return (
     <div>

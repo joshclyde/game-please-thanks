@@ -57,3 +57,7 @@
 - [ ] take out the Components folder and just have all the folders be a base level (do I want this?)
 - [ ] branch and commit pattern?
 - [ ] fix console warnings/errors
+
+## Redux
+
+- [ ] refactor redux files to have no index files (except the main one)

@@ -1,26 +1,24 @@
 import React, { FC, useEffect, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
 import {
-  makeThunkCreateSpotifyPlayer,
-  makeThunkSpotifyPlayerPlay,
-  selectSpotifyThisDeviceId,
+  useLoadSpotifyPlayer,
+  useSpotifyPlay,
+  useSelectSpotifyThisDeviceId,
 } from "@Redux";
 
 const POCPlayerFC: FC<{}> = () => {
-  const deviceId = useSelector(selectSpotifyThisDeviceId);
-  const dispatch = useDispatch();
+  const loadPlayer = useLoadSpotifyPlayer();
   useEffect(() => {
-    dispatch(makeThunkCreateSpotifyPlayer());
-  }, [dispatch]);
+    loadPlayer();
+  }, [loadPlayer]);
+  const play = useSpotifyPlay();
+  const deviceId = useSelectSpotifyThisDeviceId();
   const onClick = useCallback(() => {
-    dispatch(
-      makeThunkSpotifyPlayerPlay({
-        contextURI: `spotify:album:2qehskW9lYGWfYb0xPZkrS`, // BTS's BE album
-        deviceId,
-      }),
-    );
-  }, [dispatch, deviceId]);
+    play({
+      contextURI: `spotify:album:2qehskW9lYGWfYb0xPZkrS`, // BTS's BE album
+      deviceId,
+    });
+  }, [play, deviceId]);
   return (
     <div>
       Player. <button onClick={onClick}>Play Me</button>

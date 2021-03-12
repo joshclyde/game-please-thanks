@@ -1,14 +1,14 @@
 import React, { FC, useCallback, useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
-import { State, makeActionSetSharedFilter, selectSharedFilter } from "@Redux";
+import { RootState, makeActionSetSharedFilter, selectSharedFilter } from "@Redux";
 
 interface Props {
   entityKey: string;
   attributeKey: string;
 }
 
-const mapState = (state: State, { entityKey, attributeKey }: Props) => ({
+const mapState = (state: RootState, { entityKey, attributeKey }: Props) => ({
   checkboxValue: selectSharedFilter(state, entityKey, attributeKey),
 });
 

@@ -1,18 +1,8 @@
 import React, { FC, useCallback } from "react";
-import { connect, ConnectedProps } from "react-redux";
 
-import { makeActionSetFormInputValue, State, selectFormInputValue } from "@Redux";
+import { useFormInput } from "@Redux";
 
-// TODO: make an hoc for [value, setValue] for form stuff?
-const mapState = (state: State, { formId, id }: OwnProps) => ({
-  value: selectFormInputValue(state, formId, id),
-});
-
-const mapDispatch = { setFormInputValue: makeActionSetFormInputValue };
-
-const connector = connect(mapState, mapDispatch);
-
-interface OwnProps
+interface Props
   extends Omit<
     React.DetailedHTMLProps<
       React.InputHTMLAttributes<HTMLInputElement>,
@@ -24,21 +14,14 @@ interface OwnProps
   name: string;
   formId: string;
 }
-interface Props extends OwnProps, ConnectedProps<typeof connector> {}
 
-const FormCheckboxFC: FC<Props> = ({
-  id,
-  name,
-  value,
-  setFormInputValue,
-  formId,
-  ...rest
-}) => {
+const FormCheckboxFC: FC<Props> = ({ id, name, formId, ...rest }) => {
+  const [value, setValue] = useFormInput(formId, id);
   const onChange = useCallback(
     (event: React.FormEvent<HTMLInputElement>) => {
-      setFormInputValue(formId, id, event.currentTarget.checked);
+      setValue(event.currentTarget.checked);
     },
-    [formId, id, setFormInputValue],
+    [setValue],
   );
 
   return (
@@ -53,4 +36,4 @@ const FormCheckboxFC: FC<Props> = ({
   );
 };
 
-export const FormCheckbox = connector(FormCheckboxFC);
+export const FormCheckbox = FormCheckboxFC;

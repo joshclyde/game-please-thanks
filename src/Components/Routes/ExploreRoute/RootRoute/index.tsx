@@ -1,17 +1,24 @@
 import React, { FC, useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
+import { SpotifySearchParams } from "@Api";
 import { IconSearch, TextInputWithIcon, ButtonIcon } from "@Design";
 import { Form, FormTextInput } from "@DesignRedux";
-import {
-  selectSpotifyAccessToken,
-  useSelectFormInputValue,
-  makeThunkFetchSpotifySearchResults,
-  makeSpotifySearchResultsKey,
-} from "@Redux";
+import { useSelectFormInputValue, useLoadSpotifySearchResults } from "@Redux";
 
 import { SearchResults } from "./SearchResults";
+
+// TODO: don't have this function copied everywhere
+const makeSpotifySearchResultsKey = ({
+  q,
+  type,
+  market,
+  limit,
+  offset,
+  include_external,
+}: Omit<SpotifySearchParams, "accessToken">) => {
+  return `${q}${type}${market}${limit}${offset}${include_external}`;
+};
 
 const formId = `explore-form`;
 const inputId = `explore-form-search`;
@@ -31,9 +38,8 @@ const StyledInput = styled.div`
 `;
 
 const useOnSubmitForm = () => {
-  const dispatch = useDispatch();
-  const accessToken = useSelector(selectSpotifyAccessToken);
   const searchTerm = useSelectFormInputValue(formId, inputId);
+  const load = useLoadSpotifySearchResults();
   const [submittedTerm, setSubmittedTerm] = useState(``);
   const onSubmitForm = useCallback(() => {
     setSubmittedTerm(() =>
@@ -44,16 +50,8 @@ const useOnSubmitForm = () => {
         type: `album`,
       }),
     );
-    dispatch(
-      makeThunkFetchSpotifySearchResults({
-        accessToken,
-        q: searchTerm as string,
-        limit: 10,
-        market: `from_token`,
-        type: `album`,
-      }),
-    );
-  }, [accessToken, dispatch, searchTerm]);
+    load(searchTerm as string);
+  }, [searchTerm, load]);
   return { onSubmitForm, submittedTerm };
 };
 

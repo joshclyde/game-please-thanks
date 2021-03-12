@@ -1,26 +1,19 @@
-import {
-  Actions,
-  ActionSetFormInputValue,
-  SET_FORM_INPUT_VALUE,
-  ActionCreateForm,
-  CREATE_FORM,
-} from "./actions";
+import { makeReducer } from "@ReduxUtils";
+
+import { isCreateFormAction, isSetFormInput } from "./actions";
 import { DesignFormState } from "./types";
 
 const initialState: DesignFormState = {};
+const form = makeReducer({ initialState });
 
-const reduceCreateForm = (state: DesignFormState, { payload }: ActionCreateForm) => {
+form.makeCase(isCreateFormAction, (state, { payload }) => {
   const { formId } = payload;
   return {
     ...state,
     [formId]: {},
   };
-};
-
-const reduceSetFormInputValue = (
-  state: DesignFormState,
-  { payload }: ActionSetFormInputValue,
-) => {
+});
+form.makeCase(isSetFormInput, (state, { payload }) => {
   const { formId, inputId, value } = payload;
   return {
     ...state,
@@ -29,15 +22,6 @@ const reduceSetFormInputValue = (
       [inputId]: value,
     },
   };
-};
+});
 
-export const form = (state = initialState, action: Actions): DesignFormState => {
-  const { type } = action;
-  switch (type) {
-    case SET_FORM_INPUT_VALUE:
-      return reduceSetFormInputValue(state, action as ActionSetFormInputValue);
-    case CREATE_FORM:
-      return reduceCreateForm(state, action as ActionCreateForm);
-  }
-  return state;
-};
+export const reducers = { form };

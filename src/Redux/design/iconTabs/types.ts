@@ -1,3 +1,1 @@
-import { KeyValue } from "../../factory/keyValue";
-
-export type DesignIconTabsState = KeyValue<number>;
+export type DesignIconTabsState = Record<string, number>;

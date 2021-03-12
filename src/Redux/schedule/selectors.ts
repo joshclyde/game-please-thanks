@@ -5,13 +5,13 @@ import {
   selectSharedIsLoadSuccessful,
   selectSharedIsLoadFailure,
 } from "../shared";
-import { State } from "../types";
+import { RootState } from "../types";
 
 import { FETCH_USER_DATA_SCHEDULE_ID } from "./thunks";
 
 // TODO: look into ReadOnly typescript for selectors?
 
-export type StateJustSchedule = Pick<State, "schedule">;
+export type StateJustSchedule = Pick<RootState, "schedule">;
 
 export const selectScheduleData = (state: StateJustSchedule) => state.schedule.data;
 
@@ -37,16 +37,16 @@ export const selectCurrentEventsForDate = (state: StateJustSchedule, date: Date)
 //     scheduleEvent.endDatetime.getTime() > date.getTime(),
 // ).reduce(([id, scheduleEvent]) => );
 
-export const selectScheduleDataIsLoading = (state: State) =>
+export const selectScheduleDataIsLoading = (state: RootState) =>
   selectSharedIsLoadSuccessful(state, FETCH_USER_DATA_SCHEDULE_ID);
 
-export const selectScheduleDataIsLoadSuccessful = (state: State) =>
+export const selectScheduleDataIsLoadSuccessful = (state: RootState) =>
   selectSharedIsLoadSuccessful(state, FETCH_USER_DATA_SCHEDULE_ID);
 
-export const selectScheduleDataIsLoadFailure = (state: State) =>
+export const selectScheduleDataIsLoadFailure = (state: RootState) =>
   selectSharedIsLoadFailure(state, FETCH_USER_DATA_SCHEDULE_ID);
 
-export const selectScheduleDateIsLoadAttempted = (state: State) =>
+export const selectScheduleDateIsLoadAttempted = (state: RootState) =>
   selectScheduleDataIsLoading(state) ||
   selectScheduleDataIsLoadSuccessful(state) ||
   selectScheduleDataIsLoadFailure(state);

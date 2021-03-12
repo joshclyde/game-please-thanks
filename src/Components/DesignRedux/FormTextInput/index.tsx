@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from "react";
 
 import { TextInput } from "@Design";
-import { useSelectFormInputValue, useSetFormInputValue } from "@Redux";
+import { useFormInput } from "@Redux";
 
 interface Props extends Omit<React.ComponentProps<typeof TextInput>, "type" | "value"> {
   id: string;
@@ -10,14 +10,13 @@ interface Props extends Omit<React.ComponentProps<typeof TextInput>, "type" | "v
 }
 
 const FormTextInputFC: FC<Props> = ({ id, name, formId, ...rest }) => {
-  const value = useSelectFormInputValue(formId, id);
-  const setFormInputValue = useSetFormInputValue(formId, id);
+  const [value, setValue] = useFormInput(formId, id);
 
   const onChange = useCallback(
     (event: React.FormEvent<HTMLInputElement>) => {
-      setFormInputValue(event.currentTarget.value);
+      setValue(event.currentTarget.value);
     },
-    [setFormInputValue],
+    [setValue],
   );
 
   return (

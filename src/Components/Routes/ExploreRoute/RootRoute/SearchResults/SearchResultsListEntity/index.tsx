@@ -1,7 +1,11 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { useSelectSpotifySearchResultsAlbum } from "@Redux";
+import {
+  useSelectSpotifySearchResultsAlbumName,
+  useSelectSpotifySearchResultsAlbumArtistName,
+  useSelectSpotifySearchResultsAlbumImageUrl,
+} from "@Redux";
 
 const Tile = styled.div`
   display: flex;
@@ -38,14 +42,19 @@ interface Props {
 }
 
 const SearchResultsListEntityFC: FC<Props> = ({ searchResultsKey, index }) => {
-  const album = useSelectSpotifySearchResultsAlbum(searchResultsKey, index);
+  const imageUrl = useSelectSpotifySearchResultsAlbumImageUrl(searchResultsKey, index);
+  const name = useSelectSpotifySearchResultsAlbumName(searchResultsKey, index);
+  const artistName = useSelectSpotifySearchResultsAlbumArtistName(
+    searchResultsKey,
+    index,
+  );
 
   return (
     <Tile>
-      <Img src={album?.images[1].url} />
+      <Img src={imageUrl} />
       <TextDiv>
-        <MainText>{album?.name}</MainText>
-        <SubText>{album?.artists[0].name}</SubText>
+        <MainText>{name}</MainText>
+        <SubText>{artistName}</SubText>
       </TextDiv>
     </Tile>
   );
