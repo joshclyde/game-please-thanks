@@ -1,10 +1,12 @@
-import { makeReducer, makeCaseSetValue } from "@ReduxUtils";
+import { makeReducer2 } from "@ReduxUtils";
 
-import { isSetSpotifyAccessTokenAction } from "./actions";
+import { makeCaseSetSpotifyAccessTokenAction } from "./actions";
 
-const reducer = makeReducer<string>({ initialState: null });
-reducer.addCase(makeCaseSetValue(isSetSpotifyAccessTokenAction));
+const { reducer: spotifyAccessToken, addCase } = makeReducer2<string>({
+  initialState: null,
+});
+addCase(makeCaseSetSpotifyAccessTokenAction((_state, action) => action.payload.value));
 
 export const reducers = {
-  spotifyAccessToken: reducer,
+  spotifyAccessToken,
 };

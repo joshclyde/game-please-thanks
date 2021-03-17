@@ -1,8 +1,8 @@
-import { makeReducer, makeCaseSetValue } from "@ReduxUtils";
+import { makeReducer2 } from "@ReduxUtils";
 
-import { isSetIsAuthenticated } from "./actions";
+import { makeCaseSetIsAuthenticated } from "./actions";
 
-const reducer = makeReducer({ initialState: false });
-reducer.addCase(makeCaseSetValue(isSetIsAuthenticated));
+const { reducer: isAuthenticated, addCase } = makeReducer2({ initialState: false });
+addCase(makeCaseSetIsAuthenticated((_state, action) => action.payload.value));
 
-export const reducers = { isAuthenticated: reducer };
+export const reducers = { isAuthenticated };

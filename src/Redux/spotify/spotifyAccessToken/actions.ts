@@ -1,8 +1,8 @@
-import { makeAction } from "@ReduxUtils";
+import { makeAction2 } from "@ReduxUtils";
 
 const {
-  isAction: isSetSpotifyAccessTokenAction,
+  makeCase: makeCaseSetSpotifyAccessTokenAction,
   useDispatchAction: useSetSpotifyAccessToken,
-} = makeAction(`SET_SPOTIFY_ACCESS_TOKEN`, (value: string) => ({ value }));
+} = makeAction2(`SET_SPOTIFY_ACCESS_TOKEN`, (value: string) => ({ value }));
 
-export { isSetSpotifyAccessTokenAction, useSetSpotifyAccessToken };
+export { makeCaseSetSpotifyAccessTokenAction, useSetSpotifyAccessToken };

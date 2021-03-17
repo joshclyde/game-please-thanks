@@ -1,6 +1,6 @@
+export { useSpotifyPlay } from "./_root";
 export {
-  useSpotifyPlay,
   useSelectIsSpotifyPlayLoading,
   useSelectDidSpotifyPlaySucceed,
   useSelectDidSpotifyPlayFail,
-} from "./load/hooks";
+} from "./selectors";

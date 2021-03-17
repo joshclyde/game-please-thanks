@@ -1,6 +1,6 @@
+export { useLoadSpotifyDevices } from "./_root";
 export {
-  useLoadSpotifyDevices,
-  useSelectAreSpotifyDevicesLoading,
-  useSelectDidSpotifyDevicesSucceed,
-  useSelectDidSpotifyDevicesFail,
-} from "./_root";
+  useSelectIsLoadingSpotifyDevices,
+  useSelectDidLoadSucceedSpotifyDevices,
+  useSelectDidLoadFailSpotifyDevices,
+} from "./selectors";

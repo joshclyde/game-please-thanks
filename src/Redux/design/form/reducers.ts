@@ -1,27 +1,32 @@
-import { makeReducer } from "@ReduxUtils";
+import { makeReducer2 } from "@ReduxUtils";
 
-import { isCreateFormAction, isSetFormInput } from "./actions";
+import { makeCaseCreateFormAction, makeCaseSetFormInput } from "./actions";
 import { DesignFormState } from "./types";
 
 const initialState: DesignFormState = {};
-const form = makeReducer({ initialState });
+const { reducer: form, addCase } = makeReducer2({ initialState });
 
-form.makeCase(isCreateFormAction, (state, { payload }) => {
-  const { formId } = payload;
-  return {
-    ...state,
-    [formId]: {},
-  };
-});
-form.makeCase(isSetFormInput, (state, { payload }) => {
-  const { formId, inputId, value } = payload;
-  return {
-    ...state,
-    [formId]: {
-      ...state[formId],
-      [inputId]: value,
-    },
-  };
-});
+addCase(
+  makeCaseCreateFormAction((state, { payload }) => {
+    const { formId } = payload;
+    return {
+      ...state,
+      [formId]: {},
+    };
+  }),
+);
+
+addCase(
+  makeCaseSetFormInput((state, { payload }) => {
+    const { formId, inputId, value } = payload;
+    return {
+      ...state,
+      [formId]: {
+        ...state[formId],
+        [inputId]: value,
+      },
+    };
+  }),
+);
 
 export const reducers = { form };

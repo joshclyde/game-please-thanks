@@ -1,11 +1,13 @@
 import { SpotifyDevice } from "@Api";
-import { makeReducer, makeCaseSetValue } from "@ReduxUtils";
+import { makeReducer2 } from "@ReduxUtils";
 
-import { isSetSpotifyDevices } from "./actions";
+import { makeCaseSetSpotifyDevices } from "./actions";
 
-const reducer = makeReducer<Array<SpotifyDevice>>({ initialState: [] });
-reducer.addCase(makeCaseSetValue(isSetSpotifyDevices));
+const { reducer: value, addCase } = makeReducer2<Array<SpotifyDevice>>({
+  initialState: [],
+});
+addCase(makeCaseSetSpotifyDevices((_state, action) => action.payload.value));
 
 export const reducers = {
-  value: reducer,
+  value,
 };

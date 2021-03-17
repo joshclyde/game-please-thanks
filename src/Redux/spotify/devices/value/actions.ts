@@ -1,11 +1,9 @@
 import { SpotifyDevice } from "@Api";
-import { makeActionSetValue } from "@ReduxUtils";
+import { makeAction2 } from "@ReduxUtils";
 
 const {
-  isAction: isSetSpotifyDevices,
+  makeCase: makeCaseSetSpotifyDevices,
   useDispatchAction: useSetSpotifyDevices,
-} = makeActionSetValue<"SET_SPOTIFY_DEVICES", Array<SpotifyDevice>>(
-  `SET_SPOTIFY_DEVICES`,
-);
+} = makeAction2(`SET_SPOTIFY_DEVICES`, (value: Array<SpotifyDevice>) => ({ value }));
 
-export { isSetSpotifyDevices, useSetSpotifyDevices };
+export { makeCaseSetSpotifyDevices, useSetSpotifyDevices };

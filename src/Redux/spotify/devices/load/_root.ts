@@ -1,13 +1,12 @@
 import { useCallback } from "react";
 
 import { getSpotifyPlayerDevices } from "@Api";
-import { RootState } from "@Redux";
-import { makeLoadingFactory } from "@ReduxUtils";
+import { makeLoading } from "@ReduxUtils";
 
 import { useSelectSpotifyAccessToken } from "../../spotifyAccessToken/hooks";
 import { useSetSpotifyDevices } from "../value/hooks";
 
-const useLoadFunction = () => {
+const useExecute = () => {
   const accessToken = useSelectSpotifyAccessToken();
   const setValue = useSetSpotifyDevices();
   return useCallback(async () => {
@@ -16,27 +15,15 @@ const useLoadFunction = () => {
   }, [accessToken, setValue]);
 };
 
-const {
-  reducer,
-  useLoad: useLoadSpotifyDevices,
-  useSelectIsLoading: useSelectAreSpotifyDevicesLoading,
-  useSelectDidLoadSucceed: useSelectDidSpotifyDevicesSucceed,
-  useSelectDidLoadFail: useSelectDidSpotifyDevicesFail,
-} = makeLoadingFactory({
-  useLoadFunction,
-  selectStateFromRoot: (state: RootState) => state.spotify.devices.load,
-  INITIATE_LOADING: `INITIATE_LOADING_SPOTIFY_DEVICES`,
-  SUCCESS_LOADING: `SUCCESS_LOADING_SPOTIFY_DEVICES`,
-  FAILURE_LOADING: `FAILURE_LOADING_SPOTIFY_DEVICES`,
+const { reducers: load, useLoad: useLoadSpotifyDevices } = makeLoading({
+  useExecute,
+  START: `START_LOADING_SPOTIFY_DEVICES`,
+  SUCCESS: `SUCCESS_LOADING_SPOTIFY_DEVICES`,
+  FAILURE: `FAILURE_LOADING_SPOTIFY_DEVICES`,
 });
 
-export {
-  useLoadSpotifyDevices,
-  useSelectAreSpotifyDevicesLoading,
-  useSelectDidSpotifyDevicesSucceed,
-  useSelectDidSpotifyDevicesFail,
-};
+export { useLoadSpotifyDevices };
 
 export const reducers = {
-  load: reducer,
+  load,
 };

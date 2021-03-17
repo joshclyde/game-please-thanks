@@ -1,13 +1,16 @@
-import { makeAction } from "@ReduxUtils";
+import { makeAction2 } from "@ReduxUtils";
 
-const { isAction: isCreateFormAction, useDispatchAction: useCreateForm } = makeAction(
-  `CREATE_FORM`,
-  (formId: string) => ({
-    formId,
-  }),
-);
+const {
+  makeCase: makeCaseCreateFormAction,
+  useDispatchAction: useCreateForm,
+} = makeAction2(`CREATE_FORM`, (formId: string) => ({
+  formId,
+}));
 
-const { isAction: isSetFormInput, useDispatchAction: useSetFormInput } = makeAction(
+const {
+  makeCase: makeCaseSetFormInput,
+  useDispatchAction: useSetFormInput,
+} = makeAction2(
   `SET_FORM_INPUT`,
   (formId: string, inputId: string, value: string | number | boolean | Date) => ({
     formId,
@@ -16,4 +19,4 @@ const { isAction: isSetFormInput, useDispatchAction: useSetFormInput } = makeAct
   }),
 );
 
-export { isCreateFormAction, useCreateForm, isSetFormInput, useSetFormInput };
+export { makeCaseCreateFormAction, useCreateForm, makeCaseSetFormInput, useSetFormInput };

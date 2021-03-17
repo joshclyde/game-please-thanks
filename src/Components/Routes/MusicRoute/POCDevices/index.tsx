@@ -3,8 +3,8 @@ import React, { FC, useEffect } from "react";
 import {
   useSelectSpotifyDevices,
   useLoadSpotifyDevices,
-  useSelectAreSpotifyDevicesLoading,
-  useSelectDidSpotifyDevicesFail,
+  useSelectIsLoadingSpotifyDevices,
+  useSelectDidLoadFailSpotifyDevices,
 } from "@Redux";
 
 const POCDevicesFC: FC<{}> = () => {
@@ -12,8 +12,8 @@ const POCDevicesFC: FC<{}> = () => {
   useEffect(() => {
     load();
   }, [load]);
-  const isLoading = useSelectAreSpotifyDevicesLoading();
-  const isLoadFailure = useSelectDidSpotifyDevicesFail();
+  const isLoading = useSelectIsLoadingSpotifyDevices();
+  const isLoadFailure = useSelectDidLoadFailSpotifyDevices();
   const devices = useSelectSpotifyDevices();
 
   if (isLoading) {

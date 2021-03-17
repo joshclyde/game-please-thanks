@@ -1,8 +1,8 @@
-import { makeActionSetValue } from "@ReduxUtils";
+import { makeAction2 } from "@ReduxUtils";
 
 const {
-  isAction: isSetIsAuthenticated,
+  makeCase: makeCaseSetIsAuthenticated,
   useDispatchAction: useSetIsAuthenticated,
-} = makeActionSetValue<"IS_AUTHENTICATED", boolean>(`IS_AUTHENTICATED`);
+} = makeAction2(`IS_AUTHENTICATED`, (value: boolean) => ({ value }));
 
-export { isSetIsAuthenticated, useSetIsAuthenticated };
+export { makeCaseSetIsAuthenticated, useSetIsAuthenticated };
