@@ -1,10 +1,10 @@
-import { makeReducer2 } from "@ReduxUtils";
+import { makeReducer } from "@ReduxUtils";
 
 import { makeCaseCreateFormAction, makeCaseSetFormInput } from "./actions";
 import { DesignFormState } from "./types";
 
 const initialState: DesignFormState = {};
-const { reducer: form, addCase } = makeReducer2({ initialState });
+const { reducer: form, addCase } = makeReducer({ initialState });
 
 addCase(
   makeCaseCreateFormAction((state, { payload }) => {

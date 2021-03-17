@@ -1,6 +1,6 @@
 import { AnyAction, GenericReducer } from "../types";
 
-export const makeReducer2 = <StateSlice>({
+export const makeReducer = <StateSlice>({
   initialState,
 }: {
   initialState: StateSlice;

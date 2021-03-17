@@ -21,7 +21,7 @@ const makeUseDispatchAction = <T extends Array<any>>(
 /*
   all the generics are type inferenced ❤️
 */
-export const makeAction2 = <
+export const makeAction = <
   ActionType,
   ActionPayload extends object,
   MakePayloadArgs extends Array<any>

@@ -3,8 +3,8 @@ import React from "react";
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
 
-import { makeAction2 } from "../makeAction";
-import { makeReducer2 } from "../makeReducer";
+import { makeAction } from "../makeAction";
+import { makeReducer } from "../makeReducer";
 import { makeUseSelector } from "../makeUseSelector";
 
 // saw this naming convention here. i think i like it. could be cool to have a lint rule for it
@@ -19,10 +19,10 @@ describe(`GIVEN a redux store created from ReduxUtils`, () => {
   let wrapper: React.FC;
   let useSelector: () => string;
   beforeEach(() => {
-    const { reducer, addCase } = makeReducer2({
+    const { reducer, addCase } = makeReducer({
       initialState: `init value`,
     });
-    const { makeCase, useDispatchAction: localUseDispatchAction } = makeAction2(
+    const { makeCase, useDispatchAction: localUseDispatchAction } = makeAction(
       `APPEND_VALUE`,
       (value: string) => ({
         value,

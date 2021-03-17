@@ -3,8 +3,8 @@ import { combineReducers } from "redux";
 
 import { StringLiteral } from "@Types";
 
-import { makeAction2 } from "../../core/makeAction";
-import { makeReducer2 } from "../../core/makeReducer";
+import { makeAction } from "../../core/makeAction";
+import { makeReducer } from "../../core/makeReducer";
 
 /*
   The actions and reducers are closely tied so I think it makes sense to combine everything
@@ -27,38 +27,38 @@ export const makeLoading = <Start, Success, Failure, ExecuteArgs extends Array<a
   /*
     Actions
   */
-  const { useDispatchAction: useStart, makeCase: makeCaseStart } = makeAction2(
+  const { useDispatchAction: useStart, makeCase: makeCaseStart } = makeAction(
     START,
     () => ({}),
   );
-  const {
-    useDispatchAction: useSuccess,
-    makeCase: makeCaseSuccess,
-  } = makeAction2(SUCCESS, () => ({}));
-  const { useDispatchAction: useFailure, makeCase: makeCaseFailure } = makeAction2(
+  const { useDispatchAction: useSuccess, makeCase: makeCaseSuccess } = makeAction(
+    SUCCESS,
+    () => ({}),
+  );
+  const { useDispatchAction: useFailure, makeCase: makeCaseFailure } = makeAction(
     FAILURE,
     (error: Error) => ({
       error,
     }),
   );
 
-  const pending = makeReducer2({ initialState: false });
+  const pending = makeReducer({ initialState: false });
   pending.addCase(makeCaseStart(() => true));
   pending.addCase(makeCaseSuccess(() => false));
   pending.addCase(makeCaseFailure(() => false));
 
-  const success = makeReducer2({ initialState: false });
+  const success = makeReducer({ initialState: false });
   success.addCase(makeCaseStart(() => false));
   success.addCase(makeCaseSuccess(() => true));
   success.addCase(makeCaseFailure(() => false));
 
-  const failure = makeReducer2({ initialState: false });
+  const failure = makeReducer({ initialState: false });
   failure.addCase(makeCaseStart(() => false));
   failure.addCase(makeCaseSuccess(() => false));
   failure.addCase(makeCaseFailure(() => true));
 
   // TODO: this probably is not allowed to be an Error type
-  const error = makeReducer2<Error>({ initialState: null });
+  const error = makeReducer<Error>({ initialState: null });
   error.addCase(makeCaseStart(() => null));
   error.addCase(makeCaseSuccess(() => null));
   error.addCase(makeCaseFailure((_state, action) => action.payload.error));

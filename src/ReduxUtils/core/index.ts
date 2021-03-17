@@ -1,3 +1,3 @@
 export { makeUseSelector } from "./makeUseSelector";
-export { makeAction2 } from "./makeAction";
-export { makeReducer2 } from "./makeReducer";
+export { makeAction } from "./makeAction";
+export { makeReducer } from "./makeReducer";
