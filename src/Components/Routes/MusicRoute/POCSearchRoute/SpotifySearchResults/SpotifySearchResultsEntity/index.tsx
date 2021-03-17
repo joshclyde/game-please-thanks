@@ -1,7 +1,6 @@
 import React, { FC } from "react";
-import { useSelector } from "react-redux";
 
-import { makeSelectSpotifySearchResultsAlbumImageUrl } from "@Redux";
+import { useSelectSpotifySearchResultsAlbumImageUrl } from "@Redux";
 
 interface Props {
   searchResultsKey: string;
@@ -12,8 +11,9 @@ const SpotifySearchResultsEntityFC: FC<Props> = ({
   searchResultsKey,
   searchResultsIndex,
 }) => {
-  const albumUrl = useSelector(
-    makeSelectSpotifySearchResultsAlbumImageUrl(searchResultsKey, searchResultsIndex),
+  const albumUrl = useSelectSpotifySearchResultsAlbumImageUrl(
+    searchResultsKey,
+    searchResultsIndex,
   );
   return <img src={albumUrl} width={128} height={128} />;
 };

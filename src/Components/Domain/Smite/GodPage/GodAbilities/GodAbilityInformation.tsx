@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
 import {
-  State,
+  RootState,
   selectGodAbilityImageUrl,
   selectGodAbilityName,
   selectGodAbilityCooldown,
@@ -17,7 +17,7 @@ interface Props {
   abilityIndex: number;
 }
 
-const mapState = (state: State, { godName, abilityIndex }: Props) => ({
+const mapState = (state: RootState, { godName, abilityIndex }: Props) => ({
   abilityImageUrl: selectGodAbilityImageUrl(state, godName, abilityIndex),
   name: selectGodAbilityName(state, godName, abilityIndex),
   cooldown: selectGodAbilityCooldown(state, godName, abilityIndex),

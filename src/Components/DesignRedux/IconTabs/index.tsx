@@ -12,16 +12,16 @@ interface IconTabsProps
   iconTabsId: string;
 }
 const IconTabsFC: FC<IconTabsProps> = ({ iconTabsId, ...restProps }) => {
-  const createIconTabsEntry = useCreateIconTabsEntry(iconTabsId);
+  const createIconTabsEntry = useCreateIconTabsEntry();
   useEffect(() => {
-    createIconTabsEntry();
-  }, [createIconTabsEntry]);
-  const setIconTabsEntry = useSetIconTabsEntryValue(iconTabsId);
+    createIconTabsEntry(iconTabsId);
+  }, [createIconTabsEntry, iconTabsId]);
+  const setIconTabsEntry = useSetIconTabsEntryValue();
   const onClickIcon = useCallback(
     (index: number) => {
-      setIconTabsEntry(index);
+      setIconTabsEntry(iconTabsId, index);
     },
-    [setIconTabsEntry],
+    [setIconTabsEntry, iconTabsId],
   );
   const currentIndex = useSelectIconTabsEntryValue(iconTabsId);
   return <DesignIconTabs onClickIcon={onClickIcon} index={currentIndex} {...restProps} />;

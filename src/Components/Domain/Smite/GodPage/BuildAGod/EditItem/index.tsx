@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
 import {
-  State,
+  RootState,
   selectSmiteBuildAGodItemsLength,
   selectSmiteBuildAGodItem,
   makeActionSetBuildAGodItem,
@@ -14,7 +14,7 @@ interface Props {
   index: number;
 }
 
-const mapState = (state: State, { buildAGodKey, index }: Props) => {
+const mapState = (state: RootState, { buildAGodKey, index }: Props) => {
   let itemId;
   if (selectSmiteBuildAGodItemsLength(state, buildAGodKey) > index) {
     itemId = selectSmiteBuildAGodItem(state, buildAGodKey, index);

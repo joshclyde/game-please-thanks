@@ -1,38 +1,22 @@
 import React, { FC, useCallback } from "react";
-import { connect, ConnectedProps } from "react-redux";
 
-import { makeActionSetFormInputValue, State, selectFormInputValue } from "@Redux";
+import { useFormInput } from "@Redux";
 
-const mapState = (state: State, { formId, id }: OwnProps) => ({
-  value: selectFormInputValue(state, formId, id),
-});
-
-const mapDispatch = { setFormInputValue: makeActionSetFormInputValue };
-
-const connector = connect(mapState, mapDispatch);
-
-interface OwnProps {
+interface Props {
   id: string;
   name: string;
   formId: string;
 }
-interface Props extends OwnProps, ConnectedProps<typeof connector> {}
 
-const SelectDayFC: FC<Props> = ({
-  id,
-  name,
-  value,
-  setFormInputValue,
-  formId,
-  ...rest
-}) => {
+const SelectDayFC: FC<Props> = ({ id, name, formId }) => {
+  const [value, setValue] = useFormInput(formId, id);
   const onChange = useCallback(
     (event: React.FormEvent<HTMLSelectElement>) => {
       const newValue = value ? new Date((value as Date).getTime()) : new Date();
       newValue.setDate(parseInt(event.currentTarget.value));
-      setFormInputValue(formId, id, newValue);
+      setValue(newValue);
     },
-    [formId, id, setFormInputValue, value],
+    [setValue, value],
   );
 
   const dayValue = value ? (value as Date).getDate() : undefined;
@@ -73,4 +57,4 @@ const SelectDayFC: FC<Props> = ({
   );
 };
 
-export const SelectDay = connector(SelectDayFC);
+export const SelectDay = SelectDayFC;

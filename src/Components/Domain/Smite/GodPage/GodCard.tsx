@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
-import { State, selectGodCardUrl } from "@Redux";
+import { RootState, selectGodCardUrl } from "@Redux";
 
 interface Props {
   godName: string;
 }
 
-const mapState = (state: State, { godName }: Props) => ({
+const mapState = (state: RootState, { godName }: Props) => ({
   godCardUrl: selectGodCardUrl(state, godName),
 });
 

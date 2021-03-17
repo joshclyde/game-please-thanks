@@ -10,12 +10,12 @@ interface Props extends OwnProps {}
 const FormFC: FC<Props> = ({ onSubmit, ...props }) => {
   const { formId } = props;
   const doesFormExist = useSelectDoesFormExist(formId);
-  const createForm = useCreateForm(formId);
+  const createForm = useCreateForm();
   useEffect(() => {
     if (!doesFormExist) {
-      createForm();
+      createForm(formId);
     }
-  }, [doesFormExist, createForm]);
+  }, [doesFormExist, createForm, formId]);
 
   // will I ever want the default? probably not
   const onSubmitPreventDefault = useCallback(

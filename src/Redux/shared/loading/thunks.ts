@@ -1,7 +1,7 @@
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 
-import { State } from "../../types";
+import { RootState } from "../../types";
 
 import {
   makeActionSetSharedLoadingInitiate,
@@ -15,7 +15,7 @@ export const makeThunkLoading = ({
 }: {
   id: string;
   loadFunction: () => Promise<void>;
-}): ThunkAction<void, State, unknown, Action<string>> => async (dispatch) => {
+}): ThunkAction<void, RootState, unknown, Action<string>> => async (dispatch) => {
   dispatch(makeActionSetSharedLoadingInitiate(id));
   try {
     await loadFunction();

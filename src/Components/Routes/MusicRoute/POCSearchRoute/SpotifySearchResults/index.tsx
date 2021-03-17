@@ -1,13 +1,11 @@
 import range from "lodash/fp/range";
 import React, { FC } from "react";
-import { useSelector } from "react-redux";
 
 import {
-  makeSelectSpotifySearchIsLoadAttempted,
-  makeSelectSpotifySearchIsLoading,
-  makeSelectSpotifySearchIsLoadSuccessful,
-  makeSelectSpotifySearchIsLoadFailure,
-  makeSelectSpotifySearchResultsLength,
+  useSelectIsSpotifySearchResultsLoading,
+  useSelectDidSpotifySearchResultsSucceed,
+  useSelectDidSpotifySearchResultsFail,
+  useSelectSpotifySearchResultsNumberOfAlbums,
 } from "@Redux";
 
 import { SpotifySearchResultsEntity } from "./SpotifySearchResultsEntity";
@@ -17,21 +15,10 @@ interface Props {
 }
 
 const SpotifySearchResultsFC: FC<Props> = ({ searchResultsKey }) => {
-  const isAttempted = useSelector(
-    makeSelectSpotifySearchIsLoadAttempted(searchResultsKey),
-  );
-  const isLoading = useSelector(makeSelectSpotifySearchIsLoading(searchResultsKey));
-  const isSuccessful = useSelector(
-    makeSelectSpotifySearchIsLoadSuccessful(searchResultsKey),
-  );
-  const isFailure = useSelector(makeSelectSpotifySearchIsLoadFailure(searchResultsKey));
-  const numberOfResults = useSelector(
-    makeSelectSpotifySearchResultsLength(searchResultsKey),
-  );
-
-  if (!isAttempted) {
-    return <div>Click "Search" to obtain search results.</div>;
-  }
+  const isLoading = useSelectIsSpotifySearchResultsLoading();
+  const isSuccessful = useSelectDidSpotifySearchResultsSucceed();
+  const isFailure = useSelectDidSpotifySearchResultsFail();
+  const numberOfResults = useSelectSpotifySearchResultsNumberOfAlbums(searchResultsKey);
 
   if (isFailure) {
     return <div>An error occcured when loading search results.</div>;
@@ -54,7 +41,8 @@ const SpotifySearchResultsFC: FC<Props> = ({ searchResultsKey }) => {
     );
   }
 
-  return <div>This should never be occur.</div>;
+  return <div>Click "Search" to obtain search results.</div>;
+  // return <div>This should never be occur.</div>;
 };
 
 export const SpotifySearchResults = SpotifySearchResultsFC;

@@ -1,9 +1,13 @@
 import { combineReducers } from "redux";
 
-import { form } from "./form/reducers";
+import { reducers as formReducers } from "./form/reducers";
 import { reducers as iconTabsReducers } from "./iconTabs/reducers";
 
-export const design = combineReducers({
-  form,
+const design = combineReducers({
+  ...formReducers,
   ...iconTabsReducers,
 });
+
+export const reducers = {
+  design,
+};

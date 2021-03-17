@@ -1,37 +1,27 @@
-import { useMemo, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useCallback } from "react";
 
-import { makeActionSetFormInputValue, makeActionCreateForm } from "./actions";
-import { makeSelectFormInputValue, makeSelectDoesFormExist } from "./selectors";
+import { useSetFormInput } from "./actions";
+import { useSelectFormInputValue } from "./selectors";
 
-export const useSelectDoesFormExist = (formId: string) => {
-  const selector = useMemo(() => makeSelectDoesFormExist(formId), [formId]);
-  return useSelector(selector);
-};
-
-export const useCreateForm = (formId: string) => {
-  const dispatch = useDispatch();
-  return useCallback(() => {
-    dispatch(makeActionCreateForm(formId));
-  }, [dispatch, formId]);
-};
-
-export const useSelectFormInputValue = (formId: string, inputId: string) => {
-  const selector = useMemo(() => makeSelectFormInputValue(formId, inputId), [
-    formId,
-    inputId,
-  ]);
-
-  return useSelector(selector);
-};
-
-export const useSetFormInputValue = (formId: string, inputId: string) => {
-  const dispatch = useDispatch();
-  return useCallback(
-    // TODO: don't have this be an any
-    (value: any) => {
-      dispatch(makeActionSetFormInputValue(formId, inputId, value));
+// TODO: do i like this name? kinda similar to useState, so maybe rename
+// TODO: can i have a helper function to make this?
+export const useFormInput = (
+  formId: string,
+  inputId: string,
+): [
+  string | number | boolean | Date,
+  (value: string | number | boolean | Date) => void,
+] => {
+  const value = useSelectFormInputValue(formId, inputId);
+  const setValueGeneric = useSetFormInput();
+  const setValue = useCallback(
+    (value: string | number | boolean | Date) => {
+      setValueGeneric(formId, inputId, value);
     },
-    [dispatch, formId, inputId],
+    [formId, inputId, setValueGeneric],
   );
+  return [value, setValue];
 };
+
+export { useCreateForm, useSetFormInput } from "./actions";
+export { useSelectDoesFormExist, useSelectFormInputValue } from "./selectors";

@@ -10,11 +10,13 @@
     // "noUnusedLocals": true, // lint will catch this
     // "noUnusedParameters": true, // lint will catch this
     "noImplicitAny": true,
+    // strictNullChecks?
     "baseUrl": ".",
     "paths": {
       "@Api": ["./src/Api/index"],
       "@Utils": ["./src/Utils/index"],
       "@Redux": ["./src/Redux/index"],
+      "@ReduxUtils": ["./src/ReduxUtils/index"],
       "@Hocs": ["./src/Hocs/index"],
       "@Hooks": ["./src/Hooks/index"],
       "@Design": ["./src/Components/Design/index"],
@@ -29,7 +31,8 @@
   },
   "include": [
     "./src/**/*.ts",
-    "./src/**/*.tsx"
+    "./src/**/*.tsx",
+    "./jest-setup.ts" // TODO: probably want this somewhere else? should i have multiple tsconfigs?
   ],
   "exclude": [
     "node_modules"

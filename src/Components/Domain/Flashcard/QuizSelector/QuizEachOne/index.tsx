@@ -3,9 +3,9 @@ import { connect, ConnectedProps } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { Button } from "@Design";
-import { selectFlashcardSetTitle, State } from "@Redux";
+import { selectFlashcardSetTitle, RootState } from "@Redux";
 
-const mapState = (state: State, { setId }: OwnProps) => ({
+const mapState = (state: RootState, { setId }: OwnProps) => ({
   title: selectFlashcardSetTitle(state, setId),
 });
 

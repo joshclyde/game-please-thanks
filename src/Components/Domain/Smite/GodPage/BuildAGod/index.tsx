@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
 import {
-  State,
+  RootState,
   makeActionCreateSmiteBuildAGod,
   makeActionSetBuildAGodGodName,
   selectSmiteBuildAGod,
@@ -19,7 +19,7 @@ interface Props {
   buildAGodKey: string;
 }
 
-const mapState = (state: State, { buildAGodKey }: Props) => {
+const mapState = (state: RootState, { buildAGodKey }: Props) => {
   const hasBuildAGodBeenCreated = selectSmiteBuildAGod(state, buildAGodKey);
   return {
     hasBuildAGodBeenCreated,

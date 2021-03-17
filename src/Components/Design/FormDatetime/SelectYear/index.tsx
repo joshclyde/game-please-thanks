@@ -1,38 +1,22 @@
 import React, { FC, useCallback } from "react";
-import { connect, ConnectedProps } from "react-redux";
 
-import { makeActionSetFormInputValue, State, selectFormInputValue } from "@Redux";
+import { useFormInput } from "@Redux";
 
-const mapState = (state: State, { formId, id }: OwnProps) => ({
-  value: selectFormInputValue(state, formId, id),
-});
-
-const mapDispatch = { setFormInputValue: makeActionSetFormInputValue };
-
-const connector = connect(mapState, mapDispatch);
-
-interface OwnProps {
+interface Props {
   id: string;
   name: string;
   formId: string;
 }
-interface Props extends OwnProps, ConnectedProps<typeof connector> {}
 
-const SelectYearFC: FC<Props> = ({
-  id,
-  name,
-  value,
-  setFormInputValue,
-  formId,
-  ...rest
-}) => {
+const SelectYearFC: FC<Props> = ({ id, name, formId }) => {
+  const [value, setValue] = useFormInput(formId, id);
   const onChange = useCallback(
     (event: React.FormEvent<HTMLSelectElement>) => {
       const newValue = value ? new Date((value as Date).getTime()) : new Date();
       newValue.setFullYear(parseInt(event.currentTarget.value));
-      setFormInputValue(formId, id, newValue);
+      setValue(newValue);
     },
-    [formId, id, setFormInputValue, value],
+    [setValue, value],
   );
 
   const yearValue = value ? (value as Date).getFullYear() : undefined;
@@ -48,4 +32,4 @@ const SelectYearFC: FC<Props> = ({
   );
 };
 
-export const SelectYear = connector(SelectYearFC);
+export const SelectYear = SelectYearFC;

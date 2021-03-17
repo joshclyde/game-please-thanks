@@ -2,12 +2,12 @@ import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import styled from "styled-components";
 
-import { State, selectAllGodNames, selectSmiteSearchTerm } from "@Redux";
+import { RootState, selectAllGodNames, selectSmiteSearchTerm } from "@Redux";
 
 import { GodOnGodsList } from "./GodOnGodsList";
 import { GodsSearchBar } from "./GodsSearchBar";
 
-const mapState = (state: State) => ({
+const mapState = (state: RootState) => ({
   godNames: selectAllGodNames(state),
   searchTerm: selectSmiteSearchTerm(state),
 });

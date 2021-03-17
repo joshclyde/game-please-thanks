@@ -42,6 +42,7 @@
 - [ ] typescript namespaces and how they build with webpack
 - [ ] naming conventions for literally everything
 - [ ] package.json documentation (I want to have documentation about why I have dependencies but I can't put comments in my package.json)
+- [ ] docusaurus? do i want to make my own documentation?
 
 ### Performance
 
@@ -57,3 +58,7 @@
 - [ ] take out the Components folder and just have all the folders be a base level (do I want this?)
 - [ ] branch and commit pattern?
 - [ ] fix console warnings/errors
+
+## Redux
+
+- [ ] refactor redux files to have no index files (except the main one)

@@ -10,14 +10,14 @@ import {
   selectFlashcardQuizCurrentId,
   selectFlashcardQuizFlashcards,
   selectFlashcardQuizLength,
-  State,
+  RootState,
 } from "@Redux";
 
 import { Flashcard } from "../Flashcard";
 
 import { calculateGrade } from "./calculateGrade";
 
-const mapState = (state: State) => ({
+const mapState = (state: RootState) => ({
   quizCurrentId: selectFlashcardQuizCurrentId(state),
   quizLength: selectFlashcardQuizLength(state),
   flashcardContents: selectFlashcardQuizFlashcards(state),

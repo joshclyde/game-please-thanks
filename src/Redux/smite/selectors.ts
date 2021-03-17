@@ -1,8 +1,8 @@
-import { State } from "../types";
+import { RootState } from "../types";
 
 import { BuildItems } from "./types";
 
-export type StateJustSmite = Pick<State, "smite">;
+export type StateJustSmite = Pick<RootState, "smite">;
 
 export const selectAllItems = (state: StateJustSmite) => state.smite.items;
 

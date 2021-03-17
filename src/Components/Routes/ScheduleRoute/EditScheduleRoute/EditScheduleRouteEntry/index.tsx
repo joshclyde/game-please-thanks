@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import styled from "styled-components";
 
-import { selectScheduleDataEvent, State } from "@Redux";
+import { selectScheduleDataEvent, RootState } from "@Redux";
 
 import { DeleteScheduleEvent } from "./DeleteScheduleEvent";
 
@@ -10,7 +10,7 @@ interface Props {
   scheduleEventId: string;
 }
 
-const mapState = (state: State, { scheduleEventId }: Props) => ({
+const mapState = (state: RootState, { scheduleEventId }: Props) => ({
   scheduleEvent: selectScheduleDataEvent(state, scheduleEventId),
 });
 

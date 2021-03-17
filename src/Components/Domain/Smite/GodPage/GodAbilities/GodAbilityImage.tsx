@@ -1,14 +1,14 @@
 import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
-import { State, selectGodAbilityImageUrl } from "@Redux";
+import { RootState, selectGodAbilityImageUrl } from "@Redux";
 
 interface Props {
   godName: string;
   abilityIndex: number;
 }
 
-const mapState = (state: State, { godName, abilityIndex }: Props) => ({
+const mapState = (state: RootState, { godName, abilityIndex }: Props) => ({
   abilityImageUrl: selectGodAbilityImageUrl(state, godName, abilityIndex),
 });
 

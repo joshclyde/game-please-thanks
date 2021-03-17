@@ -1,11 +1,11 @@
 import React, { FC, useCallback } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
-import { State, makeActionSetSmiteSearchTerm, selectSmiteSearchTerm } from "@Redux";
+import { RootState, makeActionSetSmiteSearchTerm, selectSmiteSearchTerm } from "@Redux";
 
 interface Props {}
 
-const mapState = (state: State) => ({
+const mapState = (state: RootState) => ({
   searchTerm: selectSmiteSearchTerm(state),
 });
 

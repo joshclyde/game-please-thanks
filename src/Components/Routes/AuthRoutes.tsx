@@ -1,11 +1,9 @@
 import React, { FC } from "react";
-import { connect, ConnectedProps } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
 import { signInUserThroughGoogle } from "@Firebase";
-import { selectIsAuthenticated, State } from "@Redux";
+import { useSelectIsAuthenticated, useAuthListener } from "@Redux";
 
-import { AuthListener } from "./AuthListener";
 import { BookmarksRoute } from "./BookmarksRoute";
 import { ExploreRoute } from "./ExploreRoute";
 import { FlashcardsRoute } from "./FlashcardsRoute";
@@ -15,36 +13,31 @@ import { SmiteRoute } from "./SmiteRoute";
 import { StatusRoute } from "./StatusRoute";
 import { YoutubeRoute } from "./YoutubeRoute";
 
-const mapState = (state: State) => ({
-  isAuthenticated: selectIsAuthenticated(state),
-});
+const AuthRoutesFC: FC<{}> = () => {
+  useAuthListener();
+  const isAuthenticated = useSelectIsAuthenticated();
+  return (
+    <>
+      {isAuthenticated ? (
+        <Switch>
+          <Route path="/music" component={MusicRoute} />
+          <Route path="/flashcards" component={FlashcardsRoute} />
+          <Route path="/bookmarks" component={BookmarksRoute} />
+          <Route path="/smite" component={SmiteRoute} />
+          <Route path="/schedule" component={ScheduleRoute} />
+          <Route path="/status" component={StatusRoute} />
+          <Route path="/youtube" component={YoutubeRoute} />
+          <Route path="/explore" component={ExploreRoute} />
+          <Route path="/" component={BookmarksRoute} />
+        </Switch>
+      ) : (
+        <>
+          <div>You are not yet authenticated</div>
+          <button onClick={() => signInUserThroughGoogle()}>Sign In</button>
+        </>
+      )}
+    </>
+  );
+};
 
-const connector = connect(mapState);
-
-type AuthListenerProps = ConnectedProps<typeof connector> & {};
-
-const AuthRoutesFC: FC<AuthListenerProps> = ({ isAuthenticated }) => (
-  <>
-    <AuthListener />
-    {isAuthenticated ? (
-      <Switch>
-        <Route path="/music" component={MusicRoute} />
-        <Route path="/flashcards" component={FlashcardsRoute} />
-        <Route path="/bookmarks" component={BookmarksRoute} />
-        <Route path="/smite" component={SmiteRoute} />
-        <Route path="/schedule" component={ScheduleRoute} />
-        <Route path="/status" component={StatusRoute} />
-        <Route path="/youtube" component={YoutubeRoute} />
-        <Route path="/explore" component={ExploreRoute} />
-        <Route path="/" component={BookmarksRoute} />
-      </Switch>
-    ) : (
-      <>
-        <div>You are not yet authenticated</div>
-        <button onClick={() => signInUserThroughGoogle()}>Sign In</button>
-      </>
-    )}
-  </>
-);
-
-export const AuthRoutes = connector(AuthRoutesFC);
+export const AuthRoutes = AuthRoutesFC;

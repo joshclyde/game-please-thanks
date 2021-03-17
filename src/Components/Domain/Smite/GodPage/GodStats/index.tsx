@@ -1,7 +1,7 @@
 import React, { FC, useState, useCallback } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
-import { State, selectGodData, selectAllItems } from "@Redux";
+import { RootState, selectGodData, selectAllItems } from "@Redux";
 
 import { calculateBasicAttackDamage } from "./utils";
 
@@ -9,7 +9,7 @@ interface Props {
   godName: string;
 }
 
-const mapState = (state: State, { godName }: Props) => ({
+const mapState = (state: RootState, { godName }: Props) => ({
   godData: selectGodData(state, godName),
   items: selectAllItems(state),
 });

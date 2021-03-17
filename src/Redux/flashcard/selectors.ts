@@ -1,8 +1,8 @@
-import { State } from "../types";
+import { RootState } from "../types";
 
 // TODO: look into ReadOnly typescript for selectors?
 
-export type StateJustFlashcard = Pick<State, "flashcard">;
+export type StateJustFlashcard = Pick<RootState, "flashcard">;
 
 export const selectFlashcardData = (state: StateJustFlashcard) => state.flashcard.data;
 

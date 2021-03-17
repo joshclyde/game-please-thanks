@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import {
   selectScheduleDataIds,
-  State,
+  RootState,
   selectScheduleDataIsLoading,
   selectScheduleDataIsLoadSuccessful,
   selectScheduleDateIsLoadAttempted,
@@ -13,7 +13,7 @@ import {
 
 import { EditScheduleRouteEntry } from "./EditScheduleRouteEntry";
 
-const mapState = (state: State) => ({
+const mapState = (state: RootState) => ({
   scheduleEventIds: selectScheduleDataIds(state),
   scheduleDataIsLoadAttempted: selectScheduleDateIsLoadAttempted(state),
   scheduleDataIsLoading: selectScheduleDataIsLoading(state),

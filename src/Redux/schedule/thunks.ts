@@ -8,7 +8,7 @@ import {
   makeActionSetSharedLoadingSuccess,
   makeActionSetSharedLoadingFailure,
 } from "../shared";
-import { State } from "../types";
+import { RootState } from "../types";
 
 import {
   makeActionAddScheduleEvent,
@@ -20,7 +20,10 @@ import { ScheduleEvent } from "./types";
 export const makeThunkAddScheduleEvent = (
   id: string,
   scheduleEvent: ScheduleEvent,
-): ThunkAction<void, State, unknown, Action<string>> => async (dispatch, getState) => {
+): ThunkAction<void, RootState, unknown, Action<string>> => async (
+  dispatch,
+  getState,
+) => {
   dispatch(makeActionSetSharedLoadingInitiate(id));
   try {
     const { id: scheduleEventId } = await addScheduleEvent(scheduleEvent);
@@ -33,7 +36,10 @@ export const makeThunkAddScheduleEvent = (
 
 export const makeThunkDeleteScheduleEvent = (
   scheduleEventId: string,
-): ThunkAction<void, State, unknown, Action<string>> => async (dispatch, getState) => {
+): ThunkAction<void, RootState, unknown, Action<string>> => async (
+  dispatch,
+  getState,
+) => {
   dispatch(makeActionSetSharedLoadingInitiate(scheduleEventId));
   try {
     await deleteScheduleEvent(scheduleEventId);
@@ -47,7 +53,7 @@ export const makeThunkDeleteScheduleEvent = (
 export const FETCH_USER_DATA_SCHEDULE_ID = `fetch-user-data-schedule`;
 export const makeThunkFetchUserDataSchedule = (): ThunkAction<
   void,
-  State,
+  RootState,
   unknown,
   Action<string>
 > => async (dispatch, getState) => {

@@ -1,6 +1,6 @@
-import { State } from "../../types";
+import { RootState } from "../../types";
 
-export type StateJustShared = Pick<State, "shared">;
+export type StateJustShared = Pick<RootState, "shared">;
 
 export const selectSharedFilter = (
   state: StateJustShared,

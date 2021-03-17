@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { startFirebaseEventListening } from "@Firebase";
 import {
   selectCurrentEventsForDate,
-  State,
+  RootState,
   selectScheduleDataIsLoading,
   selectScheduleDataIsLoadSuccessful,
   selectScheduleDateIsLoadAttempted,
@@ -13,7 +13,7 @@ import {
   selectScheduleDataIsLoadFailure,
 } from "@Redux";
 
-const mapState = (state: State) => ({
+const mapState = (state: RootState) => ({
   currentEvents: selectCurrentEventsForDate(state, new Date()),
   scheduleDataIsLoadAttempted: selectScheduleDateIsLoadAttempted(state),
   scheduleDataIsLoading: selectScheduleDataIsLoading(state),

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
 import { Checkbox } from "@Common";
-import { State, selectAllItems, selectSharedFilter } from "@Redux";
+import { RootState, selectAllItems, selectSharedFilter } from "@Redux";
 
 import { SmiteItemImage } from "../SmiteItemImage";
 
@@ -12,7 +12,7 @@ interface Props {
   // godName: string;
 }
 
-const mapState = (state: State, { entityKey }: Props) => ({
+const mapState = (state: RootState, { entityKey }: Props) => ({
   items: selectAllItems(state),
   isAttackSpeed: selectSharedFilter(state, entityKey, `isAttackSpeed`),
   isPhysicalPower: selectSharedFilter(state, entityKey, `isPhysicalPower`),
