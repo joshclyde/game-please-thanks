@@ -7,7 +7,7 @@ const {
 } = makeAction(
   `ADD_SPOTIFY_SEARCH_RESULTS`,
   (
-    { term, type }: { term: string; type: "album" },
+    { term, type }: { term: string; type: "album" | "track" },
     searchResults: SpotifySearchResponse,
   ) => ({
     term,

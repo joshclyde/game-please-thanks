@@ -4,11 +4,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { ThemeProvider } from "styled-components";
 
-import { reducers as allReducers } from "../src/Redux";
-
-const reducers = combineReducers({
-  ...allReducers,
-});
+import { reducers } from "../src/Redux";
 
 // TODO: don't copy/paste this
 const theme = {
@@ -17,7 +13,7 @@ const theme = {
   // tile: `#1A1A1A`,
   tile: `#262626`,
   text: `#CCCCCC`,
-  mellowText: `#8C8C8C`,
+  softText: `#8C8C8C`,
 };
 
 // https://github.com/zalmoxisus/redux-devtools-extension#11-basic-store

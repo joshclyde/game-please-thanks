@@ -5,6 +5,7 @@ import { reducers as playerReducers } from "./player/reducers";
 import { reducers as searchResultsReducers } from "./searchResults/reducers";
 import { reducers as simplifiedAlbumsReducers } from "./simplifiedAlbums/reducers";
 import { reducers as spotifyAccessTokenReducers } from "./spotifyAccessToken/reducers";
+import { reducers as trackReducers } from "./tracks/reducers";
 
 const spotify = combineReducers({
   ...devicesReducers,
@@ -12,6 +13,7 @@ const spotify = combineReducers({
   ...spotifyAccessTokenReducers,
   ...playerReducers,
   ...simplifiedAlbumsReducers,
+  ...trackReducers,
 });
 
 export const reducers = {

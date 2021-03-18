@@ -33,14 +33,19 @@ const Artist = styled(Text).attrs(() => ({ size: `xs`, soft: true }))`
 
 interface Props {
   term: string;
-  type: "album";
   index: number;
 }
 
-const SearchResultsListEntityFC: FC<Props> = ({ term, type, index }) => {
-  const imageUrl = useSelectSpotifySearchResultsAlbumImageUrl({ term, type }, index);
-  const name = useSelectSpotifySearchResultsAlbumName({ term, type }, index);
-  const artistName = useSelectSpotifySearchResultsAlbumArtistName({ term, type }, index);
+const SearchResultsListEntityFC: FC<Props> = ({ term, index }) => {
+  const imageUrl = useSelectSpotifySearchResultsAlbumImageUrl(
+    { term, type: `album` },
+    index,
+  );
+  const name = useSelectSpotifySearchResultsAlbumName({ term, type: `album` }, index);
+  const artistName = useSelectSpotifySearchResultsAlbumArtistName(
+    { term, type: `album` },
+    index,
+  );
 
   return (
     <StyledTile>

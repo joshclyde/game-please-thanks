@@ -10,7 +10,7 @@ const { reducer: simplifiedAlbums, addCase } = makeReducer<SimplifiedAlbums>({
 });
 addCase(
   makeCaseAddSpotifySearchResults((state, action) => {
-    const albums = action.payload.searchResults.albums?.items;
+    const albums = action.payload.searchResults.albums?.items || [];
     const newSearchResults = albums.reduce(
       (accumulated: SimplifiedAlbums, simpleAlbum) => {
         accumulated[simpleAlbum.id] = simpleAlbum;

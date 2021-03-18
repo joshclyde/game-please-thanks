@@ -1,11 +1,11 @@
-import { PagingObject, SimplifiedAlbum } from "../types";
+import { PagingObject, SimplifiedAlbum, TrackObject } from "../types";
 
 /*
   Search Request Query Params
 */
 export interface QueryParams {
   q: string;
-  type: "album" | "artist" | "playlist";
+  type: "album" | "artist" | "track";
   market: "from_token" | "US";
   limit: number;
   offset?: number;
@@ -16,5 +16,6 @@ export interface QueryParams {
   Search Response
 */
 export interface SpotifySearchResponse {
-  albums: PagingObject<SimplifiedAlbum>;
+  albums?: PagingObject<SimplifiedAlbum>;
+  tracks?: PagingObject<TrackObject>;
 }

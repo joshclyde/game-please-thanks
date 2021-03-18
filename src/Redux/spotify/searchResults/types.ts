@@ -1,4 +1,4 @@
 export interface SearchAttributes {
   term: string;
-  type: "album";
+  type: "album" | "track";
 }

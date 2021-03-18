@@ -7,19 +7,33 @@ const { reducer: value, addCase } = makeReducer<Record<string, Record<string, st
 });
 addCase(
   makeCaseAddSpotifySearchResults((state, { payload: { term, type, searchResults } }) => {
-    const albums = searchResults.albums?.items;
-    const newSearchResults = albums.reduce(
-      (accumulated: Record<string, string>, simpleAlbum, index) => {
-        accumulated[index] = simpleAlbum.id;
-        return accumulated;
-      },
-      {},
-    );
+    const id = `${type}-${term}`;
+    let stateResults: Record<string, string>;
+    if (type === `album`) {
+      const albums = searchResults.albums?.items;
+      stateResults = albums.reduce(
+        (accumulated: Record<string, string>, simpleAlbum, index) => {
+          accumulated[index] = simpleAlbum.id;
+          return accumulated;
+        },
+        {},
+      );
+    }
+    if (type === `track`) {
+      const tracks = searchResults.tracks?.items;
+      stateResults = tracks.reduce(
+        (accumulated: Record<string, string>, track, index) => {
+          accumulated[index] = track.id;
+          return accumulated;
+        },
+        {},
+      );
+    }
     return {
       ...state,
-      [`${type}-${term}`]: {
-        ...state[`${type}-${term}`],
-        ...newSearchResults,
+      [id]: {
+        ...state[id],
+        ...stateResults,
       },
     };
   }),
