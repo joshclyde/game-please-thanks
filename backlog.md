@@ -51,6 +51,18 @@
 
 ## Project Features/Domains Ideas
 
+### Explore Route
+
+- [ ] allow search of songs (tracks?)
+  - redux
+    - create a type of "songs" in searchResults redux attributes
+    - create a "songs" key to the spotify redux state (similar to simplifiedAlbums)
+    - create selectors for songs
+    - create typings in @Api
+  - create the react components to display a songs/songs
+    - move the MainText and SubText from SearchResultsListEntity into Design? then can re-use
+  - create tabs on the explore form for album/song/artist
+
 ### Misc.
 
 - [ ] make header better
