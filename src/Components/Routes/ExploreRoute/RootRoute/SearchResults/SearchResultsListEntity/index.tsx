@@ -37,17 +37,15 @@ const SubText = styled.p`
 `;
 
 interface Props {
-  searchResultsKey: string;
+  term: string;
+  type: "album";
   index: number;
 }
 
-const SearchResultsListEntityFC: FC<Props> = ({ searchResultsKey, index }) => {
-  const imageUrl = useSelectSpotifySearchResultsAlbumImageUrl(searchResultsKey, index);
-  const name = useSelectSpotifySearchResultsAlbumName(searchResultsKey, index);
-  const artistName = useSelectSpotifySearchResultsAlbumArtistName(
-    searchResultsKey,
-    index,
-  );
+const SearchResultsListEntityFC: FC<Props> = ({ term, type, index }) => {
+  const imageUrl = useSelectSpotifySearchResultsAlbumImageUrl({ term, type }, index);
+  const name = useSelectSpotifySearchResultsAlbumName({ term, type }, index);
+  const artistName = useSelectSpotifySearchResultsAlbumArtistName({ term, type }, index);
 
   return (
     <Tile>

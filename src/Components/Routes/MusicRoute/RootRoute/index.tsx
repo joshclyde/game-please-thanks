@@ -20,9 +20,6 @@ const RootRouteFC: FC<{}> = () => {
           </a>
         </li>
         <li>
-          <Link to="/music/search">Search Page</Link>
-        </li>
-        <li>
           <Link to="/music/devices">Music Devices</Link>
         </li>
         <li>

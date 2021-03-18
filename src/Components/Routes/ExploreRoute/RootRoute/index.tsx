@@ -8,18 +8,6 @@ import { useSelectFormInputValue, useLoadSpotifySearchResults } from "@Redux";
 
 import { SearchResults } from "./SearchResults";
 
-// TODO: don't have this function copied everywhere
-const makeSpotifySearchResultsKey = ({
-  q,
-  type,
-  market,
-  limit,
-  offset,
-  include_external,
-}: Omit<SpotifySearchParams, "accessToken">) => {
-  return `${q}${type}${market}${limit}${offset}${include_external}`;
-};
-
 const formId = `explore-form`;
 const inputId = `explore-form-search`;
 
@@ -38,21 +26,14 @@ const StyledInput = styled.div`
 `;
 
 const useOnSubmitForm = () => {
-  const searchTerm = useSelectFormInputValue(formId, inputId);
+  const searchBoxTerm = useSelectFormInputValue(formId, inputId) as string;
   const load = useLoadSpotifySearchResults();
   const [submittedTerm, setSubmittedTerm] = useState(``);
   const onSubmitForm = useCallback(() => {
-    setSubmittedTerm(() =>
-      makeSpotifySearchResultsKey({
-        q: searchTerm as string,
-        limit: 10,
-        market: `from_token`,
-        type: `album`,
-      }),
-    );
-    load(searchTerm as string);
-  }, [searchTerm, load]);
-  return { onSubmitForm, submittedTerm };
+    setSubmittedTerm(() => searchBoxTerm as string);
+    load({ term: searchBoxTerm, type: `album` });
+  }, [searchBoxTerm, load]);
+  return { onSubmitForm, term: submittedTerm, type: `album` as const };
 };
 
 const ExploreForm = styled(Form)`
@@ -70,12 +51,12 @@ const StyledSearchResults = styled(SearchResults)`
 `;
 
 const RootRouteFC: FC<{}> = () => {
-  const { onSubmitForm, submittedTerm } = useOnSubmitForm();
+  const { onSubmitForm, term, type } = useOnSubmitForm();
   return (
     <Div>
       <ExploreForm formId={formId} onSubmit={onSubmitForm}>
         <StyledInput as={TextInputWithIcon} Input={Input as any} Icon={Icon} />
-        <StyledSearchResults searchResultsKey={submittedTerm} />
+        <StyledSearchResults term={term} type={type} />
       </ExploreForm>
     </Div>
   );

@@ -8,7 +8,8 @@ import { SearchResultsListEntity } from "./SearchResultsListEntity";
 
 interface SearchResultsProps {
   className?: string;
-  searchResultsKey: string;
+  term: string;
+  type: "album";
 }
 
 const Div = styled.div`
@@ -17,14 +18,12 @@ const Div = styled.div`
   }
 `;
 
-const SearchResultsFC: FC<SearchResultsProps> = ({ searchResultsKey, className }) => {
-  const searchResultsLength = useSelectSpotifySearchResultsNumberOfAlbums(
-    searchResultsKey,
-  );
+const SearchResultsFC: FC<SearchResultsProps> = ({ term, type, className }) => {
+  const searchResultsLength = useSelectSpotifySearchResultsNumberOfAlbums({ term, type });
   return (
     <Div className={className}>
       {range(0, searchResultsLength).map((index) => (
-        <SearchResultsListEntity searchResultsKey={searchResultsKey} index={index} />
+        <SearchResultsListEntity term={term} type={type} index={index} />
       ))}
     </Div>
   );
