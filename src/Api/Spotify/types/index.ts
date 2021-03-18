@@ -1,31 +1,21 @@
 /*
-  Search Request Query Params
-*/
-export interface QueryParams {
-  q: string;
-  type: "album" | "artist" | "playlist";
-  market: "from_token" | "US";
-  limit: number;
-  offset?: number;
-  include_external?: "audio";
-}
+  Spotify has a "Objects Index" in its documentation.
+  https://developer.spotify.com/documentation/web-api/reference/#objects-index
 
-/*
-  Search Response
+  For now, I will re-use the names from the Objects Index and typing of it.
 */
-export interface SpotifySearchResponse {
-  albums: Albums;
-}
-export interface Albums {
+
+export interface PagingObject<Item> {
   href: string;
-  items?: Array<AlbumsEntity> | null;
+  items?: Array<Item>;
   limit: number;
   next: string;
   offset: number;
-  previous?: null;
+  previous?: string;
   total: number;
 }
-export interface AlbumsEntity {
+
+export interface SimplifiedAlbum {
   album_type: string;
   artists?: Array<ArtistsEntity> | null;
   external_urls: ExternalUrls;

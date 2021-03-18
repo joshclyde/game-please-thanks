@@ -1,41 +1,25 @@
 import { useCallback } from "react";
 
-import { spotifySearch, SpotifySearchParams } from "@Api";
+import { spotifySearch } from "@Api";
 import { makeLoading } from "@ReduxUtils";
 
 import { useSelectSpotifyAccessToken } from "../../spotifyAccessToken/hooks";
+import { SearchAttributes } from "../types";
 import { useAddSpotifySearchResults } from "../value/hooks";
-
-const makeSpotifySearchResultsKey = ({
-  q,
-  type,
-  market,
-  limit,
-  offset,
-  include_external,
-}: Omit<SpotifySearchParams, "accessToken">) => {
-  return `${q}${type}${market}${limit}${offset}${include_external}`;
-};
 
 const useExecute = () => {
   const accessToken = useSelectSpotifyAccessToken();
   const addSearchResults = useAddSpotifySearchResults();
   return useCallback(
-    async (searchTerm: string) => {
-      const searchResultsKey = makeSpotifySearchResultsKey({
-        q: searchTerm,
-        limit: 10,
-        market: `from_token`,
-        type: `album`,
-      });
+    async ({ term, type }: SearchAttributes) => {
       const { data } = await spotifySearch({
         accessToken,
-        q: searchTerm,
+        q: term,
         limit: 10,
         market: `from_token`,
-        type: `album`,
+        type,
       });
-      addSearchResults(searchResultsKey, data);
+      addSearchResults({ term, type }, data);
     },
     [accessToken, addSearchResults],
   );
@@ -43,7 +27,7 @@ const useExecute = () => {
 
 const { reducers: load, useLoad: useLoadSpotifySearchResults } = makeLoading({
   useExecute,
-  START: `INITIATE_LOADING_SPOTIFY_SEARCH_RESULTS`,
+  START: `START_LOADING_SPOTIFY_SEARCH_RESULTS`,
   SUCCESS: `SUCCESS_LOADING_SPOTIFY_SEARCH_RESULTS`,
   FAILURE: `FAILURE_LOADING_SPOTIFY_SEARCH_RESULTS`,
 });

@@ -1,2 +1,2 @@
-export * from "./Music";
+export * from "./Spotify";
 export * from "./Youtube";
