@@ -36,7 +36,7 @@ interface Props {
   index: number;
 }
 
-const SearchResultsListEntityFC: FC<Props> = ({ term, index }) => {
+const ListEntityFC: FC<Props> = ({ term, index }) => {
   const imageUrl = useSelectSpotifySearchResultsAlbumImageUrl(
     { term, type: `album` },
     index,
@@ -58,4 +58,4 @@ const SearchResultsListEntityFC: FC<Props> = ({ term, index }) => {
   );
 };
 
-export const SearchResultsListEntity = SearchResultsListEntityFC;
+export const ListEntity = ListEntityFC;

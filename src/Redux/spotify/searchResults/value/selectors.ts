@@ -28,3 +28,13 @@ export const useSelectSpotifySearchResultsAlbumImageUrl = makeUseSelector(
     return state.spotify.simplifiedAlbums[id]?.images[1].url;
   },
 );
+
+export const useSelectSpotifySearchResultsNumberOfTracks = makeUseSelector(
+  ({ term, type }: SearchAttributes) => (state: RootState) =>
+    Object.keys(state.spotify.searchResults.value[`${type}-${term}`] || {}).length,
+);
+
+export const useSelectSpotifySearchResultsTrackIds = makeUseSelector(
+  ({ term, type }: SearchAttributes) => (state: RootState) =>
+    Object.values(state.spotify.searchResults.value[`${type}-${term}`] || {}),
+);

@@ -2,11 +2,12 @@ import React, { FC } from "react";
 import styled from "styled-components";
 
 import { IconMoreVertical, Tile, Text } from "@Design";
-// import {
-//   useSelectSpotifySearchResultsAlbumName,
-//   useSelectSpotifySearchResultsAlbumArtistName,
-//   useSelectSpotifySearchResultsAlbumImageUrl,
-// } from "@Redux";
+import {
+  useSelectSpotifyTrackName,
+  useSelectArtistNameForTrack,
+  useSelectImageUrlForTrack,
+  useSelectSpotifyTrackLengthPrettified,
+} from "@Redux";
 
 const StyledTile = styled(Tile)`
   display: flex;
@@ -45,23 +46,14 @@ const TrackLength = styled(Text).attrs(() => ({ size: `xs`, soft: true }))`
 `;
 
 interface Props {
-  term?: string;
-  index?: number;
-  imageUrl: string;
-  name: string;
-  artistName: string;
+  trackId: string;
 }
 
-const TrackListEntityFC: FC<Props> = ({ term, index, imageUrl, name, artistName }) => {
-  // const imageUrl = useSelectSpotifySearchResultsAlbumImageUrl(
-  //   { term, type: `track` },
-  //   index,
-  // );
-  // const name = useSelectSpotifySearchResultsAlbumName({ term, type: `track` }, index);
-  // const artistName = useSelectSpotifySearchResultsAlbumArtistName(
-  //   { term, type: `track` },
-  //   index,
-  // );
+const ListEntityFC: FC<Props> = ({ trackId }) => {
+  const name = useSelectSpotifyTrackName(trackId);
+  const artistName = useSelectArtistNameForTrack(trackId);
+  const imageUrl = useSelectImageUrlForTrack(trackId);
+  const length = useSelectSpotifyTrackLengthPrettified(trackId);
 
   return (
     <StyledTile>
@@ -73,11 +65,11 @@ const TrackListEntityFC: FC<Props> = ({ term, index, imageUrl, name, artistName 
         </NameArtistDiv>
       </Left>
       <Right>
-        <TrackLength>2:59</TrackLength>
+        <TrackLength>{length}</TrackLength>
         <IconMoreVertical color="#8C8C8C" />
       </Right>
     </StyledTile>
   );
 };
 
-export const TrackListEntity = TrackListEntityFC;
+export const ListEntity = ListEntityFC;

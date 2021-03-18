@@ -46,7 +46,7 @@ export interface ImagesEntity {
 export interface TrackObject {
   album: SimplifiedAlbum;
   artists: Array<ArtistsEntity>;
-  available_markets: Array<string>;
+  available_markets?: Array<string>;
   /*
     NOTE: this is not the number of where the track is on the disc, but rather which disc
     the track is on if there are multiple discs (so will be 1 99% of the time)
@@ -67,20 +67,20 @@ export interface TrackObject {
 
     TODO: will I need to worry about this ever?
   */
-  linked_from: null;
+  linked_from?: null;
   name: string;
   popularity: number;
   preview_url: string;
-  restrictions: TrackRestrictionObject;
+  restrictions?: TrackRestrictionObject;
   track_number: number;
   type: "track";
   uri: string;
 }
 
 interface ExternalIdObject {
-  ean: string;
-  isrc: string;
-  upc: string;
+  ean?: string;
+  isrc?: string;
+  upc?: string;
 }
 
 interface ExternalUrlObject {
