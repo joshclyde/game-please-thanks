@@ -45,7 +45,7 @@ const theme = {
   // tile: `#1A1A1A`,
   tile: `#262626`,
   text: `#CCCCCC`,
-  mellowText: `#8C8C8C`,
+  softText: `#8C8C8C`,
 };
 
 // TODO: probs do this differently

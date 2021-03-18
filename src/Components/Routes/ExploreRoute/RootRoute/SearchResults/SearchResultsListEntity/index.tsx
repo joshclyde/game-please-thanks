@@ -1,17 +1,16 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
+import { Tile, Text } from "@Design";
 import {
   useSelectSpotifySearchResultsAlbumName,
   useSelectSpotifySearchResultsAlbumArtistName,
   useSelectSpotifySearchResultsAlbumImageUrl,
 } from "@Redux";
 
-const Tile = styled.div`
+const StyledTile = styled(Tile)`
   display: flex;
   align-items: center;
-
-  background-color: ${(props) => props.theme.tile};
   width: 100%;
 `;
 
@@ -24,15 +23,11 @@ const TextDiv = styled.div`
   margin: 0px 0px 0px 8px;
 `;
 
-const MainText = styled.p`
-  color: ${(props) => props.theme.text};
-  font-size: 0.75em;
+const Name = styled(Text)`
   margin: 0px 0px 2px 0px;
 `;
 
-const SubText = styled.p`
-  color: ${(props) => props.theme.mellowText};
-  font-size: 0.625em;
+const Artist = styled(Text).attrs(() => ({ size: `xs`, soft: true }))`
   margin: 0px;
 `;
 
@@ -48,13 +43,13 @@ const SearchResultsListEntityFC: FC<Props> = ({ term, type, index }) => {
   const artistName = useSelectSpotifySearchResultsAlbumArtistName({ term, type }, index);
 
   return (
-    <Tile>
+    <StyledTile>
       <Img src={imageUrl} />
       <TextDiv>
-        <MainText>{name}</MainText>
-        <SubText>{artistName}</SubText>
+        <Name>{name}</Name>
+        <Artist>{artistName}</Artist>
       </TextDiv>
-    </Tile>
+    </StyledTile>
   );
 };
 
