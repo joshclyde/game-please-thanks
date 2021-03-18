@@ -1,11 +1,11 @@
-import { SpotifySearchResponse, SpotifyDevice } from "@Api";
+import { SpotifyDevice, SimplifiedAlbum } from "@Api";
 import { LoadingState } from "@ReduxUtils";
 
 export interface SpotifyState {
   spotifyAccessToken: string;
   searchResults: {
     load: LoadingState;
-    value: Record<string, SpotifySearchResponse>;
+    value: Record<string, Record<string, string>>;
   };
   devices: {
     load: LoadingState;
@@ -17,4 +17,5 @@ export interface SpotifyState {
       load: LoadingState;
     };
   };
+  simplifiedAlbums: Record<string, SimplifiedAlbum>;
 }
