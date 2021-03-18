@@ -31,6 +31,7 @@ const SearchResultsFC: FC<SearchResultsProps> = ({ term, type, className }) => {
       </Div>
     );
   }
+  return <div>No search results</div>;
 };
 
 export const SearchResults = SearchResultsFC;

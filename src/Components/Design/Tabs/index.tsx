@@ -7,6 +7,7 @@ interface TabsProps {
   className?: string;
   index: number;
   names: Array<string>;
+  onClickTab?: (index: number) => void;
 }
 
 const Div = styled.div`
@@ -14,11 +15,17 @@ const Div = styled.div`
   column-gap: 4px;
 `;
 
-export const Tabs: FC<TabsProps> = ({ names, index }) => {
+export const Tabs: FC<TabsProps> = ({ names, index, onClickTab, className }) => {
   return (
-    <Div>
+    <Div className={className}>
       {names.map((name, currentIndex) => {
-        return <Tab name={name} isSelected={index === currentIndex} />;
+        return (
+          <Tab
+            name={name}
+            isSelected={index === currentIndex}
+            onClick={() => onClickTab(currentIndex)}
+          />
+        );
       })}
     </Div>
   );

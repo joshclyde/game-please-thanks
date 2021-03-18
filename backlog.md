@@ -58,19 +58,21 @@
 
 ### Explore Route
 
-- [ ] allow search of songs (tracks?)
+- [x] allow search of songs (tracks?)
   - redux
-    - create a type of "songs" in searchResults redux attributes
-    - create a "songs" key to the spotify redux state (similar to simplifiedAlbums)
-    - create selectors for songs
-    - create typings in @Api
+    - [x] create a type of "tracks" in searchResults redux attributes
+    - [x] create a "tracks" key to the spotify redux state (similar to simplifiedAlbums)
+    - [x] create selectors for tracks
+    - [x] create typings in @Api
   - [x] create the react components to display a songs/songs
     - [x] move the MainText and SubText from SearchResultsListEntity into Design? then can re-use
-  - create tabs on the explore form for album/song/artist
+  - [x] create tabs on the explore form for album/song/artist
 - [ ] create search of artists
 - [ ] create paging through search results
 - [ ] create loading spinner
+- [ ] normalize redux data
 - [ ] make the MoreVertical options icon functional
+- [ ] at the end of everything, double check styling
 
 ### Misc.
 
