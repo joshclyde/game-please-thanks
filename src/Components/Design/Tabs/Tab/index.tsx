@@ -5,6 +5,7 @@ interface TabProps {
   className?: string;
   name: string;
   isSelected: boolean;
+  onClick?: () => void;
 }
 
 const Div = styled.div<{ isSelected: boolean }>`
@@ -22,8 +23,8 @@ const Line = styled.div<{ isSelected: boolean }>`
   min-width: 40px;
 `;
 
-export const Tab: FC<TabProps> = ({ className, name, isSelected }) => (
-  <Div className={className} isSelected={isSelected}>
+export const Tab: FC<TabProps> = ({ className, name, isSelected, onClick }) => (
+  <Div className={className} isSelected={isSelected} onClick={onClick}>
     {name}
     <Line isSelected={isSelected} />
   </Div>

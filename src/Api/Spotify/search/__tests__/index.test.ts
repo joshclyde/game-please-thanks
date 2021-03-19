@@ -20,7 +20,6 @@ describe(`Spotify Search`, () => {
       accessToken: `ACCESSTOKENTESTVALUE`,
       q: `bts`,
       type: `album`,
-      market: `from_token`,
       limit: 12,
     });
     expect(result).toMatchSnapshot();
@@ -31,7 +30,6 @@ describe(`Spotify Search`, () => {
       accessToken: `ACCESSTOKENTESTVALUE`,
       q: `bts`,
       type: `album`,
-      market: `from_token`,
       limit: 12,
     });
     expect(mockedAxios.get.mock.calls).toMatchSnapshot();

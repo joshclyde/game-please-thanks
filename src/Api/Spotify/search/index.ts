@@ -2,14 +2,9 @@ import axios from "axios";
 
 import { SpotifySearchResponse, QueryParams } from "./types";
 
-export interface SpotifySearchParams {
+export interface SpotifySearchParams
+  extends Pick<QueryParams, "q" | "type" | "limit" | "offset"> {
   accessToken: string;
-  q: string;
-  type: "album" | "artist" | "playlist";
-  market: "from_token" | "US";
-  limit: number;
-  offset?: number;
-  include_external?: "audio";
 }
 
 const url = `https://api.spotify.com/v1/search`;
@@ -18,10 +13,8 @@ export const spotifySearch = async ({
   accessToken,
   q,
   type,
-  market,
   limit,
   offset,
-  include_external,
 }: SpotifySearchParams) => {
   const headers = {
     Authorization: `Bearer ` + accessToken,
@@ -29,10 +22,10 @@ export const spotifySearch = async ({
   const params: QueryParams = {
     q,
     type,
-    market,
+    market: `from_token`,
     limit,
     offset,
-    include_external,
+    // include_external,
   };
 
   const a = await axios.get<SpotifySearchResponse>(url, {

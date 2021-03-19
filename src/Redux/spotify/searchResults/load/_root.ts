@@ -16,7 +16,6 @@ const useExecute = () => {
         accessToken,
         q: term,
         limit: 10,
-        market: `from_token`,
         type,
       });
       addSearchResults({ term, type }, data);

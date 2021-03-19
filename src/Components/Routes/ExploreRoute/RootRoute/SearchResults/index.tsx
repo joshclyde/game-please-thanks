@@ -1,15 +1,13 @@
-import range from "lodash/fp/range";
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { useSelectSpotifySearchResultsNumberOfAlbums } from "@Redux";
-
-import { SearchResultsListEntity } from "./SearchResultsListEntity";
+import { Albums } from "./Albums";
+import { Tracks } from "./Tracks";
 
 interface SearchResultsProps {
   className?: string;
   term: string;
-  type: "album";
+  type: "album" | "track";
 }
 
 const Div = styled.div`
@@ -19,14 +17,21 @@ const Div = styled.div`
 `;
 
 const SearchResultsFC: FC<SearchResultsProps> = ({ term, type, className }) => {
-  const searchResultsLength = useSelectSpotifySearchResultsNumberOfAlbums({ term, type });
-  return (
-    <Div className={className}>
-      {range(0, searchResultsLength).map((index) => (
-        <SearchResultsListEntity term={term} type={type} index={index} />
-      ))}
-    </Div>
-  );
+  if (type === `album`) {
+    return (
+      <Div className={className}>
+        <Albums term={term} />;
+      </Div>
+    );
+  }
+  if (type === `track`) {
+    return (
+      <Div className={className}>
+        <Tracks term={term} />;
+      </Div>
+    );
+  }
+  return <div>No search results</div>;
 };
 
 export const SearchResults = SearchResultsFC;

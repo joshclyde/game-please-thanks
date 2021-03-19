@@ -3,10 +3,9 @@ import React, { useEffect } from "react";
 
 import { useAddSpotifySearchResults } from "@Redux";
 
-// eslint-disable-next-line import/no-namespace
-import { SearchResultsListEntity } from "../";
+import { ListEntity } from "../";
 
-storiesOf(`ExploreRoute/SearchResultsListEntity`, module).add(`ListEntity`, () => {
+storiesOf(`ExploreRoute/SearchResults/Albums`, module).add(`ListEntity`, () => {
   const add = useAddSpotifySearchResults();
   useEffect(() => {
     add(
@@ -468,7 +467,7 @@ storiesOf(`ExploreRoute/SearchResultsListEntity`, module).add(`ListEntity`, () =
 
   return (
     <div>
-      <SearchResultsListEntity term="bts" type="album" index={0} />
+      <ListEntity term="bts" index={0} />
     </div>
   );
 });

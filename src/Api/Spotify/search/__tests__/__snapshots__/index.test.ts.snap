@@ -9,7 +9,6 @@ Array [
         "Authorization": "Bearer ACCESSTOKENTESTVALUE",
       },
       "params": Object {
-        "include_external": undefined,
         "limit": 12,
         "market": "from_token",
         "offset": undefined,

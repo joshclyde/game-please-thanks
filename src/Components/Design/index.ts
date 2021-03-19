@@ -12,3 +12,4 @@ export * from "./IconTabs";
 export * from "./TextInput";
 export * from "./TextInputWithIcon";
 export * from "./Tabs";
+export * from "./Text";

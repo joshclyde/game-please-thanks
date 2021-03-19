@@ -4,4 +4,6 @@ export {
   useSelectSpotifySearchResultsAlbumName,
   useSelectSpotifySearchResultsAlbumArtistName,
   useSelectSpotifySearchResultsAlbumImageUrl,
+  useSelectSpotifySearchResultsNumberOfTracks,
+  useSelectSpotifySearchResultsTrackIds,
 } from "./selectors";

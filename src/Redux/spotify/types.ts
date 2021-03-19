@@ -1,4 +1,4 @@
-import { SpotifyDevice, SimplifiedAlbum } from "@Api";
+import { SpotifyDevice, SimplifiedAlbum, TrackObject } from "@Api";
 import { LoadingState } from "@ReduxUtils";
 
 export interface SpotifyState {
@@ -18,4 +18,5 @@ export interface SpotifyState {
     };
   };
   simplifiedAlbums: Record<string, SimplifiedAlbum>;
+  tracks: Record<string, TrackObject>;
 }

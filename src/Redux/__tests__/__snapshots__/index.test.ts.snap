@@ -55937,6 +55937,7 @@ This consumable increases your Physical Power by 40, Magical Power by 70 and Coo
     },
     "simplifiedAlbums": Object {},
     "spotifyAccessToken": null,
+    "tracks": Object {},
   },
 }
 `;
