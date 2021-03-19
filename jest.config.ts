@@ -25,7 +25,6 @@ const config: Config.InitialOptions = {
       "@DesignRedux": [`./src/Components/DesignRedux/index`],
       "@Common": [`./src/Components/Common/index`],
       "@Domain": [`./src/Components/Domain/index`],
-      "@SmiteCommon": [`./src/Components/Domain/Smite/Common/index`],
       "@Routes": [`./src/Components/Routes/index`],
       "@Firebase": [`./src/Firebase/index`],
       "@Types": [`./src/Types/index`],

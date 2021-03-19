@@ -20,11 +20,9 @@ Need to refactor some of this redux state to be the set pattern.
 
 - [x] auth
 - [ ] design
-- [ ] flashcard
 - [ ] spotify
 - [ ] schedule
 - [ ] shared
-- [ ] smite
 - [ ] youtube
 
 Is there a way to have type safety around ensuring there are no duplicate action types? Not sure how feasible that is or how neccesary.
