@@ -14,7 +14,8 @@ export const useSelectSpotifyTrackLengthPrettified = makeUseSelector(
     const ms = state.spotify.tracks[trackId]?.duration_ms;
     const msMinutes = ms - (ms % 60000);
     const msSeconds = ms - msMinutes - ((ms - msMinutes) % 1000);
-    const seconds = msSeconds / 1000;
+    let seconds = (msSeconds / 1000).toString();
+    seconds = seconds.length === 1 ? `0${seconds}` : seconds;
     const minutes = msMinutes / 60000;
     return `${minutes}:${seconds}`;
   },
