@@ -29,8 +29,6 @@ const HeaderFC: FC<{}> = () => (
       <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/explore">Explore</HeaderLink>
       <HeaderLink href="/bookmarks">Bookmarks</HeaderLink>
-      <HeaderLink href="/flashcards">Flashcards</HeaderLink>
-      <HeaderLink href="/smite/gods">Smite</HeaderLink>
       <HeaderLink href="/schedule">Schedule</HeaderLink>
       <HeaderLink href="/music">Music</HeaderLink>
     </Container>

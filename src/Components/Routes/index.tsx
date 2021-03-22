@@ -18,7 +18,7 @@ const useSubscribeSpotifyAccessTokenToLocalStorage = () => {
   const setSpotifyAccessToken = useSetSpotifyAccessToken();
   useEffect(() => {
     const spotifyAccessTokenLocalStorage = localStorage.getItem(`spotifyAccessToken`);
-    if (!isCopiedFromLocal) {
+    if (!isCopiedFromLocal && spotifyAccessTokenLocalStorage) {
       try {
         setSpotifyAccessToken(spotifyAccessTokenLocalStorage);
         setIsCopiedFromLocal(true);

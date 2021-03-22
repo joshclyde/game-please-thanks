@@ -64,7 +64,7 @@ export const throwOrGetCurrentUserUID = () => {
   }
 };
 export const getIsUserSignedIn = () => Boolean(getCurrentUser());
-export const consoleLogCurrentUser = () => console.log(getCurrentUser().uid);
+export const consoleLogCurrentUser = () => console.log(getCurrentUser()?.uid);
 
 /*
   Firebase Documentation

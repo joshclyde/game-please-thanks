@@ -3,6 +3,7 @@ import React, { FC, useEffect, useCallback } from "react";
 import { useSelectDoesFormExist, useCreateForm } from "@Redux";
 
 interface OwnProps extends React.FormHTMLAttributes<HTMLFormElement> {
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
   formId: string;
 }
 interface Props extends OwnProps {}

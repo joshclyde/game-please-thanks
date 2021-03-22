@@ -5,7 +5,7 @@ interface TabProps {
   className?: string;
   name: string;
   isSelected: boolean;
-  onClick?: () => void;
+  onClick: () => void;
 }
 
 const Div = styled.div<{ isSelected: boolean }>`

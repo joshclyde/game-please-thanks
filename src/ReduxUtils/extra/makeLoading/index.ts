@@ -42,25 +42,28 @@ export const makeLoading = <Start, Success, Failure, ExecuteArgs extends Array<a
     }),
   );
 
+  const reduceTrue = (): boolean => true;
+  const reduceFalse = (): boolean => false;
+
   const pending = makeReducer({ initialState: false });
-  pending.addCase(makeCaseStart(() => true));
-  pending.addCase(makeCaseSuccess(() => false));
-  pending.addCase(makeCaseFailure(() => false));
+  pending.addCase(makeCaseStart(reduceTrue));
+  pending.addCase(makeCaseSuccess(reduceFalse));
+  pending.addCase(makeCaseFailure(reduceFalse));
 
   const success = makeReducer({ initialState: false });
-  success.addCase(makeCaseStart(() => false));
-  success.addCase(makeCaseSuccess(() => true));
-  success.addCase(makeCaseFailure(() => false));
+  success.addCase(makeCaseStart(reduceFalse));
+  success.addCase(makeCaseSuccess(reduceTrue));
+  success.addCase(makeCaseFailure(reduceFalse));
 
   const failure = makeReducer({ initialState: false });
-  failure.addCase(makeCaseStart(() => false));
-  failure.addCase(makeCaseSuccess(() => false));
-  failure.addCase(makeCaseFailure(() => true));
+  failure.addCase(makeCaseStart(reduceFalse));
+  failure.addCase(makeCaseSuccess(reduceFalse));
+  failure.addCase(makeCaseFailure(reduceTrue));
 
   // TODO: this probably is not allowed to be an Error type
-  const error = makeReducer<Error>({ initialState: null });
-  error.addCase(makeCaseStart(() => null));
-  error.addCase(makeCaseSuccess(() => null));
+  const error = makeReducer<Error | null>({ initialState: null });
+  error.addCase(makeCaseStart<Error | null>(() => null));
+  error.addCase(makeCaseSuccess<Error | null>(() => null));
   error.addCase(makeCaseFailure((_state, action) => action.payload.error));
 
   const reducers = combineReducers({

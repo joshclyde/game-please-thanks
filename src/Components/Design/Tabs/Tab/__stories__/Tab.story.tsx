@@ -5,7 +5,7 @@ import { Tab } from "../";
 
 storiesOf(`Design/Tab`, module).add(`tab`, () => (
   <>
-    <Tab name={`Album`} isSelected={true} />
-    <Tab name={`Album`} isSelected={false} />
+    <Tab name={`Album`} isSelected={true} onClick={() => undefined} />
+    <Tab name={`Album`} isSelected={false} onClick={() => undefined} />
   </>
 ));

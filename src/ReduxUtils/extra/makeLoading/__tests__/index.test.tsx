@@ -7,7 +7,7 @@ import { makeLoading } from "../";
 
 describe(`GIVEN a redux store created from makeLoading ReduxUtils`, () => {
   let store: ReturnType<typeof createStore>;
-  let wrapper: React.FC;
+  let wrapper: React.FC<{}>;
   let useLoad: () => (...args: Array<any>) => void;
   let mockExecute = jest.fn();
   let resolveLoad: (value?: any) => void;
@@ -27,9 +27,7 @@ describe(`GIVEN a redux store created from makeLoading ReduxUtils`, () => {
     });
     useLoad = loading.useLoad;
     store = createStore(loading.reducers);
-    wrapper = ({ children }: { children: React.ReactNode }) => (
-      <Provider store={store}>{children}</Provider>
-    );
+    wrapper = ({ children }) => <Provider store={store}>{children}</Provider>;
   });
   afterEach(() => {
     jest.clearAllMocks();

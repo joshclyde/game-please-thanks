@@ -6,10 +6,8 @@ import { useSelectIsAuthenticated, useAuthListener } from "@Redux";
 
 import { BookmarksRoute } from "./BookmarksRoute";
 import { ExploreRoute } from "./ExploreRoute";
-import { FlashcardsRoute } from "./FlashcardsRoute";
 import { MusicRoute } from "./MusicRoute";
 import { ScheduleRoute } from "./ScheduleRoute";
-import { SmiteRoute } from "./SmiteRoute";
 import { StatusRoute } from "./StatusRoute";
 import { YoutubeRoute } from "./YoutubeRoute";
 
@@ -21,9 +19,7 @@ const AuthRoutesFC: FC<{}> = () => {
       {isAuthenticated ? (
         <Switch>
           <Route path="/music" component={MusicRoute} />
-          <Route path="/flashcards" component={FlashcardsRoute} />
           <Route path="/bookmarks" component={BookmarksRoute} />
-          <Route path="/smite" component={SmiteRoute} />
           <Route path="/schedule" component={ScheduleRoute} />
           <Route path="/status" component={StatusRoute} />
           <Route path="/youtube" component={YoutubeRoute} />

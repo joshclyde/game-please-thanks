@@ -35,9 +35,7 @@ describe(`GIVEN a redux store created from ReduxUtils`, () => {
     // uses both state and action
     addCase(makeCase<string>((state, action) => `${state} AND ${action.payload.value}`));
     store = createStore(combineReducers({ stringValue: reducer }));
-    wrapper = ({ children }: { children: React.ReactNode }) => (
-      <Provider store={store}>{children}</Provider>
-    );
+    wrapper = ({ children }) => <Provider store={store}>{children}</Provider>;
   });
   test(`THEN the initial state should be as expected`, () => {
     expect(store.getState()).toMatchInlineSnapshot(`
