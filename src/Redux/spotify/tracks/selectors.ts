@@ -29,6 +29,6 @@ export const useSelectArtistNameForTrack = makeUseSelector(
 
 export const useSelectImageUrlForTrack = makeUseSelector(
   (trackId: string) => (state: RootState) => {
-    return state.spotify.tracks[trackId]?.album.images[1].url;
+    return state.spotify.tracks[trackId]?.album.images?.[1].url;
   },
 );

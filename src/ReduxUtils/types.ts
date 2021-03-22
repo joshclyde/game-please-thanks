@@ -1,4 +1,3 @@
-// I think I like this name?
 export interface AnyAction {
   type: string;
   payload: object;
@@ -10,9 +9,9 @@ export interface GenericAction<Payload extends object> extends AnyAction {
 
 export type AnyReducer = (state: any, action: AnyAction) => any;
 
-export type GenericReducer<StateSlice> = (
+export type GenericReducer<StateSlice, Action extends AnyAction> = (
   state: StateSlice,
-  action: AnyAction,
+  action: Action,
 ) => StateSlice;
 
 export interface LoadingState {

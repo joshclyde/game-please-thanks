@@ -7,7 +7,7 @@ interface TabsProps {
   className?: string;
   index: number;
   names: Array<string>;
-  onClickTab?: (index: number) => void;
+  onClickTab: (index: number) => void;
 }
 
 const Div = styled.div`

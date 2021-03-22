@@ -18,14 +18,14 @@ export const useSelectSpotifySearchResultsAlbumName = makeUseSelector(
 export const useSelectSpotifySearchResultsAlbumArtistName = makeUseSelector(
   ({ term, type }: SearchAttributes, index: number) => (state: RootState) => {
     const id = state.spotify.searchResults.value[`${type}-${term}`]?.[index];
-    return state.spotify.simplifiedAlbums[id]?.artists[0].name;
+    return state.spotify.simplifiedAlbums[id]?.artists?.[0].name;
   },
 );
 
 export const useSelectSpotifySearchResultsAlbumImageUrl = makeUseSelector(
   ({ term, type }: SearchAttributes, index: number) => (state: RootState) => {
     const id = state.spotify.searchResults.value[`${type}-${term}`]?.[index];
-    return state.spotify.simplifiedAlbums[id]?.images[1].url;
+    return state.spotify.simplifiedAlbums[id]?.images?.[1].url;
   },
 );
 

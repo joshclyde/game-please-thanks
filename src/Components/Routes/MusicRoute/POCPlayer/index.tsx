@@ -14,10 +14,14 @@ const POCPlayerFC: FC<{}> = () => {
   const play = useSpotifyPlay();
   const deviceId = useSelectSpotifyThisDeviceId();
   const onClick = useCallback(() => {
-    play({
-      contextURI: `spotify:album:2qehskW9lYGWfYb0xPZkrS`, // BTS's BE album
-      deviceId,
-    });
+    if (deviceId) {
+      play({
+        contextURI: `spotify:album:2qehskW9lYGWfYb0xPZkrS`, // BTS's BE album
+        deviceId,
+      });
+    } else {
+      console.log(`DEVICE ID DOESNT EXIST`);
+    }
   }, [play, deviceId]);
   return (
     <div>

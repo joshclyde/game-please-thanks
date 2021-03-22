@@ -459,7 +459,7 @@ storiesOf(`ExploreRoute/SearchResults`, module).add(`SearchResults`, () => {
           limit: 10,
           next: `https://api.spotify.com/v1/search?query=bts&type=album&market=from_token&offset=10&limit=10`,
           offset: 0,
-          previous: null,
+          previous: undefined,
           total: 426,
         },
       },

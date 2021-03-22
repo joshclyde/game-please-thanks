@@ -25,7 +25,7 @@ const Icon = (props: any) => (
 
 storiesOf(`DesignRedux/FormTextInput`, module).add(`form text input`, () => (
   <>
-    <Form formId={formId}>
+    <Form formId={formId} onSubmit={() => undefined}>
       {/* <FormTextInput formId={formId} id="inputStorybook" name="input storybook" /> */}
       <TextInputWithIcon Input={Input as any} Icon={Icon} />
     </Form>

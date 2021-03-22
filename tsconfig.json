@@ -1,17 +1,15 @@
 {
   "compilerOptions": {
+    "jsx": "react",
+    "module": "commonjs",
     "outDir": "./dist/",
     "sourceMap": true,
-    "module": "commonjs",
+    "inlineSources": true,
     "target": "es6",
-    "jsx": "react",
+    "strict": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    // "noUnusedLocals": true, // lint will catch this
-    // "noUnusedParameters": true, // lint will catch this
-    "noImplicitAny": true,
-    // strictNullChecks?
-    "baseUrl": ".",
+    "baseUrl": ".", // must be specifed for paths
     "paths": {
       "@Api": ["./src/Api/index"],
       "@Utils": ["./src/Utils/index"],
@@ -23,11 +21,26 @@
       "@DesignRedux": ["./src/Components/DesignRedux/index"],
       "@Common": ["./src/Components/Common/index"],
       "@Domain": ["./src/Components/Domain/index"],
-      "@SmiteCommon": ["./src/Components/Domain/Smite/Common/index"],
       "@Routes": ["./src/Components/Routes/index"],
       "@Firebase": ["./src/Firebase/index"],
       "@Types": ["./src/Types/index"],
     }
+    // TODO: see if this makes the types/build faster
+    // "skipLibCheck": false
+
+    // TODO: do i want these? maybe if the project gets too big
+    // "composite": true,
+    // "declaration": true,
+    // "declarationMap": true,
+    // "incremental": false,
+
+    // TODO: how exactly does the webpack build play with typescript
+    // "downlevelIteration": false,
+    // "importHelpers": false,
+    // "isolatedModules": false
+    // "noEmit": false,
+    // "emitDeclarationOnly": false,
+    
   },
   "include": [
     "./src/**/*.ts",
@@ -35,6 +48,7 @@
     "./jest-setup.ts" // TODO: probably want this somewhere else? should i have multiple tsconfigs?
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "./src/__tests__/**/*"
   ]
 }

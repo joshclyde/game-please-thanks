@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 interface FactoryArgs<State, EntryValue> {
   actionIdentifier: string;
-  defaultValue?: EntryValue;
+  defaultValue: EntryValue;
   selectStateFromRoot: (state: State) => Record<string, EntryValue>;
 }
 
