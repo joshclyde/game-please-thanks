@@ -12,6 +12,7 @@ const { TsConfigPathsPlugin } = require(`awesome-typescript-loader`);
 const config = {
   mode: `development`,
   entry: [`./src/index.tsx`],
+  devtool: `inline-source-map`,
   output: {
     path: path.resolve(__dirname, `build`),
     filename: `bundle.js`,
@@ -24,7 +25,6 @@ const config = {
     contentBase: [path.join(__dirname, `public`), path.join(__dirname, `build`)],
     historyApiFallback: true,
   },
-
   module: {
     rules: [
       {
