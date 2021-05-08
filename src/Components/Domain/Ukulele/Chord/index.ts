@@ -1,1 +1,0 @@
-export { Chord } from "./Chord";

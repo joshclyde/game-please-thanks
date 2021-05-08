@@ -4,7 +4,7 @@ import { applyMiddleware, compose, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { ThemeProvider } from "styled-components";
 
-import { reducers, useSelectSpotifyAccessToken, useSetSpotifyAccessToken } from "@Redux";
+import { reducers } from "@Redux";
 
 import { AuthRoutes } from "./AuthRoutes";
 
@@ -12,31 +12,6 @@ import { AuthRoutes } from "./AuthRoutes";
 // this line is so i can see the redux store
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
-
-const useSubscribeSpotifyAccessTokenToLocalStorage = () => {
-  const [isCopiedFromLocal, setIsCopiedFromLocal] = useState(false);
-  const setSpotifyAccessToken = useSetSpotifyAccessToken();
-  useEffect(() => {
-    const spotifyAccessTokenLocalStorage = localStorage.getItem(`spotifyAccessToken`);
-    if (!isCopiedFromLocal && spotifyAccessTokenLocalStorage) {
-      try {
-        setSpotifyAccessToken(spotifyAccessTokenLocalStorage);
-        setIsCopiedFromLocal(true);
-      } catch (error) {
-        console.log(
-          `Oh no! Error when trying to read spotifyAccessToken from local storage and dispatch it.`,
-        );
-      }
-    }
-  }, [isCopiedFromLocal, setSpotifyAccessToken]);
-
-  const spotifyAccessToken = useSelectSpotifyAccessToken();
-  useEffect(() => {
-    if (isCopiedFromLocal) {
-      localStorage.setItem(`spotifyAccessToken`, spotifyAccessToken);
-    }
-  }, [isCopiedFromLocal, spotifyAccessToken]);
-};
 
 // TODO: get the theme in typescript
 const theme = {
@@ -50,7 +25,6 @@ const theme = {
 
 // TODO: probs do this differently
 const AppWithHooks = () => {
-  useSubscribeSpotifyAccessTokenToLocalStorage();
   return <AuthRoutes />;
 };
 
