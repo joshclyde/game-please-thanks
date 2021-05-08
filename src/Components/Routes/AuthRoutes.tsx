@@ -1,30 +1,33 @@
 import React, { FC } from "react";
 import { Route, Switch } from "react-router-dom";
+import styled from "styled-components";
 
 import { signInUserThroughGoogle } from "@Firebase";
 import { useSelectIsAuthenticated, useAuthListener } from "@Redux";
 
-import { BookmarksRoute } from "./BookmarksRoute";
-import { ExploreRoute } from "./ExploreRoute";
-import { MusicRoute } from "./MusicRoute";
-import { ScheduleRoute } from "./ScheduleRoute";
-import { StatusRoute } from "./StatusRoute";
-import { YoutubeRoute } from "./YoutubeRoute";
+import { GameLibraryRoute } from "./GameLibraryRoute";
+import { HomeRoute } from "./HomeRoute";
+
+const Div = styled.div`
+  margin: 15px;
+  border: #ecff0f solid 1px;
+
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: calc(100vw - 30px);
+  height: calc(100vh - 30px);
+`;
 
 const AuthRoutesFC: FC<{}> = () => {
   useAuthListener();
   const isAuthenticated = useSelectIsAuthenticated();
   return (
-    <>
+    <Div>
       {isAuthenticated ? (
         <Switch>
-          <Route path="/music" component={MusicRoute} />
-          <Route path="/bookmarks" component={BookmarksRoute} />
-          <Route path="/schedule" component={ScheduleRoute} />
-          <Route path="/status" component={StatusRoute} />
-          <Route path="/youtube" component={YoutubeRoute} />
-          <Route path="/explore" component={ExploreRoute} />
-          <Route path="/" component={BookmarksRoute} />
+          <Route path="/games" component={GameLibraryRoute} />
+          <Route path="/" component={HomeRoute} />
         </Switch>
       ) : (
         <>
@@ -32,7 +35,8 @@ const AuthRoutesFC: FC<{}> = () => {
           <button onClick={() => signInUserThroughGoogle()}>Sign In</button>
         </>
       )}
-    </>
+      {/* <Div></Div> */}
+    </Div>
   );
 };
 
