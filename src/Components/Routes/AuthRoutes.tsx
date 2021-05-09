@@ -5,18 +5,16 @@ import styled from "styled-components";
 import { signInUserThroughGoogle } from "@Firebase";
 import { useSelectIsAuthenticated, useAuthListener } from "@Redux";
 
-import { GameLibraryRoute } from "./GameLibraryRoute";
+import { GameDetailsRoute } from "./GameDetailsRoute";
+import { GamesRoute } from "./GamesRoute";
 import { HomeRoute } from "./HomeRoute";
 
 const Div = styled.div`
   margin: 15px;
   border: #ecff0f solid 1px;
 
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: calc(100vw - 30px);
-  height: calc(100vh - 30px);
+  width: calc(100vw - 32px);
+  min-height: calc(100vh - 32px);
 `;
 
 const AuthRoutesFC: FC<{}> = () => {
@@ -26,7 +24,17 @@ const AuthRoutesFC: FC<{}> = () => {
     <Div>
       {isAuthenticated ? (
         <Switch>
-          <Route path="/games" component={GameLibraryRoute} />
+          <Route path="/games/123">
+            <GameDetailsRoute
+              src={`/assets/overwatch.jpg`}
+              name={`Overwatch`}
+              minPlayers={1}
+              maxPlayers={6}
+              isOnGamePass={false}
+              whoOwnsThis={[`Bingle Bear`, `Josh`]}
+            />
+          </Route>
+          <Route path="/games" component={GamesRoute} />
           <Route path="/" component={HomeRoute} />
         </Switch>
       ) : (
@@ -35,7 +43,6 @@ const AuthRoutesFC: FC<{}> = () => {
           <button onClick={() => signInUserThroughGoogle()}>Sign In</button>
         </>
       )}
-      {/* <Div></Div> */}
     </Div>
   );
 };

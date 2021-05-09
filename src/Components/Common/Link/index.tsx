@@ -31,3 +31,16 @@ export const Link: FC<any> = ({ children, ...props }) => {
     </Text>
   );
 };
+
+const RedText = styled(Text)`
+  color: #ff0f0f;
+`;
+
+export const RedLink: FC<any> = ({ children, ...props }) => {
+  return (
+    <RedText {...props}>
+      <StyledPointer color="#FF0F0F" />
+      {children}
+    </RedText>
+  );
+};
