@@ -28,8 +28,7 @@ const HomeRouteFC: FC<{}> = () => {
       <Link to="/find">Find Game</Link>
       <Link to="/games">Game Library</Link>
       <Link to="/friends">Friends</Link>
-      <Link to="/switch">Switch Group</Link>
-      <Link to="/newgroup">Create New Group</Link>
+      <Link to="/settings">Settings</Link>
     </Div>
   );
 };

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { signInUserThroughGoogle } from "@Firebase";
 import { useSelectIsAuthenticated, useAuthListener } from "@Redux";
 
+import { FriendDetailsRoute } from "./FriendDetailsRoute";
 import { FriendsRoute } from "./FriendsRoute";
 import { GameDetailsRoute } from "./GameDetailsRoute";
 import { GamesRoute } from "./GamesRoute";
@@ -26,10 +27,9 @@ const AuthRoutesFC: FC<{}> = () => {
     <Div>
       {isAuthenticated ? (
         <Switch>
-          <Route path="/games/:gameId">
-            <GameDetailsRoute />
-          </Route>
+          <Route path="/games/:gameId" component={GameDetailsRoute} />
           <Route path="/games" component={GamesRoute} />
+          <Route path="/friends/:friendId" component={FriendDetailsRoute} />
           <Route path="/friends" component={FriendsRoute} />
           <Route path="/" component={HomeRoute} />
         </Switch>

@@ -3,6 +3,7 @@ export interface Friend {
   name: string;
   gamesOwned?: Array<string>;
   hasGamePass?: boolean;
+  imageUrl?: string;
 }
 
 export type FriendsState = Record<string, Friend>;

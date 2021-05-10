@@ -9,6 +9,7 @@ const initialState: FriendsState = {
     name: `Josh`,
     gamesOwned: [`1`, `2`, `3`, `4`],
     hasGamePass: true,
+    imageUrl: `/assets/joshwah.jpg`,
   },
   b: {
     id: `b`,
