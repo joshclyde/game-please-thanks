@@ -8,6 +8,13 @@ const makeSelectFriend = (friendId: string) => (state: RootState) =>
 
 export const useSelectFriend = makeUseSelector(makeSelectFriend);
 
+const makeSelectFriendIdsForFriendGroup = (friendGroupId: string) => (state: RootState) =>
+  state.friendGroups[friendGroupId].friends;
+
+const useSelectFriendIdsForFriendGroup = makeUseSelector(
+  makeSelectFriendIdsForFriendGroup,
+);
+
 const makeSelectFriendIdsThatOwnGame = (gameId: string, friendGroupId: string) => (
   state: RootState,
 ) => {
@@ -27,5 +34,11 @@ export const useSelectFriendIdsThatOwnGame = makeUseSelector(
 export const useSelectCurrentFriendIdsThatOwnGame = (gameId: string) => {
   const friendGroupId = useSelectCurrentFriendGroupId();
   const friendIds = useSelectFriendIdsThatOwnGame(gameId, friendGroupId);
+  return friendIds;
+};
+
+export const useSelectCurrentFriendIds = () => {
+  const friendGroupId = useSelectCurrentFriendGroupId();
+  const friendIds = useSelectFriendIdsForFriendGroup(friendGroupId);
   return friendIds;
 };

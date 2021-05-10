@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { Page, Link, Text, GameImg, Heading, RedLink } from "@Common";
+import { Page, Link, Text, GameImg, RedLink, List } from "@Common";
 import {
   useSelectGame,
   useSelectCurrentFriendIdsThatOwnGame,
@@ -17,15 +17,7 @@ export const Img = styled(GameImg)`
   align-self: center;
 `;
 
-const WhoOwnsThisDiv = styled.div`
-  padding: 16px 32px;
-  border: blue solid 1px;
-  & > *:not(:last-child) {
-    margin-bottom: 8px;
-  }
-`;
-
-const GameDiv = styled(WhoOwnsThisDiv)`
+const GameList = styled(List)`
   border-bottom: 0px;
   margin-top: 16px;
 `;
@@ -52,17 +44,18 @@ const GameDetailsRouteFC: FC<Props> = ({}) => {
   return (
     <Page header="GAME LIBRARY">
       <Img src={imageUrl} />
-      <GameDiv>
-        <Heading>{name}</Heading>
-        <Text>{`Players: ${minPlayers}-${maxPlayers}`}</Text>
-        <Text>{`Game Pass: ${isOnGamePass ? `Yup` : `Nope`}`}</Text>
-      </GameDiv>
-      <WhoOwnsThisDiv>
-        <Heading>Who owns this</Heading>
+      <GameList
+        header={name}
+        list={[
+          `Players: ${minPlayers}-${maxPlayers}`,
+          `Game Pass: ${isOnGamePass ? `Yup` : `Nope`}`,
+        ]}
+      />
+      <List header="Who owns this">
         {friendIds.map((friendId) => (
           <FriendName friendId={friendId} />
         ))}
-      </WhoOwnsThisDiv>
+      </List>
       <EditLink>Edit</EditLink>
       <DeleteLink>Delete</DeleteLink>
     </Page>
