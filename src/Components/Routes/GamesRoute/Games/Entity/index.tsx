@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 
 import { Link, Text, GameImg } from "@Common";
+import { useSelectGame } from "@Redux";
 
 export const Img = styled(GameImg)`
   width: 44px;
@@ -23,19 +24,17 @@ const StyledText = styled(Text)`
 `;
 
 interface Props {
-  src: string;
-  to: string;
-  title: string;
-  text: string;
+  gameId: string;
 }
 
-const EntityFC: FC<Props> = ({ src, to, title, text }) => {
+const EntityFC: FC<Props> = ({ gameId }) => {
+  const { id, name, minPlayers, maxPlayers, imageUrl } = useSelectGame(gameId);
   return (
     <Div>
-      <Img src={src} />
+      <Img src={imageUrl} />
       <Div2>
-        <Link to={to}>{title}</Link>
-        <StyledText>{text}</StyledText>
+        <Link to={`/games/${id}`}>{name}</Link>
+        <StyledText>{`Players: ${minPlayers}-${maxPlayers}`}</StyledText>
       </Div2>
     </Div>
   );

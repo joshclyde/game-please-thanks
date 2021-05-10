@@ -31,7 +31,6 @@ const Div1 = styled.div`
 const StyledBottomIcons = styled(BottomIcons)`
   align-self: center;
   margin-top: 32px;
-  margin-bottom: 32px;
 `;
 
 interface Props {

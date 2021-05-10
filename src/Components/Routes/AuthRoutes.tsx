@@ -14,7 +14,8 @@ const Div = styled.div`
   border: #ecff0f solid 1px;
 
   width: calc(100vw - 32px);
-  min-height: calc(100vh - 32px);
+  min-height: calc(100vh - 64px);
+  padding-bottom: 32px;
 `;
 
 const AuthRoutesFC: FC<{}> = () => {
@@ -24,15 +25,8 @@ const AuthRoutesFC: FC<{}> = () => {
     <Div>
       {isAuthenticated ? (
         <Switch>
-          <Route path="/games/123">
-            <GameDetailsRoute
-              src={`/assets/overwatch.jpg`}
-              name={`Overwatch`}
-              minPlayers={1}
-              maxPlayers={6}
-              isOnGamePass={false}
-              whoOwnsThis={[`Bingle Bear`, `Josh`]}
-            />
+          <Route path="/games/:gameId">
+            <GameDetailsRoute />
           </Route>
           <Route path="/games" component={GamesRoute} />
           <Route path="/" component={HomeRoute} />

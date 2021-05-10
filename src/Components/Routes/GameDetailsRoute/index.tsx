@@ -1,7 +1,13 @@
 import React, { FC } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { Page, Link, Text, GameImg, Heading, RedLink, BottomIcons } from "@Common";
+import { Page, Link, Text, GameImg, Heading, RedLink } from "@Common";
+import {
+  useSelectGame,
+  useSelectCurrentFriendIdsThatOwnGame,
+  useSelectFriend,
+} from "@Redux";
 
 export const Img = styled(GameImg)`
   width: 88px;
@@ -12,11 +18,11 @@ export const Img = styled(GameImg)`
 `;
 
 const WhoOwnsThisDiv = styled.div`
-  width: -webkit-fill-available;
-  width: -moz-available;
-  width: stretch;
   padding: 16px 32px;
   border: blue solid 1px;
+  & > *:not(:last-child) {
+    margin-bottom: 8px;
+  }
 `;
 
 const GameDiv = styled(WhoOwnsThisDiv)`
@@ -32,26 +38,20 @@ const DeleteLink = styled(RedLink)`
   margin-top: 16px;
 `;
 
-interface Props {
-  src: string;
-  name: string;
-  minPlayers: number;
-  maxPlayers: number;
-  isOnGamePass?: boolean;
-  whoOwnsThis: Array<string>;
-}
+interface Props {}
 
-const GameDetailsRouteFC: FC<Props> = ({
-  src,
-  name,
-  minPlayers,
-  maxPlayers,
-  isOnGamePass,
-  whoOwnsThis = [`Bingle Bear`, `Josh`],
-}) => {
+const FriendName: FC<{ friendId: string }> = ({ friendId }) => {
+  const { name } = useSelectFriend(friendId);
+  return <Text>{name}</Text>;
+};
+
+const GameDetailsRouteFC: FC<Props> = ({}) => {
+  const { gameId } = useParams<{ gameId: string }>();
+  const { imageUrl, name, minPlayers, maxPlayers, isOnGamePass } = useSelectGame(gameId);
+  const friendIds = useSelectCurrentFriendIdsThatOwnGame(gameId);
   return (
     <Page header="GAME LIBRARY">
-      <Img src={src} />
+      <Img src={imageUrl} />
       <GameDiv>
         <Heading>{name}</Heading>
         <Text>{`Players: ${minPlayers}-${maxPlayers}`}</Text>
@@ -59,8 +59,8 @@ const GameDetailsRouteFC: FC<Props> = ({
       </GameDiv>
       <WhoOwnsThisDiv>
         <Heading>Who owns this</Heading>
-        {whoOwnsThis.map((who) => (
-          <Text>{who}</Text>
+        {friendIds.map((friendId) => (
+          <FriendName friendId={friendId} />
         ))}
       </WhoOwnsThisDiv>
       <EditLink>Edit</EditLink>
