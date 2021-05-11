@@ -3,6 +3,10 @@ import { makeUseSelector } from "@ReduxUtils";
 import { useSelectCurrentFriendGroupId } from "../settings/hooks";
 import { RootState } from "../types";
 
+const makeSelectAllFriends = () => (state: RootState) => state.friends;
+
+export const useSelectAllFriends = makeUseSelector(makeSelectAllFriends);
+
 const makeSelectFriend = (friendId: string) => (state: RootState) =>
   state.friends[friendId];
 

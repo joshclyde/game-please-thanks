@@ -2,6 +2,10 @@ import { makeUseSelector } from "@ReduxUtils";
 
 import { RootState } from "../types";
 
+const makeSelectAllGames = () => (state: RootState) => state.games;
+
+export const useSelectAllGames = makeUseSelector(makeSelectAllGames);
+
 const makeSelectDoesGameExist = (gameId: string) => (state: RootState) =>
   Boolean(state.games?.[gameId]);
 

@@ -1,16 +1,17 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { useSelectCurrentFriendGroupGameIds } from "@Redux";
-
 import { Entity } from "./Entity";
 
 const Div = styled.div`
   width: 100%;
 `;
 
-const GamesFC: FC<{}> = () => {
-  const gameIds = useSelectCurrentFriendGroupGameIds();
+interface Props {
+  gameIds: Array<string>;
+}
+
+const ListOfGamesFC: FC<Props> = ({ gameIds }) => {
   return (
     <Div>
       {gameIds.map((gameId) => (
@@ -20,4 +21,4 @@ const GamesFC: FC<{}> = () => {
   );
 };
 
-export const Games = GamesFC;
+export const ListOfGames = ListOfGamesFC;

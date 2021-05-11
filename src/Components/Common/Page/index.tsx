@@ -22,7 +22,7 @@ const Div1 = styled.div`
 
   display: flex;
   flex-direction: column;
-  max-width: 512px;
+  max-width: 768px;
   margin-right: auto;
   margin-left: auto;
   height: 100%;

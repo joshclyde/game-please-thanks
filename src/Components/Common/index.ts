@@ -8,3 +8,4 @@ export * from "./IconHomeLink";
 export * from "./BottomIcons";
 export * from "./Page";
 export * from "./List";
+export * from "./ListOfGames";

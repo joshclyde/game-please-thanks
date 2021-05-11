@@ -1,2 +1,2 @@
 export { useSetGame } from "./actions";
-export { useSelectGame, useSelectDoesGameExist } from "./selectors";
+export { useSelectGame, useSelectDoesGameExist, useSelectAllGames } from "./selectors";

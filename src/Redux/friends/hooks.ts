@@ -4,4 +4,5 @@ export {
   useSelectFriendIdsThatOwnGame,
   useSelectCurrentFriendIdsThatOwnGame,
   useSelectCurrentFriendIds,
+  useSelectAllFriends,
 } from "./selectors";
