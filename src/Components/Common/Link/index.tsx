@@ -9,7 +9,7 @@ const Text = styled(LinkReact)`
   text-decoration: none;
   font-size: 1em;
   position: relative;
-  transition: padding-right 0.1s linear;
+  transition: padding-right 0.05s linear 0.11s;
   padding-right: 32px;
   &:hover {
     padding-right: 0px;
@@ -25,8 +25,7 @@ const Text = styled(LinkReact)`
 const StyledPointer = styled(Pointer)`
   width: 0px;
   padding-right: 0px;
-  transition: width 0.1s linear;
-  transition: padding-right 0.1s linear;
+  transition: width 0.05s linear 0.11s, padding-right 0.05s linear 0.11s;
 `;
 
 export const Link: FC<any> = ({ children, ...props }) => {
