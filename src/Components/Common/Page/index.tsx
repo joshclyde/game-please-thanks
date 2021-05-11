@@ -29,6 +29,7 @@ const Div1 = styled.div`
   max-width: 768px;
   margin-right: auto;
   margin-left: auto;
+  width: 100%;
   height: 100%;
 `;
 
@@ -43,12 +44,14 @@ interface Props {
 
 export const Page: FC<Props> = ({ header, children }) => {
   return (
-    <Div1>
-      <Div2>
-        <PageHeader>{header}</PageHeader>
-        {children}
-      </Div2>
+    <>
+      <Div1>
+        <Div2>
+          <PageHeader>{header}</PageHeader>
+          {children}
+        </Div2>
+      </Div1>
       <StyledBottomIcons />
-    </Div1>
+    </>
   );
 };

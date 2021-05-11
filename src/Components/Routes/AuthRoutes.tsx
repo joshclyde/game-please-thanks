@@ -19,6 +19,9 @@ const Div = styled.div`
   width: calc(100vw - 32px);
   min-height: calc(100vh - 64px);
   padding-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const AuthRoutesFC: FC<{}> = () => {
