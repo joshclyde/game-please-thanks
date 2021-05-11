@@ -8,7 +8,7 @@ interface Props {}
 
 const Grid = styled.div`
   display: grid;
-  margin: 0px 32px 32px 32px;
+  width: 100%;
   align-self: center;
   gap: 16px 32px;
   @media (max-width: 400px) {
@@ -29,10 +29,10 @@ const FriendRow: FC<{ friendId: string; row: string }> = ({ friendId, row }) => 
 
   return (
     <>
-      <Cell column="1" row={row} as={Link} to={`/friends/${friendId}`}>
-        {name}
+      <Cell column="1" row={row}>
+        <Link to={`/friends/${friendId}`}>{name}</Link>
       </Cell>
-      <Cell column="2" row={row} textAlign="right" as={BigText}>
+      <Cell column="2" row={row} textAlign="center" as={BigText}>
         {gamesOwned?.length || 0}
       </Cell>
       <Cell column="3" row={row} textAlign="center" as={BigText}>

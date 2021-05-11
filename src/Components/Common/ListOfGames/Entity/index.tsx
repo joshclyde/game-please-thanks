@@ -20,7 +20,7 @@ const Div2 = styled.div`
 `;
 
 const StyledText = styled(Text)`
-  margin: 16px 0 0 32px;
+  margin: 16px 0 0 0;
 `;
 
 interface Props {

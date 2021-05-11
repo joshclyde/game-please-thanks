@@ -15,6 +15,7 @@ const Div = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: 280px;
+  padding: 0px 32px;
 
   & > *:not(:last-child) {
     margin-bottom: 32px;

@@ -8,19 +8,25 @@ const Text = styled(LinkReact)`
   color: #0fff27;
   text-decoration: none;
   font-size: 1em;
-  margin-left: 32px;
   position: relative;
-  &:hover svg {
-    display: block;
+  transition: padding-right 0.1s linear;
+  padding-right: 32px;
+  &:hover {
+    padding-right: 0px;
   }
-  display: block;
+  &:hover svg {
+    width: 16px;
+    padding-right: 16px;
+  }
+  display: flex;
+  width: fit-content;
 `;
 
 const StyledPointer = styled(Pointer)`
-  position: absolute;
-  left: -32px;
-  top: 0px;
-  display: none;
+  width: 0px;
+  padding-right: 0px;
+  transition: width 0.1s linear;
+  transition: padding-right 0.1s linear;
 `;
 
 export const Link: FC<any> = ({ children, ...props }) => {

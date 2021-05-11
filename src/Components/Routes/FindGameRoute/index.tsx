@@ -16,7 +16,6 @@ const Container = styled.div`
   gap: 16px;
   @media (min-width: 768px) {
     flex-direction: row;
-    padding: 0px 32px;
   }
 `;
 
@@ -24,23 +23,8 @@ const Section = styled.div`
   width: 100%;
 `;
 
-const PaddedHeading = styled(Heading)`
-  @media (max-width: 768px) {
-    padding: 0px 32px;
-  }
-`;
-
-const PaddedText = styled(Text)`
-  @media (max-width: 768px) {
-    padding: 0px 32px;
-  }
-`;
-
 const Div = styled.div`
   margin-bottom: 16px;
-  @media (max-width: 768px) {
-    padding: 0px 32px;
-  }
 `;
 
 const Input = styled.input<{ checked: boolean }>`
@@ -104,7 +88,7 @@ const FindGameRouteFC: FC<Props> = ({}) => {
     <Page header="FIND GAME">
       <Container>
         <Section>
-          <PaddedHeading>Friends playing</PaddedHeading>
+          <Heading>Friends playing</Heading>
           {friendIds.map((friendId) => (
             <Div>
               <Input
@@ -121,13 +105,13 @@ const FindGameRouteFC: FC<Props> = ({}) => {
           ))}
         </Section>
         <Section>
-          <PaddedHeading>Games you can play</PaddedHeading>
+          <Heading>Games you can play</Heading>
           <ListOfGames gameIds={filteredGameIds} />
           {checkedFriendIds.length === 0 ? (
-            <PaddedText>You have no friends selected.</PaddedText>
+            <Text>You have no friends selected.</Text>
           ) : null}
           {checkedFriendIds.length != 0 && filteredGameIds.length === 0 ? (
-            <PaddedText>There are no games available to play.</PaddedText>
+            <Text>There are no games available to play.</Text>
           ) : null}
         </Section>
       </Container>

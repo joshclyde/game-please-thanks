@@ -15,6 +15,10 @@ const PageHeader = styled.h1`
 const Div2 = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0px 16px;
+  @media (min-width: 512px) {
+    padding: 0px 32px;
+  }
 `;
 
 const Div1 = styled.div`
