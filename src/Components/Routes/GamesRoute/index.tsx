@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 
 import { Link, Page, ListOfGames } from "@Common";
-import { useSelectCurrentFriendGroupGameIds } from "@Redux";
+import { useSelectAllGameIds } from "@Redux";
 
 const StyledLink = styled(Link)`
   margin-top: 32px;
@@ -13,7 +13,7 @@ const AddGameDiv = styled.div`
 `;
 
 const Games: FC<{}> = () => {
-  const gameIds = useSelectCurrentFriendGroupGameIds();
+  const gameIds = useSelectAllGameIds();
   return <ListOfGames gameIds={gameIds} />;
 };
 

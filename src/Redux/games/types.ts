@@ -1,10 +1,8 @@
-export interface Game {
-  id: string;
-  name: string;
-  minPlayers: number;
-  maxPlayers: number;
-  imageUrl?: string;
-  isOnGamePass?: boolean;
-}
+import { LoadingState } from "@ReduxUtils";
 
-export type GamesState = Record<string, Game>;
+import { ValueState } from "./value/types";
+
+export interface GamesState {
+  load: LoadingState;
+  value: ValueState;
+}

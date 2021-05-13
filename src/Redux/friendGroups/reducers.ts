@@ -7,8 +7,7 @@ const initialState: FriendGroupsState = {
   me: {
     id: `me`,
     name: `Friends`,
-    games: [`1`, `2`, `3`, `4`],
-    friends: [`a`, `b`, `c`, `d`],
+    friends: [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`],
   },
 };
 const { reducer: friendGroups, addCase } = makeReducer({ initialState });

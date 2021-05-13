@@ -1,9 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 
 import { signInUserThroughGoogle } from "@Firebase";
-import { useSelectIsAuthenticated, useAuthListener } from "@Redux";
+import { useSelectIsAuthenticated, useAuthListener, useLoadGames } from "@Redux";
 
 import { FindGameRoute } from "./FindGameRoute";
 import { FriendDetailsRoute } from "./FriendDetailsRoute";
@@ -27,6 +27,11 @@ const Div = styled.div`
 const AuthRoutesFC: FC<{}> = () => {
   useAuthListener();
   const isAuthenticated = useSelectIsAuthenticated();
+  // TODO: make this a hook?
+  const load = useLoadGames();
+  useEffect(() => {
+    load();
+  }, [load]);
   return (
     <Div>
       {isAuthenticated ? (
