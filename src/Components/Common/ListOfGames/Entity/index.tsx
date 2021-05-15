@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Link, Text, GameImg } from "@Common";
 import { useSelectGame } from "@Redux";
 
+// TODO: cache these images
 export const Img = styled(GameImg)`
   width: 44px;
   height: 63px;

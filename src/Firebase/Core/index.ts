@@ -1,4 +1,4 @@
-import { initializeApp, firestore, auth } from "firebase";
+import { initializeApp, auth } from "firebase";
 
 /*
   Documentation
@@ -13,14 +13,14 @@ import { initializeApp, firestore, auth } from "firebase";
 
   Firebase.Firestore API: https://firebase.google.com/docs/reference/js/firebase.firestore
   Determing how long a user stays signed in: https://firebase.google.com/docs/auth/web/auth-state-persistence
+
+  TODO Modular firebase SDK: https://firebase.google.com/docs/web/learn-more?authuser=0#modular-version
 */
 
 import { firebaseConfig } from "../firebaseConfig";
 
 // Initialize Cloud Firestore through Firebase
 initializeApp(firebaseConfig);
-
-export const db = firestore();
 
 export const signInUserThroughGoogle = async () => {
   const provider = new auth.GoogleAuthProvider();

@@ -25,8 +25,9 @@ const Div = styled.div`
 `;
 
 const AuthRoutesFC: FC<{}> = () => {
-  useAuthListener();
-  const isAuthenticated = useSelectIsAuthenticated();
+  // useAuthListener();
+  // const isAuthenticated = useSelectIsAuthenticated();
+  const isAuthenticated = true;
   // TODO: make this a hook?
   const load = useLoadGames();
   useEffect(() => {

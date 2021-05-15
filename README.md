@@ -1,4 +1,4 @@
-# jam-banana 🍌
+# Game Please Thanks 🕹
 
 TODO: write a good readme 🙂
 
