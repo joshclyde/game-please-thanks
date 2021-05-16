@@ -29,10 +29,12 @@ interface Props {
 }
 
 const EntityFC: FC<Props> = ({ gameId }) => {
-  const { id, name, minPlayers, maxPlayers, imageUrl } = useSelectGame(gameId);
+  const { id, name, minPlayers, maxPlayers } = useSelectGame(gameId);
   return (
     <Div>
-      <Img src={imageUrl} />
+      <Img
+        src={`https://firebasestorage.googleapis.com/v0/b/game-please-thanks.appspot.com/o/game-images%2F${gameId}.jpeg?alt=media`}
+      />
       <Div2>
         <Link to={`/games/${id}`}>{name}</Link>
         <StyledText>{`Players: ${minPlayers}-${maxPlayers}`}</StyledText>
