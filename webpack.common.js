@@ -1,18 +1,10 @@
 const path = require(`path`);
-// var webpack = require("webpack");
 const CopyWebpackPlugin = require(`copy-webpack-plugin`);
+const BundleAnalyzerPlugin = require(`webpack-bundle-analyzer`).BundleAnalyzerPlugin;
 const { TsConfigPathsPlugin } = require(`awesome-typescript-loader`);
-// config.plugins = config.plugins.concat([
-//   new CopyWebpackPlugin([
-//     { from: 'client/assets', to: 'assets' }
-//   ]),
-// ...
-// ]);
 
 const config = {
-  mode: `development`,
   entry: [`./src/index.tsx`],
-  devtool: `inline-source-map`,
   output: {
     path: path.resolve(__dirname, `build`),
     filename: `bundle.js`,
@@ -20,10 +12,6 @@ const config = {
   resolve: {
     extensions: [`.ts`, `.tsx`, `.js`, `.jsx`],
     plugins: [new TsConfigPathsPlugin()],
-  },
-  devServer: {
-    contentBase: [path.join(__dirname, `public`), path.join(__dirname, `build`)],
-    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -35,7 +23,12 @@ const config = {
     ],
   },
 
-  plugins: [new CopyWebpackPlugin([{ from: `assets`, to: `assets` }])],
+  plugins: [
+    new CopyWebpackPlugin([{ from: `assets`, to: `assets` }]),
+    new BundleAnalyzerPlugin({
+      analyzerMode: `static`,
+    }),
+  ],
 };
 
 // eslint-disable-next-line import/no-commonjs

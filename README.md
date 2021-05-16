@@ -17,3 +17,11 @@ firebase login
 # deploy firebase application
 firebase deploy
 ```
+
+## TODO before deploying
+
+Make bundle.js smaller?
+Figure out how to put assets in cloud storage.
+Where should game.json go?
+
+Figure out how to add custom domain name.

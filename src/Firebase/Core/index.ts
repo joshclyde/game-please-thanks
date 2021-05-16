@@ -1,4 +1,11 @@
-import { initializeApp, auth } from "firebase";
+import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithRedirect,
+  getRedirectResult,
+  signOut as authSignOut,
+} from "firebase/auth";
 
 /*
   Documentation
@@ -20,15 +27,17 @@ import { initializeApp, auth } from "firebase";
 import { firebaseConfig } from "../firebaseConfig";
 
 // Initialize Cloud Firestore through Firebase
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
 
 export const signInUserThroughGoogle = async () => {
-  const provider = new auth.GoogleAuthProvider();
-  auth().signInWithRedirect(provider);
+  const provider = new GoogleAuthProvider();
+  signInWithRedirect(auth, provider);
 
   try {
-    const result = await auth().getRedirectResult();
-    if (result.credential) {
+    const result = await getRedirectResult(auth);
+    if (result) {
       // This gives you a Google Access Token. You can use it to access the Google API.
       // var token = result.credential.accessToken;
       // ...
@@ -47,13 +56,13 @@ export const signInUserThroughGoogle = async () => {
 
 export const signOutUser = async () => {
   try {
-    await auth().signOut();
+    await authSignOut(auth);
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getCurrentUser = () => auth().currentUser;
+export const getCurrentUser = () => auth.currentUser;
 export const getCurrentUserUID = () => getCurrentUser()?.uid;
 export const throwOrGetCurrentUserUID = () => {
   const uid = getCurrentUser()?.uid;
@@ -75,7 +84,7 @@ export const startFirebaseEventListening = (
   onAuthStateSignedIn: () => void,
   onAuthStateSignedOut: () => void,
 ) => {
-  auth().onAuthStateChanged((user) => {
+  auth.onAuthStateChanged((user) => {
     if (user) {
       onAuthStateSignedIn();
     } else {
