@@ -39,11 +39,11 @@ const FriendName: FC<{ friendId: string }> = ({ friendId }) => {
 
 const GameDetailsRouteFC: FC<Props> = ({}) => {
   const { gameId } = useParams<{ gameId: string }>();
-  const { imageUrl, name, minPlayers, maxPlayers, isOnGamePass } = useSelectGame(gameId);
+  const { name, minPlayers, maxPlayers, isOnGamePass } = useSelectGame(gameId);
   const friendIds = useSelectCurrentFriendIdsThatOwnGame(gameId);
   return (
     <Page header="GAME LIBRARY">
-      <Img src={imageUrl} />
+      <Img gameId={gameId} />
       <GameList
         header={name}
         list={[
@@ -56,8 +56,6 @@ const GameDetailsRouteFC: FC<Props> = ({}) => {
           <FriendName friendId={friendId} />
         ))}
       </List>
-      <EditLink>Edit</EditLink>
-      <DeleteLink>Delete</DeleteLink>
     </Page>
   );
 };

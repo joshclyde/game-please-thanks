@@ -19,6 +19,11 @@ const config = merge(common, {
       }),
     ],
   },
+  plugins: [
+    new BundleAnalyzerPlugin({
+      analyzerMode: `static`,
+    }),
+  ],
 });
 
 // eslint-disable-next-line import/no-commonjs
