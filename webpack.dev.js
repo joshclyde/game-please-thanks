@@ -9,6 +9,7 @@ const config = merge(common, {
   devServer: {
     contentBase: [path.join(__dirname, `public`), path.join(__dirname, `build`)],
     historyApiFallback: true,
+    open: false,
   },
 });
 

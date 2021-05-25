@@ -20,3 +20,33 @@ const makeSelectGame = (gameId: string) => (state: RootState) =>
   state.games.value?.[gameId];
 
 export const useSelectGame = makeUseSelector(makeSelectGame);
+
+export const useSelectFilteredGameIds = ({
+  searchTerm,
+  playerCount,
+  ownedByFriend,
+  isOnGamePass,
+}: {
+  searchTerm?: string;
+  playerCount?: number;
+  ownedByFriend?: boolean;
+  isOnGamePass?: boolean;
+}) => {
+  const allGames = useSelectAllGames();
+  return Object.keys(allGames).filter((gameId) => {
+    const game = allGames[gameId];
+    if (
+      searchTerm != null &&
+      !game.name.toLowerCase().includes(searchTerm.toLowerCase())
+    ) {
+      return false;
+    }
+    if (
+      playerCount != null &&
+      (playerCount < game.minPlayers || playerCount > game.maxPlayers)
+    ) {
+      return false;
+    }
+    return true;
+  });
+};

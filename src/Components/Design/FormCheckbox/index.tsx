@@ -1,39 +1,43 @@
-import React, { FC, useCallback } from "react";
+import React, { FC } from "react";
+import styled from "styled-components";
 
-import { useFormInput } from "@Redux";
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
 
-interface Props
-  extends Omit<
-    React.DetailedHTMLProps<
-      React.InputHTMLAttributes<HTMLInputElement>,
-      HTMLInputElement
-    >,
-    "type" | "value"
-  > {
-  id: string;
-  name: string;
+const Label = styled.label<{ checked: boolean }>`
+  color: ${({ checked }) => (checked ? `#0FF1FF` : `#cccccc`)};
+  font-size: 0.5em;
+  margin-left: 16px;
+`;
+
+const Input = styled.input.attrs(() => ({ type: `checkbox` }))<{
   formId: string;
-}
+}>`
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: ${({ checked }) => (checked ? `#0FF1FF solid 4px` : `#cccccc solid 2px`)};
+  width: 16px;
+  height: 16px;
+  margin: 0px;
+`;
 
-const FormCheckboxFC: FC<Props> = ({ id, name, formId, ...rest }) => {
-  const [value, setValue] = useFormInput(formId, id);
-  const onChange = useCallback(
-    (event: React.FormEvent<HTMLInputElement>) => {
-      setValue(event.currentTarget.checked);
-    },
-    [setValue],
-  );
-
-  return (
-    <input
-      type="checkbox"
-      id={id}
-      name={name}
-      checked={Boolean(value)}
-      onChange={onChange}
-      {...rest}
-    />
-  );
+// TODO: make this better (e.g. change cursor, maybe wrap input in label?)
+export const FormCheckbox: FC<
+  React.ComponentProps<typeof Input> & { label?: string }
+> = ({ label, ...rest }) => {
+  if (label) {
+    return (
+      <Container>
+        <Input {...rest} />
+        <Label htmlFor={rest.id} checked={rest.checked}>
+          {label}
+        </Label>
+      </Container>
+    );
+  }
+  return <Input {...rest} />;
 };
-
-export const FormCheckbox = FormCheckboxFC;

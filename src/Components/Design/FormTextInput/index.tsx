@@ -1,40 +1,44 @@
-import React, { FC, useCallback } from "react";
+import React, { FC } from "react";
+import styled from "styled-components";
 
-import { useFormInput } from "@Redux";
+const Container = styled.div``;
 
-interface Props
-  extends Omit<
-    React.DetailedHTMLProps<
-      React.InputHTMLAttributes<HTMLInputElement>,
-      HTMLInputElement
-    >,
-    "type" | "value"
-  > {
-  id: string;
-  name: string;
+const Label = styled.label<{ htmlFor: string }>`
+  display: inline-block;
+  font-size: 0.5em;
+  color: #ecff0f;
+  margin-bottom: 2px;
+`;
+
+const Input = styled.input.attrs(({ type }) => ({
+  type: type || `text`,
+}))<{
   formId: string;
-}
+}>`
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 32px;
+  background: #0d0d0d;
+  border: 1px solid #ffffff;
+  border-width: 1px 1px 4px 1px;
+  box-sizing: border-box;
+  color: #cccccc;
+  padding-left: 8px;
+  font-size: 0.5em;
+`;
 
-const FormTextInputFC: FC<Props> = ({ id, name, formId, ...rest }) => {
-  const [value, setValue] = useFormInput(formId, id);
-  const onChange = useCallback(
-    (event: React.FormEvent<HTMLInputElement>) => {
-      setValue(event.currentTarget.value);
-    },
-    [setValue],
-  );
-
-  return (
-    <input
-      type="text"
-      id={id}
-      name={name}
-      // TODO: don't cast this
-      value={value as string | number}
-      onChange={onChange}
-      {...rest}
-    />
-  );
+export const FormTextInput: FC<
+  React.ComponentProps<typeof Input> & { label?: string }
+> = ({ label, ...rest }) => {
+  if (label) {
+    return (
+      <Container>
+        <Label htmlFor={rest.id}>{label}</Label>
+        <Input {...rest} />
+      </Container>
+    );
+  }
+  return <Input {...rest} />;
 };
-
-export const FormTextInput = FormTextInputFC;

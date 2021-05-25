@@ -4,4 +4,5 @@ export {
   useSelectDoesGameExist,
   useSelectAllGames,
   useSelectAllGameIds,
+  useSelectFilteredGameIds,
 } from "./selectors";

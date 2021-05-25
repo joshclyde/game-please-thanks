@@ -2,22 +2,12 @@ import React, { FC, useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 
 import { Page, Heading, ListOfGames, Text } from "@Common";
+import { TwoColumn } from "@Design";
 import {
   useSelectCurrentFriendIds,
   useSelectAllFriends,
   useSelectAllGames,
 } from "@Redux";
-
-interface Props {}
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
-`;
 
 const Section = styled.div`
   width: 100%;
@@ -44,7 +34,7 @@ const Label = styled.label<{ checked: boolean }>`
   margin: 0px;
 `;
 
-const FindGameRouteFC: FC<Props> = ({}) => {
+const FindGameRouteFC: FC<{}> = ({}) => {
   const games = useSelectAllGames();
   const friends = useSelectAllFriends();
   const friendIds = useSelectCurrentFriendIds();
@@ -86,7 +76,7 @@ const FindGameRouteFC: FC<Props> = ({}) => {
 
   return (
     <Page header="FIND GAME">
-      <Container>
+      <TwoColumn>
         <Section>
           <Heading>Friends playing</Heading>
           {friendIds.map((friendId) => (
@@ -114,7 +104,7 @@ const FindGameRouteFC: FC<Props> = ({}) => {
             <Text>There are no games available to play.</Text>
           ) : null}
         </Section>
-      </Container>
+      </TwoColumn>
     </Page>
   );
 };

@@ -2,10 +2,10 @@ import React, { FC } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { Page, Link, Text, GameImg, RedLink, List } from "@Common";
+import { Page, Link, Text, FriendImg, RedLink, List } from "@Common";
 import { useSelectGame, useSelectFriend } from "@Redux";
 
-export const Img = styled(GameImg)`
+export const Img = styled(FriendImg)`
   width: 88px;
   height: 88px;
   border: blue solid 1px;
@@ -35,10 +35,10 @@ const GameName: FC<{ gameId: string }> = ({ gameId }) => {
 
 const FriendDetailsRouteFC: FC<Props> = ({}) => {
   const { friendId } = useParams<{ friendId: string }>();
-  const { imageUrl, name, gamesOwned, hasGamePass } = useSelectFriend(friendId);
+  const { name, gamesOwned, hasGamePass } = useSelectFriend(friendId);
   return (
     <Page header="FRIENDS">
-      <Img src={imageUrl} />
+      <Img friendId={friendId} />
       <FirstList
         header={name}
         list={[`Game Pass: ${hasGamePass ? `Yes` : `No`}`]}

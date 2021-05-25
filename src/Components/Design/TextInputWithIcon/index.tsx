@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
+import { FormTextInput } from "../FormTextInput";
 import { IconSearch } from "../Icons";
-import { TextInput } from "../TextInput";
 
 const Div = styled.div`
   position: relative;
@@ -23,7 +23,7 @@ const StyledIcon = styled.div`
 
 interface Props {
   className?: string;
-  Input: typeof TextInput;
+  Input: typeof FormTextInput;
   Icon: typeof IconSearch; // TODO change this
 }
 

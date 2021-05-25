@@ -1,29 +1,18 @@
 import React, { FC } from "react";
-import styled from "styled-components";
 
-import { Link, Page, ListOfGames } from "@Common";
-import { useSelectAllGameIds } from "@Redux";
+import { Page } from "@Common";
+import { TwoColumn } from "@Design";
 
-const StyledLink = styled(Link)`
-  margin-top: 32px;
-`;
-
-const AddGameDiv = styled.div`
-  width: 100%;
-`;
-
-const Games: FC<{}> = () => {
-  const gameIds = useSelectAllGameIds();
-  return <ListOfGames gameIds={gameIds} />;
-};
+import { Games } from "./Games";
+import { SearchForm } from "./SearchForm";
 
 const GamesRouteFC: FC<{}> = () => {
   return (
     <Page header="GAME LIBRARY">
-      <Games />
-      <AddGameDiv>
-        <StyledLink to="/games/create">Add Game</StyledLink>
-      </AddGameDiv>
+      <TwoColumn>
+        <SearchForm />
+        <Games />
+      </TwoColumn>
     </Page>
   );
 };
