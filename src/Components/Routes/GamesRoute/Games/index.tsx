@@ -7,6 +7,7 @@ import { useSelectFilteredGameIds } from "@Redux";
 
 import { QUERY_PARAM } from "../shared";
 
+import { EmptyResults } from "./EmptyResults";
 import { Pagination } from "./Pagination";
 
 type ConvertMethod<T> = (value: any) => T;
@@ -44,31 +45,31 @@ export const Games: FC<{}> = () => {
     ownedByFriend,
     isOnGamePass,
   });
-  const first = 10 * (page - 1);
+  const first = page ? 10 * (page - 1) : 0;
   const last = Math.min(first + 10, gameIds.length);
   const gameIdsForPage = gameIds.slice(first, last);
 
-  const isShown =
-    searchTerm != null ||
-    playerCount != null ||
-    ownedByFriend != null ||
-    isOnGamePass != null;
-
-  return isShown ? (
+  return (
     <Div>
       <Heading ref={scrollRef}>Results</Heading>
-      <ListOfGames gameIds={gameIdsForPage} />
-      <Pagination
-        searchTerm={searchTerm}
-        playerCount={playerCount}
-        ownedByFriend={ownedByFriend}
-        isOnGamePass={isOnGamePass}
-        currentPage={page}
-        numberOfResults={gameIds.length}
-        first={first}
-        last={last}
-        scrollRef={scrollRef}
-      />
+      {gameIds.length === 0 ? (
+        <EmptyResults></EmptyResults>
+      ) : (
+        <>
+          <ListOfGames gameIds={gameIdsForPage} />
+          <Pagination
+            searchTerm={searchTerm}
+            playerCount={playerCount}
+            ownedByFriend={ownedByFriend}
+            isOnGamePass={isOnGamePass}
+            currentPage={page}
+            numberOfResults={gameIds.length}
+            first={first}
+            last={last}
+            scrollRef={scrollRef}
+          />
+        </>
+      )}
     </Div>
-  ) : null;
+  );
 };

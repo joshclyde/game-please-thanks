@@ -1,6 +1,5 @@
 const path = require(`path`);
 const CopyWebpackPlugin = require(`copy-webpack-plugin`);
-const BundleAnalyzerPlugin = require(`webpack-bundle-analyzer`).BundleAnalyzerPlugin;
 const { TsConfigPathsPlugin } = require(`awesome-typescript-loader`);
 
 const config = {
@@ -22,7 +21,7 @@ const config = {
       },
     ],
   },
-  plugins: [new CopyWebpackPlugin([{ from: `assets`, to: `assets` }])],
+  plugins: [new CopyWebpackPlugin({ patterns: [{ from: `assets`, to: `assets` }] })],
 };
 
 // eslint-disable-next-line import/no-commonjs

@@ -41,10 +41,9 @@ export const makeSearchUrl = ({
   searchTerm != null && searchParams.append(QUERY_PARAM.SEARCH_TERM, searchTerm);
   playerCount != null &&
     searchParams.append(QUERY_PARAM.PLAYER_COUNT, String(playerCount));
-  ownedByFriend != null &&
+  ownedByFriend &&
     searchParams.append(QUERY_PARAM.OWNED_BY_FRIEND, String(ownedByFriend));
-  isOnGamePass != null &&
-    searchParams.append(QUERY_PARAM.IS_ON_GAME_PASS, String(isOnGamePass));
+  isOnGamePass && searchParams.append(QUERY_PARAM.IS_ON_GAME_PASS, String(isOnGamePass));
   searchParams.append(QUERY_PARAM.PAGE, String(page));
   return `/games?${searchParams.toString()}`;
 };

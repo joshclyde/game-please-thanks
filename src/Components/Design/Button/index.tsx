@@ -6,8 +6,7 @@ export const Button = styled.button`
   color: #313130;
   padding: 8px 20px;
   cursor: pointer;
-  font-size: 14px;
-  border-radius: 8px;
+  font-size: 0.75em;
   transition-duration: 0.2s;
   --webkit-transition-duration: 0.2s /* Safari */;
 

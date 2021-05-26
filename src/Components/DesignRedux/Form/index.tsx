@@ -8,8 +8,7 @@ interface OwnProps extends React.FormHTMLAttributes<HTMLFormElement> {
 }
 interface Props extends OwnProps {}
 
-const FormFC: FC<Props> = ({ onSubmit, ...props }) => {
-  const { formId } = props;
+const FormFC: FC<Props> = ({ onSubmit, formId, ...restProps }) => {
   const doesFormExist = useSelectDoesFormExist(formId);
   const createForm = useCreateForm();
   useEffect(() => {
@@ -27,7 +26,7 @@ const FormFC: FC<Props> = ({ onSubmit, ...props }) => {
     [onSubmit],
   );
 
-  return <form {...props} onSubmit={onSubmitPreventDefault} />;
+  return <form {...restProps} onSubmit={onSubmitPreventDefault} />;
 };
 
 export const Form = FormFC;

@@ -1,5 +1,6 @@
 import { makeUseSelector } from "@ReduxUtils";
 
+import { useSelectAllFriends } from "../../friends/hooks";
 import { RootState } from "../../types";
 
 const makeSelectAllGames = () => (state: RootState) => state.games.value;
@@ -33,6 +34,7 @@ export const useSelectFilteredGameIds = ({
   isOnGamePass?: boolean;
 }) => {
   const allGames = useSelectAllGames();
+  const friends = useSelectAllFriends();
   return Object.keys(allGames).filter((gameId) => {
     const game = allGames[gameId];
     if (
@@ -44,6 +46,12 @@ export const useSelectFilteredGameIds = ({
     if (
       playerCount != null &&
       (playerCount < game.minPlayers || playerCount > game.maxPlayers)
+    ) {
+      return false;
+    }
+    if (
+      ownedByFriend &&
+      !Object.values(friends).some((friend) => friend.gamesOwned?.includes(gameId))
     ) {
       return false;
     }

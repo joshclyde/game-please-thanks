@@ -11,7 +11,6 @@ import {
   useFormIsOnGamePass,
   ID,
   FORM_ID,
-  QUERY_PARAM,
   makeSearchUrl,
 } from "../shared";
 
