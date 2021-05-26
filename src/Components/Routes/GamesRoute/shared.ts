@@ -38,8 +38,11 @@ export const makeSearchUrl = ({
   page,
 }: SearchParams) => {
   const searchParams = new URLSearchParams();
-  searchTerm != null && searchParams.append(QUERY_PARAM.SEARCH_TERM, searchTerm);
+  searchTerm != null &&
+    searchTerm.trim() !== `` &&
+    searchParams.append(QUERY_PARAM.SEARCH_TERM, searchTerm);
   playerCount != null &&
+    playerCount > 0 &&
     searchParams.append(QUERY_PARAM.PLAYER_COUNT, String(playerCount));
   ownedByFriend &&
     searchParams.append(QUERY_PARAM.OWNED_BY_FRIEND, String(ownedByFriend));

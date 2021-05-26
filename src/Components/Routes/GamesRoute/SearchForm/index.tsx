@@ -64,6 +64,7 @@ export const SearchForm: FC<{}> = () => {
         type="number"
         label="Player Count"
         autoComplete="off"
+        min="1"
       />
       <FormCheckbox
         id={ID.OWNED_BY_FRIEND}
@@ -71,12 +72,12 @@ export const SearchForm: FC<{}> = () => {
         name="Owned by Friend"
         label="Owned by a Friend"
       />
-      <FormCheckbox
+      {/* <FormCheckbox
         id={ID.IS_ON_GAME_PASS}
         formId={FORM_ID}
         name="Is on Game Pass"
         label="Is on Game Pass"
-      />
+      /> */}
       <FormSubmitButton>Search</FormSubmitButton>
     </FormContainer>
   );

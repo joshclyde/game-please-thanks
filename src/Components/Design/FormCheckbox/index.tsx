@@ -1,15 +1,17 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-const Container = styled.div`
+import { Text } from "../Text";
+
+const Label = styled.label`
   display: flex;
   flex-direction: row;
   align-items: center;
+  cursor: pointer;
 `;
 
-const Label = styled.label<{ checked: boolean }>`
+const StyledText = styled(Text)<{ checked: boolean }>`
   color: ${({ checked }) => (checked ? `#0FF1FF` : `#cccccc`)};
-  font-size: 0.5em;
   margin-left: 16px;
 `;
 
@@ -19,24 +21,27 @@ const Input = styled.input.attrs(() => ({ type: `checkbox` }))<{
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-  border: ${({ checked }) => (checked ? `#0FF1FF solid 4px` : `#cccccc solid 2px`)};
+
+  border: ${({ checked }) => (checked ? undefined : `#cccccc solid 2px`)};
+  background-color: ${({ checked }) => (checked ? `#0FF1FF` : undefined)};
   width: 16px;
   height: 16px;
   margin: 0px;
+
+  cursor: pointer;
 `;
 
-// TODO: make this better (e.g. change cursor, maybe wrap input in label?)
 export const FormCheckbox: FC<
   React.ComponentProps<typeof Input> & { label?: string }
 > = ({ label, ...rest }) => {
   if (label) {
     return (
-      <Container>
+      <Label htmlFor={rest.id}>
         <Input {...rest} />
-        <Label htmlFor={rest.id} checked={rest.checked}>
+        <StyledText size="xs" checked={rest.checked}>
           {label}
-        </Label>
-      </Container>
+        </StyledText>
+      </Label>
     );
   }
   return <Input {...rest} />;

@@ -11,6 +11,7 @@ const config = merge(common, {
     historyApiFallback: true,
     open: false,
   },
+  stats: `minimal`,
 });
 
 // eslint-disable-next-line import/no-commonjs

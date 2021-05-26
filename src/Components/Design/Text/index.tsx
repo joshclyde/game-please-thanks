@@ -14,4 +14,5 @@ const sizes = {
 export const Text = styled.p<TextProps>`
   color: ${(props) => (props.soft ? props.theme.softText : props.theme.text)};
   font-size: ${(props) => sizes[props.size || `small`]};
+  margin: 0px;
 `;
