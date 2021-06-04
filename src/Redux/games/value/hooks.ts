@@ -5,4 +5,5 @@ export {
   useSelectAllGames,
   useSelectAllGameIds,
   useSelectFilteredGameIds,
+  useSelectGameImage,
 } from "./selectors";

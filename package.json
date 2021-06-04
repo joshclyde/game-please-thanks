@@ -12,7 +12,11 @@
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix",
     "types": "tsc --noEmit",
-    "storybook": "start-storybook -p 9001 -c storybook"
+    "storybook": "start-storybook -p 9001 -c storybook",
+    "logDataFromRawProduct": "ts-node --log-error ./scripts/exec/logDataFromRawProduct.ts",
+    "pullDataFromMicrosoft": "ts-node --log-error ./scripts/exec/pullDataFromMicrosoft.ts",
+    "pullBundleDataFromMicrosoft": "ts-node --log-error ./scripts/exec/pullBundleDataFromMicrosoft.ts",
+    "makeGameData": "ts-node --log-error ./scripts/exec/makeGameData.ts"
   },
   "repository": {
     "type": "git",
@@ -77,7 +81,9 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "fs-extra": "^9.0.1",
     "jest": "^26.6.0",
+    "jimp": "^0.16.1",
     "path": "^0.12.7",
+    "puppeteer": "^9.1.1",
     "prettier": "^2.0.5",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
     "react-test-renderer": "^17.0.1",

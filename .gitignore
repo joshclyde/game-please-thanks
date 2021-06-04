@@ -15,3 +15,4 @@ yarn-error.log*
 .firebase
 src/Firebase/firebaseConfig.ts
 assets/gameImages/
+scripts/data

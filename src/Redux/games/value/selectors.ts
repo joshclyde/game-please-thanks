@@ -22,6 +22,11 @@ const makeSelectGame = (gameId: string) => (state: RootState) =>
 
 export const useSelectGame = makeUseSelector(makeSelectGame);
 
+const makeSelectGameImage = (gameId: string) => (state: RootState) =>
+  state.games.value?.[gameId].images.TitledLong.url;
+
+export const useSelectGameImage = makeUseSelector(makeSelectGameImage);
+
 export const useSelectFilteredGameIds = ({
   searchTerm,
   playerCount,

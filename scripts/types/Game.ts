@@ -1,12 +1,3 @@
-// export interface Game {
-//   id: string;
-//   name: string;
-//   minPlayers: number;
-//   maxPlayers: number;
-//   imageUrl?: string;
-//   isOnGamePass?: boolean;
-// }
-
 export interface Game {
   id: string;
   // <-> MicrosoftProduct.LocalizedProperties[0].ShortTitle
@@ -42,6 +33,3 @@ export interface Game {
   // <-> MicrosoftProduct.DisplaySkuAvailabilities[0].Availabilities[0].OrderManagementData.Price.MSRP
   price: number;
 }
-
-
-export type ValueState = Record<string, Game>;

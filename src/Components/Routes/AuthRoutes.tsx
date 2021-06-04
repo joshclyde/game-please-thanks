@@ -11,6 +11,7 @@ import { FriendsRoute } from "./FriendsRoute";
 import { GameDetailsRoute } from "./GameDetailsRoute";
 import { GamesRoute } from "./GamesRoute";
 import { HomeRoute } from "./HomeRoute";
+import { SettingsRoute } from "./SettingsRoute";
 
 const Div = styled.div`
   margin: 15px;
@@ -42,6 +43,7 @@ const AuthRoutesFC: FC<{}> = () => {
           <Route path="/friends/:friendId" component={FriendDetailsRoute} />
           <Route path="/friends" component={FriendsRoute} />
           <Route path="/find" component={FindGameRoute} />
+          <Route path="/settings" component={SettingsRoute} />
           <Route path="/" component={HomeRoute} />
         </Switch>
       ) : (

@@ -5,6 +5,7 @@ import { useSelectFriend } from "@Redux";
 
 const Img = styled.img`
   image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
 `;
 
 interface Props {

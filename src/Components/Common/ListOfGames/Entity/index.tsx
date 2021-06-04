@@ -28,6 +28,16 @@ interface Props {
   gameId: string;
 }
 
+const getPlayersText = (minPlayers: number, maxPlayers: number) => {
+  if (maxPlayers === 1) {
+    return `1 Player`;
+  }
+  if (minPlayers === maxPlayers) {
+    return `${minPlayers} Players`;
+  }
+  return `${minPlayers}-${maxPlayers} Players`;
+};
+
 const EntityFC: FC<Props> = ({ gameId }) => {
   const { id, name, minPlayers, maxPlayers } = useSelectGame(gameId);
   return (
@@ -35,7 +45,7 @@ const EntityFC: FC<Props> = ({ gameId }) => {
       <Img gameId={gameId} />
       <Div2>
         <Link to={`/games/${id}`}>{name}</Link>
-        <StyledText>{`Players: ${minPlayers}-${maxPlayers}`}</StyledText>
+        <StyledText>{getPlayersText(minPlayers, maxPlayers)}</StyledText>
       </Div2>
     </Div>
   );

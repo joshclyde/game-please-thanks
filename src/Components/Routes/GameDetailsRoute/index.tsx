@@ -39,7 +39,8 @@ const FriendName: FC<{ friendId: string }> = ({ friendId }) => {
 
 const GameDetailsRouteFC: FC<Props> = ({}) => {
   const { gameId } = useParams<{ gameId: string }>();
-  const { name, minPlayers, maxPlayers, isOnGamePass } = useSelectGame(gameId);
+  // const { name, minPlayers, maxPlayers, isOnGamePass } = useSelectGame(gameId);
+  const { name, minPlayers, maxPlayers } = useSelectGame(gameId);
   const friendIds = useSelectCurrentFriendIdsThatOwnGame(gameId);
   return (
     <Page header="GAME LIBRARY">
@@ -48,7 +49,7 @@ const GameDetailsRouteFC: FC<Props> = ({}) => {
         header={name}
         list={[
           `Players: ${minPlayers}-${maxPlayers}`,
-          `Game Pass: ${isOnGamePass ? `Yup` : `Nope`}`,
+          // `Game Pass: ${isOnGamePass ? `Yup` : `Nope`}`,
         ]}
       />
       <List header="Who owns this">
