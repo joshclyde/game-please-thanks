@@ -1,6 +1,6 @@
 export * from "./Checkbox";
 export * from "./Logo";
-export * from "./Link";
+export * from "./LinkFancy";
 export * from "./Text";
 export * from "./GameImg";
 export * from "./Heading";
@@ -11,3 +11,5 @@ export * from "./List";
 export * from "./ListOfGames";
 export * from "./FriendImg";
 export * from "./IconBackArrow";
+export * from "./Link";
+export * from "./LinkExternal";

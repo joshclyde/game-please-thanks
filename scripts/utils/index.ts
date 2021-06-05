@@ -5,7 +5,7 @@ import {
   readJsonSync as fsReadJsonSync,
 } from "fs-extra";
 
-import { MicrosoftProduct, Game } from "../types";
+import { MicrosoftProduct, Game, GamePassResponse } from "../types";
 
 // Makes sure we always write our data into a data folder inside scripts.
 const writeJson = (path: string, data: any) =>
@@ -17,13 +17,27 @@ const readdir = (path: string) => fsreaddir(`./scripts/data/${path}`);
 export const writeMicrosoftProductToFile = (microsoftProduct: MicrosoftProduct) =>
   writeJson(`rawProduct/${microsoftProduct.ProductId}.json`, microsoftProduct);
 
-export const writeGameToFile = (game: Game) =>
-  writeJson(`game/${game.microsoftProductId}.json`, game);
+export const writeGameToFile = (game: Game) => writeJson(`game/${game.id}.json`, game);
+
+export const readGamePassResponse = () => readJson(`gamePass.json`);
+export const writeGamePassResponseToFile = (gamePassResponse: GamePassResponse) =>
+  writeJson(`gamePass.json`, gamePassResponse);
 
 export const writeGamesToFile = (games: Record<string, Game>) =>
   writeJson(`games.json`, games);
 
 export const readRawProductData = (id: string) => readJson(`rawProduct/${id}`);
+
+export const readAllGamePassIds = async () => {
+  const gamePassResponse: GamePassResponse = await readGamePassResponse();
+  const ids = gamePassResponse.reduce<Array<string>>((accumulatedIds, { id }) => {
+    if (id) {
+      accumulatedIds.push(id);
+    }
+    return accumulatedIds;
+  }, []);
+  return ids;
+};
 
 export const getAllMicrosoftProductIds = async (): Promise<Array<string>> => {
   const files = await readdir(`rawProduct`);
@@ -134,6 +148,7 @@ const getMax = (microsoftProduct: MicrosoftProduct) => {
 
 export const convertMicrosoftProductToGame = (
   microsoftProduct: MicrosoftProduct,
+  isOnGamePass: boolean,
 ): Game => {
   const urlTitle = microsoftProduct.DisplaySkuAvailabilities[0].Sku.LocalizedProperties[0].SkuTitle.replace(
     /[\W_]+/g,
@@ -168,6 +183,7 @@ export const convertMicrosoftProductToGame = (
     price:
       microsoftProduct.DisplaySkuAvailabilities[0].Availabilities[0].OrderManagementData
         .Price.MSRP,
+    isOnGamePass,
   };
   return game;
 };

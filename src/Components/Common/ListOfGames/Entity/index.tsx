@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { Link, Text, GameImg } from "@Common";
 import { useSelectGame } from "@Redux";
+import { getPlayersText } from "@Utils";
 
 // TODO: cache these images
 export const Img = styled(GameImg)`
@@ -27,16 +28,6 @@ const StyledText = styled(Text)`
 interface Props {
   gameId: string;
 }
-
-const getPlayersText = (minPlayers: number, maxPlayers: number) => {
-  if (maxPlayers === 1) {
-    return `1 Player`;
-  }
-  if (minPlayers === maxPlayers) {
-    return `${minPlayers} Players`;
-  }
-  return `${minPlayers}-${maxPlayers} Players`;
-};
 
 const EntityFC: FC<Props> = ({ gameId }) => {
   const { id, name, minPlayers, maxPlayers } = useSelectGame(gameId);

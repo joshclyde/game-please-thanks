@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { Link, Logo } from "@Common";
+import { LinkFancy, Logo } from "@Common";
 
 const StyledLogo = styled(Logo)`
   align-self: center;
@@ -26,10 +26,10 @@ const HomeRouteFC: FC<{}> = () => {
   return (
     <Div>
       <StyledLogo width="128" height="128" />
-      <Link to="/find">Find Game</Link>
-      <Link to="/games">Game Library</Link>
-      <Link to="/friends">Friends</Link>
-      <Link to="/settings">Settings</Link>
+      <LinkFancy to="/find">Find Game</LinkFancy>
+      <LinkFancy to="/games">Game Library</LinkFancy>
+      <LinkFancy to="/friends">Friends</LinkFancy>
+      <LinkFancy to="/settings">Settings</LinkFancy>
     </Div>
   );
 };

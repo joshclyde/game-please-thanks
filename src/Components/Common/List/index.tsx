@@ -14,7 +14,7 @@ const Div = styled.div`
 interface Props {
   className?: string;
   header?: string;
-  list?: Array<string>;
+  list?: Array<React.ReactNode>;
 }
 
 export const List: FC<Props> = ({ className, header, list, children }) => {

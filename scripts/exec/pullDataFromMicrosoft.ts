@@ -1,33 +1,7 @@
 // eslint-disable-next-line
 import puppeteer from "puppeteer";
 
-import { RawProduct } from "../types";
-import { writeRawProductData } from "../utils";
-
-/*
-  Takes the response from "https://displaycatalog.mp.microsoft.com/v7.0/products"
-  and writes each product to a file.
-*/
-const writeResponseToFiles = (response: { Products: Array<RawProduct> }) => {
-  return new Promise<void>((res, rej) => {
-    let count = 0;
-    response.Products.forEach((productData) => {
-      const save = async () => {
-        try {
-          await writeRawProductData(productData);
-        } catch (err) {
-          console.log(`Error trying to save data for ${productData.ProductId}`);
-        }
-        count++;
-        // Resolve promise when the last product has been saved.
-        if (count === response.Products.length) {
-          res();
-        }
-      };
-      save();
-    });
-  });
-};
+import { writeResponseToFiles } from "../utils";
 
 const execute = async () => {
   // Navigating to all games page

@@ -41,7 +41,8 @@ export interface Game {
   };
   // <-> MicrosoftProduct.DisplaySkuAvailabilities[0].Availabilities[0].OrderManagementData.Price.MSRP
   price: number;
+  // <-> not on MicrosoftProduct
+  isOnGamePass: boolean;
 }
-
 
 export type ValueState = Record<string, Game>;

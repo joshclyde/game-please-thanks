@@ -2,12 +2,14 @@ import React, { FC } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { Page, Link, Text, GameImg, RedLink, List } from "@Common";
+import { GameImg, LinkExternal, List, Page, Text } from "@Common";
 import {
-  useSelectGame,
   useSelectCurrentFriendIdsThatOwnGame,
+  useSelectExternalUrl,
   useSelectFriend,
+  useSelectGame,
 } from "@Redux";
+import { getPlayersText } from "@Utils";
 
 export const Img = styled(GameImg)`
   width: 88px;
@@ -22,14 +24,6 @@ const GameList = styled(List)`
   margin-top: 16px;
 `;
 
-const EditLink = styled(Link)`
-  margin-top: 32px;
-`;
-
-const DeleteLink = styled(RedLink)`
-  margin-top: 16px;
-`;
-
 interface Props {}
 
 const FriendName: FC<{ friendId: string }> = ({ friendId }) => {
@@ -37,28 +31,35 @@ const FriendName: FC<{ friendId: string }> = ({ friendId }) => {
   return <Text>{name}</Text>;
 };
 
-const GameDetailsRouteFC: FC<Props> = ({}) => {
+const GameEntityRouteFC: FC<Props> = ({}) => {
   const { gameId } = useParams<{ gameId: string }>();
-  // const { name, minPlayers, maxPlayers, isOnGamePass } = useSelectGame(gameId);
-  const { name, minPlayers, maxPlayers } = useSelectGame(gameId);
+  const { name, minPlayers, maxPlayers, isOnGamePass, price } = useSelectGame(gameId);
   const friendIds = useSelectCurrentFriendIdsThatOwnGame(gameId);
+  const externalUrl = useSelectExternalUrl(gameId);
   return (
     <Page header="GAME LIBRARY">
       <Img gameId={gameId} />
       <GameList
         header={name}
         list={[
-          `Players: ${minPlayers}-${maxPlayers}`,
-          // `Game Pass: ${isOnGamePass ? `Yup` : `Nope`}`,
+          `${getPlayersText(minPlayers, maxPlayers)}`,
+          <>
+            Additional details at{` `}
+            <LinkExternal to={externalUrl}>microsoft.com</LinkExternal>.
+          </>,
+          isOnGamePass ? `Available through Game Pass.` : null,
+          price === 0 ? `This game is FREE.` : `Buy for \$${price}.`,
         ]}
       />
       <List header="Who owns this">
-        {friendIds.map((friendId) => (
-          <FriendName friendId={friendId} />
-        ))}
+        {friendIds.length > 0 ? (
+          friendIds.map((friendId) => <FriendName friendId={friendId} />)
+        ) : (
+          <Text>Sorry, no friends own {name}.</Text>
+        )}
       </List>
     </Page>
   );
 };
 
-export const GameDetailsRoute = GameDetailsRouteFC;
+export const GameEntityRoute = GameEntityRouteFC;

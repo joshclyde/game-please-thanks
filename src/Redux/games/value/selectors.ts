@@ -27,6 +27,11 @@ const makeSelectGameImage = (gameId: string) => (state: RootState) =>
 
 export const useSelectGameImage = makeUseSelector(makeSelectGameImage);
 
+const makeSelectExternalUrl = (gameId: string) => (state: RootState) =>
+  state.games.value?.[gameId].externalUrl;
+
+export const useSelectExternalUrl = makeUseSelector(makeSelectExternalUrl);
+
 export const useSelectFilteredGameIds = ({
   searchTerm,
   playerCount,
@@ -58,6 +63,9 @@ export const useSelectFilteredGameIds = ({
       ownedByFriend &&
       !Object.values(friends).some((friend) => friend.gamesOwned?.includes(gameId))
     ) {
+      return false;
+    }
+    if (isOnGamePass && !game.isOnGamePass) {
       return false;
     }
     return true;

@@ -3,12 +3,17 @@ import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 
 import { signInUserThroughGoogle } from "@Firebase";
-import { useSelectIsAuthenticated, useAuthListener, useLoadGames } from "@Redux";
+import {
+  useSelectIsAuthenticated,
+  useAuthListener,
+  useLoadGames,
+  useSelectDidGamesLoadSucceed,
+} from "@Redux";
 
 import { FindGameRoute } from "./FindGameRoute";
 import { FriendDetailsRoute } from "./FriendDetailsRoute";
 import { FriendsRoute } from "./FriendsRoute";
-import { GameDetailsRoute } from "./GameDetailsRoute";
+import { GameEntityRoute } from "./GameEntityRoute";
 import { GamesRoute } from "./GamesRoute";
 import { HomeRoute } from "./HomeRoute";
 import { SettingsRoute } from "./SettingsRoute";
@@ -34,18 +39,23 @@ const AuthRoutesFC: FC<{}> = () => {
   useEffect(() => {
     load();
   }, [load]);
+  const successfulLoad = useSelectDidGamesLoadSucceed();
   return (
     <Div>
       {isAuthenticated ? (
-        <Switch>
-          <Route path="/games/:gameId" component={GameDetailsRoute} />
-          <Route path="/games" component={GamesRoute} />
-          <Route path="/friends/:friendId" component={FriendDetailsRoute} />
-          <Route path="/friends" component={FriendsRoute} />
-          <Route path="/find" component={FindGameRoute} />
-          <Route path="/settings" component={SettingsRoute} />
-          <Route path="/" component={HomeRoute} />
-        </Switch>
+        successfulLoad ? (
+          <Switch>
+            <Route path="/games/:gameId" component={GameEntityRoute} />
+            <Route path="/games" component={GamesRoute} />
+            <Route path="/friends/:friendId" component={FriendDetailsRoute} />
+            <Route path="/friends" component={FriendsRoute} />
+            <Route path="/find" component={FindGameRoute} />
+            <Route path="/settings" component={SettingsRoute} />
+            <Route path="/" component={HomeRoute} />
+          </Switch>
+        ) : (
+          <div>Loading data.</div>
+        )
       ) : (
         <>
           <div>You are not yet authenticated</div>

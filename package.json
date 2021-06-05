@@ -16,6 +16,7 @@
     "logDataFromRawProduct": "ts-node --log-error ./scripts/exec/logDataFromRawProduct.ts",
     "pullDataFromMicrosoft": "ts-node --log-error ./scripts/exec/pullDataFromMicrosoft.ts",
     "pullBundleDataFromMicrosoft": "ts-node --log-error ./scripts/exec/pullBundleDataFromMicrosoft.ts",
+    "pullGamePassFromMicrosoft": "ts-node --log-error ./scripts/exec/pullGamePassFromMicrosoft.ts",
     "makeGameData": "ts-node --log-error ./scripts/exec/makeGameData.ts"
   },
   "repository": {
