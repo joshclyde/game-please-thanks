@@ -13,3 +13,4 @@ export * from "./FriendImg";
 export * from "./IconBackArrow";
 export * from "./Link";
 export * from "./LinkExternal";
+export * from "./RoutesMenu";

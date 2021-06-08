@@ -79,16 +79,24 @@ export const consoleLogCurrentUser = () => console.log(getCurrentUser()?.uid);
   Firebase Documentation
 
   Get the currently signed-in user: https://firebase.google.com/docs/auth/web/manage-users#get_the_currently_signed-in_user
+
+  This is the magic way for us to know whether or not the user is signed in.
+  Before the callback is called we should assume that authentication is still loading.
+  On the first callback call is when authentication has finished loading and we know
+  whether the user is authenticated or not.
 */
 export const startFirebaseEventListening = (
   onAuthStateSignedIn: () => void,
   onAuthStateSignedOut: () => void,
 ) => {
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      onAuthStateSignedIn();
-    } else {
-      onAuthStateSignedOut();
-    }
+  return new Promise<void>((resolve) => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        onAuthStateSignedIn();
+      } else {
+        onAuthStateSignedOut();
+      }
+      resolve();
+    });
   });
 };

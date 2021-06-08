@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { Heading } from "@Common";
 import { FormTextInput, FormCheckbox, FormSubmitButton, Form } from "@DesignRedux";
+import { useSelectIsAuthenticated } from "@Redux";
 
 import {
   useFormSearchTerm,
@@ -51,6 +52,7 @@ const useOnSubmit = () => {
 };
 
 export const SearchForm: FC<{}> = () => {
+  const isAuthenticated = useSelectIsAuthenticated();
   const onSubmit = useOnSubmit();
   return (
     <Div>
@@ -72,12 +74,14 @@ export const SearchForm: FC<{}> = () => {
           autoComplete="off"
           min="1"
         />
-        <FormCheckbox
-          id={ID.OWNED_BY_FRIEND}
-          formId={FORM_ID}
-          name="Owned by Friend"
-          label="Owned by a Friend"
-        />
+        {isAuthenticated ? (
+          <FormCheckbox
+            id={ID.OWNED_BY_FRIEND}
+            formId={FORM_ID}
+            name="Owned by Friend"
+            label="Owned by a Friend"
+          />
+        ) : null}
         <FormCheckbox
           id={ID.IS_ON_GAME_PASS}
           formId={FORM_ID}

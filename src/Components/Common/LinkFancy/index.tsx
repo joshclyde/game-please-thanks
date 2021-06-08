@@ -36,3 +36,16 @@ export const LinkFancy: FC<any> = ({ children, ...props }) => {
     </Text>
   );
 };
+
+const TextButton = styled(Text)`
+  cursor: pointer;
+`;
+
+export const LinkFancyButton: FC<any> = ({ children, ...props }) => {
+  return (
+    <TextButton as="div" {...props}>
+      <StyledPointer />
+      {children}
+    </TextButton>
+  );
+};

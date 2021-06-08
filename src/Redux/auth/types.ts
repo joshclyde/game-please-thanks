@@ -1,3 +1,5 @@
+import { LoadingState } from "@ReduxUtils";
+
 export interface AuthState {
-  isAuthenticated: boolean;
+  isAuthenticated: { value: boolean | undefined; load: LoadingState };
 }

@@ -8,6 +8,7 @@ import {
   useSelectExternalUrl,
   useSelectFriend,
   useSelectGame,
+  useSelectIsAuthenticated,
 } from "@Redux";
 import { getPlayersText } from "@Utils";
 
@@ -36,6 +37,8 @@ const GameEntityRouteFC: FC<Props> = ({}) => {
   const { name, minPlayers, maxPlayers, isOnGamePass, price } = useSelectGame(gameId);
   const friendIds = useSelectCurrentFriendIdsThatOwnGame(gameId);
   const externalUrl = useSelectExternalUrl(gameId);
+  const isAuthenticated = useSelectIsAuthenticated();
+
   return (
     <Page header="GAME LIBRARY">
       <Img gameId={gameId} />
@@ -51,13 +54,15 @@ const GameEntityRouteFC: FC<Props> = ({}) => {
           price === 0 ? `This game is FREE.` : `Buy for \$${price}.`,
         ]}
       />
-      <List header="Who owns this">
-        {friendIds.length > 0 ? (
-          friendIds.map((friendId) => <FriendName friendId={friendId} />)
-        ) : (
-          <Text>Sorry, no friends own {name}.</Text>
-        )}
-      </List>
+      {isAuthenticated ? (
+        <List header="Who owns this">
+          {friendIds.length > 0 ? (
+            friendIds.map((friendId) => <FriendName friendId={friendId} />)
+          ) : (
+            <Text>Sorry, no friends own {name}.</Text>
+          )}
+        </List>
+      ) : null}
     </Page>
   );
 };

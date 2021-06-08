@@ -1,13 +1,14 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 
-import { signInUserThroughGoogle } from "@Firebase";
+import { useOnce } from "@Hooks";
 import {
-  useSelectIsAuthenticated,
-  useAuthListener,
+  useLoadAuthentication,
   useLoadGames,
   useSelectDidGamesLoadSucceed,
+  useSelectDidAuthenticationLoadSucceed,
+  useSelectDidAuthenticationLoadFail,
 } from "@Redux";
 
 import { FindGameRoute } from "./FindGameRoute";
@@ -16,6 +17,7 @@ import { FriendsRoute } from "./FriendsRoute";
 import { GameEntityRoute } from "./GameEntityRoute";
 import { GamesRoute } from "./GamesRoute";
 import { HomeRoute } from "./HomeRoute";
+import { LoadingRoute } from "./LoadingRoute";
 import { SettingsRoute } from "./SettingsRoute";
 
 const Div = styled.div`
@@ -31,37 +33,40 @@ const Div = styled.div`
 `;
 
 const AuthRoutesFC: FC<{}> = () => {
-  // useAuthListener();
-  // const isAuthenticated = useSelectIsAuthenticated();
-  const isAuthenticated = true;
-  // TODO: make this a hook?
+  const loadAuthentication = useLoadAuthentication();
+  useOnce(() => {
+    loadAuthentication();
+  });
+  const isAuthLoadSuccessful = useSelectDidAuthenticationLoadSucceed();
+  const isAuthLoadFail = useSelectDidAuthenticationLoadFail();
+  const isAuthLoading = !isAuthLoadSuccessful && !isAuthLoadFail;
+
   const load = useLoadGames();
-  useEffect(() => {
+  useOnce(() => {
     load();
-  }, [load]);
-  const successfulLoad = useSelectDidGamesLoadSucceed();
+  });
+  // TODO: change waiting for games to load to be within routes instead
+  const didGamesLoad = useSelectDidGamesLoadSucceed();
+
+  if (!didGamesLoad || isAuthLoading) {
+    return (
+      <Div>
+        <LoadingRoute />
+      </Div>
+    );
+  }
+
   return (
     <Div>
-      {isAuthenticated ? (
-        successfulLoad ? (
-          <Switch>
-            <Route path="/games/:gameId" component={GameEntityRoute} />
-            <Route path="/games" component={GamesRoute} />
-            <Route path="/friends/:friendId" component={FriendDetailsRoute} />
-            <Route path="/friends" component={FriendsRoute} />
-            <Route path="/find" component={FindGameRoute} />
-            <Route path="/settings" component={SettingsRoute} />
-            <Route path="/" component={HomeRoute} />
-          </Switch>
-        ) : (
-          <div>Loading data.</div>
-        )
-      ) : (
-        <>
-          <div>You are not yet authenticated</div>
-          <button onClick={() => signInUserThroughGoogle()}>Sign In</button>
-        </>
-      )}
+      <Switch>
+        <Route path="/games/:gameId" component={GameEntityRoute} />
+        <Route path="/games" component={GamesRoute} />
+        <Route path="/friends/:friendId" component={FriendDetailsRoute} />
+        <Route path="/friends" component={FriendsRoute} />
+        <Route path="/find" component={FindGameRoute} />
+        <Route path="/settings" component={SettingsRoute} />
+        <Route path="/" component={HomeRoute} />
+      </Switch>
     </Div>
   );
 };

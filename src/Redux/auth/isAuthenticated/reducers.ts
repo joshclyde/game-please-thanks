@@ -1,8 +1,11 @@
-import { makeReducer } from "@ReduxUtils";
+import { combineReducers } from "redux";
 
-import { makeCaseSetIsAuthenticated } from "./actions";
+import { reducers as loadReducers } from "./load/_root";
+import { reducers as valueReducers } from "./value/reducers";
 
-const { reducer: isAuthenticated, addCase } = makeReducer({ initialState: false });
-addCase(makeCaseSetIsAuthenticated((_state, action) => action.payload.value));
+const isAuthenticated = combineReducers({
+  ...loadReducers,
+  ...valueReducers,
+});
 
 export const reducers = { isAuthenticated };
