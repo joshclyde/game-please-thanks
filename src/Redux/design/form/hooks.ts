@@ -23,5 +23,5 @@ export const useFormInput = (
   return [value, setValue];
 };
 
-export { useCreateForm, useSetFormInput } from "./actions";
+export { useCreateForm, useSetFormInput, useDeleteForm } from "./actions";
 export { useSelectDoesFormExist, useSelectFormInputValue } from "./selectors";

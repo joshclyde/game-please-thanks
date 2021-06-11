@@ -1,11 +1,23 @@
-import { combineReducers } from "redux";
+import { makeReducer } from "@ReduxUtils";
 
-import { reducers as loadReducers } from "./load/_root";
-import { reducers as valueReducers } from "./value/reducers";
+import {
+  makeCaseAuthAndProfileFetchSuccess,
+  makeCaseAuthAndProfileSetLocal,
+} from "./actions";
 
-const isAuthenticated = combineReducers({
-  ...loadReducers,
-  ...valueReducers,
+const { reducer: isAuthenticated, addCase } = makeReducer<boolean | null>({
+  initialState: null,
 });
+
+addCase(
+  makeCaseAuthAndProfileFetchSuccess(
+    (_state, action) => action.payload.value.isAuthenticated,
+  ),
+);
+addCase(
+  makeCaseAuthAndProfileSetLocal(
+    (_state, action) => action.payload.value.isAuthenticated,
+  ),
+);
 
 export const reducers = { isAuthenticated };

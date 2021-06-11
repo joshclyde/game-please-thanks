@@ -15,6 +15,7 @@ const HomeRouteFC: FC<{}> = () => {
       <LinkFancy to="/games">Game Library</LinkFancy>
       {isAuthenticated ? <LinkFancy to="/friends">Friends</LinkFancy> : null}
       {/* <LinkFancy to="/settings">Settings</LinkFancy> */}
+      {isAuthenticated ? <LinkFancy to="/profile">Profile</LinkFancy> : null}
       {isAuthenticated ? <LogoutLink /> : null}
     </RoutesMenu>
   );

@@ -1,9 +1,22 @@
 import { makeAction } from "@ReduxUtils";
 
+type InputValue = string | number | boolean;
+
 const {
   makeCase: makeCaseCreateFormAction,
   useDispatchAction: useCreateForm,
-} = makeAction(`CREATE_FORM`, (formId: string) => ({
+} = makeAction(
+  `CREATE_FORM`,
+  (formId: string, initialState: Record<string, InputValue>) => ({
+    formId,
+    initialState,
+  }),
+);
+
+const {
+  makeCase: makeCaseDeleteFormAction,
+  useDispatchAction: useDeleteForm,
+} = makeAction(`DELETE_FORM`, (formId: string) => ({
   formId,
 }));
 
@@ -16,4 +29,11 @@ const { makeCase: makeCaseSetFormInput, useDispatchAction: useSetFormInput } = m
   }),
 );
 
-export { makeCaseCreateFormAction, useCreateForm, makeCaseSetFormInput, useSetFormInput };
+export {
+  makeCaseCreateFormAction,
+  useCreateForm,
+  makeCaseSetFormInput,
+  useSetFormInput,
+  makeCaseDeleteFormAction,
+  useDeleteForm,
+};

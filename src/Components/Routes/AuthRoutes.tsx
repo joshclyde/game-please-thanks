@@ -4,20 +4,21 @@ import styled from "styled-components";
 
 import { useOnce } from "@Hooks";
 import {
-  useLoadAuthentication,
   useLoadGames,
   useSelectDidGamesLoadSucceed,
-  useSelectDidAuthenticationLoadSucceed,
-  useSelectDidAuthenticationLoadFail,
+  useSelectIsAuthenticated,
+  useAuthListener,
 } from "@Redux";
 
+import { EditProfileRoute } from "./EditProfileRoute";
 import { FindGameRoute } from "./FindGameRoute";
-import { FriendDetailsRoute } from "./FriendDetailsRoute";
+import { FriendEntityRoute } from "./FriendEntityRoute";
 import { FriendsRoute } from "./FriendsRoute";
 import { GameEntityRoute } from "./GameEntityRoute";
 import { GamesRoute } from "./GamesRoute";
 import { HomeRoute } from "./HomeRoute";
 import { LoadingRoute } from "./LoadingRoute";
+import { ProfileRoute } from "./ProfileRoute";
 import { SettingsRoute } from "./SettingsRoute";
 
 const Div = styled.div`
@@ -33,13 +34,8 @@ const Div = styled.div`
 `;
 
 const AuthRoutesFC: FC<{}> = () => {
-  const loadAuthentication = useLoadAuthentication();
-  useOnce(() => {
-    loadAuthentication();
-  });
-  const isAuthLoadSuccessful = useSelectDidAuthenticationLoadSucceed();
-  const isAuthLoadFail = useSelectDidAuthenticationLoadFail();
-  const isAuthLoading = !isAuthLoadSuccessful && !isAuthLoadFail;
+  useAuthListener();
+  const isAuthenticated = useSelectIsAuthenticated();
 
   const load = useLoadGames();
   useOnce(() => {
@@ -48,10 +44,13 @@ const AuthRoutesFC: FC<{}> = () => {
   // TODO: change waiting for games to load to be within routes instead
   const didGamesLoad = useSelectDidGamesLoadSucceed();
 
-  if (!didGamesLoad || isAuthLoading) {
+  if (!didGamesLoad || isAuthenticated == null) {
     return (
       <Div>
-        <LoadingRoute />
+        <Switch>
+          {/* only show the logo if we're for sure on the home page */}
+          <Route exact={true} path="/" component={LoadingRoute} />
+        </Switch>
       </Div>
     );
   }
@@ -61,10 +60,12 @@ const AuthRoutesFC: FC<{}> = () => {
       <Switch>
         <Route path="/games/:gameId" component={GameEntityRoute} />
         <Route path="/games" component={GamesRoute} />
-        <Route path="/friends/:friendId" component={FriendDetailsRoute} />
+        <Route path="/friends/:friendId" component={FriendEntityRoute} />
         <Route path="/friends" component={FriendsRoute} />
         <Route path="/find" component={FindGameRoute} />
         <Route path="/settings" component={SettingsRoute} />
+        <Route path="/profile/edit" component={EditProfileRoute} />
+        <Route path="/profile" component={ProfileRoute} />
         <Route path="/" component={HomeRoute} />
       </Switch>
     </Div>

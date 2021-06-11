@@ -23,7 +23,7 @@ const FormTextInputFC: FC<Props> = ({ id, name, formId, ...rest }) => {
     <Input
       id={id}
       name={name}
-      // // TODO: don't cast this 😡
+      // TODO: don't cast this 😡
       value={(value as string | number) || ``}
       onChange={onChange}
       {...rest}

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { Page, Link, Text, FriendImg, RedLink, List } from "@Common";
+import { Page, Text, FriendImg, List } from "@Common";
 import { useSelectGame, useSelectFriend } from "@Redux";
 
 export const Img = styled(FriendImg)`
@@ -18,38 +18,27 @@ const FirstList = styled(List)`
   margin-top: 16px;
 `;
 
-const EditLink = styled(Link)`
-  margin-top: 32px;
-`;
+interface Props {
+  gameId: string;
+}
 
-const DeleteLink = styled(RedLink)`
-  margin-top: 16px;
-`;
-
-interface Props {}
-
-const GameName: FC<{ gameId: string }> = ({ gameId }) => {
+const GameName: FC<Props> = ({ gameId }) => {
   const { name } = useSelectGame(gameId);
   return <Text>{name}</Text>;
 };
 
-const FriendDetailsRouteFC: FC<Props> = ({}) => {
+const FriendEntityRouteFC: FC<Props> = ({}) => {
   const { friendId } = useParams<{ friendId: string }>();
   const { name, gamesOwned, hasGamePass } = useSelectFriend(friendId);
   return (
     <Page header="FRIENDS">
       <Img friendId={friendId} />
-      <FirstList
-        header={name}
-        list={[`Game Pass: ${hasGamePass ? `Yes` : `No`}`]}
-      ></FirstList>
+      <FirstList header={name} list={[`Game Pass: ${hasGamePass ? `Yes` : `No`}`]} />
       <List header="Games">
         {gamesOwned ? gamesOwned.map((gameId) => <GameName gameId={gameId} />) : `None`}
       </List>
-      <EditLink>Edit</EditLink>
-      <DeleteLink>Delete</DeleteLink>
     </Page>
   );
 };
 
-export const FriendDetailsRoute = FriendDetailsRouteFC;
+export const FriendEntityRoute = FriendEntityRouteFC;

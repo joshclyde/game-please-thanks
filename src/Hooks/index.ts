@@ -10,3 +10,9 @@ export const useOnce = (callback: () => void) => {
     callback();
   }, []);
 };
+
+export const useUnmountEffect = (callback: () => void) => {
+  useEffect(() => {
+    return () => callback();
+  }, []);
+};
