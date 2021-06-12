@@ -8,6 +8,7 @@ import {
   useSelectAllFriends,
   useSelectAllGames,
 } from "@Redux";
+import { COLORS } from "@Utils";
 
 const Section = styled.div`
   width: 100%;
@@ -21,7 +22,8 @@ const Input = styled.input<{ checked: boolean }>`
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-  border: ${({ checked }) => (checked ? `#0FF1FF solid 4px` : `#cccccc solid 2px`)};
+  border: ${({ checked }) =>
+    checked ? `${COLORS.CYAN} solid 4px` : `${COLORS.GREY} solid 2px`};
   width: 16px;
   height: 16px;
   margin: 0px;
@@ -29,7 +31,7 @@ const Input = styled.input<{ checked: boolean }>`
 `;
 
 const Label = styled.label<{ checked: boolean }>`
-  color: ${({ checked }) => (checked ? `#0FF1FF` : `#cccccc`)};
+  color: ${({ checked }) => (checked ? COLORS.CYAN : COLORS.GREY)};
   font-size: 1em;
   margin: 0px;
 `;

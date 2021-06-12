@@ -1,8 +1,10 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
+import { COLORS } from "@Utils";
+
 const Text = styled.a`
-  color: #0fff27;
+  color: ${COLORS.GREEN};
   text-decoration: none;
   font-size: 1em;
   position: relative;

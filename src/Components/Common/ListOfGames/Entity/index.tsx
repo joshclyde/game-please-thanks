@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Link, Text, GameImg } from "@Common";
 import { useSelectGame } from "@Redux";
-import { getPlayersText } from "@Utils";
+import { getPlayersText, COLORS } from "@Utils";
 
 // TODO: cache these images
 export const Img = styled(GameImg)`
@@ -13,7 +13,7 @@ export const Img = styled(GameImg)`
 
 const Div = styled.div`
   display: flex;
-  border: blue solid 1px;
+  border: ${COLORS.BLUE} solid 1px;
   padding: 8px;
 `;
 

@@ -10,12 +10,12 @@ import {
   useSelectGame,
   useSelectIsAuthenticated,
 } from "@Redux";
-import { getPlayersText } from "@Utils";
+import { getPlayersText, COLORS } from "@Utils";
 
 export const Img = styled(GameImg)`
   width: 88px;
   height: 126px;
-  border: blue solid 1px;
+  border: ${COLORS.BLUE} solid 1px;
   padding: 8px;
   align-self: center;
 `;

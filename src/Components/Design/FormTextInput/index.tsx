@@ -1,12 +1,14 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
+import { COLORS } from "@Utils";
+
 const Container = styled.div``;
 
 const Label = styled.label<{ htmlFor: string }>`
   display: inline-block;
   font-size: 0.5em;
-  color: #ecff0f;
+  color: ${COLORS.YELLOW};
   margin-bottom: 2px;
 `;
 
@@ -20,11 +22,11 @@ const Input = styled.input.attrs(({ type }) => ({
   -webkit-appearance: none;
   width: 100%;
   height: 32px;
-  background: #0d0d0d;
-  border: 1px solid #ffffff;
+  background: ${COLORS.BLACK};
+  border: 1px solid ${COLORS.GREY};
   border-width: 1px 1px 4px 1px;
   box-sizing: border-box;
-  color: #cccccc;
+  color: ${COLORS.GREY};
   padding-left: 8px;
   font-size: 0.5em;
 `;

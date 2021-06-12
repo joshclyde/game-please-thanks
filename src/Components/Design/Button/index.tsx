@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
+import { COLORS } from "@Utils";
+
 export const Button = styled.button`
-  background-color: #f7f5f2;
+  background-color: ${COLORS.GREY};
   border: none;
-  color: #313130;
+  color: ${COLORS.BLACK};
   padding: 8px 20px;
   cursor: pointer;
   font-size: 0.75em;
@@ -16,15 +18,15 @@ export const Button = styled.button`
   }
 
   &:not(:disabled):hover {
-    background-color: #dedcd9;
+    background-color: ${COLORS.CYAN};
   }
 
   &:not(:disabled):active {
-    background-color: #c5c4c1;
+    background-color: ${COLORS.BLUE};
   }
 
   &:not(:disabled):focus {
     transition: outline 0s;
-    outline: 2px solid #b2b2ff;
+    outline: 2px solid ${COLORS.PINK};
   }
 `;

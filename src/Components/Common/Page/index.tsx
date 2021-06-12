@@ -1,10 +1,12 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
+import { COLORS } from "@Utils";
+
 import { BottomIcons } from "../BottomIcons";
 
 const PageHeader = styled.h1`
-  color: #ff0fbc;
+  color: ${COLORS.PINK};
   font-size: 1em;
   margin: 0px;
   margin-top: 32px;

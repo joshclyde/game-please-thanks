@@ -2,8 +2,10 @@ import React, { FC } from "react";
 import { Link as LinkReact } from "react-router-dom";
 import styled from "styled-components";
 
+import { COLORS } from "@Utils";
+
 const Text = styled(LinkReact)`
-  color: #0fff27;
+  color: ${COLORS.GREEN};
   text-decoration: none;
   font-size: 1em;
   position: relative;
@@ -18,5 +20,5 @@ export const Link: FC<any> = ({ children, ...props }) => {
 };
 
 export const RedLink = styled(Link)`
-  color: #ff0f0f;
+  color: ${COLORS.RED};
 `;

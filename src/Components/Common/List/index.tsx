@@ -2,10 +2,11 @@ import React, { FC } from "react";
 import styled from "styled-components";
 
 import { Heading, Text } from "@Common";
+import { COLORS } from "@Utils";
 
 const Div = styled.div`
   padding: 16px 32px;
-  border: blue solid 1px;
+  border: ${COLORS.BLUE} solid 1px;
   & > *:not(:last-child) {
     margin-bottom: 8px;
   }

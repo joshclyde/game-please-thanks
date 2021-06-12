@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { COLORS } from "@Utils";
+
 interface TextProps {
   soft?: boolean;
   size?: "xs" | "small";
@@ -10,9 +12,8 @@ const sizes = {
   small: `0.75em`,
 };
 
-// TODO: make some stories for this
 export const Text = styled.p<TextProps>`
-  color: ${(props) => (props.soft ? props.theme.softText : props.theme.text)};
+  color: ${COLORS.GREY};
   font-size: ${(props) => sizes[props.size || `small`]};
   margin: 0px;
 `;

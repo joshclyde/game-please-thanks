@@ -4,11 +4,12 @@ import styled from "styled-components";
 
 import { Page, Text, FriendImg, List } from "@Common";
 import { useSelectGame, useSelectFriend } from "@Redux";
+import { COLORS } from "@Utils";
 
 export const Img = styled(FriendImg)`
   width: 88px;
   height: 88px;
-  border: blue solid 1px;
+  border: ${COLORS.BLUE} solid 1px;
   padding: 8px;
   align-self: center;
 `;

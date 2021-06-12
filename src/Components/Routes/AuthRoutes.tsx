@@ -9,6 +9,7 @@ import {
   useSelectIsAuthenticated,
   useAuthListener,
 } from "@Redux";
+import { COLORS } from "@Utils";
 
 import { EditProfileRoute } from "./EditProfileRoute";
 import { FindGameRoute } from "./FindGameRoute";
@@ -23,7 +24,7 @@ import { SettingsRoute } from "./SettingsRoute";
 
 const Div = styled.div`
   margin: 15px;
-  border: #ecff0f solid 1px;
+  border: ${COLORS.YELLOW} solid 1px;
 
   width: calc(100vw - 32px);
   min-height: calc(100vh - 64px);

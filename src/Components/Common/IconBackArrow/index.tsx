@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
+import { COLORS } from "@Utils";
+
 const Svg = styled.svg`
   cursor: pointer;
 `;
@@ -22,7 +24,7 @@ export const IconBackArrow: FC<any> = (props) => {
         width="16"
         height="3"
         transform="rotate(-90 6 16)"
-        fill="#ECFF0F"
+        fill={COLORS.YELLOW}
       />
       <rect
         x="4"
@@ -30,7 +32,7 @@ export const IconBackArrow: FC<any> = (props) => {
         width="12"
         height="4"
         transform="rotate(-90 4 14)"
-        fill="#ECFF0F"
+        fill={COLORS.YELLOW}
       />
       <rect
         x="2"
@@ -38,16 +40,22 @@ export const IconBackArrow: FC<any> = (props) => {
         width="8"
         height="11"
         transform="rotate(-90 2 12)"
-        fill="#ECFF0F"
+        fill={COLORS.YELLOW}
       />
-      <rect y="10" width="4" height="12" transform="rotate(-90 0 10)" fill="#ECFF0F" />
+      <rect
+        y="10"
+        width="4"
+        height="12"
+        transform="rotate(-90 0 10)"
+        fill={COLORS.YELLOW}
+      />
       <rect
         x="8"
         y="13"
         width="10"
         height="5"
         transform="rotate(-90 8 13)"
-        fill="#0D0D0D"
+        fill={COLORS.BLACK}
       />
       <rect
         x="6"
@@ -55,17 +63,31 @@ export const IconBackArrow: FC<any> = (props) => {
         width="4"
         height="5"
         transform="rotate(-90 6 11)"
-        fill="#0D0D0D"
+        fill={COLORS.BLACK}
       />
-      <rect x="6" y="9" width="4" height="5" transform="rotate(-90 6 9)" fill="#0D0D0D" />
-      <rect x="4" y="9" width="2" height="5" transform="rotate(-90 4 9)" fill="#0D0D0D" />
+      <rect
+        x="6"
+        y="9"
+        width="4"
+        height="5"
+        transform="rotate(-90 6 9)"
+        fill={COLORS.BLACK}
+      />
+      <rect
+        x="4"
+        y="9"
+        width="2"
+        height="5"
+        transform="rotate(-90 4 9)"
+        fill={COLORS.BLACK}
+      />
       <rect
         x="4"
         y="10"
         width="4"
         height="17"
         transform="rotate(-90 4 10)"
-        fill="#ECFF0F"
+        fill={COLORS.YELLOW}
       />
     </Svg>
   );
