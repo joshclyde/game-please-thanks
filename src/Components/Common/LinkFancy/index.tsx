@@ -6,12 +6,15 @@ import { COLORS } from "@Utils";
 
 import { Pointer } from "./Pointer";
 
+const duration = `0.075s`;
+const delay = `0.01s`;
+
 const Text = styled(LinkReact)`
   color: ${COLORS.GREEN};
   text-decoration: none;
   font-size: 1em;
   position: relative;
-  transition: padding-right 0.05s linear 0.11s;
+  transition: padding-right ${duration} linear ${delay};
   padding-right: 32px;
   &:hover {
     padding-right: 0px;
@@ -27,7 +30,7 @@ const Text = styled(LinkReact)`
 const StyledPointer = styled(Pointer)`
   width: 0px;
   padding-right: 0px;
-  transition: width 0.05s linear 0.11s, padding-right 0.05s linear 0.11s;
+  transition: width ${duration} linear ${delay}, padding-right ${duration} linear ${delay};
 `;
 
 export const LinkFancy: FC<any> = ({ children, ...props }) => {

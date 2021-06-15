@@ -5,7 +5,7 @@ module.exports = {
   "import/named": `error`,
   "import/default": `error`,
   "import/namespace": `error`,
-  "import/no-restricted-paths": `off`, // TODO:configure this rule once the file structure is more defined
+  "import/no-restricted-paths": `off`, // TODO: configure this rule once the file structure is more defined
   "import/no-absolute-path": `error`,
   "import/no-dynamic-require": `error`,
   "import/no-internal-modules": `off`, // TODO: rule for the paths of imports
@@ -13,7 +13,7 @@ module.exports = {
   "import/no-self-import": `error`,
   "import/no-cycle": `off`, // off since it might be expensive
   "import/no-useless-path-segments": `off`, // TODO: rule for the paths of imports
-  "import/no-relative-parent-imports": `off`, // TODO:configure this rule once the file structure is more defined
+  "import/no-relative-parent-imports": `off`, // TODO: configure this rule once the file structure is more defined
   "import/export": `error`,
   "import/no-named-as-default": `error`,
   "import/no-named-as-default-member": `off`, // TODO: turn this on once I figure out how I want to do native DOM elements

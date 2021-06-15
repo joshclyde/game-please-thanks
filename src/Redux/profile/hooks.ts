@@ -16,7 +16,11 @@ export const useOptimisticUpdateUserProfile = () => {
   const uid = useSelectUid();
 
   return useCallback(
-    async (userProfile: { hasGamePass: boolean; name: string }) => {
+    async (userProfile: {
+      hasGamePass: boolean;
+      name: string;
+      games?: Record<string, { isOwned: boolean }>;
+    }) => {
       pending(userProfile);
       try {
         if (uid) {
@@ -43,3 +47,4 @@ export const useOptimisticUpdateUserProfile = () => {
 export * from "./name/hooks";
 export * from "./hasGamePass/hooks";
 export * from "./uid/hooks";
+export * from "./games/hooks";

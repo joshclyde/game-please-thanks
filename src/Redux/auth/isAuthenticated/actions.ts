@@ -15,6 +15,7 @@ export const {
     uid: string | null;
     hasGamePass: boolean | null;
     name: string | null;
+    games: Record<string, { isOwned: boolean }> | null;
   }) => ({ value }),
 );
 
@@ -28,5 +29,6 @@ export const {
     uid: string | null;
     hasGamePass: boolean | null;
     name: string | null;
+    games: Record<string, { isOwned: boolean }> | null;
   }) => ({ value }),
 );

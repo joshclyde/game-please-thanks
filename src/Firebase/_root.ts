@@ -28,6 +28,6 @@ import { firebaseConfig } from "./firebaseConfig";
   Unit Test Security Rules: https://firebase.google.com/docs/firestore/security/test-rules-emulator?authuser=0
 */
 
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const firestore = getFirestore();

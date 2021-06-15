@@ -6,7 +6,7 @@ import { Page, Text, FriendImg, List } from "@Common";
 import { useSelectGame, useSelectFriend } from "@Redux";
 import { COLORS } from "@Utils";
 
-export const Img = styled(FriendImg)`
+const Img = styled(FriendImg)`
   width: 88px;
   height: 88px;
   border: ${COLORS.BLUE} solid 1px;

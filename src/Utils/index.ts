@@ -10,3 +10,4 @@ export const getPlayersText = (minPlayers: number, maxPlayers: number) => {
 
 export * from "./cx";
 export * from "./colors";
+export * from "./fns";

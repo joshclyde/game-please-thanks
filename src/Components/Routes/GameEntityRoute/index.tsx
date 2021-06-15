@@ -12,7 +12,9 @@ import {
 } from "@Redux";
 import { getPlayersText, COLORS } from "@Utils";
 
-export const Img = styled(GameImg)`
+import { OwnGameCheckbox } from "./OwnGameCheckbox";
+
+const Img = styled(GameImg)`
   width: 88px;
   height: 126px;
   border: ${COLORS.BLUE} solid 1px;
@@ -59,8 +61,9 @@ const GameEntityRouteFC: FC<Props> = ({}) => {
           {friendIds.length > 0 ? (
             friendIds.map((friendId) => <FriendName friendId={friendId} />)
           ) : (
-            <Text>Sorry, no friends own {name}.</Text>
+            <Text>No friends own {name}.</Text>
           )}
+          <OwnGameCheckbox gameId={gameId} />
         </List>
       ) : null}
     </Page>

@@ -6,7 +6,7 @@ import { useSelectGame } from "@Redux";
 import { getPlayersText, COLORS } from "@Utils";
 
 // TODO: cache these images
-export const Img = styled(GameImg)`
+const Img = styled(GameImg)`
   width: 44px;
   height: 63px;
 `;

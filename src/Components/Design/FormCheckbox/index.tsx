@@ -35,10 +35,10 @@ const Input = styled.input.attrs(() => ({ type: `checkbox` }))<{
 
 export const FormCheckbox: FC<
   React.ComponentProps<typeof Input> & { label?: string }
-> = ({ label, ...rest }) => {
+> = ({ label, className, ...rest }) => {
   if (label) {
     return (
-      <Label htmlFor={rest.id}>
+      <Label htmlFor={rest.id} className={className}>
         <Input {...rest} />
         <StyledText size="xs" checked={rest.checked}>
           {label}
@@ -46,5 +46,5 @@ export const FormCheckbox: FC<
       </Label>
     );
   }
-  return <Input {...rest} />;
+  return <Input {...rest} className={className} />;
 };

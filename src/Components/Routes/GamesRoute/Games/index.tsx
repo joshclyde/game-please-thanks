@@ -39,7 +39,7 @@ export const Games: FC<{}> = () => {
   const playerCount = convertParam(params.get(QUERY_PARAM.PLAYER_COUNT), Number);
   const ownedByFriend = convertParam(params.get(QUERY_PARAM.OWNED_BY_FRIEND), Boolean);
   const isOnGamePass = convertParam(params.get(QUERY_PARAM.IS_ON_GAME_PASS), Boolean);
-  const page = convertParam(params.get(QUERY_PARAM.PAGE), Number, 1);
+  const page = convertParam(params.get(QUERY_PARAM.PAGE), Number, 1) as number;
   const gameIds = useSelectFilteredGameIds({
     searchTerm,
     playerCount,

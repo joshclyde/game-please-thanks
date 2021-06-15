@@ -17,6 +17,7 @@ export const useAuthListener = () => {
       uid: string | null;
       hasGamePass: boolean | null;
       name: string | null;
+      games: Record<string, { isOwned: boolean }> | null;
     }) => {
       if (isFirstTime) {
         isFirstTime = false;
@@ -28,12 +29,13 @@ export const useAuthListener = () => {
 
     startFirebaseEventListening(
       async ({ uid }) => {
-        const { hasGamePass, name } = await getProfileData(uid);
+        const { hasGamePass, name, games } = await getProfileData(uid);
         setData({
           isAuthenticated: true,
           uid,
           hasGamePass,
           name,
+          games,
         });
       },
       () => {
@@ -42,6 +44,7 @@ export const useAuthListener = () => {
           uid: null,
           hasGamePass: null,
           name: null,
+          games: null,
         });
       },
     );
