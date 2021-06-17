@@ -10,12 +10,17 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: [`prettier`, `@typescript-eslint`, `import`, `react-hooks`],
+  plugins: [`prettier`, `@typescript-eslint`, `import`, `react-hooks`, `react`],
   settings: {
     "import/resolver": {
       typescript: {}, // this loads <rootdir>/tsconfig.json to eslint
     },
     "import/extensions": [`.js`, `.jsx`, `.ts`, `.tsx`],
+    react: {
+      pragma: `React`,
+      fragment: `Fragment`,
+      version: `detect`,
+    },
   },
   extends: [`prettier`, `prettier/@typescript-eslint`, `prettier/react`],
   rules,

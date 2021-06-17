@@ -19,24 +19,26 @@ const FirstList = styled(List)`
   margin-top: 16px;
 `;
 
-interface Props {
-  gameId: string;
-}
-
-const GameName: FC<Props> = ({ gameId }) => {
+const GameName: FC<{ gameId: string }> = ({ gameId }) => {
   const { name } = useSelectGame(gameId);
   return <Text>{name}</Text>;
 };
 
-const FriendEntityRouteFC: FC<Props> = ({}) => {
+const FriendEntityRouteFC: FC<{}> = ({}) => {
   const { friendId } = useParams<{ friendId: string }>();
   const { name, gamesOwned, hasGamePass } = useSelectFriend(friendId);
   return (
     <Page header="FRIENDS">
       <Img friendId={friendId} />
-      <FirstList header={name} list={[`Game Pass: ${hasGamePass ? `Yes` : `No`}`]} />
+      <FirstList header={name}>
+        <Text>Game Pass: {hasGamePass ? `Yes` : `No`}</Text>
+      </FirstList>
       <List header="Games">
-        {gamesOwned ? gamesOwned.map((gameId) => <GameName gameId={gameId} />) : `None`}
+        {gamesOwned ? (
+          gamesOwned.map((gameId) => <GameName key={gameId} gameId={gameId} />)
+        ) : (
+          <Text>None</Text>
+        )}
       </List>
     </Page>
   );

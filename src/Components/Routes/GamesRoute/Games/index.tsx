@@ -54,7 +54,7 @@ export const Games: FC<{}> = () => {
     <Div>
       <Heading ref={scrollRef}>Results</Heading>
       {gameIds.length === 0 ? (
-        <EmptyResults></EmptyResults>
+        <EmptyResults />
       ) : (
         <>
           <ListOfGames gameIds={gameIdsForPage} />

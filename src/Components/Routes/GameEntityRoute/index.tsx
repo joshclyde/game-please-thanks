@@ -44,22 +44,19 @@ const GameEntityRouteFC: FC<Props> = ({}) => {
   return (
     <Page header="GAME LIBRARY">
       <Img gameId={gameId} />
-      <GameList
-        header={name}
-        list={[
-          `${getPlayersText(minPlayers, maxPlayers)}`,
-          <>
-            Additional details at{` `}
-            <LinkExternal to={externalUrl}>microsoft.com</LinkExternal>.
-          </>,
-          isOnGamePass ? `Available through Game Pass.` : null,
-          price === 0 ? `This game is FREE.` : `Buy for \$${price}.`,
-        ]}
-      />
+      <GameList header={name}>
+        <Text>{getPlayersText(minPlayers, maxPlayers)}</Text>
+        <Text>
+          Additional details at{` `}
+          <LinkExternal to={externalUrl}>microsoft.com</LinkExternal>.
+        </Text>
+        {isOnGamePass ? <Text>Available through Game Pass.</Text> : null}
+        <Text>{price === 0 ? `This game is FREE.` : `Buy for \$${price}.`}</Text>
+      </GameList>
       {isAuthenticated ? (
         <List header="Who owns this">
           {friendIds.length > 0 ? (
-            friendIds.map((friendId) => <FriendName friendId={friendId} />)
+            friendIds.map((friendId) => <FriendName key={friendId} friendId={friendId} />)
           ) : (
             <Text>No friends own {name}.</Text>
           )}

@@ -16,11 +16,7 @@ export const useOptimisticUpdateUserProfile = () => {
   const uid = useSelectUid();
 
   return useCallback(
-    async (userProfile: {
-      hasGamePass: boolean;
-      name: string;
-      games?: Record<string, { isOwned: boolean }>;
-    }) => {
+    async (userProfile: { hasGamePass: boolean; name: string }) => {
       pending(userProfile);
       try {
         if (uid) {

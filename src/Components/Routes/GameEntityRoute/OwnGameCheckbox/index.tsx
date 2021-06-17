@@ -43,7 +43,7 @@ export const OwnGameCheckbox: FC<{ gameId: string; className?: string }> = ({
       name={`OWN_GAME_CHECKBOX_${gameId}`}
       onChange={onChange2}
       checked={Boolean(checked)}
-      label={`I own this game`}
+      label="I own this game"
       {...rest}
     />
   );

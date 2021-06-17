@@ -32,7 +32,7 @@ const SelectMinuteFC: FC<Props> = ({ id, name, formId }) => {
       max="59"
       value={minuteValue}
       onChange={onChange}
-    ></input>
+    />
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { Link, List, Page } from "@Common";
+import { Link, List, Page, Text } from "@Common";
 import { useSelectHasGamePass, useSelectName } from "@Redux";
 
 const EditLink = styled(Link)`
@@ -14,7 +14,9 @@ const ProfileRouteFC: FC<{}> = () => {
 
   return (
     <Page header="PROFILE">
-      <List header={name || ``} list={[`Game Pass: ${hasGamePass ? `Yes` : `No`}`]} />
+      <List header={name || ``}>
+        <Text>Game Pass: {hasGamePass ? `Yes` : `No`}</Text>
+      </List>
       <EditLink to="/profile/edit">Edit</EditLink>
     </Page>
   );

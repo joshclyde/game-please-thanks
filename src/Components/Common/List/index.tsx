@@ -15,14 +15,12 @@ const Div = styled.div`
 interface Props {
   className?: string;
   header?: string;
-  list?: Array<React.ReactNode>;
 }
 
-export const List: FC<Props> = ({ className, header, list, children }) => {
+export const List: FC<Props> = ({ className, header, children }) => {
   return (
     <Div className={className}>
       {header ? <Heading>{header}</Heading> : null}
-      {list ? list.map((text) => <Text>{text}</Text>) : null}
       {children}
     </Div>
   );

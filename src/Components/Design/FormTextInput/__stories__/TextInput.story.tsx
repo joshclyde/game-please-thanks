@@ -3,8 +3,4 @@ import React from "react";
 
 import { FormTextInput } from "../";
 
-storiesOf(`Design/FormTextInput`, module).add(`text input`, () => (
-  <>
-    <FormTextInput />
-  </>
-));
+storiesOf(`Design/FormTextInput`, module).add(`text input`, () => <FormTextInput />);

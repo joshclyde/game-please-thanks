@@ -32,7 +32,6 @@ export const updateProfileData = async ({
   uid,
   hasGamePass,
   name,
-  games,
 }: {
   uid: string;
   hasGamePass: boolean;
@@ -43,7 +42,6 @@ export const updateProfileData = async ({
     await updateDoc(getUserDocRef(uid), {
       hasGamePass,
       name,
-      games,
     });
   } catch (error) {
     console.log(error);

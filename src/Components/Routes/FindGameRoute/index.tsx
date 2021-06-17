@@ -82,6 +82,7 @@ const FindGameRouteFC: FC<{}> = ({}) => {
         <Section>
           <Heading>Friends playing</Heading>
           {friendIds.map((friendId) => (
+            // TODO: fix these lint errors. probably will need to touch this route later anyway and hook it up with for reals data
             <Div>
               <Input
                 type="checkbox"
