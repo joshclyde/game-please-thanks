@@ -15,8 +15,8 @@ import { getPlayersText, COLORS } from "@Utils";
 import { OwnGameCheckbox } from "./OwnGameCheckbox";
 
 const Img = styled(GameImg)`
-  width: 88px;
-  height: 126px;
+  width: 128px;
+  height: 128px;
   border: ${COLORS.BLUE} solid 1px;
   padding: 8px;
   align-self: center;

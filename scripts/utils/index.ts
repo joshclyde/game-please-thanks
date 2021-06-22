@@ -3,6 +3,7 @@ import {
   readJson as fsReadJson,
   readdir as fsreaddir,
   readJsonSync as fsReadJsonSync,
+  pathExists as fsPathExists,
 } from "fs-extra";
 
 import { MicrosoftProduct, Game, GamePassResponse } from "../types";
@@ -13,6 +14,7 @@ const writeJson = (path: string, data: any) =>
 const readJson = (path: string) => fsReadJson(`./scripts/data/${path}`);
 const readJsonSync = (path: string) => fsReadJsonSync(`./scripts/data/${path}`);
 const readdir = (path: string) => fsreaddir(`./scripts/data/${path}`);
+const doesPathExist = (path: string) => fsPathExists(`./scripts/data/${path}`);
 
 export const writeMicrosoftProductToFile = (microsoftProduct: MicrosoftProduct) =>
   writeJson(`rawProduct/${microsoftProduct.ProductId}.json`, microsoftProduct);
@@ -22,6 +24,8 @@ export const writeGameToFile = (game: Game) => writeJson(`game/${game.id}.json`,
 export const readGamePassResponse = () => readJson(`gamePass.json`);
 export const writeGamePassResponseToFile = (gamePassResponse: GamePassResponse) =>
   writeJson(`gamePass.json`, gamePassResponse);
+
+export const readGamesFile = (): Promise<Record<string, Game>> => readJson(`games.json`);
 
 export const writeGamesToFile = (games: Record<string, Game>) =>
   writeJson(`games.json`, games);
@@ -115,6 +119,11 @@ export const writeResponseToFiles = (response: { Products: Array<MicrosoftProduc
     });
   });
 };
+
+export const doesMicrosoftImageExist = (game: Game) =>
+  doesPathExist(`images/microsoftImages/${game.id}.jpeg`);
+
+export const readMicrosoftImages = () => readdir(`images/microsoftImages`);
 
 const getMin = (microsoftProduct: MicrosoftProduct) => {
   const value1 = microsoftProduct.Properties.Attributes?.find(

@@ -41,4 +41,8 @@ export const useOptimisticUpdateUserProfileGameIsOwned = () => {
   );
 };
 
-export { useSelectProfileGamesOwned, useSelectProfileIsGameOwned } from "./selectors";
+export {
+  useSelectProfileGamesOwned,
+  useSelectProfileIsGameOwned,
+  useSelectProfileGamesOwnedIds,
+} from "./selectors";

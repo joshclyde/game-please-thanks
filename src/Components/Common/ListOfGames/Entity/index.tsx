@@ -7,8 +7,8 @@ import { getPlayersText, COLORS } from "@Utils";
 
 // TODO: cache these images
 const Img = styled(GameImg)`
-  width: 44px;
-  height: 63px;
+  width: 64px;
+  height: 64px;
 `;
 
 const Div = styled.div`

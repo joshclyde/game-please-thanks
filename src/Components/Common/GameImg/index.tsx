@@ -17,7 +17,8 @@ export const GameImg: FC<Props> = ({ className, gameId }) => {
   const src = useSelectGameImage(gameId);
   return (
     <Img
-      src={src}
+      // src={src}
+      src={`/assets/restyled/${gameId}.jpeg`}
       // src={`https://firebasestorage.googleapis.com/v0/b/game-please-thanks.appspot.com/o/game-images%2F${gameId}.jpeg?alt=media`}
       className={className}
     />

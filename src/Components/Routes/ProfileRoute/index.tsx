@@ -1,11 +1,18 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { Link, List, Page, Text } from "@Common";
+import { Link, List, Page, Text, Heading } from "@Common";
 import { useSelectHasGamePass, useSelectName } from "@Redux";
 
+import { Games } from "./Games";
+
 const EditLink = styled(Link)`
-  margin-top: 32px;
+  margin-top: 16px;
+  display: block;
+`;
+
+const StyledList = styled(List)`
+  margin-bottom: 32px;
 `;
 
 const ProfileRouteFC: FC<{}> = () => {
@@ -14,10 +21,12 @@ const ProfileRouteFC: FC<{}> = () => {
 
   return (
     <Page header="PROFILE">
-      <List header={name || ``}>
+      <StyledList header={name || ``}>
         <Text>Game Pass: {hasGamePass ? `Yes` : `No`}</Text>
-      </List>
-      <EditLink to="/profile/edit">Edit</EditLink>
+        <EditLink to="/profile/edit">Edit</EditLink>
+      </StyledList>
+      <Heading>Games Owned</Heading>
+      <Games />
     </Page>
   );
 };
