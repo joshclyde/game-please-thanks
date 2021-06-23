@@ -5,11 +5,7 @@ export const {
   useDispatchAction: useOptimisticUpdatePendingUserProfile,
 } = makeAction(
   `OPTIMISTIC_UPDATE_PENDING/USER_PROFILE`,
-  (userProfile: {
-    hasGamePass: boolean;
-    name: string;
-    games?: Record<string, { isOwned: boolean }>;
-  }) => userProfile,
+  (userProfile: { hasGamePass: boolean; name: string }) => userProfile,
 );
 
 export const {

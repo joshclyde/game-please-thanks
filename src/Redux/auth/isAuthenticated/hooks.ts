@@ -1,4 +1,7 @@
 import { getProfileData, startFirebaseEventListening } from "@Firebase";
+import { UserProfileFriends, UserProfileGames } from "@Types";
+
+import { useLoadUsers } from "../../status/loadUsers/hooks";
 
 import { useAuthAndProfileFetchSuccess, useAuthAndProfileSetLocal } from "./actions";
 
@@ -9,6 +12,7 @@ let isListening = false;
 export const useAuthListener = () => {
   const authAndProfileFetchSuccess = useAuthAndProfileFetchSuccess();
   const authAndProfileSetLocal = useAuthAndProfileSetLocal();
+  const loadUsers = useLoadUsers();
   if (!isListening) {
     isListening = true;
     let isFirstTime = true;
@@ -17,7 +21,8 @@ export const useAuthListener = () => {
       uid: string | null;
       hasGamePass: boolean | null;
       name: string | null;
-      games: Record<string, { isOwned: boolean }> | null;
+      games: UserProfileGames | null;
+      friends: UserProfileFriends | null;
     }) => {
       if (isFirstTime) {
         isFirstTime = false;
@@ -29,14 +34,20 @@ export const useAuthListener = () => {
 
     startFirebaseEventListening(
       async ({ uid }) => {
-        const { hasGamePass, name, games } = await getProfileData(uid);
+        const { hasGamePass, name, games, friends } = await getProfileData(uid);
         setData({
           isAuthenticated: true,
           uid,
           hasGamePass,
           name,
           games,
+          friends,
         });
+        const friendIds = Object.keys(friends).filter((friendId) => {
+          const friend = friends[friendId];
+          return friend.isFriend;
+        });
+        loadUsers(friendIds);
       },
       () => {
         setData({
@@ -45,6 +56,7 @@ export const useAuthListener = () => {
           hasGamePass: null,
           name: null,
           games: null,
+          friends: null,
         });
       },
     );

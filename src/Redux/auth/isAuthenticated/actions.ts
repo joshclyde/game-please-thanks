@@ -1,4 +1,5 @@
 import { makeAction } from "@ReduxUtils";
+import { UserProfileFriends, UserProfileGames } from "@Types";
 
 export const {
   useDispatchAction: useAuthAndProfilePending,
@@ -15,7 +16,8 @@ export const {
     uid: string | null;
     hasGamePass: boolean | null;
     name: string | null;
-    games: Record<string, { isOwned: boolean }> | null;
+    games: UserProfileGames | null;
+    friends: UserProfileFriends | null;
   }) => ({ value }),
 );
 
@@ -29,6 +31,7 @@ export const {
     uid: string | null;
     hasGamePass: boolean | null;
     name: string | null;
-    games: Record<string, { isOwned: boolean }> | null;
+    games: UserProfileGames | null;
+    friends: UserProfileFriends | null;
   }) => ({ value }),
 );

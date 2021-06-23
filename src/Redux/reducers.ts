@@ -9,6 +9,7 @@ import { reducers as profileReducers } from "./profile/reducers";
 import { reducers as settingsReducers } from "./settings/reducers";
 import { shared } from "./shared/reducers";
 import { reducers as statusReducers } from "./status/reducers";
+import { reducers as usersReducers } from "./users/reducers";
 
 // TODO: somehow connect reducers to RootState to ensure proper types
 export const reducers = combineReducers({
@@ -20,5 +21,6 @@ export const reducers = combineReducers({
   ...friendsReducers,
   ...profileReducers,
   ...statusReducers,
+  ...usersReducers,
   shared,
 });

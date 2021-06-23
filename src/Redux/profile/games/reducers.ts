@@ -4,7 +4,6 @@ import {
   makeCaseAuthAndProfileFetchSuccess,
   makeCaseAuthAndProfileSetLocal,
 } from "../../auth/isAuthenticated/actions";
-import { makeCaseOptimisticUpdatePendingUserProfile } from "../actions";
 
 import { makeCaseOptimisticUpdatePendingUserProfileGameIsOwned } from "./actions";
 
@@ -22,14 +21,6 @@ addCase(
 );
 
 addCase(makeCaseAuthAndProfileSetLocal((_state, action) => action.payload.value.games));
-
-addCase(
-  makeCaseOptimisticUpdatePendingUserProfile((state, action) => {
-    const games = action.payload.games;
-    // should it update the games entirely? or just add the games to the rest of the games?
-    return games ? games : state;
-  }),
-);
 
 addCase(
   makeCaseOptimisticUpdatePendingUserProfileGameIsOwned((state, action) => {

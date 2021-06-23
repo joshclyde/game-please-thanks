@@ -2,10 +2,9 @@ import _ from "lodash";
 
 import { RootState } from "@Redux";
 import { makeUseSelector } from "@ReduxUtils";
+import { UserProfileGames } from "@Types";
 
-const makeSelectProfileGamesOwned = () => (
-  state: RootState,
-): Record<string, { isOwned: boolean }> => {
+const makeSelectProfileGamesOwned = () => (state: RootState): UserProfileGames => {
   const games = state.profile.games;
   const gamesOwned = _.pickBy(games, ({ isOwned }) => isOwned);
   return gamesOwned;

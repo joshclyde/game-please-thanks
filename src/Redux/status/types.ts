@@ -3,4 +3,8 @@ export interface StatusState {
     status: string;
     error: string | null;
   };
+  loadUsers: {
+    status: string;
+    error: string | null;
+  };
 }
