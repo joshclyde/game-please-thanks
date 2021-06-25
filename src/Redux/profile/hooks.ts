@@ -44,3 +44,4 @@ export * from "./name/hooks";
 export * from "./hasGamePass/hooks";
 export * from "./uid/hooks";
 export * from "./games/hooks";
+export * from "./friends/hooks";

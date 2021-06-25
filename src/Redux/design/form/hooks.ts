@@ -1,6 +1,8 @@
 import { useCallback } from "react";
 
-import { useSetFormInput } from "./actions";
+import { useUnmountEffect } from "@Hooks";
+
+import { useSetFormInput, useDeleteForm } from "./actions";
 import { useSelectFormInputValue } from "./selectors";
 
 // TODO: do i like this name? kinda similar to useState, so maybe rename
@@ -23,5 +25,14 @@ export const useFormInput = (
   return [value, setValue];
 };
 
+export const useDeleteFormOnUnmount = (formId: string) => {
+  const deleteForm = useDeleteForm();
+  useUnmountEffect(() => deleteForm(formId));
+};
+
 export { useCreateForm, useSetFormInput, useDeleteForm } from "./actions";
-export { useSelectDoesFormExist, useSelectFormInputValue } from "./selectors";
+export {
+  useSelectDoesFormExist,
+  useSelectFormInputValue,
+  useSelectFormValues,
+} from "./selectors";

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { Page, Text, FriendImg, List } from "@Common";
-import { useSelectGame, useSelectFriend } from "@Redux";
+import { useSelectGame, useSelectUser } from "@Redux";
 import { COLORS } from "@Utils";
 
 const Img = styled(FriendImg)`
@@ -26,7 +26,7 @@ const GameName: FC<{ gameId: string }> = ({ gameId }) => {
 
 const FriendEntityRouteFC: FC<{}> = ({}) => {
   const { friendId } = useParams<{ friendId: string }>();
-  const { name, gamesOwned, hasGamePass } = useSelectFriend(friendId);
+  const { name, games, hasGamePass } = useSelectUser(friendId);
   return (
     <Page header="FRIENDS">
       <Img friendId={friendId} />
@@ -34,8 +34,10 @@ const FriendEntityRouteFC: FC<{}> = ({}) => {
         <Text>Game Pass: {hasGamePass ? `Yes` : `No`}</Text>
       </FirstList>
       <List header="Games">
-        {gamesOwned ? (
-          gamesOwned.map((gameId) => <GameName key={gameId} gameId={gameId} />)
+        {games ? (
+          Object.entries(games).map(([gameId, game]) =>
+            game.isOwned ? <GameName key={gameId} gameId={gameId} /> : null,
+          )
         ) : (
           <Text>None</Text>
         )}

@@ -6,7 +6,7 @@ import { GameImg, LinkExternal, List, Page, Text } from "@Common";
 import {
   useSelectCurrentFriendIdsThatOwnGame,
   useSelectExternalUrl,
-  useSelectFriend,
+  useSelectUserName,
   useSelectGame,
   useSelectIsAuthenticated,
 } from "@Redux";
@@ -30,7 +30,7 @@ const GameList = styled(List)`
 interface Props {}
 
 const FriendName: FC<{ friendId: string }> = ({ friendId }) => {
-  const { name } = useSelectFriend(friendId);
+  const name = useSelectUserName(friendId);
   return <Text>{name}</Text>;
 };
 

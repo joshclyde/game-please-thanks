@@ -42,4 +42,9 @@ export const useOptimisticUpdateUserProfileFriends = () => {
   );
 };
 
-export { useSelectUserProfileFriends, useSelectUserProfileFriendsIds } from "./selectors";
+export {
+  useSelectUserProfileFriends,
+  useSelectFriendsIds,
+  useSelectCurrentFriendIdsThatOwnGame,
+  useSelectFriends,
+} from "./selectors";

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { useSelectFriend } from "@Redux";
+// import { useSelectFriend } from "@Redux";
 
 const Img = styled.img`
   image-rendering: pixelated;
@@ -14,6 +14,11 @@ interface Props {
 }
 
 export const FriendImg: FC<Props> = ({ className, friendId }) => {
-  const { imageUrl } = useSelectFriend(friendId);
-  return <Img src={imageUrl} className={className} />;
+  // const { imageUrl } = useSelectFriend(friendId);
+  return (
+    <Img
+      // src={imageUrl}
+      className={className}
+    />
+  );
 };
