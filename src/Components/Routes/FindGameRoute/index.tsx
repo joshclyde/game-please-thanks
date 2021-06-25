@@ -6,8 +6,8 @@ import { TwoColumn } from "@Design";
 import { useUnmountEffect } from "@Hooks";
 import { useDeleteFormOnUnmount } from "@Redux";
 
-import { FriendCheckboxes } from "./FriendCheckboxes";
 import { useGameIds, useCheckedFriendsIds } from "./hooks";
+import { UserCheckboxes } from "./UserCheckboxes";
 
 const Section = styled.div`
   width: 100%;
@@ -25,7 +25,7 @@ const FindGameRouteFC: FC<{}> = ({}) => {
       <TwoColumn>
         <Section>
           <Heading>Friends playing</Heading>
-          <FriendCheckboxes />
+          <UserCheckboxes />
         </Section>
         <Section>
           <Heading>Games you can play</Heading>

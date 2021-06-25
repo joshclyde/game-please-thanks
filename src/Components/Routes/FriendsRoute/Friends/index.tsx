@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 
 import { Link, Heading, BigText } from "@Common";
-import { useSelectAuthFriendIdsSorted, useSelectUser } from "@Redux";
+import { useSelectAuthUidAndFriendsIdsSorted, useSelectUser, useSelectUid } from "@Redux";
 
 interface Props {}
 
@@ -26,13 +26,16 @@ const Cell = styled.div<{ column: string; row: string; textAlign?: string }>`
 `;
 
 const FriendRow: FC<{ friendId: string; row: string }> = ({ friendId, row }) => {
+  const uid = useSelectUid();
   const { name, games, hasGamePass } = useSelectUser(friendId);
   const numOfGamesowned = Object.keys(_.pickBy(games, (game) => game.isOwned)).length;
 
   return (
     <>
       <Cell column="1" row={row}>
-        <Link to={`/friends/${friendId}`}>{name}</Link>
+        <Link to={`/friends/${friendId}`}>
+          {uid === friendId ? `${name} (you)` : name}
+        </Link>
       </Cell>
       <Cell column="2" row={row} textAlign="center" as={BigText}>
         {numOfGamesowned || 0}
@@ -50,7 +53,7 @@ const FriendRow: FC<{ friendId: string; row: string }> = ({ friendId, row }) => 
   - change Link to not be weird with it's alignment
 */
 const FriendsFC: FC<Props> = ({}) => {
-  const friendIds = useSelectAuthFriendIdsSorted();
+  const friendIds = useSelectAuthUidAndFriendsIdsSorted();
   return (
     <Grid>
       <Cell column="1" row="1" textAlign="left" as={Heading}>

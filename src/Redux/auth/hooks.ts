@@ -85,4 +85,5 @@ export {
   useSelectAuthFriendIdsSorted,
   useSelectAuthFriendIdsThatOwnGame,
   useSelectAuthIsGameOwned,
+  useSelectAuthUidAndFriendsIdsSorted,
 } from "./selectors";

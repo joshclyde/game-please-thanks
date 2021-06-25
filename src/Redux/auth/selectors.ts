@@ -10,6 +10,7 @@ import {
   makeSelectUserFriends,
   makeSelectUserFriendsIds,
   makeSelectUserIsGameOwned,
+  makeSelectUserAndFriends,
 } from "../users/selectors";
 
 import { makeSelectUid } from "./uid/selectors";
@@ -61,6 +62,13 @@ const makeSelectAuthFriends = () => (state: RootState) => {
 
 export const useSelectAuthFriends = makeUseSelector(makeSelectAuthFriends);
 
+const makeSelectAuthUserAndFriends = () => (state: RootState) => {
+  const uid = makeSelectUid()(state);
+  return uid ? makeSelectUserAndFriends(uid)(state) : null;
+};
+
+export const useSelectAuthUserAndFriends = makeUseSelector(makeSelectAuthUserAndFriends);
+
 const makeSelectAuthFriendsIds = () => (state: RootState) => {
   const uid = makeSelectUid()(state);
   return uid ? makeSelectUserFriendsIds(uid)(state) : null;
@@ -81,6 +89,19 @@ export const useSelectAuthFriendIdsSorted = makeUseSelector(
   makeSelectAuthFriendsIdsSorted,
 );
 
+const makeSelectAuthUidAndFriendsIdsSorted = () => (state: RootState) => {
+  const users = makeSelectAuthUserAndFriends()(state);
+  return users
+    ? Object.keys(users).sort((userId1, userId2) => {
+        return users[userId1].name.localeCompare(users[userId2].name);
+      })
+    : null;
+};
+
+export const useSelectAuthUidAndFriendsIdsSorted = makeUseSelector(
+  makeSelectAuthUidAndFriendsIdsSorted,
+);
+
 const makeSelectAuthFriendIdsThatOwnGame = (gameId: string) => (state: RootState) => {
   const friends = makeSelectAuthFriends()(state);
   const friendsThatOwnGame = _.pickBy(friends, (user) =>
@@ -92,3 +113,5 @@ const makeSelectAuthFriendIdsThatOwnGame = (gameId: string) => (state: RootState
 export const useSelectAuthFriendIdsThatOwnGame = makeUseSelector(
   makeSelectAuthFriendIdsThatOwnGame,
 );
+
+const makeSelectAuthFriendIdsAndMeSorted = () => (state: RootState) => {};
