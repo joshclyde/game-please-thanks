@@ -3,10 +3,7 @@ import styled from "styled-components";
 
 import { FormCheckbox as DesignFormCheckbox } from "@Design";
 import { useTimeout } from "@Hooks";
-import {
-  useSelectProfileIsGameOwned,
-  useOptimisticUpdateUserProfileGameIsOwned,
-} from "@Redux";
+import { useSelectAuthIsGameOwned, useOptimisticUpdateAuthUserOwnsGame } from "@Redux";
 
 const Checkbox = styled(DesignFormCheckbox)`
   margin-top: 16px;
@@ -16,16 +13,16 @@ export const OwnGameCheckbox: FC<{ gameId: string; className?: string }> = ({
   gameId,
   ...rest
 }) => {
-  const isGameOwned = useSelectProfileIsGameOwned(gameId);
-  const optimisticUpdateUserProfileGameIsOwned = useOptimisticUpdateUserProfileGameIsOwned();
+  const isGameOwned = useSelectAuthIsGameOwned(gameId);
+  const optimisticUpdateUserAuthGameIsOwned = useOptimisticUpdateAuthUserOwnsGame();
 
   const [checked, setChecked] = useState(isGameOwned);
 
   const onTimeoutCallback = useCallback(
     (gameIdParam: string, isGameOwnedProp: boolean) => {
-      optimisticUpdateUserProfileGameIsOwned(gameIdParam, isGameOwnedProp);
+      optimisticUpdateUserAuthGameIsOwned(gameIdParam, isGameOwnedProp);
     },
-    [optimisticUpdateUserProfileGameIsOwned],
+    [optimisticUpdateUserAuthGameIsOwned],
   );
 
   const delayedUpdate = useTimeout(onTimeoutCallback, 1000);

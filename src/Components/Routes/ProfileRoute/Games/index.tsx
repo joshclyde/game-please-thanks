@@ -5,5 +5,5 @@ import { useSelectProfileGamesOwnedIds } from "@Redux";
 
 export const Games: FC<{}> = () => {
   const gameIds = useSelectProfileGamesOwnedIds();
-  return <ListOfGames gameIds={gameIds} />;
+  return gameIds ? <ListOfGames gameIds={gameIds} /> : null;
 };

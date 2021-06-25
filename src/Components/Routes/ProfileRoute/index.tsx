@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 
 import { Link, List, Page, Text, Heading } from "@Common";
-import { useSelectHasGamePass, useSelectName } from "@Redux";
+import { useSelectAuthHasGamePass, useSelectAuthName } from "@Redux";
 
 import { Games } from "./Games";
 
@@ -16,8 +16,8 @@ const StyledList = styled(List)`
 `;
 
 const ProfileRouteFC: FC<{}> = () => {
-  const hasGamePass = useSelectHasGamePass();
-  const name = useSelectName();
+  const hasGamePass = useSelectAuthHasGamePass();
+  const name = useSelectAuthName();
 
   return (
     <Page header="PROFILE">

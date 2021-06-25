@@ -1,19 +1,19 @@
 import React, { FC } from "react";
 
-import { useSelectFriendsIds } from "@Redux";
+import { useSelectAuthFriendsIds } from "@Redux";
 
 import { FriendCheckboxEntity } from "./FriendCheckboxEntity";
 
 const FriendCheckboxesFC: FC<{}> = () => {
-  const friendIds = useSelectFriendsIds();
+  const friendIds = useSelectAuthFriendsIds();
 
-  return (
+  return friendIds ? (
     <>
       {friendIds.map((friendId) => (
         <FriendCheckboxEntity key={friendId} friendId={friendId} />
       ))}
     </>
-  );
+  ) : null;
 };
 
 export const FriendCheckboxes = FriendCheckboxesFC;

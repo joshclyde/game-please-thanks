@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { GameImg, LinkExternal, List, Page, Text } from "@Common";
 import {
-  useSelectCurrentFriendIdsThatOwnGame,
+  useSelectAuthFriendIdsThatOwnGame,
   useSelectExternalUrl,
   useSelectUserName,
   useSelectGame,
@@ -37,7 +37,7 @@ const FriendName: FC<{ friendId: string }> = ({ friendId }) => {
 const GameEntityRouteFC: FC<Props> = ({}) => {
   const { gameId } = useParams<{ gameId: string }>();
   const { name, minPlayers, maxPlayers, isOnGamePass, price } = useSelectGame(gameId);
-  const friendIds = useSelectCurrentFriendIdsThatOwnGame(gameId);
+  const friendIds = useSelectAuthFriendIdsThatOwnGame(gameId);
   const externalUrl = useSelectExternalUrl(gameId);
   const isAuthenticated = useSelectIsAuthenticated();
 

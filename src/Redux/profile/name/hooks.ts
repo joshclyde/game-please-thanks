@@ -1,1 +1,0 @@
-export { useSelectName } from "./selectors";

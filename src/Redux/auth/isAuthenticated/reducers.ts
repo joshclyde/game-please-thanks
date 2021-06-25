@@ -10,14 +10,10 @@ const { reducer: isAuthenticated, addCase } = makeReducer<boolean | null>({
 });
 
 addCase(
-  makeCaseAuthAndProfileFetchSuccess(
-    (_state, action) => action.payload.value.isAuthenticated,
-  ),
+  makeCaseAuthAndProfileFetchSuccess((_state, action) => action.payload.isAuthenticated),
 );
 addCase(
-  makeCaseAuthAndProfileSetLocal(
-    (_state, action) => action.payload.value.isAuthenticated,
-  ),
+  makeCaseAuthAndProfileSetLocal((_state, action) => action.payload.isAuthenticated),
 );
 
 export const reducers = { isAuthenticated };

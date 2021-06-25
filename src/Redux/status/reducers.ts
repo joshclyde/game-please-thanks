@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import { reducers as optimisticUpdateUserProfileReducers } from "./optimisticUpdateUserProfile/reducers";
+import { reducers as optimisticUpdateUserReducers } from "./optimisticUpdateUser/reducers";
 
 const status = combineReducers({
-  ...optimisticUpdateUserProfileReducers,
+  ...optimisticUpdateUserReducers,
 });
 
 export const reducers = { status };

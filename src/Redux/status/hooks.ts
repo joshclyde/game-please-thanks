@@ -1,1 +1,1 @@
-export * from "./optimisticUpdateUserProfile/hooks";
+export * from "./optimisticUpdateUser/hooks";

@@ -57,7 +57,7 @@ export const getUsers = async (uids: Array<string>) => {
 };
 
 // https://firebase.google.com/docs/firestore/manage-data/add-data#update_fields_in_nested_objects
-export const updateProfileData = async ({
+export const updateUserData = async ({
   uid,
   hasGamePass,
   name,

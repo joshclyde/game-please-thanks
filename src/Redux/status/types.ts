@@ -1,5 +1,5 @@
 export interface StatusState {
-  optimisticUpdateUserProfile: {
+  optimisticUpdateUser: {
     status: string;
     error: string | null;
   };

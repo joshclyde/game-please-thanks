@@ -5,11 +5,11 @@ import styled from "styled-components";
 import { Page, Link } from "@Common";
 import { Form, FormCheckbox, FormTextInput, FormSubmitButton } from "@DesignRedux";
 import {
-  useSelectHasGamePass,
+  useSelectAuthHasGamePass,
   useSelectFormInputValue,
-  useSelectName,
-  useOptimisticUpdateUserProfile,
-  useSelectIsPendingOptimisticUpdateUserProfile,
+  useSelectAuthName,
+  useOptimisticUpdateAuthUser,
+  useSelectIsPendingOptimisticUpdateUser,
 } from "@Redux";
 
 const FORM_ID = `EDIT_PROFILE_FORM_ID`;
@@ -36,12 +36,12 @@ const useOnSubmit = () => {
     HAS_GAME_PASS_ID,
   ) as boolean;
   const inputValueName = useSelectFormInputValue(FORM_ID, NAME_ID) as string;
-  const optimisticUpdateUserProfile = useOptimisticUpdateUserProfile();
-  const isPending = useSelectIsPendingOptimisticUpdateUserProfile();
+  const optimisticUpdateAuthUser = useOptimisticUpdateAuthUser();
+  const isPending = useSelectIsPendingOptimisticUpdateUser();
   const history = useHistory();
   const onSubmit = useCallback(async () => {
     if (!isPending) {
-      await optimisticUpdateUserProfile({
+      await optimisticUpdateAuthUser({
         hasGamePass: inputValueHasGamePass,
         name: inputValueName,
       });
@@ -50,7 +50,7 @@ const useOnSubmit = () => {
   }, [
     inputValueHasGamePass,
     inputValueName,
-    optimisticUpdateUserProfile,
+    optimisticUpdateAuthUser,
     isPending,
     history,
   ]);
@@ -58,10 +58,10 @@ const useOnSubmit = () => {
 };
 
 const EditProfileRouteFC: FC<{}> = () => {
-  const hasGamePass = useSelectHasGamePass() as boolean;
-  const name = useSelectName() as string;
+  const hasGamePass = useSelectAuthHasGamePass() as boolean;
+  const name = useSelectAuthName() as string;
   const onSubmit = useOnSubmit();
-  const isPending = useSelectIsPendingOptimisticUpdateUserProfile();
+  const isPending = useSelectIsPendingOptimisticUpdateUser();
   const initialState = useMemo(
     () => ({
       [HAS_GAME_PASS_ID]: hasGamePass,
