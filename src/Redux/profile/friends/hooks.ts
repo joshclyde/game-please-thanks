@@ -47,4 +47,5 @@ export {
   useSelectFriendsIds,
   useSelectCurrentFriendIdsThatOwnGame,
   useSelectFriends,
+  useSelectFriendIdsSorted,
 } from "./selectors";

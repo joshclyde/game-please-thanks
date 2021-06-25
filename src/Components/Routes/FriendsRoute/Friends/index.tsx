@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 
 import { Link, Heading, BigText } from "@Common";
-import { useSelectFriendsIds, useSelectUser } from "@Redux";
+import { useSelectFriendIdsSorted, useSelectUser } from "@Redux";
 
 interface Props {}
 
@@ -50,7 +50,7 @@ const FriendRow: FC<{ friendId: string; row: string }> = ({ friendId, row }) => 
   - change Link to not be weird with it's alignment
 */
 const FriendsFC: FC<Props> = ({}) => {
-  const friendIds = useSelectFriendsIds();
+  const friendIds = useSelectFriendIdsSorted();
   return (
     <Grid>
       <Cell column="1" row="1" textAlign="left" as={Heading}>

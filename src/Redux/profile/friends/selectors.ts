@@ -6,11 +6,8 @@ import { UserProfileFriends } from "@Types";
 
 import { makeSelectAllUsers } from "../../users/selectors";
 
-const makeSelectUserProfileFriends = () => (state: RootState): UserProfileFriends => {
-  const friends = state.profile.friends;
-  const friendsForReal = _.pickBy(friends, ({ isFriend }) => isFriend);
-  return friendsForReal;
-};
+const makeSelectUserProfileFriends = () => (state: RootState): UserProfileFriends =>
+  _.pickBy(state.profile.friends, ({ isFriend }) => isFriend);
 
 export const useSelectUserProfileFriends = makeUseSelector(makeSelectUserProfileFriends);
 
@@ -22,11 +19,20 @@ export const useSelectFriendsIds = makeUseSelector(makeSelectFriendsIds);
 const makeSelectFriends = () => (state: RootState) => {
   const friendIds = makeSelectFriendsIds()(state);
   const users = makeSelectAllUsers()(state);
-  const friends = _.pickBy(users, (user, userId) => friendIds.includes(userId));
+  const friends = _.pickBy(users, (_user, userId) => friendIds.includes(userId));
   return friends;
 };
 
 export const useSelectFriends = makeUseSelector(makeSelectFriends);
+
+const makeSelectFriendsIdsSorted = () => (state: RootState) => {
+  const friends = makeSelectFriends()(state);
+  return Object.keys(friends).sort((friendId1, friendId2) => {
+    return friends[friendId1].name.localeCompare(friends[friendId2].name);
+  });
+};
+
+export const useSelectFriendIdsSorted = makeUseSelector(makeSelectFriendsIdsSorted);
 
 const makeSelectCurrentFriendIdsThatOwnGame = (gameId: string) => (state: RootState) => {
   const friendIds = makeSelectFriendsIds()(state);
