@@ -25,6 +25,14 @@ const makeSelectAuthName = () => (state: RootState) => {
 
 export const useSelectAuthName = makeUseSelector(makeSelectAuthName);
 
+export const makeSelectUserNameMaybeYou = (userId: string) => (state: RootState) => {
+  const uid = makeSelectUid()(state);
+  const name = makeSelectUserName(userId)(state);
+  return uid === userId ? `${name} (you)` : name;
+};
+
+export const useSelectUserNameMaybeYou = makeUseSelector(makeSelectUserNameMaybeYou);
+
 /*
   hasGamePass
 */
@@ -114,4 +122,16 @@ export const useSelectAuthFriendIdsThatOwnGame = makeUseSelector(
   makeSelectAuthFriendIdsThatOwnGame,
 );
 
-const makeSelectAuthFriendIdsAndMeSorted = () => (state: RootState) => {};
+const makeSelectAuthUidAndFriendIdsThatOwnGame = (gameId: string) => (
+  state: RootState,
+) => {
+  const friends = makeSelectAuthUserAndFriends()(state);
+  const friendsThatOwnGame = _.pickBy(friends, (user) =>
+    Boolean(user.games?.[gameId]?.isOwned),
+  );
+  return Object.keys(friendsThatOwnGame);
+};
+
+export const useSelectAuthUidAndFriendIdsThatOwnGame = makeUseSelector(
+  makeSelectAuthUidAndFriendIdsThatOwnGame,
+);

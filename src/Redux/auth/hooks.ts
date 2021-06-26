@@ -86,4 +86,6 @@ export {
   useSelectAuthFriendIdsThatOwnGame,
   useSelectAuthIsGameOwned,
   useSelectAuthUidAndFriendsIdsSorted,
+  useSelectAuthUidAndFriendIdsThatOwnGame,
+  useSelectUserNameMaybeYou,
 } from "./selectors";

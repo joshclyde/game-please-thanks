@@ -3,7 +3,11 @@ import React, { FC } from "react";
 import styled from "styled-components";
 
 import { Link, Heading, BigText } from "@Common";
-import { useSelectAuthUidAndFriendsIdsSorted, useSelectUser, useSelectUid } from "@Redux";
+import {
+  useSelectAuthUidAndFriendsIdsSorted,
+  useSelectUser,
+  useSelectUserNameMaybeYou,
+} from "@Redux";
 
 interface Props {}
 
@@ -26,16 +30,14 @@ const Cell = styled.div<{ column: string; row: string; textAlign?: string }>`
 `;
 
 const FriendRow: FC<{ friendId: string; row: string }> = ({ friendId, row }) => {
-  const uid = useSelectUid();
-  const { name, games, hasGamePass } = useSelectUser(friendId);
+  const { games, hasGamePass } = useSelectUser(friendId);
+  const name = useSelectUserNameMaybeYou(friendId);
   const numOfGamesowned = Object.keys(_.pickBy(games, (game) => game.isOwned)).length;
 
   return (
     <>
       <Cell column="1" row={row}>
-        <Link to={`/friends/${friendId}`}>
-          {uid === friendId ? `${name} (you)` : name}
-        </Link>
+        <Link to={`/friends/${friendId}`}>{name}</Link>
       </Cell>
       <Cell column="2" row={row} textAlign="center" as={BigText}>
         {numOfGamesowned || 0}

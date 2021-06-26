@@ -4,11 +4,11 @@ import styled from "styled-components";
 
 import { GameImg, LinkExternal, List, Page, Text } from "@Common";
 import {
-  useSelectAuthFriendIdsThatOwnGame,
+  useSelectAuthUidAndFriendIdsThatOwnGame,
   useSelectExternalUrl,
-  useSelectUserName,
   useSelectGame,
   useSelectIsAuthenticated,
+  useSelectUserNameMaybeYou,
 } from "@Redux";
 import { getPlayersText, COLORS } from "@Utils";
 
@@ -27,17 +27,15 @@ const GameList = styled(List)`
   margin-top: 16px;
 `;
 
-interface Props {}
-
 const FriendName: FC<{ friendId: string }> = ({ friendId }) => {
-  const name = useSelectUserName(friendId);
+  const name = useSelectUserNameMaybeYou(friendId);
   return <Text>{name}</Text>;
 };
 
-const GameEntityRouteFC: FC<Props> = ({}) => {
+const GameEntityRouteFC: FC<{}> = () => {
   const { gameId } = useParams<{ gameId: string }>();
   const { name, minPlayers, maxPlayers, isOnGamePass, price } = useSelectGame(gameId);
-  const friendIds = useSelectAuthFriendIdsThatOwnGame(gameId);
+  const friendIds = useSelectAuthUidAndFriendIdsThatOwnGame(gameId);
   const externalUrl = useSelectExternalUrl(gameId);
   const isAuthenticated = useSelectIsAuthenticated();
 
