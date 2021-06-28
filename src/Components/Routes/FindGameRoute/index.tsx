@@ -1,9 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, useRef } from "react";
 import styled from "styled-components";
 
-import { Heading, ListOfGames, Page, Text } from "@Common";
+import { Heading, Page, Text, ListOfGamesPaginated } from "@Common";
 import { TwoColumn } from "@Design";
-import { useUnmountEffect } from "@Hooks";
 import { useDeleteFormOnUnmount } from "@Redux";
 
 import { useGameIds, useCheckedFriendsIds } from "./hooks";
@@ -14,11 +13,10 @@ const Section = styled.div`
 `;
 
 const FindGameRouteFC: FC<{}> = ({}) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const gameIds = useGameIds();
   const friendIds = useCheckedFriendsIds();
   useDeleteFormOnUnmount(`FIND_GAME_ROUTE`);
-
-  useUnmountEffect(() => {});
 
   return (
     <Page header="FIND GAME">
@@ -28,8 +26,8 @@ const FindGameRouteFC: FC<{}> = ({}) => {
           <UserCheckboxes />
         </Section>
         <Section>
-          <Heading>Games you can play</Heading>
-          <ListOfGames gameIds={gameIds} />
+          <Heading ref={scrollRef}>Games you can play</Heading>
+          <ListOfGamesPaginated gameIds={gameIds} scrollRef={scrollRef} />
           {friendIds.length === 0 ? <Text>You have no friends selected.</Text> : null}
           {friendIds.length != 0 && gameIds.length === 0 ? (
             <Text>There are no games available to play.</Text>
