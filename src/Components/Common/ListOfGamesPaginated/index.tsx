@@ -28,9 +28,15 @@ export const ListOfGamesPaginated: FC<{
   const gameIdsForPage = gameIds.slice(first, last);
 
   const scroll = useCallback(() => {
-    if (scrollRef?.current) {
-      scrollRef.current.scrollIntoView({ behavior: `smooth`, inline: `start` });
-    }
+    /*
+      For some reason, scrollIntoView was only working like 50% of the time, but
+      when I wrap it in setTimeout it always works.
+    */
+    setTimeout(() => {
+      if (scrollRef?.current) {
+        scrollRef.current.scrollIntoView({ behavior: `smooth`, inline: `start` });
+      }
+    }, 0);
   }, [scrollRef]);
   const goNextPage = useCallback(() => {
     setPage((currentPage) => currentPage + 1);

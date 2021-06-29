@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useRef } from "react";
 import styled from "styled-components";
 
 import { Link, List, Page, Text, Heading } from "@Common";
@@ -16,6 +16,7 @@ const StyledList = styled(List)`
 `;
 
 const ProfileRouteFC: FC<{}> = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const hasGamePass = useSelectAuthHasGamePass();
   const name = useSelectAuthName();
 
@@ -25,8 +26,8 @@ const ProfileRouteFC: FC<{}> = () => {
         <Text>Game Pass: {hasGamePass ? `Yes` : `No`}</Text>
         <EditLink to="/profile/edit">Edit</EditLink>
       </StyledList>
-      <Heading>Games Owned</Heading>
-      <Games />
+      <Heading ref={scrollRef}>Games Owned</Heading>
+      <Games scrollRef={scrollRef} />
     </Page>
   );
 };

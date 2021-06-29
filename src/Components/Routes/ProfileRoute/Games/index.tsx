@@ -1,9 +1,13 @@
 import React, { FC } from "react";
 
-import { ListOfGames } from "@Common";
+import { ListOfGamesPaginated } from "@Common";
 import { useSelectProfileGamesOwnedIds } from "@Redux";
 
-export const Games: FC<{}> = () => {
+export const Games: FC<{ scrollRef?: React.RefObject<HTMLDivElement> }> = ({
+  scrollRef,
+}) => {
   const gameIds = useSelectProfileGamesOwnedIds();
-  return gameIds ? <ListOfGames gameIds={gameIds} /> : null;
+  return gameIds ? (
+    <ListOfGamesPaginated gameIds={gameIds} scrollRef={scrollRef} />
+  ) : null;
 };
