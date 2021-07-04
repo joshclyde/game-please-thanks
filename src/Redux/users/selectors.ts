@@ -30,6 +30,15 @@ export const makeSelectUserGamesOwnedIds = (userId: string) => (state: RootState
 
 export const useSelectUserGamesOwnedIds = makeUseSelector(makeSelectUserGamesOwnedIds);
 
+const makeSelectUserGamesOwnedCount = (userId: string) => (state: RootState) => {
+  const gamesOwnedIds = makeSelectUserGamesOwnedIds(userId)(state);
+  return gamesOwnedIds.length;
+};
+
+export const useSelectUserGamesOwnedCount = makeUseSelector(
+  makeSelectUserGamesOwnedCount,
+);
+
 export const makeSelectUserIsGameOwned = (userId: string, gameId: string) => (
   state: RootState,
 ) => Boolean(state.users[userId]?.games?.[gameId]?.isOwned);
@@ -62,3 +71,15 @@ export const useSelectUserAndFriends = makeUseSelector(makeSelectUserAndFriends)
 export const makeSelectAllUsers = () => (state: RootState) => state.users;
 
 export const useSelectAllUsers = makeUseSelector(makeSelectAllUsers);
+
+export const makeSelectFilteredUserIds = ({ searchTerm }: { searchTerm: string }) => (
+  state: RootState,
+) => {
+  const allUsers = state.users;
+  const filteredUsers = _.pickBy(allUsers, (user) => {
+    return user.name.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+  return Object.keys(filteredUsers);
+};
+
+export const useSelectFilteredUserIds = makeUseSelector(makeSelectFilteredUserIds);

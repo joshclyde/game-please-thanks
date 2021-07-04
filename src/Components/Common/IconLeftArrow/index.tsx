@@ -7,7 +7,7 @@ const Svg = styled.svg`
   cursor: pointer;
 `;
 
-export const IconBackArrow: FC<any> = (props) => {
+export const IconLeftArrow: FC<any> = (props) => {
   return (
     <Svg
       {...props}

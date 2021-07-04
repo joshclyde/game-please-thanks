@@ -57,7 +57,7 @@ export const SearchForm: FC<{}> = () => {
   return (
     <Div>
       <Heading>Filters</Heading>
-      <FormContainer formId={FORM_ID} onSubmit={onSubmit}>
+      <FormContainer formId={FORM_ID} onSubmit={onSubmit} initialState={{}}>
         <FormTextInput
           id={ID.SEARCH_TERM}
           formId={FORM_ID}

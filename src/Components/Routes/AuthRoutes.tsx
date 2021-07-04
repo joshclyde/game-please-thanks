@@ -21,6 +21,7 @@ import { HomeRoute } from "./HomeRoute";
 import { LoadingRoute } from "./LoadingRoute";
 import { ProfileRoute } from "./ProfileRoute";
 import { SettingsRoute } from "./SettingsRoute";
+import { UsersRoute } from "./UsersRoute";
 
 const Div = styled.div`
   margin: 15px;
@@ -61,6 +62,7 @@ const AuthRoutesFC: FC<{}> = () => {
       <Switch>
         <Route path="/games/:gameId" component={GameEntityRoute} />
         <Route path="/games" component={GamesRoute} />
+        <Route path="/users" component={UsersRoute} />
         <Route path="/friends/:friendId" component={FriendEntityRoute} />
         <Route path="/friends" component={FriendsRoute} />
         <Route path="/find" component={FindGameRoute} />

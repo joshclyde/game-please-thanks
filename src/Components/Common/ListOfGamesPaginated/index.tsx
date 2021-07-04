@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { ListOfGames } from "@Common";
 
-import { Pagination } from "./Pagination";
+import { Pagination } from "../Pagination";
 
 const Div = styled.div`
   display: flex;
@@ -38,11 +38,11 @@ export const ListOfGamesPaginated: FC<{
       }
     }, 0);
   }, [scrollRef]);
-  const goNextPage = useCallback(() => {
+  const toNextPage = useCallback(() => {
     setPage((currentPage) => currentPage + 1);
     scroll();
   }, [setPage, scroll]);
-  const goPreviousPage = useCallback(() => {
+  const toPreviousPage = useCallback(() => {
     setPage((currentPage) => currentPage - 1);
     scroll();
   }, [setPage, scroll]);
@@ -56,8 +56,8 @@ export const ListOfGamesPaginated: FC<{
             first={first}
             last={last}
             numberOfResults={gameIds.length}
-            goNextPage={goNextPage}
-            goPreviousPage={goPreviousPage}
+            toNextPage={toNextPage}
+            toPreviousPage={toPreviousPage}
           />
         </>
       )}

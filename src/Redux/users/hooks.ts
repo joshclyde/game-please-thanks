@@ -1,1 +1,7 @@
-export { useSelectUser, useSelectUserName, useSelectAllUsers } from "./selectors";
+export {
+  useSelectUser,
+  useSelectUserName,
+  useSelectAllUsers,
+  useSelectUserGamesOwnedCount,
+  useSelectFilteredUserIds,
+} from "./selectors";
