@@ -4,4 +4,5 @@ export {
   useSelectAllUsers,
   useSelectUserGamesOwnedCount,
   useSelectFilteredUserIds,
+  useSelectIsFriend,
 } from "./selectors";

@@ -2,11 +2,13 @@ import React, { FC } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { Page, Text, FriendImg, List } from "@Common";
+import { Page, Text, UserImg, List } from "@Common";
 import { useSelectGame, useSelectUser, useSelectUserNameMaybeYou } from "@Redux";
 import { COLORS } from "@Utils";
 
-const Img = styled(FriendImg)`
+import { IsFriendCheckbox } from "./IsFriendCheckbox";
+
+const Img = styled(UserImg)`
   width: 88px;
   height: 88px;
   border: ${COLORS.BLUE} solid 1px;
@@ -24,13 +26,13 @@ const GameName: FC<{ gameId: string }> = ({ gameId }) => {
   return <Text>{name}</Text>;
 };
 
-const FriendEntityRouteFC: FC<{}> = ({}) => {
-  const { friendId } = useParams<{ friendId: string }>();
-  const { games, hasGamePass } = useSelectUser(friendId);
-  const name = useSelectUserNameMaybeYou(friendId);
+const UserEntityRouteFC: FC<{}> = ({}) => {
+  const { userId } = useParams<{ userId: string }>();
+  const { games, hasGamePass } = useSelectUser(userId);
+  const name = useSelectUserNameMaybeYou(userId);
   return (
-    <Page header="FRIENDS">
-      <Img friendId={friendId} />
+    <Page header="USERS">
+      <Img userId={userId} />
       <FirstList header={name}>
         <Text>Game Pass: {hasGamePass ? `Yes` : `No`}</Text>
       </FirstList>
@@ -42,9 +44,10 @@ const FriendEntityRouteFC: FC<{}> = ({}) => {
         ) : (
           <Text>None</Text>
         )}
+        <IsFriendCheckbox userId={userId} />
       </List>
     </Page>
   );
 };
 
-export const FriendEntityRoute = FriendEntityRouteFC;
+export const UserEntityRoute = UserEntityRouteFC;

@@ -9,7 +9,7 @@ export * from "./BottomIcons";
 export * from "./Page";
 export * from "./List";
 export * from "./ListOfGames";
-export * from "./FriendImg";
+export * from "./UserImg";
 export * from "./IconLeftArrow";
 export * from "./IconRightArrow";
 export * from "./Link";

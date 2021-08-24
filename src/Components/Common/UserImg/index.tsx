@@ -10,10 +10,10 @@ const Img = styled.img`
 
 interface Props {
   className?: string;
-  friendId: string;
+  userId: string;
 }
 
-export const FriendImg: FC<Props> = ({ className, friendId }) => {
+export const UserImg: FC<Props> = ({ className, userId }) => {
   // const { imageUrl } = useSelectFriend(friendId);
   return (
     <Img

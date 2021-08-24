@@ -26,7 +26,7 @@ export const makeAction = <
   ActionPayload extends object,
   MakePayloadArgs extends Array<any>
 >(
-  type: StringLiteral<ActionType>,
+  type: StringLiteral<ActionType> | string,
   makePayload: (...args: MakePayloadArgs) => ActionPayload,
 ) => {
   const actionCreator = (...args: MakePayloadArgs) => ({

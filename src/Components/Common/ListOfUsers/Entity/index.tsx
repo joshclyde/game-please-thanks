@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { Link, Text, FriendImg } from "@Common";
+import { Link, Text, UserImg } from "@Common";
 import { useSelectUserName, useSelectUserGamesOwnedCount } from "@Redux";
 import { getPlayersText, COLORS } from "@Utils";
 
 // TODO: cache these images
-const Img = styled(FriendImg)`
+const Img = styled(UserImg)`
   width: 64px;
   height: 64px;
 `;
@@ -35,7 +35,7 @@ const EntityFC: FC<Props> = ({ userId }) => {
   const gameCount = useSelectUserGamesOwnedCount(userId);
   return (
     <Div>
-      <Img friendId={userId} />
+      <Img userId={userId} />
       <Div2>
         <Link to={`/users/${userId}`}>{name}</Link>
         <StyledText>Games: {gameCount}</StyledText>
