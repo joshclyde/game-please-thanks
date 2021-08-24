@@ -13,7 +13,6 @@ import { COLORS } from "@Utils";
 
 import { EditProfileRoute } from "./EditProfileRoute";
 import { FindGameRoute } from "./FindGameRoute";
-import { FriendEntityRoute } from "./FriendEntityRoute";
 import { FriendsRoute } from "./FriendsRoute";
 import { GameEntityRoute } from "./GameEntityRoute";
 import { GamesRoute } from "./GamesRoute";
@@ -21,6 +20,7 @@ import { HomeRoute } from "./HomeRoute";
 import { LoadingRoute } from "./LoadingRoute";
 import { ProfileRoute } from "./ProfileRoute";
 import { SettingsRoute } from "./SettingsRoute";
+import { UserEntityRoute } from "./UserEntityRoute";
 import { UsersRoute } from "./UsersRoute";
 
 const Div = styled.div`
@@ -62,8 +62,8 @@ const AuthRoutesFC: FC<{}> = () => {
       <Switch>
         <Route path="/games/:gameId" component={GameEntityRoute} />
         <Route path="/games" component={GamesRoute} />
+        <Route path="/users/:userId" component={UserEntityRoute} />
         <Route path="/users" component={UsersRoute} />
-        <Route path="/friends/:friendId" component={FriendEntityRoute} />
         <Route path="/friends" component={FriendsRoute} />
         <Route path="/find" component={FindGameRoute} />
         <Route path="/settings" component={SettingsRoute} />

@@ -143,7 +143,6 @@ const limitColors2 = (colorMap: ColorMap, numOfColors: number) => {
     let shouldAdd = true;
     validColors.forEach((validColor) => {
       const length = lengthBetweenColors(color, validColor);
-      console.log(`Length: ${length}`);
       if (length < 100) {
         shouldAdd = false;
       }
@@ -215,15 +214,16 @@ const transformColorMap = (
   return newColorMap;
 };
 
-// const popularColors = (colorMap: ColorMap, squareSize: number) => {
-//   const [width, height] = dimensions(colorMap);
-//   for (let i = 0; i < width; i += squareSize) {
-//     for (let j = 0; j < height; j += squareSize) {
-//       const slicedColorMap = sliceColorMap(colorMap, i, j, squareSize, squareSize);
-//     }
-//   }
-//   forEachColor(colorMap, (color, x, y) => {});
-// };
+const popularColors = (colorMap: ColorMap, squareSize: number) => {
+  const [width, height] = dimensions(colorMap);
+  for (let i = 0; i < width; i += squareSize) {
+    for (let j = 0; j < height; j += squareSize) {
+      const slicedColorMap = sliceColorMap(colorMap, i, j, squareSize, squareSize);
+      const colorCounts = makeColorCountsArray(colorMap);
+    }
+  }
+  forEachColor(colorMap, (color, x, y) => {});
+};
 
 /*
   Algorithms.
@@ -309,7 +309,8 @@ const createImage = async (fileName: string) => {
       this.bitmap.data[idx + 2] = newColorMap[x][y].blue;
     });
 
-    image.write(`./scripts/data/images/restyled/${fileName}`);
+    image.write(`./scripts/data/images/beta-restyled/${fileName}`);
+    // image.write(`./scripts/data/images/restyled/${fileName}`);
     console.log(`Finished ${fileName}`);
   } catch (err) {
     console.log(`ERROR`);
@@ -318,13 +319,31 @@ const createImage = async (fileName: string) => {
 };
 
 const execute = async () => {
-  const microsoftImageFileNames = await readMicrosoftImages();
-  const start = async (index: number) => {
-    await createImage(microsoftImageFileNames[index]);
-    if (index + 1 < microsoftImageFileNames.length) {
-      await start(index + 1);
-    }
-  };
-  start(0);
+  // const microsoftImageFileNames = await readMicrosoftImages();
+  // const start = async (index: number) => {
+  //   await createImage(microsoftImageFileNames[index]);
+  //   if (index + 1 < microsoftImageFileNames.length) {
+  //     await start(index + 1);
+  //   }
+  // };
+  // start(0);
+  createImage(`9P6F6TBGGVK3.jpeg`); // risk of rain
+  createImage(`9P2N57MC619K.jpeg`); // sea of thieves
+  createImage(`BQ7NMRJT1NQ4.jpeg`); // don't starve me
+  createImage(`9NBLGGH537BL.jpeg`); // minecraft
+  createImage(`BPQ955FQFPH6.jpeg`); // destiny 2
+  createImage(`C2MHS238PDNS.jpeg`); // smite
+  createImage(`BNG91PT95LQN.jpeg`); // monster hunter
+  createImage(`BPQZT43FWD49.jpeg`); // gang beasts
+  createImage(`BPK4ZKFCFL5G.jpeg`); // halo
+  createImage(`C125W9BG2K0V.jpeg`); // rocket league
+  createImage(`C1C4DZJPBC2V.jpeg`); // overwatch
+  createImage(`BNNMLWZRNQF6.jpeg`); // ultimate chicken horse
+  createImage(`C21TDXKRNMHZ.jpeg`); // halo wars 2
+  createImage(`C10GWTNNNBZ8.jpeg`); // castle crashers
+  createImage(`9NKJ0VZQ4N0L.jpeg`); // it takes two
+  createImage(`C0GWTPD0S8S1.jpeg`); // star wars 2
+  createImage(`BPJ686W6S0NH.jpeg`); // gta v
+  createImage(`C2JQRC2C49B0.jpeg`); // destiny
 };
 execute();

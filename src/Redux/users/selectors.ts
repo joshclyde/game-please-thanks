@@ -68,6 +68,15 @@ export const makeSelectUserAndFriends = (userId: string) => (state: RootState) =
 
 export const useSelectUserAndFriends = makeUseSelector(makeSelectUserAndFriends);
 
+export const makeSelectIsFriend = (userId: string, friendId: string) => (
+  state: RootState,
+) => {
+  const friendIds = makeSelectUserFriendsIds(userId)(state);
+  return friendIds.some((anotherFriendId) => anotherFriendId === friendId);
+};
+
+export const useSelectIsFriend = makeUseSelector(makeSelectIsFriend);
+
 export const makeSelectAllUsers = () => (state: RootState) => state.users;
 
 export const useSelectAllUsers = makeUseSelector(makeSelectAllUsers);

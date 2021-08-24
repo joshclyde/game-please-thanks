@@ -11,6 +11,7 @@ import {
   makeSelectUserFriendsIds,
   makeSelectUserIsGameOwned,
   makeSelectUserAndFriends,
+  makeSelectIsFriend,
 } from "../users/selectors";
 
 import { makeSelectUid } from "./uid/selectors";
@@ -83,6 +84,13 @@ const makeSelectAuthFriendsIds = () => (state: RootState) => {
 };
 
 export const useSelectAuthFriendsIds = makeUseSelector(makeSelectAuthFriendsIds);
+
+const makeSelectAuthIsFriend = (friendId: string) => (state: RootState) => {
+  const uid = makeSelectUid()(state);
+  return uid ? makeSelectIsFriend(uid, friendId)(state) : null;
+};
+
+export const useSelectAuthIsFriend = makeUseSelector(makeSelectAuthIsFriend);
 
 const makeSelectAuthFriendsIdsSorted = () => (state: RootState) => {
   const friends = makeSelectAuthFriends()(state);

@@ -5,6 +5,7 @@ import {
   makeCaseAuthAndProfileSetLocal,
 } from "../auth/isAuthenticated/actions";
 import { makeCaseLoadUsersSuccess } from "../status/loadUsers/actions";
+import { makeCaseStartOptimisticUpdateAuthUserFriends } from "../status/optimisticUpdateAuthUserFriends/actions";
 
 import {
   makeCaseOptimisticUpdatePendingUser,
@@ -80,6 +81,15 @@ addCase(
       };
     },
   ),
+);
+
+addCase(
+  makeCaseStartOptimisticUpdateAuthUserFriends((state, { payload }) => {
+    return {
+      ...state,
+      [uid]: {},
+    };
+  }),
 );
 
 export const reducers = { users };
