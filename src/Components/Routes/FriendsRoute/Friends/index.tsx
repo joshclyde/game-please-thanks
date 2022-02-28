@@ -37,7 +37,7 @@ const FriendRow: FC<{ friendId: string; row: string }> = ({ friendId, row }) => 
   return (
     <>
       <Cell column="1" row={row}>
-        <Link to={`/friends/${friendId}`}>{name}</Link>
+        <Link to={`/users/${friendId}`}>{name}</Link>
       </Cell>
       <Cell column="2" row={row} textAlign="center" as={BigText}>
         {numOfGamesowned || 0}

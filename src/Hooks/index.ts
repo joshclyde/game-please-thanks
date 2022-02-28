@@ -51,7 +51,9 @@ export const useTimeout = <T extends Array<any>>(
 };
 
 /*
-  `useTimer` allows you to start timer and get notified when the time is finished.
+  `useTimer` returns a function to allow you to start a timer and get notified when the
+  timer is finished.
+  
   returns 2 values
   1st: `completed`: this number will increment each time a timer has completed. a good
   use of this would be to have a useEffect with `completed` as it's dependency to

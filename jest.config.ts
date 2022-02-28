@@ -23,6 +23,7 @@ const config: Config.InitialOptions = {
       "@Hooks": [`./src/Hooks/index`],
       "@Design": [`./src/Components/Design/index`],
       "@DesignRedux": [`./src/Components/DesignRedux/index`],
+      "@DesignEnhanced": [`./src/Components/DesignEnhanced/index`],
       "@Common": [`./src/Components/Common/index`],
       "@Domain": [`./src/Components/Domain/index`],
       "@Routes": [`./src/Components/Routes/index`],

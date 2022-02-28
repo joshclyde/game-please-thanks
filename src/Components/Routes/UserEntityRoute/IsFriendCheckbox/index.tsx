@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from "react";
 import styled from "styled-components";
 
-import { DelayedCheckbox } from "@DesignRedux";
+import { DelayedCheckbox } from "@DesignEnhanced";
 import { useOptimisticUpdateAuthUserFriends, useSelectAuthIsFriend } from "@Redux";
 
 const Checkbox = styled(DelayedCheckbox)`
