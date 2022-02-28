@@ -3,6 +3,15 @@ import { useCallback } from "react";
 import { makeAction } from "./makeAction";
 import { makeReducer } from "./makeReducer";
 
+/*
+  Utility function to create a value to track the progress of an async task.
+
+  TODO: it is kinda confusing that this is called "Meta". But I get that I want a meta.
+  MetaPayload: the payload data to be dispatched with all of the created actions.
+  SuccessPayload: the payload data to be dispatched with the successful load action
+
+  TODO: I might look at switching over to Jotai so maybe this will be thrown away.
+*/
 export const makeLoading2 = <SuccessPayload, MetaPayload>({
   makeTypePrefix,
 }: {

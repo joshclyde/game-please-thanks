@@ -75,8 +75,6 @@ export const useOptimisticUpdateAuthUserOwnsGame = () => {
   );
 };
 
-export const useOptimisticUpdateAuthUserIsFriendWithUser = () => {};
-
 export * from "./uid/hooks";
 export * from "./isAuthenticated/hooks";
 export {

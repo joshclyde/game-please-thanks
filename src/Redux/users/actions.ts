@@ -46,9 +46,6 @@ export const {
 } = makeAction(`OPTIMISTIC_UPDATE_ERROR/USER_OWNS_GAME`, (errorMessage: string) => ({
   errorMessage,
 }));
-
 export const { statusReducer, errorReducer, makeUseLoad } = makeLoading2({
-  START: `OPTIMISTIC_UPDATE_PENDING/USER_IS_FRIEND`,
-  SUCCESS: `OPTIMISTIC_UPDATE_SUCCESS/USER_IS_FRIEND`,
-  FAILURE: `OPTIMISTIC_UPDATE_ERROR/USER_IS_FRIEND`,
+  makeTypePrefix: (status) => `OPTIMISTIC_UPDATE_${status}/USER_IS_FRIEND`,
 });

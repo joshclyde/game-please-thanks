@@ -84,12 +84,12 @@ addCase(
 );
 
 addCase(
-  makeCaseStartOptimisticUpdateAuthUserFriends((state, { payload }) => {
-    return {
-      ...state,
-      [uid]: {},
-    };
-  }),
+  makeCaseStartOptimisticUpdateAuthUserFriends(
+    // TODO: this needs to be fixed if I decide to keep using redux.
+    (state, { payload: { meta: friends } }) => {
+      return state;
+    },
+  ),
 );
 
 export const reducers = { users };

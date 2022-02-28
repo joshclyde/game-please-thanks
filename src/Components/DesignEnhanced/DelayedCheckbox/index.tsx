@@ -40,8 +40,8 @@ export const DelayedCheckbox: FC<DelayedCheckboxProps> = ({
   /*
     When `checked` changes a timer will be started.
 
-    If `checked` changes again before the time finishes,
-    the previous timer will be canceled and a new timer will start (because
+    If `checked` changes again before the timer finishes,
+    the timer will be canceled and a new timer will start (because
     that is how `useTimer` works).
   */
   const [completed, startTimer] = useTimer(1000);
@@ -50,8 +50,8 @@ export const DelayedCheckbox: FC<DelayedCheckboxProps> = ({
   }, [checked]);
 
   /*
-    When the timer has completed the onChangeDelayed prop will
-    be called with the new checked state.
+    When the timer has completed the `completed` variable will increment
+    by 1 which is what we will use to decide when to update.
   */
   useEffectExceptFirstMount(() => {
     if (completed > 0) {
