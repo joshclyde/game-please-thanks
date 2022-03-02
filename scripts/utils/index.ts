@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   outputJson as fsOutputJson,
   readJson as fsReadJson,
@@ -29,6 +30,17 @@ export const readGamesFile = (): Promise<Record<string, Game>> => readJson(`game
 
 export const writeGamesToFile = (games: Record<string, Game>) =>
   writeJson(`games.json`, games);
+
+export const readMegaList = (): Promise<{ productIds: Array<string> }> =>
+  readJson(`megaList.json`);
+
+export const appendProductIdsToMegaList = async (productIds: Array<string>) => {
+  const { productIds: megaProductIds } = await readMegaList();
+  const filteredProductIds = productIds.filter((id) => !megaProductIds.includes(id));
+  await writeJson(`megaList.json`, {
+    productIds: [...megaProductIds, ...filteredProductIds],
+  });
+};
 
 export const readRawProductData = (id: string) => readJson(`rawProduct/${id}`);
 
@@ -195,4 +207,32 @@ export const convertMicrosoftProductToGame = (
     isOnGamePass,
   };
   return game;
+};
+
+const _scrapeMicrosoftProducts = async (productIds: Array<string>) => {
+  if (productIds.length > 20) {
+    throw new Error(
+      `The number of productIds exceeded the max number (20) you should request at one time.`,
+    );
+  }
+  try {
+    const url = `https://displaycatalog.mp.microsoft.com/v7.0/products?bigIds=${productIds.join()}&market=US&languages=en-us&MS-CV=DGU1mcuYo0WMMp`;
+    const response = await axios.get<{ Products: Array<MicrosoftProduct> }>(url);
+    await writeResponseToFiles(response.data);
+    console.log(`Successfully scraped ${productIds}`);
+  } catch (error) {
+    console.log(`Error scraping for ${productIds}. ${error.data}`);
+  }
+};
+
+export const scrapeMicrosoftProducts = async (productIds: Array<string>) => {
+  let promises: Array<Promise<void>> = [];
+  for (let i = 0; i < productIds.length; i += 20) {
+    promises.push(
+      _scrapeMicrosoftProducts(
+        productIds.slice(0 + i, Math.min(20 + i, productIds.length)),
+      ),
+    );
+  }
+  await Promise.all(promises);
 };
