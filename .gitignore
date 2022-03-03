@@ -13,7 +13,6 @@ yarn-debug.log*
 yarn-error.log*
 /.changelog
 .firebase
-src/Firebase/firebaseConfig.ts
 assets/gameImages/
 assets/restyled/
 scripts/data
