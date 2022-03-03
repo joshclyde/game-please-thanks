@@ -26,12 +26,11 @@ const execConcurrentPromises = async (
   promises: Array<() => Promise<void>>,
   concurrency,
 ) => {
-  let index = 0;
   const another = async () => {
-    const i = index;
-    index++;
-    await promises[i]();
-    await another();
+    if (promises.length > 0) {
+      await promises.pop()();
+      await another();
+    }
   };
   for (let i = 0; i < concurrency; i++) {
     another();
