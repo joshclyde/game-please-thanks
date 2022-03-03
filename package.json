@@ -14,7 +14,7 @@
     "storybook": "start-storybook -p 9001 -c storybook",
     "downloadMicrosoftProductData": "ts-node --log-error ./scripts/exec/downloadMicrosoftProductData.ts",
     "logDataFromRawProduct": "ts-node --log-error ./scripts/exec/logDataFromRawProduct.ts",
-    "pullImagesFromMicrosoft": "ts-node --log-error ./scripts/exec/pullImagesFromMicrosoft.ts",
+    "downloadImagesFromMicrosoft": "ts-node --log-error ./scripts/exec/downloadImagesFromMicrosoft.ts",
     "makeGameData": "ts-node --log-error ./scripts/exec/makeGameData.ts",
     "makeImages": "ts-node --log-error ./scripts/exec/makeImages.ts"
   },

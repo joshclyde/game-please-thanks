@@ -265,13 +265,13 @@ const algorithm = algorithm2;
   The goal of the created image is to make it look like pixel art.
 
   Pixel Art. To me, that means
-  - smaller pallete of colors (maybe like 10-20 max)
-  - smaller size (could be pretty small, maybe 64x64 max)
+  - smaller pallete of colors
+  - smaller size (could be pretty small, maybe 64x64)
   - 
 
   Notes...
 
-  - It may be difficuly to make pixel art from the pictures that are
+  - It may be difficult to make pixel art from the pictures that are
   much more detailed. Perhaps I can detect how detailed a picture is
   and somehow involve that with the algorithm. For example, if a
   picture is more detailed maybe i'll allow more colors.
@@ -279,8 +279,6 @@ const algorithm = algorithm2;
   - The more detailed parts may be harder to pixelate. Could I treat 
   the image in 2 layers, with the detailed parts being the above part
   to ensure the details are seen?
-
-
 */
 const createImage = async (fileName: string) => {
   console.log(`Creating ${fileName}`);
@@ -319,31 +317,38 @@ const createImage = async (fileName: string) => {
 };
 
 const execute = async () => {
-  // const microsoftImageFileNames = await readMicrosoftImages();
-  // const start = async (index: number) => {
-  //   await createImage(microsoftImageFileNames[index]);
-  //   if (index + 1 < microsoftImageFileNames.length) {
-  //     await start(index + 1);
-  //   }
-  // };
-  // start(0);
-  createImage(`9P6F6TBGGVK3.jpeg`); // risk of rain
-  createImage(`9P2N57MC619K.jpeg`); // sea of thieves
-  createImage(`BQ7NMRJT1NQ4.jpeg`); // don't starve me
-  createImage(`9NBLGGH537BL.jpeg`); // minecraft
-  createImage(`BPQ955FQFPH6.jpeg`); // destiny 2
-  createImage(`C2MHS238PDNS.jpeg`); // smite
-  createImage(`BNG91PT95LQN.jpeg`); // monster hunter
-  createImage(`BPQZT43FWD49.jpeg`); // gang beasts
-  createImage(`BPK4ZKFCFL5G.jpeg`); // halo
-  createImage(`C125W9BG2K0V.jpeg`); // rocket league
-  createImage(`C1C4DZJPBC2V.jpeg`); // overwatch
-  createImage(`BNNMLWZRNQF6.jpeg`); // ultimate chicken horse
-  createImage(`C21TDXKRNMHZ.jpeg`); // halo wars 2
-  createImage(`C10GWTNNNBZ8.jpeg`); // castle crashers
-  createImage(`9NKJ0VZQ4N0L.jpeg`); // it takes two
-  createImage(`C0GWTPD0S8S1.jpeg`); // star wars 2
-  createImage(`BPJ686W6S0NH.jpeg`); // gta v
-  createImage(`C2JQRC2C49B0.jpeg`); // destiny
+  /*
+    Uncomment these lines if I want to make images for every image.
+  */
+  const microsoftImageFileNames = await readMicrosoftImages();
+  const start = async (index: number) => {
+    await createImage(microsoftImageFileNames[index]);
+    if (index + 1 < microsoftImageFileNames.length) {
+      await start(index + 1);
+    }
+  };
+  start(0);
+
+  /*
+    Uncomment these lines if I only want to test at makeImages on a few known games.
+  */
+  // createImage(`9P6F6TBGGVK3.jpeg`); // risk of rain
+  // createImage(`9P2N57MC619K.jpeg`); // sea of thieves
+  // createImage(`BQ7NMRJT1NQ4.jpeg`); // don't starve me
+  // createImage(`9NBLGGH537BL.jpeg`); // minecraft
+  // createImage(`BPQ955FQFPH6.jpeg`); // destiny 2
+  // createImage(`C2MHS238PDNS.jpeg`); // smite
+  // createImage(`BNG91PT95LQN.jpeg`); // monster hunter
+  // createImage(`BPQZT43FWD49.jpeg`); // gang beasts
+  // createImage(`BPK4ZKFCFL5G.jpeg`); // halo
+  // createImage(`C125W9BG2K0V.jpeg`); // rocket league
+  // createImage(`C1C4DZJPBC2V.jpeg`); // overwatch
+  // createImage(`BNNMLWZRNQF6.jpeg`); // ultimate chicken horse
+  // createImage(`C21TDXKRNMHZ.jpeg`); // halo wars 2
+  // createImage(`C10GWTNNNBZ8.jpeg`); // castle crashers
+  // createImage(`9NKJ0VZQ4N0L.jpeg`); // it takes two
+  // createImage(`C0GWTPD0S8S1.jpeg`); // star wars 2
+  // createImage(`BPJ686W6S0NH.jpeg`); // gta v
+  // createImage(`C2JQRC2C49B0.jpeg`); // destiny
 };
 execute();

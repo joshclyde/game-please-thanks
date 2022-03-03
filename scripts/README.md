@@ -29,3 +29,12 @@ yarn makeGameData
 ```
 ## Images?????
 
+```sh
+# Download all images from microsoft
+# This will take many minutes. ~10 minutes
+yarn downloadImagesFromMicrosoft
+
+# Create new images to be used on gamepleasethanks.com
+# This will take many minutes. ~5 minutes
+yarn makeImages
+```
