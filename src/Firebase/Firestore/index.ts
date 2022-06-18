@@ -56,6 +56,16 @@ export const getUsers = async (uids: Array<string>) => {
   return users;
 };
 
+export const getAllUsers = async () => {
+  const q = query(collection(firestore, `/users`));
+  const snapshot = await getDocs(q);
+  const users: Record<string, UserProfile> = {};
+  snapshot.forEach((doc) => {
+    users[doc.id] = doc.data() as UserProfile;
+  });
+  return users;
+};
+
 // https://firebase.google.com/docs/firestore/manage-data/add-data#update_fields_in_nested_objects
 export const updateUserData = async ({
   uid,

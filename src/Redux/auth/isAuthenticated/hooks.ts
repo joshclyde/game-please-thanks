@@ -27,17 +27,12 @@ export const useAuthListener = () => {
     startFirebaseEventListening(
       async ({ uid }) => {
         const user = await getProfileData(uid);
-        const { friends } = user;
         setData({
           isAuthenticated: true,
           uid,
           user,
         });
-        const friendIds = Object.keys(friends).filter((friendId) => {
-          const friend = friends[friendId];
-          return friend.isFriend;
-        });
-        loadUsers(friendIds);
+        loadUsers();
       },
       () => {
         setData({

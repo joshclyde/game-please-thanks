@@ -2,7 +2,11 @@ import React, { FC } from "react";
 import styled from "styled-components";
 
 import { Link, Text, UserImg } from "@Common";
-import { useSelectUserName, useSelectUserGamesOwnedCount } from "@Redux";
+import {
+  useSelectUserName,
+  useSelectUserGamesOwnedCount,
+  useSelectAuthIsFriend,
+} from "@Redux";
 import { getPlayersText, COLORS } from "@Utils";
 
 // TODO: cache these images
@@ -33,12 +37,16 @@ interface Props {
 const EntityFC: FC<Props> = ({ userId }) => {
   const name = useSelectUserName(userId);
   const gameCount = useSelectUserGamesOwnedCount(userId);
+  const isFriend = useSelectAuthIsFriend(userId);
   return (
     <Div>
       <Img userId={userId} />
       <Div2>
         <Link to={`/users/${userId}`}>{name}</Link>
-        <StyledText>Games: {gameCount}</StyledText>
+        <StyledText>
+          {isFriend && `Friend, `}
+          Games: {gameCount}
+        </StyledText>
       </Div2>
     </Div>
   );
