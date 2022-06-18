@@ -2,7 +2,11 @@ import React, { FC, useCallback } from "react";
 import styled from "styled-components";
 
 import { DelayedCheckbox } from "@DesignEnhanced";
-import { useOptimisticUpdateAuthUserFriends, useSelectAuthIsFriend } from "@Redux";
+import {
+  useOptimisticUpdateAuthUserFriends,
+  useSelectAuthIsFriend,
+  useSelectUid,
+} from "@Redux";
 
 const Checkbox = styled(DelayedCheckbox)`
   margin-top: 16px;
@@ -10,10 +14,11 @@ const Checkbox = styled(DelayedCheckbox)`
 
 export const IsFriendCheckbox: FC<{ userId: string; className?: string }> = ({
   userId,
-  ...rest
+  className,
 }) => {
   const isFriend = useSelectAuthIsFriend(userId);
   const updateAuthUserFriends = useOptimisticUpdateAuthUserFriends();
+  const uid = useSelectUid();
 
   const onChangeDelayed = useCallback(
     (checked: boolean) => {
@@ -22,6 +27,13 @@ export const IsFriendCheckbox: FC<{ userId: string; className?: string }> = ({
     [updateAuthUserFriends, userId],
   );
 
+  if (uid === userId) {
+    /*
+      Don't want to display the IsFriendCheckbox for the user's self.
+    */
+    return null;
+  }
+
   return (
     <Checkbox
       id={`IS_FRIEND_CHECKBOX_${userId}`}
@@ -29,7 +41,7 @@ export const IsFriendCheckbox: FC<{ userId: string; className?: string }> = ({
       onChangeDelayed={onChangeDelayed}
       label="Is a friend"
       initialState={Boolean(isFriend)}
-      {...rest}
+      className={className}
     />
   );
 };
