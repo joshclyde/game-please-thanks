@@ -1,6 +1,5 @@
 # Scripts
 
-
 - scripts
   - /data/games.json: finalized data for all games
   - /data/megaList.json: contains all known product ids
@@ -25,9 +24,12 @@ yarn downloadMicrosoftProductData
 # Parsing through the locally saved microsoft data to create `games.json` with the minimum necessary data
 yarn makeGameData
 
-# ?????? /assets/games.json
+# Copy `games.json` to the `assets` folder. Then, when you do a build and deploy it will push the file
+# to firebase. Currently, `games.json` is an asset when publishing the build instead of saving all of
+# the games in a database.
 ```
-## Images?????
+
+## How to Update Images
 
 ```sh
 # Download all images from microsoft
@@ -37,4 +39,17 @@ yarn downloadImagesFromMicrosoft
 # Create new images to be used on gamepleasethanks.com
 # This will take many minutes. ~5 minutes
 yarn makeImages
+
+# Go to firebase console, storage, then upload file and select all images.
+# There's like 2000ish games so this kinda freezes my browser.
 ```
+
+## Future
+
+This would be a good use case for something automated in the cloud. Could be a daily task.
+
+Rather than having a games.json file pushed with the build, I could have all this data in the firestore.
+
+If it was in Firestore, things to consider
+- Should I pull all game data in a single request and do any filtering/searching on the client side? Or should the client send a query to the firestore and it respond with the games?
+- Pagination Documentation: https://firebase.google.com/docs/firestore/query-data/query-cursors

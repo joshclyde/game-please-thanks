@@ -43,6 +43,7 @@ describe(`getGameIds`, () => {
             } as any,
           },
         },
+        true,
       ),
     ).toMatchInlineSnapshot(`
       Array [
