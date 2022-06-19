@@ -2,7 +2,7 @@ import React, { FC, useRef } from "react";
 import styled from "styled-components";
 
 import { Link, List, Page, Text, Heading } from "@Common";
-import { useCurrentUser } from "@State";
+import { useConfidentCurrentUser } from "@State";
 
 import { Games } from "./Games";
 
@@ -17,7 +17,7 @@ const StyledList = styled(List)`
 
 const ProfileRouteFC: FC<{}> = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const { name, hasGamePass } = useCurrentUser();
+  const { name, hasGamePass } = useConfidentCurrentUser();
 
   return (
     <Page header="PROFILE">

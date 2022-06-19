@@ -14,3 +14,11 @@ export const currentUserAtom = atom((get) => {
 export const useCurrentUser = () => {
   return useAtomValue(currentUserAtom);
 };
+
+export const useConfidentCurrentUser = () => {
+  const currentUser = useAtomValue(currentUserAtom);
+  if (currentUser == null) {
+    throw new Error(`Bad`);
+  }
+  return currentUser;
+};

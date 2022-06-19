@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Page, Link } from "@Common";
 import { Form, FormCheckbox, FormTextInput, FormSubmitButton } from "@DesignRedux";
 import { useSelectFormInputValue } from "@Redux";
-import { useCurrentUser, useUpdateCurrentUser } from "@State";
+import { useConfidentCurrentUser, useUpdateCurrentUser } from "@State";
 
 const FORM_ID = `EDIT_PROFILE_FORM_ID`;
 const NAME_ID = `NAME_ID`;
@@ -41,7 +41,7 @@ const useOnSubmit = () => {
 };
 
 const EditProfileRouteFC: FC<{}> = () => {
-  const { name, hasGamePass } = useCurrentUser();
+  const { name, hasGamePass } = useConfidentCurrentUser();
   const onSubmit = useOnSubmit();
   const initialState = useMemo(
     () => ({
