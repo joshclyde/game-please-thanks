@@ -2,11 +2,7 @@ import React, { FC, useCallback } from "react";
 import styled from "styled-components";
 
 import { DelayedCheckbox } from "@DesignEnhanced";
-import {
-  useOptimisticUpdateAuthUserFriends,
-  useSelectAuthIsFriend,
-  useSelectUid,
-} from "@Redux";
+import { useCurrentUserId, useIsFriend, useUpdateCurrentUsersFriend } from "@State";
 
 const Checkbox = styled(DelayedCheckbox)`
   margin-top: 16px;
@@ -16,18 +12,18 @@ export const IsFriendCheckbox: FC<{ userId: string; className?: string }> = ({
   userId,
   className,
 }) => {
-  const isFriend = useSelectAuthIsFriend(userId);
-  const updateAuthUserFriends = useOptimisticUpdateAuthUserFriends();
-  const uid = useSelectUid();
+  const isFriend = useIsFriend(userId);
+  const updateFriend = useUpdateCurrentUsersFriend();
+  const currentUserId = useCurrentUserId();
 
   const onChangeDelayed = useCallback(
     (checked: boolean) => {
-      updateAuthUserFriends({ [userId]: { isFriend: checked } });
+      updateFriend(userId, { isFriend: checked });
     },
-    [updateAuthUserFriends, userId],
+    [updateFriend, userId],
   );
 
-  if (uid === userId) {
+  if (currentUserId === userId) {
     /*
       Don't want to display the IsFriendCheckbox for the user's self.
     */

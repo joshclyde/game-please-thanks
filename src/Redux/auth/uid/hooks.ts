@@ -1,1 +1,0 @@
-export { useSelectUid } from "./selectors";

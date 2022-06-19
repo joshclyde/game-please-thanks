@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 
 import { FormCheckbox } from "@DesignRedux";
-import { useSelectUserNameMaybeYou } from "@Redux";
+import { useUsersNameMaybeYou } from "@State";
 
 const UserCheckboxEntityFC: FC<{ userId: string; className?: string }> = ({
   userId,
   className,
 }) => {
-  const label = useSelectUserNameMaybeYou(userId);
+  const label = useUsersNameMaybeYou(userId);
 
   return (
     <FormCheckbox

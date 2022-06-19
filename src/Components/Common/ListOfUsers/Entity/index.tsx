@@ -2,12 +2,8 @@ import React, { FC } from "react";
 import styled from "styled-components";
 
 import { Link, Text, UserImg } from "@Common";
-import {
-  useSelectUserName,
-  useSelectUserGamesOwnedCount,
-  useSelectAuthIsFriend,
-} from "@Redux";
-import { getPlayersText, COLORS } from "@Utils";
+import { useUser, useIsFriend, useGamesOwnedIds } from "@State";
+import { COLORS } from "@Utils";
 
 // TODO: cache these images
 const Img = styled(UserImg)`
@@ -35,9 +31,9 @@ interface Props {
 
 // TODO: make this a common component (Game has something very similar)
 const EntityFC: FC<Props> = ({ userId }) => {
-  const name = useSelectUserName(userId);
-  const gameCount = useSelectUserGamesOwnedCount(userId);
-  const isFriend = useSelectAuthIsFriend(userId);
+  const { name, games } = useUser(userId);
+  const gameCount = useGamesOwnedIds().length;
+  const isFriend = useIsFriend(userId);
   return (
     <Div>
       <Img userId={userId} />

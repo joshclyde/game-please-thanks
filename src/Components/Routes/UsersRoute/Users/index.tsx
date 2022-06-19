@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Heading, ListOfUsersPaginatedByQueryParam, Text } from "@Common";
 import { useQueryParamString } from "@Hooks";
-import { useSelectFilteredUserIds } from "@Redux";
+import { useFilteredUserIds } from "@State";
 
 import { QUERY_PARAM } from "../shared";
 
@@ -19,7 +19,7 @@ const Div = styled.div`
 export const Users: FC<{}> = () => {
   const scrollRef = useRef(null);
   const searchTerm = useQueryParamString(QUERY_PARAM.SEARCH_TERM);
-  const userIds = useSelectFilteredUserIds({
+  const userIds = useFilteredUserIds({
     searchTerm: searchTerm || ``,
   });
 

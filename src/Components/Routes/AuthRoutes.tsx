@@ -3,9 +3,12 @@ import React, { FC } from "react";
 import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 
-import { useOnce } from "@Hooks";
-import { useSelectIsAuthenticated, useAuthListener } from "@Redux";
-import { useListenForAuth, useLoadGames as useLoadGamesJotai, usersAtom } from "@State";
+import {
+  useListenForAuth,
+  useLoadGames,
+  currentUserIdStatusAtom,
+  useLoadUsers,
+} from "@State";
 import { COLORS } from "@Utils";
 
 import { EditProfileRoute } from "./EditProfileRoute";
@@ -33,14 +36,13 @@ const Div = styled.div`
 `;
 
 const AuthRoutesFC: FC<{}> = () => {
-  useAuthListener();
   useListenForAuth();
-  const isAuthenticated = useSelectIsAuthenticated();
+  const authStatus = useAtomValue(currentUserIdStatusAtom);
 
-  const users = useAtomValue(usersAtom);
-  const gamesState = useLoadGamesJotai();
+  const usersState = useLoadUsers();
+  const gamesState = useLoadGames();
 
-  if (isAuthenticated == null || gamesState != `hasData` || users.state != `hasData`) {
+  if (authStatus != `COMPLETE` || gamesState != `hasData` || usersState != `hasData`) {
     return (
       <Div>
         <Switch>

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { Heading } from "@Common";
 import { FormTextInput, FormCheckbox, FormSubmitButton, Form } from "@DesignRedux";
-import { useSelectIsAuthenticated } from "@Redux";
+import { useIsAuthenticated } from "@State";
 
 import {
   useFormSearchTerm,
@@ -52,7 +52,7 @@ const useOnSubmit = () => {
 };
 
 export const SearchForm: FC<{}> = () => {
-  const isAuthenticated = useSelectIsAuthenticated();
+  const isAuthenticated = useIsAuthenticated();
   const onSubmit = useOnSubmit();
   return (
     <Div>

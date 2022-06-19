@@ -1,16 +1,10 @@
 import React, { FC, useCallback, useMemo } from "react";
-import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import { Page, Link } from "@Common";
 import { Form, FormCheckbox, FormTextInput, FormSubmitButton } from "@DesignRedux";
-import {
-  useSelectAuthHasGamePass,
-  useSelectFormInputValue,
-  useSelectAuthName,
-  useOptimisticUpdateAuthUser,
-  useSelectIsPendingOptimisticUpdateUser,
-} from "@Redux";
+import { useSelectFormInputValue } from "@Redux";
+import { useCurrentUser, useUpdateCurrentUser } from "@State";
 
 const FORM_ID = `EDIT_PROFILE_FORM_ID`;
 const NAME_ID = `NAME_ID`;
@@ -36,32 +30,19 @@ const useOnSubmit = () => {
     HAS_GAME_PASS_ID,
   ) as boolean;
   const inputValueName = useSelectFormInputValue(FORM_ID, NAME_ID) as string;
-  const optimisticUpdateAuthUser = useOptimisticUpdateAuthUser();
-  const isPending = useSelectIsPendingOptimisticUpdateUser();
-  const history = useHistory();
+  const updateUser = useUpdateCurrentUser();
   const onSubmit = useCallback(async () => {
-    if (!isPending) {
-      await optimisticUpdateAuthUser({
-        hasGamePass: inputValueHasGamePass,
-        name: inputValueName,
-      });
-      history.push(`/profile`);
-    }
-  }, [
-    inputValueHasGamePass,
-    inputValueName,
-    optimisticUpdateAuthUser,
-    isPending,
-    history,
-  ]);
+    await updateUser({
+      hasGamePass: inputValueHasGamePass,
+      name: inputValueName,
+    });
+  }, [inputValueHasGamePass, inputValueName, updateUser]);
   return onSubmit;
 };
 
 const EditProfileRouteFC: FC<{}> = () => {
-  const hasGamePass = useSelectAuthHasGamePass() as boolean;
-  const name = useSelectAuthName() as string;
+  const { name, hasGamePass } = useCurrentUser();
   const onSubmit = useOnSubmit();
-  const isPending = useSelectIsPendingOptimisticUpdateUser();
   const initialState = useMemo(
     () => ({
       [HAS_GAME_PASS_ID]: hasGamePass,
@@ -81,7 +62,7 @@ const EditProfileRouteFC: FC<{}> = () => {
           label="Game Pass"
         />
         <ButtonsContainer>
-          <FormSubmitButton>{isPending ? `Saving...` : `Save`}</FormSubmitButton>
+          <FormSubmitButton>Save</FormSubmitButton>
           <Link to="/profile">Cancel</Link>
         </ButtonsContainer>
       </FormContainer>

@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 
 import { LinkFancy, RoutesMenu } from "@Common";
-import { useSelectIsAuthenticated } from "@Redux";
+import { useIsAuthenticated } from "@State";
 
 import { LoginLink } from "./LoginLink";
 import { LogoutLink } from "./LogoutLink";
 
 const HomeRouteFC: FC<{}> = () => {
-  const isAuthenticated = useSelectIsAuthenticated();
+  const isAuthenticated = useIsAuthenticated();
   return (
     <RoutesMenu>
       {!isAuthenticated ? <LoginLink /> : null}

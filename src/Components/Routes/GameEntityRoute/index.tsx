@@ -4,11 +4,11 @@ import styled from "styled-components";
 
 import { GameImg, LinkExternal, List, Page, Text } from "@Common";
 import {
-  useSelectAuthUidAndFriendIdsThatOwnGame,
-  useSelectIsAuthenticated,
-  useSelectUserNameMaybeYou,
-} from "@Redux";
-import { useGame } from "@State";
+  useUsersNameMaybeYou,
+  useGame,
+  useCurrentUserAndFriendIdsThatOwnGame,
+  useIsAuthenticated,
+} from "@State";
 import { getPlayersText, COLORS } from "@Utils";
 
 import { OwnGameCheckbox } from "./OwnGameCheckbox";
@@ -22,12 +22,11 @@ const Img = styled(GameImg)`
 `;
 
 const GameList = styled(List)`
-  border-bottom: 0px;
   margin-top: 16px;
 `;
 
 const FriendName: FC<{ friendId: string }> = ({ friendId }) => {
-  const name = useSelectUserNameMaybeYou(friendId);
+  const name = useUsersNameMaybeYou(friendId);
   return <Text>{name}</Text>;
 };
 
@@ -36,8 +35,8 @@ const GameEntityRouteFC: FC<{}> = () => {
   const { name, minPlayers, maxPlayers, isOnGamePass, price, externalUrl } = useGame(
     gameId,
   );
-  const friendIds = useSelectAuthUidAndFriendIdsThatOwnGame(gameId);
-  const isAuthenticated = useSelectIsAuthenticated();
+  const friendIds = useCurrentUserAndFriendIdsThatOwnGame(gameId);
+  const isAuthenticated = useIsAuthenticated();
 
   return (
     <Page header="GAME LIBRARY">

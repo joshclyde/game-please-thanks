@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import { useSelectAuthUidAndFriendsIdsSorted } from "@Redux";
+import { useCurrentUserIdAndFriendIdsSortedByName } from "@State";
 
 import { IncludeGamePassCheckbox } from "./IncludeGamePassCheckbox";
 import { UserCheckboxEntity } from "./UserCheckboxEntity";
@@ -11,7 +11,7 @@ const StyledCheckbox = styled.div`
 `;
 
 const UserCheckboxesFC: FC<{}> = () => {
-  const userIds = useSelectAuthUidAndFriendsIdsSorted();
+  const userIds = useCurrentUserIdAndFriendIdsSortedByName();
 
   return userIds ? (
     <>

@@ -2,7 +2,7 @@ import React, { FC, useCallback } from "react";
 import styled from "styled-components";
 
 import { DelayedCheckbox } from "@DesignEnhanced";
-import { useOptimisticUpdateAuthUserOwnsGame, useSelectAuthIsGameOwned } from "@Redux";
+import { useIsGameOwned, useUpdateGameIsOwned } from "@State";
 
 const Checkbox = styled(DelayedCheckbox)`
   margin-top: 16px;
@@ -12,14 +12,14 @@ export const OwnGameCheckbox: FC<{ gameId: string; className?: string }> = ({
   gameId,
   ...rest
 }) => {
-  const isGameOwned = useSelectAuthIsGameOwned(gameId);
-  const optimisticUpdateUserAuthGameIsOwned = useOptimisticUpdateAuthUserOwnsGame();
+  const isGameOwned = useIsGameOwned(gameId);
+  const updateGameIsOwned = useUpdateGameIsOwned();
 
   const onChangeDelayed = useCallback(
     (checked: boolean) => {
-      optimisticUpdateUserAuthGameIsOwned(gameId, checked);
+      updateGameIsOwned(gameId, checked);
     },
-    [optimisticUpdateUserAuthGameIsOwned, gameId],
+    [updateGameIsOwned, gameId],
   );
 
   return (

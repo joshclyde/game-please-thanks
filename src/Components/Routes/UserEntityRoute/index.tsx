@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { Page, Text, UserImg, List } from "@Common";
-import { useSelectUser, useSelectUserNameMaybeYou } from "@Redux";
-import { useGame } from "@State";
+import { useUser, useUsersNameMaybeYou, useGame } from "@State";
 import { COLORS } from "@Utils";
 
 import { IsFriendCheckbox } from "./IsFriendCheckbox";
@@ -29,8 +28,8 @@ const GameName: FC<{ gameId: string }> = ({ gameId }) => {
 
 const UserEntityRouteFC: FC<{}> = ({}) => {
   const { userId } = useParams<{ userId: string }>();
-  const { games, hasGamePass } = useSelectUser(userId);
-  const name = useSelectUserNameMaybeYou(userId);
+  const { games, hasGamePass } = useUser(userId);
+  const name = useUsersNameMaybeYou(userId);
   return (
     <Page header="USERS">
       <Img userId={userId} />

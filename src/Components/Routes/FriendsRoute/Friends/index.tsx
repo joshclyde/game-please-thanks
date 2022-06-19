@@ -4,10 +4,10 @@ import styled from "styled-components";
 
 import { Link, Heading, BigText } from "@Common";
 import {
-  useSelectAuthUidAndFriendsIdsSorted,
-  useSelectUser,
-  useSelectUserNameMaybeYou,
-} from "@Redux";
+  useCurrentUserIdAndFriendIdsSortedByName,
+  useUsersNameMaybeYou,
+  useUser,
+} from "@State";
 
 interface Props {}
 
@@ -30,8 +30,8 @@ const Cell = styled.div<{ column: string; row: string; textAlign?: string }>`
 `;
 
 const FriendRow: FC<{ friendId: string; row: string }> = ({ friendId, row }) => {
-  const { games, hasGamePass } = useSelectUser(friendId);
-  const name = useSelectUserNameMaybeYou(friendId);
+  const { games, hasGamePass } = useUser(friendId);
+  const name = useUsersNameMaybeYou(friendId);
   const numOfGamesowned = Object.keys(_.pickBy(games, (game) => game.isOwned)).length;
 
   return (
@@ -55,7 +55,7 @@ const FriendRow: FC<{ friendId: string; row: string }> = ({ friendId, row }) => 
   - change Link to not be weird with it's alignment
 */
 const FriendsFC: FC<Props> = ({}) => {
-  const friendIds = useSelectAuthUidAndFriendsIdsSorted();
+  const friendIds = useCurrentUserIdAndFriendIdsSortedByName();
   return (
     <Grid>
       <Cell column="1" row="1" textAlign="left" as={Heading}>
