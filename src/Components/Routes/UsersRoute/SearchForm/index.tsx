@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { Form, FormSubmitButton, FormTextInput } from "@DesignRedux";
@@ -22,7 +22,7 @@ const FormContainer = styled(Form)`
 `;
 
 const useOnSubmit = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [searchTerm] = useFormSearchTerm();
 
   const onSubmit = useCallback(() => {
@@ -30,8 +30,8 @@ const useOnSubmit = () => {
       searchTerm: searchTerm as any,
       page: 1,
     });
-    history.push(url);
-  }, [history, searchTerm]);
+    navigate(url);
+  }, [navigate, searchTerm]);
   return onSubmit;
 };
 

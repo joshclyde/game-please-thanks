@@ -1,6 +1,6 @@
 import { useAtomValue } from "jotai";
 import React, { FC } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 
 import {
@@ -45,28 +45,28 @@ const AuthRoutesFC: FC<{}> = () => {
   if (authStatus != `COMPLETE` || gamesState != `hasData` || usersState != `hasData`) {
     return (
       <Div>
-        <Switch>
-          {/* only show the logo if we're for sure on the home page */}
-          <Route exact={true} path="/" component={LoadingRoute} />
-        </Switch>
+        {/* only show the logo if we're for sure on the home page */}
+        <Routes>
+          <Route path="/" element={<LoadingRoute />} />
+        </Routes>
       </Div>
     );
   }
 
   return (
     <Div>
-      <Switch>
-        <Route path="/games/:gameId" component={GameEntityRoute} />
-        <Route path="/games" component={GamesRoute} />
-        <Route path="/users/:userId" component={UserEntityRoute} />
-        <Route path="/users" component={UsersRoute} />
-        <Route path="/friends" component={FriendsRoute} />
-        <Route path="/find" component={FindGameRoute} />
-        <Route path="/settings" component={SettingsRoute} />
-        <Route path="/profile/edit" component={EditProfileRoute} />
-        <Route path="/profile" component={ProfileRoute} />
-        <Route path="/" component={HomeRoute} />
-      </Switch>
+      <Routes>
+        <Route path="/games/:gameId" element={<GameEntityRoute />} />
+        <Route path="/games" element={<GamesRoute />} />
+        <Route path="/users/:userId" element={<UserEntityRoute />} />
+        <Route path="/users" element={<UsersRoute />} />
+        <Route path="/friends" element={<FriendsRoute />} />
+        <Route path="/find" element={<FindGameRoute />} />
+        <Route path="/settings" element={<SettingsRoute />} />
+        <Route path="/profile/edit" element={<EditProfileRoute />} />
+        <Route path="/profile" element={<ProfileRoute />} />
+        <Route path="/" element={<HomeRoute />} />
+      </Routes>
     </Div>
   );
 };

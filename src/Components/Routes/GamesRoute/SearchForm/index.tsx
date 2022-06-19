@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { Heading } from "@Common";
@@ -32,7 +32,7 @@ const FormContainer = styled(Form)`
 `;
 
 const useOnSubmit = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [searchTerm] = useFormSearchTerm();
   const [playerCount] = useFormPlayerCount();
   const [ownedByFriend] = useFormOwnedByFriend();
@@ -46,8 +46,8 @@ const useOnSubmit = () => {
       isOnGamePass: isOnGamePass as any,
       page: 1,
     });
-    history.push(url);
-  }, [history, searchTerm, playerCount, ownedByFriend, isOnGamePass]);
+    navigate(url);
+  }, [navigate, searchTerm, playerCount, ownedByFriend, isOnGamePass]);
   return onSubmit;
 };
 

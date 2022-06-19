@@ -31,7 +31,8 @@ const FriendName: FC<{ friendId: string }> = ({ friendId }) => {
 };
 
 const GameEntityRouteFC: FC<{}> = () => {
-  const { gameId } = useParams<{ gameId: string }>();
+  const params = useParams<{ gameId: string }>();
+  const gameId = params.gameId as string;
   const { name, minPlayers, maxPlayers, isOnGamePass, price, externalUrl } = useGame(
     gameId,
   );

@@ -27,7 +27,8 @@ const GameName: FC<{ gameId: string }> = ({ gameId }) => {
 };
 
 const UserEntityRouteFC: FC<{}> = ({}) => {
-  const { userId } = useParams<{ userId: string }>();
+  const params = useParams<{ userId: string }>();
+  const userId = params.userId as string;
   const { games, hasGamePass } = useUser(userId);
   const name = useUsersNameMaybeYou(userId);
   return (

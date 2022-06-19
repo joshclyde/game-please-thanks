@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { useHistory } from "react-router-dom";
+import React, { FC, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { COLORS } from "@Utils";
@@ -9,7 +9,8 @@ const Svg = styled.svg`
 `;
 
 export const IconBackLink: FC<any> = ({ children, ...props }) => {
-  const { goBack } = useHistory();
+  const navigate = useNavigate();
+  const goBack = useCallback(() => navigate(-1), [navigate]);
   return (
     <Svg
       {...props}
