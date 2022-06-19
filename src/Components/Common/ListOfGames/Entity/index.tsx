@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 
 import { Link, Text, GameImg } from "@Common";
-import { useSelectGame } from "@Redux";
+import { useGame } from "@State";
 import { getPlayersText, COLORS } from "@Utils";
 
 // TODO: cache these images
@@ -30,7 +30,7 @@ interface Props {
 }
 
 const EntityFC: FC<Props> = ({ gameId }) => {
-  const { id, name, minPlayers, maxPlayers } = useSelectGame(gameId);
+  const { id, name, minPlayers, maxPlayers } = useGame(gameId);
   return (
     <Div>
       <Img gameId={gameId} />

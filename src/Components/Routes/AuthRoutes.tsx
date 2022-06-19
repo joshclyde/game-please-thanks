@@ -1,14 +1,11 @@
+import { useAtomValue } from "jotai";
 import React, { FC } from "react";
 import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 
 import { useOnce } from "@Hooks";
-import {
-  useLoadGames,
-  useSelectDidGamesLoadSucceed,
-  useSelectIsAuthenticated,
-  useAuthListener,
-} from "@Redux";
+import { useSelectIsAuthenticated, useAuthListener } from "@Redux";
+import { useListenForAuth, useLoadGames as useLoadGamesJotai, usersAtom } from "@State";
 import { COLORS } from "@Utils";
 
 import { EditProfileRoute } from "./EditProfileRoute";
@@ -37,16 +34,13 @@ const Div = styled.div`
 
 const AuthRoutesFC: FC<{}> = () => {
   useAuthListener();
+  useListenForAuth();
   const isAuthenticated = useSelectIsAuthenticated();
 
-  const load = useLoadGames();
-  useOnce(() => {
-    load();
-  });
-  // TODO: change waiting for games to load to be within routes instead
-  const didGamesLoad = useSelectDidGamesLoadSucceed();
+  const users = useAtomValue(usersAtom);
+  const gamesState = useLoadGamesJotai();
 
-  if (!didGamesLoad || isAuthenticated == null) {
+  if (isAuthenticated == null || gamesState != `hasData` || users.state != `hasData`) {
     return (
       <Div>
         <Switch>

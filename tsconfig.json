@@ -25,6 +25,7 @@
       "@Routes": ["./src/Components/Routes/index"],
       "@Firebase": ["./src/Firebase/index"],
       "@Types": ["./src/Types/index"],
+      "@State": ["./src/State/index"],
     }
     // TODO: see if this makes the types/build faster
     // "skipLibCheck": false

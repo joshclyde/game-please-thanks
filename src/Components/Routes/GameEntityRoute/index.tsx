@@ -5,11 +5,10 @@ import styled from "styled-components";
 import { GameImg, LinkExternal, List, Page, Text } from "@Common";
 import {
   useSelectAuthUidAndFriendIdsThatOwnGame,
-  useSelectExternalUrl,
-  useSelectGame,
   useSelectIsAuthenticated,
   useSelectUserNameMaybeYou,
 } from "@Redux";
+import { useGame } from "@State";
 import { getPlayersText, COLORS } from "@Utils";
 
 import { OwnGameCheckbox } from "./OwnGameCheckbox";
@@ -34,9 +33,10 @@ const FriendName: FC<{ friendId: string }> = ({ friendId }) => {
 
 const GameEntityRouteFC: FC<{}> = () => {
   const { gameId } = useParams<{ gameId: string }>();
-  const { name, minPlayers, maxPlayers, isOnGamePass, price } = useSelectGame(gameId);
+  const { name, minPlayers, maxPlayers, isOnGamePass, price, externalUrl } = useGame(
+    gameId,
+  );
   const friendIds = useSelectAuthUidAndFriendIdsThatOwnGame(gameId);
-  const externalUrl = useSelectExternalUrl(gameId);
   const isAuthenticated = useSelectIsAuthenticated();
 
   return (

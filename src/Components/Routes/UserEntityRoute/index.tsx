@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { Page, Text, UserImg, List } from "@Common";
-import { useSelectGame, useSelectUser, useSelectUserNameMaybeYou } from "@Redux";
+import { useSelectUser, useSelectUserNameMaybeYou } from "@Redux";
+import { useGame } from "@State";
 import { COLORS } from "@Utils";
 
 import { IsFriendCheckbox } from "./IsFriendCheckbox";
@@ -22,7 +23,7 @@ const FirstList = styled(List)`
 `;
 
 const GameName: FC<{ gameId: string }> = ({ gameId }) => {
-  const { name } = useSelectGame(gameId);
+  const { name } = useGame(gameId);
   return <Text>{name}</Text>;
 };
 

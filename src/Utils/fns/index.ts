@@ -9,3 +9,11 @@ export const appendKeysWithPrefix = (prefix: string, data: Record<string, any>) 
     {},
   );
 };
+
+export const filterObject = <T>(obj: Record<string, T>, keys: Array<string>) => {
+  const retValue: Record<string, T> = {};
+  keys.forEach((key) => {
+    retValue[key] = obj[key];
+  });
+  return retValue;
+};

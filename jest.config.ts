@@ -29,6 +29,7 @@ const config: Config.InitialOptions = {
       "@Routes": [`./src/Components/Routes/index`],
       "@Firebase": [`./src/Firebase/index`],
       "@Types": [`./src/Types/index`],
+      "@State": [`./src/State/index`],
     },
     { prefix: `<rootDir>/` },
   ),
