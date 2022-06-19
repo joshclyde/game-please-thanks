@@ -8,6 +8,7 @@ import {
   useLoadGames,
   currentUserIdStatusAtom,
   useLoadUsers,
+  useIsAuthenticated,
 } from "@State";
 import { COLORS } from "@Utils";
 
@@ -18,6 +19,7 @@ import { GameEntityRoute } from "./GameEntityRoute";
 import { GamesRoute } from "./GamesRoute";
 import { HomeRoute } from "./HomeRoute";
 import { LoadingRoute } from "./LoadingRoute";
+import { NotFoundRoute } from "./NotFoundRoute";
 import { ProfileRoute } from "./ProfileRoute";
 import { SettingsRoute } from "./SettingsRoute";
 import { UserEntityRoute } from "./UserEntityRoute";
@@ -42,6 +44,8 @@ const AuthRoutesFC: FC<{}> = () => {
   const usersState = useLoadUsers();
   const gamesState = useLoadGames();
 
+  const isAuthenticated = useIsAuthenticated();
+
   if (authStatus != `COMPLETE` || gamesState != `hasData` || usersState != `hasData`) {
     return (
       <Div>
@@ -58,14 +62,19 @@ const AuthRoutesFC: FC<{}> = () => {
       <Routes>
         <Route path="/games/:gameId" element={<GameEntityRoute />} />
         <Route path="/games" element={<GamesRoute />} />
-        <Route path="/users/:userId" element={<UserEntityRoute />} />
-        <Route path="/users" element={<UsersRoute />} />
-        <Route path="/friends" element={<FriendsRoute />} />
-        <Route path="/find" element={<FindGameRoute />} />
-        <Route path="/settings" element={<SettingsRoute />} />
-        <Route path="/profile/edit" element={<EditProfileRoute />} />
-        <Route path="/profile" element={<ProfileRoute />} />
+        {isAuthenticated && (
+          <>
+            <Route path="/users/:userId" element={<UserEntityRoute />} />
+            <Route path="/users" element={<UsersRoute />} />
+            <Route path="/friends" element={<FriendsRoute />} />
+            <Route path="/find" element={<FindGameRoute />} />
+            <Route path="/settings" element={<SettingsRoute />} />
+            <Route path="/profile/edit" element={<EditProfileRoute />} />
+            <Route path="/profile" element={<ProfileRoute />} />
+          </>
+        )}
         <Route path="/" element={<HomeRoute />} />
+        <Route path="*" element={<NotFoundRoute />} />
       </Routes>
     </Div>
   );
