@@ -63,7 +63,7 @@ const EditProfileRouteFC: FC<{}> = () => {
         />
         <ButtonsContainer>
           <FormSubmitButton>Save</FormSubmitButton>
-          <Link to="/profile">Cancel</Link>
+          <Link to="/profile">Back Home</Link>
         </ButtonsContainer>
       </FormContainer>
     </Page>
