@@ -12,7 +12,9 @@ const delay = `0.01s`;
 const Text = styled(LinkReact)`
   color: ${COLORS.GREEN};
   text-decoration: none;
-  font-size: 1em;
+  font-size: 0.8em;
+  line-height: 1.3em;
+  letter-spacing: 0.03em;
   position: relative;
   transition: padding-right ${duration} linear ${delay};
   padding-right: 32px;

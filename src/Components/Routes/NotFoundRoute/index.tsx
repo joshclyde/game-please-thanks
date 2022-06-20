@@ -9,8 +9,8 @@ const NotFoundRouteFC: FC<{}> = () => {
     <RoutesMenu>
       <Text>
         {isAuthenticated
-          ? `Sorry, the page you are looking for does not exist.`
-          : `Sorry, the page you are looking for either does not exist or you must be authenticated to view it.`}
+          ? `Sorry, the page you are looking for does not exist`
+          : `Sorry, the page you are looking for either does not exist or you must be authenticated to view it`}
       </Text>
       <LinkFancy to="/">Home</LinkFancy>
     </RoutesMenu>

@@ -6,7 +6,9 @@ import { COLORS } from "@Utils";
 const Text = styled.a`
   color: ${COLORS.GREEN};
   text-decoration: none;
-  font-size: 1em;
+  font-size: 0.8em;
+  line-height: 1.3em;
+  letter-spacing: 0.03em;
   position: relative;
   width: fit-content;
   &:hover {

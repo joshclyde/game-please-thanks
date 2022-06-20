@@ -5,7 +5,6 @@ import { Link, Text, GameImg } from "@Common";
 import { useGame } from "@State";
 import { getPlayersText, COLORS } from "@Utils";
 
-// TODO: cache these images
 const Img = styled(GameImg)`
   width: 64px;
   height: 64px;

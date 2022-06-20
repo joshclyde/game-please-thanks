@@ -7,7 +7,9 @@ import { BottomIcons } from "../BottomIcons";
 
 const PageHeader = styled.h1`
   color: ${COLORS.PINK};
-  font-size: 1em;
+  font-size: 1.2em;
+  line-height: 1.3em;
+  letter-spacing: 0.03em;
   margin: 0px;
   margin-top: 32px;
   margin-bottom: 32px;
