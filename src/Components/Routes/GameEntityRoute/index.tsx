@@ -46,17 +46,17 @@ const GameEntityRouteFC: FC<{}> = () => {
         <Text>{getPlayersText(minPlayers, maxPlayers)}</Text>
         <Text>
           Additional details at{` `}
-          <LinkExternal to={externalUrl}>microsoft.com</LinkExternal>.
+          <LinkExternal to={externalUrl}>microsoft.com</LinkExternal>
         </Text>
-        {isOnGamePass ? <Text>Available through Game Pass.</Text> : null}
-        <Text>{price === 0 ? `This game is FREE.` : `Buy for \$${price}.`}</Text>
+        {isOnGamePass ? <Text>Available through game pass</Text> : null}
+        <Text>{price === 0 ? `This game is free.` : `Buy for \$${price}.`}</Text>
       </GameList>
       {isAuthenticated ? (
         <List header="Who owns this">
           {friendIds.length > 0 ? (
             friendIds.map((friendId) => <FriendName key={friendId} friendId={friendId} />)
           ) : (
-            <Text>No friends own {name}.</Text>
+            <Text>No friends own {name}</Text>
           )}
           <OwnGameCheckbox gameId={gameId} />
         </List>

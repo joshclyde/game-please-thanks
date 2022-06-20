@@ -1,11 +1,11 @@
 export const getPlayersText = (minPlayers: number, maxPlayers: number) => {
   if (maxPlayers === 1) {
-    return `1 Player`;
+    return `Single Player`;
   }
   if (minPlayers === maxPlayers) {
-    return `${minPlayers} Players`;
+    return `${minPlayers} players`;
   }
-  return `${minPlayers}-${maxPlayers} Players`;
+  return `${minPlayers}-${maxPlayers} players`;
 };
 
 export * from "./cx";
