@@ -15,6 +15,7 @@ yarn-error.log*
 .firebase
 assets/gameImages/
 assets/restyled/
+assets/images/
 assets/games.json
 scripts/data
 ui-debug.log
