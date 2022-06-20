@@ -9,7 +9,7 @@ import {
   where,
   documentId,
 } from "firebase/firestore";
-import _ from "lodash";
+import isPlainObject from "lodash/isPlainObject";
 
 import { UserProfile, UserProfileFriends, UserProfileGames } from "@Types";
 import { appendKeysWithPrefix } from "@Utils";
@@ -92,7 +92,7 @@ export const convertToDotNotation = (data: Record<string, any>): Record<string, 
   return keys.reduce<Record<string, any>>((accumulated, key) => {
     let values: Record<string, any> = {};
     const value = data[key];
-    if (_.isPlainObject(value)) {
+    if (isPlainObject(value)) {
       const dot = convertToDotNotation(value);
       values = appendKeysWithPrefix(`${key}.`, dot);
     } else {

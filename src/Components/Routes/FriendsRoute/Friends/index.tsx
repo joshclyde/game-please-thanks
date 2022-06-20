@@ -1,4 +1,4 @@
-import _ from "lodash";
+import pickBy from "lodash/pickBy";
 import React, { FC } from "react";
 import styled from "styled-components";
 
@@ -32,7 +32,7 @@ const Cell = styled.div<{ column: string; row: string; textAlign?: string }>`
 const FriendRow: FC<{ friendId: string; row: string }> = ({ friendId, row }) => {
   const { games, hasGamePass } = useUser(friendId);
   const name = useUsersNameMaybeYou(friendId);
-  const numOfGamesowned = Object.keys(_.pickBy(games, (game) => game.isOwned)).length;
+  const numOfGamesowned = Object.keys(pickBy(games, (game) => game.isOwned)).length;
 
   return (
     <>

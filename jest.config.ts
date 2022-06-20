@@ -19,7 +19,6 @@ const config: Config.InitialOptions = {
       "@Utils": [`./src/Utils/index`],
       "@Redux": [`./src/Redux/index`],
       "@ReduxUtils": [`./src/ReduxUtils/index`],
-      "@Hocs": [`./src/Hocs/index`],
       "@Hooks": [`./src/Hooks/index`],
       "@Design": [`./src/Components/Design/index`],
       "@DesignRedux": [`./src/Components/DesignRedux/index`],

@@ -1,4 +1,4 @@
-import _ from "lodash";
+import pickBy from "lodash/pickBy";
 
 import { useSelectFormValues, useSelectFormInputValue } from "@Redux";
 import { useGames, useUsers } from "@State";
@@ -6,7 +6,7 @@ import { useGames, useUsers } from "@State";
 export const useCheckedFriendsIds = () => {
   const formState = useSelectFormValues(`FIND_GAME_ROUTE`);
   const friendIds = Object.keys(
-    _.pickBy(formState, (isChecked, id) => isChecked && id !== `INCLUDE_GAME_PASS`),
+    pickBy(formState, (isChecked, id) => isChecked && id !== `INCLUDE_GAME_PASS`),
   );
   return friendIds;
 };
@@ -25,11 +25,11 @@ export const getGameIds = (
   allGames: ReturnType<typeof useGames>,
   shouldIncludeGamePass: boolean,
 ) => {
-  const friends = _.pickBy(allUsers, (_value, userId) => friendIds.includes(userId));
+  const friends = pickBy(allUsers, (_value, userId) => friendIds.includes(userId));
   const doAllFriendsHaveGamePass = !Object.values(friends).some(
     (friend) => !friend.hasGamePass,
   );
-  const games = _.pickBy(
+  const games = pickBy(
     allGames,
     (game) =>
       (shouldIncludeGamePass && doAllFriendsHaveGamePass && game.isOnGamePass) ||

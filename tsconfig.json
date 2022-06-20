@@ -1,21 +1,21 @@
 {
   "compilerOptions": {
     "jsx": "react",
-    "module": "commonjs",
+    "module": "es6",
     "outDir": "./dist/",
     "sourceMap": true,
     "inlineSources": true,
-    "target": "es6",
+    "target": "es5",
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "baseUrl": ".", // must be specifed for paths
+    "moduleResolution": "node",
     "paths": {
       "@Api": ["./src/Api/index"],
       "@Utils": ["./src/Utils/index"],
       "@Redux": ["./src/Redux/index"],
       "@ReduxUtils": ["./src/ReduxUtils/index"],
-      "@Hocs": ["./src/Hocs/index"],
       "@Hooks": ["./src/Hooks/index"],
       "@Design": ["./src/Components/Design/index"],
       "@DesignRedux": ["./src/Components/DesignRedux/index"],
@@ -25,7 +25,7 @@
       "@Routes": ["./src/Components/Routes/index"],
       "@Firebase": ["./src/Firebase/index"],
       "@Types": ["./src/Types/index"],
-      "@State": ["./src/State/index"],
+      "@State": ["./src/State/index"]
     }
     // TODO: see if this makes the types/build faster
     // "skipLibCheck": false

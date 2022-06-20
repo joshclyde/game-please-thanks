@@ -40,8 +40,7 @@ yarn downloadImagesFromMicrosoft
 # This will take many minutes. ~5 minutes
 yarn makeImages
 
-# Go to firebase console, storage, then upload file and select all images.
-# There's like 2000ish games so this kinda freezes my browser.
+# Copy all the images into the assets/images folder.
 ```
 
 ## Future
