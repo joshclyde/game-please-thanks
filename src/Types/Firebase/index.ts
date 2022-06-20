@@ -57,4 +57,5 @@ export interface Game {
   price: number;
   // <-> not on MicrosoftProduct
   isOnGamePass: boolean;
+  size: number;
 }

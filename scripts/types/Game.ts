@@ -34,4 +34,6 @@ export interface Game {
   price: number;
   // <-> not on MicrosoftProduct
   isOnGamePass: boolean;
+  // <--> MicrosoftProduct.DisplaySkuAvailabilities[0].Sku.Properties.Packages[0].MaxDownloadSizeInBytes
+  size: number;
 }

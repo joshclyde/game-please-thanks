@@ -27,6 +27,7 @@ describe(`getGameIds`, () => {
                 url: `asdf`,
               },
             } as any,
+            size: 100,
           },
           testGame2: {
             id: `testGame2`,
@@ -41,6 +42,7 @@ describe(`getGameIds`, () => {
                 url: `asdf`,
               },
             } as any,
+            size: 100,
           },
         },
         true,

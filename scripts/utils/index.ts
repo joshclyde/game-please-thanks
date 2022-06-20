@@ -205,6 +205,9 @@ export const convertMicrosoftProductToGame = (
       microsoftProduct.DisplaySkuAvailabilities[0].Availabilities[0].OrderManagementData
         .Price.MSRP,
     isOnGamePass,
+    size:
+      microsoftProduct.DisplaySkuAvailabilities[0].Sku.Properties.Packages[0]
+        .MaxDownloadSizeInBytes,
   };
   return game;
 };
