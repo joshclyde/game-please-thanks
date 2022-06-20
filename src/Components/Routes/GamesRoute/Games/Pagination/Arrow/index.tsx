@@ -2,7 +2,7 @@ import React, { FC, useCallback } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { IconLeftArrow } from "@Common";
+import { IconLeftArrow, IconRightArrow } from "@Common";
 
 import { makeSearchUrl, SearchParams } from "../../../shared";
 
@@ -65,7 +65,7 @@ export const Arrow: FC<Props> = ({
       })}
       onClick={onClick}
     >
-      <IconLeftArrow transform="rotate(180)" />
+      <IconRightArrow />
     </Link>
   ) : (
     <EmptyDiv />
