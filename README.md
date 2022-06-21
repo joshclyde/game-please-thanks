@@ -1,13 +1,19 @@
 # Game Please Thanks 🕹
 
-## How to deploy
+## Production Deploy
 
 ```sh
+# 1. Build
 yarn build
-# then, copy+paste public/index.html into build/
-firebase deploy
+# 2. Copy /public/index.html into build/index.html
+# 3. Copy name of main.[id].js to index.html
+# 4. Start emulators to test locally
+firebase emulators:start
+# 5. Deploy to production
+firebase deploy --only hosting
 ```
-## How to run
+
+## Local Testing
 
 ```sh
 yarn            # install node_modules
@@ -16,12 +22,18 @@ yarn start      # run
 
 ## 📝 Backlog
 
+### 🔥🔥🔥 Highest Priority for Friends Testing
+
+- either dont cache index.html or something
+
 ### 🔥 High Priority
 
 - sorting on all list
-- update images and games because they are very outdated
+- redirect gamepleasethanks to www
 - (Bug 🐞) Fix pricing for games that don't have a price and have bundles be the way to buy them.
 - (Bug 🐞) Check if correct games are appearing when finding games?
+- (Bug 🐞) I don't have MageQuit in my games list?
+
 
 ### 💧 Medium Priority
 
@@ -31,9 +43,14 @@ yarn start      # run
 - don't allow direct use of Link or force use of url constant. basically don't let me just put <Link to="/somewhere">, otherwise if i delete a page i'll have to manually find the locations.
 - improve search functionality (e.g. make the text typed in smarter)
 - form validation (e.g. name must be more than x characters)
+- highlight what matched games when filtering
+- have webpack handle index.html
 
 ### 🧊 Low priority
 
+- figure out why some images are bad urls
+- figure out why yarn makeImages has errors for some
+- display something when image doesn't exist
 - mock test local environment
 - remove lodash
 - better loading screen
