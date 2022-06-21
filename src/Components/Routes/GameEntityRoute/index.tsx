@@ -8,6 +8,7 @@ import {
   useGame,
   useCurrentUserAndFriendIdsThatOwnGame,
   useIsAuthenticated,
+  useGameSizeHumanReadable,
 } from "@State";
 import { getPlayersText, COLORS } from "@Utils";
 
@@ -33,22 +34,12 @@ const FriendName: FC<{ friendId: string }> = ({ friendId }) => {
 const GameEntityRouteFC: FC<{}> = () => {
   const params = useParams<{ gameId: string }>();
   const gameId = params.gameId as string;
-  const {
-    name,
-    minPlayers,
-    maxPlayers,
-    isOnGamePass,
-    price,
-    externalUrl,
-    size,
-  } = useGame(gameId);
+  const { name, minPlayers, maxPlayers, isOnGamePass, price, externalUrl } = useGame(
+    gameId,
+  );
   const friendIds = useCurrentUserAndFriendIdsThatOwnGame(gameId);
   const isAuthenticated = useIsAuthenticated();
-
-  const sizeText =
-    size / Math.pow(1024, 3) < 1
-      ? `${(size / Math.pow(1024, 2)).toFixed(2)} MB`
-      : `${(size / Math.pow(1024, 3)).toFixed(2)} GB`;
+  const size = useGameSizeHumanReadable(gameId);
 
   return (
     <Page header="GAME LIBRARY">
@@ -61,7 +52,7 @@ const GameEntityRouteFC: FC<{}> = () => {
         </Text>
         {isOnGamePass ? <Text>Available through game pass</Text> : null}
         <Text>{price === 0 ? `This game is free.` : `Buy for \$${price}.`}</Text>
-        <Text>{sizeText}</Text>
+        <Text>{size}</Text>
       </GameList>
       {isAuthenticated ? (
         <List header="Who owns this">

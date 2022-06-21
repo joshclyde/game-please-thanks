@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 
 import { Link, Text, GameImg } from "@Common";
-import { useGame } from "@State";
+import { useGame, useGameSizeHumanReadable } from "@State";
 import { getPlayersText, COLORS } from "@Utils";
 
 const Img = styled(GameImg)`
@@ -30,12 +30,15 @@ interface Props {
 
 const EntityFC: FC<Props> = ({ gameId }) => {
   const { id, name, minPlayers, maxPlayers } = useGame(gameId);
+  const size = useGameSizeHumanReadable(gameId);
   return (
     <Div>
       <Img gameId={gameId} />
       <Div2>
         <Link to={`/games/${id}`}>{name}</Link>
-        <StyledText>{getPlayersText(minPlayers, maxPlayers)}</StyledText>
+        <StyledText>
+          {getPlayersText(minPlayers, maxPlayers)} , {size}
+        </StyledText>
       </Div2>
     </Div>
   );

@@ -1,6 +1,6 @@
 export const getPlayersText = (minPlayers: number, maxPlayers: number) => {
   if (maxPlayers === 1) {
-    return `Single Player`;
+    return `1 Player`;
   }
   if (minPlayers === maxPlayers) {
     return `${minPlayers} players`;

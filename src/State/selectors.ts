@@ -7,6 +7,7 @@ import { UserProfileFriendEntity } from "@Types";
 import { useCurrentUser } from "./currentUser";
 import { currentUserIdAtom } from "./currentUserId";
 import { useFriends } from "./friends";
+import { useGame } from "./games";
 import { useUsers, useUser, updatedUsersAtom } from "./users";
 
 export const useCurrentUserId = () => {
@@ -63,6 +64,13 @@ export const useFilteredUserIds = ({ searchTerm }: { searchTerm: string }) => {
   return Object.keys(users).filter((userId) =>
     users[userId].name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
+};
+
+export const useGameSizeHumanReadable = (gameId: string) => {
+  const { size } = useGame(gameId);
+  return size / Math.pow(1024, 3) < 1
+    ? `${(size / Math.pow(1024, 2)).toFixed(2)} MB`
+    : `${(size / Math.pow(1024, 3)).toFixed(2)} GB`;
 };
 
 /*
