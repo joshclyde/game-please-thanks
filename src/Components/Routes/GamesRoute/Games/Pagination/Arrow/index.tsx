@@ -30,6 +30,7 @@ export const Arrow: FC<Props> = ({
   numberOfResults,
   direction,
   scrollRef,
+  sortBy,
 }) => {
   const onClick = useCallback(
     () => scrollRef.current.scrollIntoView({ behavior: `smooth`, inline: `start` }),
@@ -44,6 +45,7 @@ export const Arrow: FC<Props> = ({
           ownedByFriend,
           isOnGamePass,
           page: currentPage - 1,
+          sortBy,
         })}
         onClick={onClick}
       >
@@ -62,6 +64,7 @@ export const Arrow: FC<Props> = ({
         ownedByFriend,
         isOnGamePass,
         page: currentPage + 1,
+        sortBy,
       })}
       onClick={onClick}
     >

@@ -3,7 +3,13 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { Heading } from "@Common";
-import { FormTextInput, FormCheckbox, FormSubmitButton, Form } from "@DesignRedux";
+import {
+  FormTextInput,
+  FormCheckbox,
+  FormSubmitButton,
+  FormSelect,
+  Form,
+} from "@DesignRedux";
 import { useIsAuthenticated } from "@State";
 
 import {
@@ -11,9 +17,11 @@ import {
   useFormPlayerCount,
   useFormOwnedByFriend,
   useFormIsOnGamePass,
+  useFormSortBy,
   ID,
   FORM_ID,
   makeSearchUrl,
+  SORT_BY_OPTIONS,
 } from "../shared";
 
 const Div = styled.div`
@@ -37,6 +45,7 @@ const useOnSubmit = () => {
   const [playerCount] = useFormPlayerCount();
   const [ownedByFriend] = useFormOwnedByFriend();
   const [isOnGamePass] = useFormIsOnGamePass();
+  const [sortBy] = useFormSortBy();
 
   const onSubmit = useCallback(() => {
     const url = makeSearchUrl({
@@ -45,9 +54,10 @@ const useOnSubmit = () => {
       ownedByFriend: ownedByFriend as any,
       isOnGamePass: isOnGamePass as any,
       page: 1,
+      sortBy: sortBy as any,
     });
     navigate(url);
-  }, [navigate, searchTerm, playerCount, ownedByFriend, isOnGamePass]);
+  }, [navigate, searchTerm, playerCount, ownedByFriend, isOnGamePass, sortBy]);
   return onSubmit;
 };
 
@@ -88,6 +98,15 @@ export const SearchForm: FC<{}> = () => {
           name="Is on Game Pass"
           label="Is on Game Pass"
         />
+        <FormSelect id={ID.SORT_BY} formId={FORM_ID} name="Sort By" label="Sort By">
+          {SORT_BY_OPTIONS.map(({ value, content }) => {
+            return (
+              <option key={value} value={value}>
+                {content}
+              </option>
+            );
+          })}
+        </FormSelect>
         <FormSubmitButton>Search</FormSubmitButton>
       </FormContainer>
     </Div>

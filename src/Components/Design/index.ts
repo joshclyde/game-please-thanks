@@ -6,3 +6,4 @@ export * from "./FormDatetime";
 export * from "./Text";
 export * from "./TwoColumn";
 export * from "./FormTextInput";
+export * from "./FormSelect";

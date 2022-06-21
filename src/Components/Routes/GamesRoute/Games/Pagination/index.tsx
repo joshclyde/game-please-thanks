@@ -37,6 +37,7 @@ export const Pagination: FC<Props> = ({
   first,
   last,
   scrollRef,
+  sortBy,
 }) => {
   return (
     <Div>
@@ -45,6 +46,7 @@ export const Pagination: FC<Props> = ({
         playerCount={playerCount}
         ownedByFriend={ownedByFriend}
         isOnGamePass={isOnGamePass}
+        sortBy={sortBy}
         currentPage={currentPage}
         numberOfResults={numberOfResults}
         direction="previous"
@@ -58,6 +60,7 @@ export const Pagination: FC<Props> = ({
         playerCount={playerCount}
         ownedByFriend={ownedByFriend}
         isOnGamePass={isOnGamePass}
+        sortBy={sortBy}
         currentPage={currentPage}
         numberOfResults={numberOfResults}
         direction="next"

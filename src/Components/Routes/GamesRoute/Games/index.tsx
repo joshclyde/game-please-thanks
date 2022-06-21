@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { ListOfGames, Heading } from "@Common";
 import { useGames, useFriends } from "@State";
 
-import { QUERY_PARAM } from "../shared";
+import { QUERY_PARAM, SORT_BY_OPTIONS, defaultSort } from "../shared";
 
 import { EmptyResults } from "./EmptyResults";
 import { Pagination } from "./Pagination";
@@ -36,40 +36,48 @@ const useSelectFilteredGameIds = ({
   playerCount,
   ownedByFriend,
   isOnGamePass,
+  sortBy,
 }: {
   searchTerm?: string;
   playerCount?: number;
   ownedByFriend?: boolean;
   isOnGamePass?: boolean;
+  sortBy?: string;
 }) => {
   const games = useGames();
   const friends = useFriends();
-  return Object.keys(games).filter((gameId) => {
-    const game = games[gameId];
-    if (
-      searchTerm != null &&
-      !game.name.toLowerCase().includes(searchTerm.toLowerCase())
-    ) {
-      return false;
-    }
-    if (
-      playerCount != null &&
-      (playerCount < game.minPlayers || playerCount > game.maxPlayers)
-    ) {
-      return false;
-    }
-    if (
-      ownedByFriend &&
-      friends &&
-      !Object.values(friends).some((friend) => friend.games?.[gameId]?.isOwned)
-    ) {
-      return false;
-    }
-    if (isOnGamePass && !game.isOnGamePass) {
-      return false;
-    }
-    return true;
-  });
+  const sortMethod =
+    SORT_BY_OPTIONS.find(({ value }) => value === sortBy)?.sort || defaultSort;
+  return Object.keys(games)
+    .filter((gameId) => {
+      const game = games[gameId];
+      if (
+        searchTerm != null &&
+        !game.name.toLowerCase().includes(searchTerm.toLowerCase())
+      ) {
+        return false;
+      }
+      if (
+        playerCount != null &&
+        (playerCount < game.minPlayers || playerCount > game.maxPlayers)
+      ) {
+        return false;
+      }
+      if (
+        ownedByFriend &&
+        friends &&
+        !Object.values(friends).some((friend) => friend.games?.[gameId]?.isOwned)
+      ) {
+        return false;
+      }
+      if (isOnGamePass && !game.isOnGamePass) {
+        return false;
+      }
+      return true;
+    })
+    .sort((gameId1, gameId2) => {
+      return sortMethod(games[gameId1], games[gameId2]);
+    });
 };
 
 export const Games: FC<{}> = () => {
@@ -81,11 +89,13 @@ export const Games: FC<{}> = () => {
   const ownedByFriend = convertParam(params.get(QUERY_PARAM.OWNED_BY_FRIEND), Boolean);
   const isOnGamePass = convertParam(params.get(QUERY_PARAM.IS_ON_GAME_PASS), Boolean);
   const page = convertParam(params.get(QUERY_PARAM.PAGE), Number, 1) as number;
+  const sortBy = convertParam(params.get(QUERY_PARAM.SORT_BY), String);
   const gameIds = useSelectFilteredGameIds({
     searchTerm,
     playerCount,
     ownedByFriend,
     isOnGamePass,
+    sortBy,
   });
   const first = page ? 10 * (page - 1) : 0;
   const last = Math.min(first + 10, gameIds.length);
@@ -104,6 +114,7 @@ export const Games: FC<{}> = () => {
             playerCount={playerCount}
             ownedByFriend={ownedByFriend}
             isOnGamePass={isOnGamePass}
+            sortBy={sortBy}
             currentPage={page}
             numberOfResults={gameIds.length}
             first={first}
