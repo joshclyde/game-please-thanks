@@ -30,5 +30,5 @@ export const createImage = async (productId: string) => {
     this.bitmap.data[idx + 1] = newColorGrid[x][y].green;
     this.bitmap.data[idx + 2] = newColorGrid[x][y].blue;
   });
-  image.write(`./scripts/data/images/generated/${productId}.jpeg`);
+  image.write(`./scripts/data/gameImage/${productId}.jpeg`);
 };
