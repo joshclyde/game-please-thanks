@@ -11,7 +11,7 @@ const downloadMicrosoftImage = async (product: MicrosoftProduct) => {
   if (imageUrl && imageUrl.length > 12) {
     try {
       const image = await read(imageUrl);
-      image.write(`./scripts/data/images/microsoftImages/${id}.jpeg`);
+      image.write(`./scripts/data/productImage/${id}.jpeg`);
       console.log(`SUCCESS ${id}`);
     } catch (error) {
       console.log(`Failed ${id}\nUrl: ${imageUrl}`);

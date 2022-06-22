@@ -94,8 +94,8 @@ export const getMicrosoftProducts = async (productIds?: Array<string>) => {
   Images
 */
 export const getProductImageIds = async (): Promise<Array<string>> => {
-  const files = await readdir(`images/microsoftImages`);
+  const files = await readdir(`productImage`);
   return files.map((value) => value.replace(`.jpeg`, ``));
 };
 export const getProductImage = (productId: string) =>
-  read(`./scripts/data/images/microsoftImages/${productId}.jpeg`);
+  read(`./scripts/data/productImage/${productId}.jpeg`);
