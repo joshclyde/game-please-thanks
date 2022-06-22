@@ -60,32 +60,34 @@ export const addToMegaList = async (productIds: Array<string>) => {
 /*
   MicrosoftProducts
 */
+
+export const getProduct = (productId: string): Promise<MicrosoftProduct> =>
+  readJson(`product/${productId}.json`);
 export const setProduct = (microsoftProduct: MicrosoftProduct) =>
-  writeJson(`rawProduct/${microsoftProduct.ProductId}.json`, microsoftProduct);
-export const onEachRawProductData = async (
-  operation: (rawProduct: MicrosoftProduct) => void,
-) => {
-  const files: Array<string> = await readdir(`rawProduct/`);
-  const promises: Array<Promise<void>> = [];
-  files.forEach((path) => {
-    const doOperation = async () => {
-      const rawProduct = await readJson(`rawProduct/${path}`);
-      await operation(rawProduct);
-    };
-    promises.push(doOperation());
-  });
-  await Promise.all(promises);
-};
-export const getMicrosoftProducts = async () => {
-  const products: Record<string, MicrosoftProduct> = {};
-  await onEachRawProductData((microsoftProduct) => {
-    products[microsoftProduct.ProductId] = microsoftProduct;
-  });
-  return products;
-};
+  writeJson(`product/${microsoftProduct.ProductId}.json`, microsoftProduct);
 export const getMicrosoftProductIds = async (): Promise<Array<string>> => {
-  const files = await readdir(`rawProduct`);
+  const files = await readdir(`product`);
   return files.map((value) => value.replace(`.json`, ``));
+};
+export const forEachProduct = async (operation: (product: MicrosoftProduct) => void) => {
+  const productIds = await getMicrosoftProductIds();
+  for (const productId of productIds) {
+    const product = await getProduct(productId);
+    await operation(product);
+  }
+};
+export const getMicrosoftProducts = async (productIds?: Array<string>) => {
+  const products: Record<string, MicrosoftProduct> = {};
+  if (productIds) {
+    for (const productId of productIds) {
+      products[productId] = await getProduct(productId);
+    }
+  } else {
+    await forEachProduct((product) => {
+      products[product.ProductId] = product;
+    });
+  }
+  return products;
 };
 
 /*

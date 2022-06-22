@@ -1,7 +1,7 @@
 import { read } from "jimp";
 
 import { MicrosoftProduct } from "../types";
-import { getGames, onEachRawProductData } from "../utils/database";
+import { getGames, getMicrosoftProducts } from "../utils/database";
 import { execConcurrentPromises } from "../utils/execConcurrentPromises";
 import { getImageUrl } from "../utils/product";
 
@@ -23,12 +23,7 @@ const downloadMicrosoftImage = async (product: MicrosoftProduct) => {
 
 const execute = async () => {
   const gameIds = Object.keys(await getGames());
-  const products: Record<string, MicrosoftProduct> = {};
-  await onEachRawProductData((microsoftProduct) => {
-    if (gameIds.includes(microsoftProduct.ProductId)) {
-      products[microsoftProduct.ProductId] = microsoftProduct;
-    }
-  });
+  const products = await getMicrosoftProducts(gameIds);
 
   const promises: Array<() => Promise<void>> = [];
   Object.values(products).forEach((product) => {
