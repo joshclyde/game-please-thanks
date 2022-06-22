@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+  },
+  "include": [
+    "./exec/**/*.ts",
+    "./types/**/*.ts",
+    "./utils/**/*.ts",
+  ],
+}

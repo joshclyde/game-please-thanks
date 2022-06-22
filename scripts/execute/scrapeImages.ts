@@ -1,0 +1,46 @@
+import { read } from "jimp";
+
+import { MicrosoftProduct } from "../types";
+import { getGames, onEachRawProductData } from "../utils/database";
+import { execConcurrentPromises } from "../utils/execConcurrentPromises";
+import { getImageUrl } from "../utils/product";
+
+const downloadMicrosoftImage = async (product: MicrosoftProduct) => {
+  const id = product.ProductId;
+  const imageUrl = getImageUrl(product, `FeaturePromotionalSquareArt`);
+  if (imageUrl && imageUrl.length > 12) {
+    try {
+      const image = await read(imageUrl);
+      image.write(`./scripts/data/images/microsoftImages/${id}.jpeg`);
+      console.log(`SUCCESS ${id}`);
+    } catch (error) {
+      console.log(`Failed ${id}\nUrl: ${imageUrl}`);
+    }
+  } else {
+    console.log(`Bad ${id}\nUrl: ${imageUrl}`);
+  }
+};
+
+const execute = async () => {
+  const gameIds = Object.keys(await getGames());
+  const products: Record<string, MicrosoftProduct> = {};
+  await onEachRawProductData((microsoftProduct) => {
+    if (gameIds.includes(microsoftProduct.ProductId)) {
+      products[microsoftProduct.ProductId] = microsoftProduct;
+    }
+  });
+
+  const promises: Array<() => Promise<void>> = [];
+  Object.values(products).forEach((product) => {
+    const imageUrl = getImageUrl(product, `FeaturePromotionalSquareArt`);
+    if (!imageUrl) {
+      console.log(`None for ${product.ProductId}`);
+    } else {
+      promises.push(() => downloadMicrosoftImage(product));
+    }
+  });
+
+  execConcurrentPromises(promises, 10);
+};
+
+execute();

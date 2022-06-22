@@ -1,7 +1,7 @@
 import { readJson, readdir, pathExists } from "fs-extra";
 import { read } from "jimp";
 
-import { readMicrosoftImages } from "../utils";
+import { getProductImage } from "./database";
 
 interface Color {
   red: number;
@@ -280,75 +280,30 @@ const algorithm = algorithm2;
   the image in 2 layers, with the detailed parts being the above part
   to ensure the details are seen?
 */
-const createImage = async (fileName: string) => {
-  console.log(`Creating ${fileName}`);
-  try {
-    const image = await read(`./scripts/data/images/microsoftImages/${fileName}`);
-    image.resize(64, 64);
+export const createImage = async (productId: string) => {
+  const image = await getProductImage(productId);
+  image.resize(64, 64);
 
-    const originalColorMap: ColorMap = {};
-    image.scan(0, 0, image.bitmap.width, image.bitmap.height, function (x, y, idx) {
-      addColor(
-        originalColorMap,
-        {
-          red: this.bitmap.data[idx + 0],
-          green: this.bitmap.data[idx + 1],
-          blue: this.bitmap.data[idx + 2],
-        },
-        x,
-        y,
-      );
-    });
+  const originalColorMap: ColorMap = {};
+  image.scan(0, 0, image.bitmap.width, image.bitmap.height, function (x, y, idx) {
+    addColor(
+      originalColorMap,
+      {
+        red: this.bitmap.data[idx + 0],
+        green: this.bitmap.data[idx + 1],
+        blue: this.bitmap.data[idx + 2],
+      },
+      x,
+      y,
+    );
+  });
 
-    const newColorMap = algorithm(originalColorMap);
-    image.scan(0, 0, image.bitmap.width, image.bitmap.height, function (x, y, idx) {
-      this.bitmap.data[idx + 0] = newColorMap[x][y].red;
-      this.bitmap.data[idx + 1] = newColorMap[x][y].green;
-      this.bitmap.data[idx + 2] = newColorMap[x][y].blue;
-    });
+  const newColorMap = algorithm(originalColorMap);
+  image.scan(0, 0, image.bitmap.width, image.bitmap.height, function (x, y, idx) {
+    this.bitmap.data[idx + 0] = newColorMap[x][y].red;
+    this.bitmap.data[idx + 1] = newColorMap[x][y].green;
+    this.bitmap.data[idx + 2] = newColorMap[x][y].blue;
+  });
 
-    image.write(`./scripts/data/images/beta-restyled/${fileName}`);
-    // image.write(`./scripts/data/images/restyled/${fileName}`);
-    console.log(`Finished ${fileName}`);
-  } catch (err) {
-    console.log(`ERROR`);
-    console.log(err);
-  }
+  image.write(`./scripts/data/images/beta-restyled/${productId}.jpeg`);
 };
-
-const execute = async () => {
-  /*
-    Uncomment these lines if I want to make images for every image.
-  */
-  const microsoftImageFileNames = await readMicrosoftImages();
-  const start = async (index: number) => {
-    await createImage(microsoftImageFileNames[index]);
-    if (index + 1 < microsoftImageFileNames.length) {
-      await start(index + 1);
-    }
-  };
-  start(0);
-
-  /*
-    Uncomment these lines if I only want to test at makeImages on a few known games.
-  */
-  // createImage(`9P6F6TBGGVK3.jpeg`); // risk of rain
-  // createImage(`9P2N57MC619K.jpeg`); // sea of thieves
-  // createImage(`BQ7NMRJT1NQ4.jpeg`); // don't starve me
-  // createImage(`9NBLGGH537BL.jpeg`); // minecraft
-  // createImage(`BPQ955FQFPH6.jpeg`); // destiny 2
-  // createImage(`C2MHS238PDNS.jpeg`); // smite
-  // createImage(`BNG91PT95LQN.jpeg`); // monster hunter
-  // createImage(`BPQZT43FWD49.jpeg`); // gang beasts
-  // createImage(`BPK4ZKFCFL5G.jpeg`); // halo
-  // createImage(`C125W9BG2K0V.jpeg`); // rocket league
-  // createImage(`C1C4DZJPBC2V.jpeg`); // overwatch
-  // createImage(`BNNMLWZRNQF6.jpeg`); // ultimate chicken horse
-  // createImage(`C21TDXKRNMHZ.jpeg`); // halo wars 2
-  // createImage(`C10GWTNNNBZ8.jpeg`); // castle crashers
-  // createImage(`9NKJ0VZQ4N0L.jpeg`); // it takes two
-  // createImage(`C0GWTPD0S8S1.jpeg`); // star wars 2
-  // createImage(`BPJ686W6S0NH.jpeg`); // gta v
-  // createImage(`C2JQRC2C49B0.jpeg`); // destiny
-};
-execute();
