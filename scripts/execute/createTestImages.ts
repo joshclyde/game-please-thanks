@@ -25,12 +25,20 @@ const execute = async () => {
     `C2JQRC2C49B0`, // destiny,
     `9MT6TG9CXR2H`, // FAILING
   ];
-  const start = async (index: number) => {
-    await createImage(productIds[index]);
-    if (index + 1 < productIds.length) {
-      await start(index + 1);
+
+  const errors: Array<{ productId: string; e: any }> = [];
+  for (const productId of productIds) {
+    try {
+      await createImage(productId);
+      console.log(`SUCCESS: ${productId}`);
+    } catch (e) {
+      console.log(`FAILED productId ${productId} | ERROR: ${e}`);
+      errors.push({ productId, e });
     }
-  };
-  start(0);
+  }
+  console.log(`\nThere were ${errors.length} failed attempts.`);
+  errors.forEach(({ productId, e }) => {
+    console.log(`FAILED ID ${productId} | ERROR: ${e}`);
+  });
 };
 execute();
