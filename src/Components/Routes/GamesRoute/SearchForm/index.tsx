@@ -72,7 +72,7 @@ export const SearchForm: FC<{}> = () => {
           id={ID.SEARCH_TERM}
           formId={FORM_ID}
           name="Search Term"
-          label="Search"
+          label="Name"
           autoComplete="off"
         />
         <FormTextInput
