@@ -71,7 +71,7 @@ export const SearchForm: FC<{}> = () => {
         <FormTextInput
           id={ID.SEARCH_TERM}
           formId={FORM_ID}
-          name="Search Term"
+          name="Name"
           label="Name"
           autoComplete="off"
         />
@@ -95,8 +95,8 @@ export const SearchForm: FC<{}> = () => {
         <FormCheckbox
           id={ID.IS_ON_GAME_PASS}
           formId={FORM_ID}
-          name="Is on Game Pass"
-          label="Is on Game Pass"
+          name="Game Pass"
+          label="Game Pass"
         />
         <FormSelect id={ID.SORT_BY} formId={FORM_ID} name="Sort By" label="Sort By">
           {SORT_BY_OPTIONS.map(({ value, content }) => {
