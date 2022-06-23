@@ -14,6 +14,7 @@ const FriendsRouteFC: FC<{}> = () => {
     <Page header="FRIENDS">
       <Friends />
       <StyledAddFriendLink to="/users">Search for new friend</StyledAddFriendLink>
+      <StyledAddFriendLink to="/find">Find game to play with friends</StyledAddFriendLink>
     </Page>
   );
 };
