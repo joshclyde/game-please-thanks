@@ -14,7 +14,7 @@ export const ID = {
 const sortGames = (
   game1: Game,
   game2: Game,
-  field: "maxPlayers" | "minPlayers" | "size" | "name",
+  field: "maxPlayers" | "minPlayers" | "size" | "name" | "price",
   ascending = true,
 ) => {
   return ascending
@@ -68,6 +68,16 @@ export const SORT_BY_OPTIONS = [
     value: `maxPlayersDescending`,
     content: `Max Players (Descending)`,
     sort: (game1: Game, game2: Game) => sortGames(game1, game2, `maxPlayers`, false),
+  },
+  {
+    value: `priceAscending`,
+    content: `Price (Ascending)`,
+    sort: (game1: Game, game2: Game) => sortGames(game1, game2, `price`),
+  },
+  {
+    value: `priceDescending`,
+    content: `Price (Descending)`,
+    sort: (game1: Game, game2: Game) => sortGames(game1, game2, `price`, false),
   },
 ];
 
