@@ -52,7 +52,7 @@ const EditProfileRouteFC: FC<{}> = () => {
   );
 
   return (
-    <Page header="PROFILE">
+    <Page header="ACCOUNT">
       <FormContainer onSubmit={onSubmit} formId={FORM_ID} initialState={initialState}>
         <FormTextInput id={NAME_ID} formId={FORM_ID} name={NAME_ID} label="Name" />
         <FormCheckbox

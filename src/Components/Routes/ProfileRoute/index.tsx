@@ -20,7 +20,7 @@ const ProfileRouteFC: FC<{}> = () => {
   const { name, hasGamePass } = useConfidentCurrentUser();
 
   return (
-    <Page header="PROFILE">
+    <Page header="ACCOUNT">
       <StyledList header={name || ``}>
         <Text>Game Pass: {hasGamePass ? `Yes` : `No`}</Text>
         <EditLink to="/profile/edit">Edit</EditLink>

@@ -8,7 +8,7 @@ import { SearchForm } from "./SearchForm";
 
 const GamesRouteFC: FC<{}> = () => {
   return (
-    <Page header="GAME LIBRARY">
+    <Page header="GAMES">
       <TwoColumn>
         <SearchForm />
         <Games />

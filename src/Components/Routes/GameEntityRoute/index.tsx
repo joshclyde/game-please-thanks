@@ -42,7 +42,7 @@ const GameEntityRouteFC: FC<{}> = () => {
   const size = useGameSizeHumanReadable(gameId);
 
   return (
-    <Page header="GAME LIBRARY">
+    <Page header="GAMES">
       <Img gameId={gameId} />
       <GameList header={name}>
         <Text>{getPlayersText(minPlayers, maxPlayers)}</Text>
