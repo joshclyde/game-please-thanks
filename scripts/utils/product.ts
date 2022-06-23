@@ -2,8 +2,27 @@ import { MicrosoftProduct, Game } from "../types";
 
 // TODO: clean this up
 
+const getName = (product: MicrosoftProduct) =>
+  product.LocalizedProperties?.[0].ProductTitle;
+
 export const getIsBundle = (microsoftProduct: MicrosoftProduct) =>
   Boolean(microsoftProduct.DisplaySkuAvailabilities?.[0].Sku.Properties.IsBundle);
+
+/*
+  Only add the sizes for platforms for Windows.Xbox.
+
+  Some of the packages will be Windows.Desktop, and the size actually displayed
+  on microsoft's site I believe is for PC and not Xbox, so my calculated size
+  will not match up (though it should be close-ish).
+*/
+const getSize = (product: MicrosoftProduct) =>
+  product.DisplaySkuAvailabilities?.[0].Sku.Properties.Packages?.filter(
+    ({ PlatformDependencies }) =>
+      PlatformDependencies?.some(({ PlatformName }) => PlatformName === `Windows.Xbox`),
+  ).reduce(
+    (partialSum, { MaxDownloadSizeInBytes }) => partialSum + MaxDownloadSizeInBytes,
+    0,
+  );
 
 export const getBundleProductIds = (
   microsoftProduct: MicrosoftProduct,
@@ -58,64 +77,51 @@ export const getImageUrl = (microsoftProduct: MicrosoftProduct, imagePurpose: st
   return undefined;
 };
 
-export const convertMicrosoftProductToGame = (
-  microsoftProduct: MicrosoftProduct,
+export const convertProductToGame = (
+  product: MicrosoftProduct,
   isOnGamePass: boolean,
 ): Game => {
-  const name = microsoftProduct.LocalizedProperties?.[0].ProductTitle;
-  if (!name) {
-    console.log(`No name for ${microsoftProduct.ProductId}`);
-  }
-  if (
-    !microsoftProduct.DisplaySkuAvailabilities?.[0].Sku.Properties.Packages?.[0]
-      ?.MaxDownloadSizeInBytes
-  ) {
-    console.log(`No size for ${microsoftProduct.ProductId} (${name})`);
+  const productId = product.ProductId;
+  const name = getName(product);
+  const size = getSize(product);
+  if (!size) {
+    console.log(`No size for ${productId} (${name})`);
   }
   const urlTitle = name
     ?.replace(/[\W_]+/g, ` `)
     .trim()
     .replace(` `, `-`)
     .toLowerCase();
-  // const urlTitle = microsoftProduct.DisplaySkuAvailabilities?.[0].Sku.LocalizedProperties[0].SkuTitle.replace(
-  //   /[\W_]+/g,
-  //   ` `,
-  // )
-  //   .trim()
-  //   .replace(` `, `-`)
-  //   .toLowerCase();
   const game = {
-    id: microsoftProduct.ProductId,
+    id: productId,
     name,
-    minPlayers: getMin(microsoftProduct),
-    maxPlayers: getMax(microsoftProduct),
+    minPlayers: getMin(product),
+    maxPlayers: getMax(product),
     externalUrl: urlTitle
-      ? `https://www.microsoft.com/en-us/p/${urlTitle}/${microsoftProduct.ProductId}?activetab=pivot:overviewtab`
+      ? `https://www.microsoft.com/en-us/p/${urlTitle}/${productId}?activetab=pivot:overviewtab`
       : `none`,
     images: {
       TitledWide: {
-        url: getImageUrl(microsoftProduct, `TitledHeroArt`),
+        url: getImageUrl(product, `TitledHeroArt`),
       },
       TitledLong: {
-        url: getImageUrl(microsoftProduct, `Poster`),
+        url: getImageUrl(product, `Poster`),
       },
       UntitledWide: {
-        url: getImageUrl(microsoftProduct, `SuperHeroArt`),
+        url: getImageUrl(product, `SuperHeroArt`),
       },
       UntitledSquare: {
-        url: getImageUrl(microsoftProduct, `FeaturePromotionalSquareArt`),
+        url: getImageUrl(product, `FeaturePromotionalSquareArt`),
       },
       TitledSquare: {
-        url: getImageUrl(microsoftProduct, `BoxArt`),
+        url: getImageUrl(product, `BoxArt`),
       },
     },
     price:
-      microsoftProduct.DisplaySkuAvailabilities?.[0].Availabilities?.[0]
-        .OrderManagementData.Price.MSRP,
+      product.DisplaySkuAvailabilities?.[0].Availabilities?.[0].OrderManagementData.Price
+        .MSRP,
     isOnGamePass,
-    size:
-      microsoftProduct.DisplaySkuAvailabilities?.[0].Sku.Properties.Packages?.[0]
-        ?.MaxDownloadSizeInBytes,
+    size: getSize(product),
   };
   return game;
 };
