@@ -9,7 +9,7 @@ describe(`getGameIds`, () => {
           test1: {
             name: `name`,
             hasGamePass: true,
-            games: { testGame1: { isOwned: true } },
+            games: { testGame1: { isOwned: true, isInstalled: true } },
             friends: {},
           },
         },

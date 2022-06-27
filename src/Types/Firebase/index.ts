@@ -4,11 +4,17 @@ export interface UserProfileFriendEntity {
 
 export type UserProfileFriends = Record<string, UserProfileFriendEntity>;
 
+// Possible Attributes for future
+// "installed" | "owned" | "heart" | "thumbsUp" | "thumbsDown";
+export type KeysForUserDataForGame = "isOwned" | "isInstalled";
+
 export interface UserProfileGameEntity {
   isOwned: boolean;
+  isInstalled: boolean;
 }
 
 export type UserProfileGames = Record<string, UserProfileGameEntity>;
+export type PartialUserProfileGames = Record<string, Partial<UserProfileGameEntity>>;
 
 export type UserProfileName = string;
 

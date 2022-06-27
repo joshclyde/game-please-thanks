@@ -2,7 +2,11 @@ import { useAtomValue, useAtom } from "jotai";
 import { useCallback } from "react";
 
 import { updateUserData, updateProfileGames, updateProfileFriends } from "@Firebase";
-import { UserProfileFriendEntity } from "@Types";
+import {
+  UserProfileFriendEntity,
+  UserProfileGameEntity,
+  KeysForUserDataForGame,
+} from "@Types";
 
 import { useCurrentUser } from "./currentUser";
 import { currentUserIdAtom } from "./currentUserId";
@@ -29,6 +33,14 @@ export const useUsersNameMaybeYou = (userId: string) => {
 export const useIsGameOwned = (gameId: string) => {
   const currentUser = useCurrentUser();
   return Boolean(currentUser && currentUser.games[gameId]?.isOwned);
+};
+
+export const useUserDataForGame = (gameId: string): UserProfileGameEntity | null => {
+  const currentUser = useCurrentUser();
+  /*
+    This could be null regardless of whether the user is signed in or not
+  */
+  return currentUser?.games[gameId] || null;
 };
 
 export const useGamesOwnedIds = () => {
@@ -101,13 +113,13 @@ export const useUpdateCurrentUser = () => {
   );
 };
 
-export const useUpdateGameIsOwned = () => {
+export const useUpdateUserDataForGame = () => {
   const currentUserId = useCurrentUserId();
   const currentUser = useCurrentUser();
   const [updatedUsers, setUpdatedUsers] = useAtom(updatedUsersAtom);
 
   return useCallback(
-    async (gameId: string, isOwned: boolean) => {
+    async (gameId: string, gameDataAttribute: KeysForUserDataForGame, value: boolean) => {
       if (currentUserId && currentUser) {
         setUpdatedUsers({
           ...updatedUsers,
@@ -116,14 +128,15 @@ export const useUpdateGameIsOwned = () => {
             games: {
               ...currentUser.games,
               [gameId]: {
-                isOwned,
+                ...currentUser.games[gameId],
+                [gameDataAttribute]: value,
               },
             },
           },
         });
         await updateProfileGames({
           uid: currentUserId,
-          games: { [gameId]: { isOwned } },
+          games: { [gameId]: { [gameDataAttribute]: value } },
         });
       } else {
         throw new Error(`Tried to update current user when not signed in`);

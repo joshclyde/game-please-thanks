@@ -12,7 +12,7 @@ import {
 } from "@State";
 import { getPlayersText, COLORS } from "@Utils";
 
-import { OwnGameCheckbox } from "./OwnGameCheckbox";
+import { UserDataForGameCheckbox } from "./UserDataForGameCheckbox";
 
 const Img = styled(GameImg)`
   width: 128px;
@@ -61,7 +61,8 @@ const GameEntityRouteFC: FC<{}> = () => {
           ) : (
             <Text>No friends own {name}</Text>
           )}
-          <OwnGameCheckbox gameId={gameId} />
+          <UserDataForGameCheckbox gameId={gameId} attribute="isOwned" />
+          <UserDataForGameCheckbox gameId={gameId} attribute="isInstalled" />
         </List>
       ) : null}
     </Page>

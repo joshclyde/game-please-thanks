@@ -11,7 +11,12 @@ import {
 } from "firebase/firestore";
 import isPlainObject from "lodash/isPlainObject";
 
-import { UserProfile, UserProfileFriends, UserProfileGames } from "@Types";
+import {
+  UserProfile,
+  UserProfileFriends,
+  UserProfileGames,
+  PartialUserProfileGames,
+} from "@Types";
 import { appendKeysWithPrefix } from "@Utils";
 
 import { firestore } from "../_root";
@@ -87,6 +92,28 @@ export const updateUserData = async ({
   }
 };
 
+/*
+  If I have a nested object, then using this dot notation I can set values within the
+  nested object without changing other values inside the nested object.
+
+  For example, say I have a firestore document of
+  {
+    name: 'Josh',
+    favorites: {
+      food: 'Pizza',
+      color: 'Blue',
+      subject: 'Recess',
+    }
+  }
+
+  If I want to change my favorite color from Blue to Red, I must call updateDoc with the following
+  so that food and subject are not overriden.
+  {
+    "favorites.color": 'Blue'
+  }
+
+  https://firebase.google.com/docs/firestore/manage-data/add-data#update_fields_in_nested_objects
+*/
 export const convertToDotNotation = (data: Record<string, any>): Record<string, any> => {
   const keys = Object.keys(data);
   return keys.reduce<Record<string, any>>((accumulated, key) => {
@@ -107,7 +134,11 @@ export const updateProfileGames = async ({
   games,
 }: {
   uid: string;
-  games: UserProfileGames;
+  /*
+    Intentionally asking for partial so that you can change just one attribute
+    of game data
+  */
+  games: PartialUserProfileGames;
 }) => {
   try {
     const data = convertToDotNotation({ games });
