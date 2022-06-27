@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "target": "es5",
     "module": "commonjs",
     "strict": true,
     "allowSyntheticDefaultImports": true,
@@ -7,7 +8,7 @@
     "moduleResolution": "node",
   },
   "include": [
-    "./exec/**/*.ts",
+    "./execute/**/*.ts",
     "./types/**/*.ts",
     "./utils/**/*.ts",
   ],

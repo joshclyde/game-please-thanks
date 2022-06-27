@@ -2,7 +2,7 @@ import { MicrosoftProduct, Game } from "../types";
 
 // TODO: clean this up
 
-const getName = (product: MicrosoftProduct) =>
+export const getName = (product: MicrosoftProduct) =>
   product.LocalizedProperties?.[0].ProductTitle;
 
 export const getIsBundle = (microsoftProduct: MicrosoftProduct) =>

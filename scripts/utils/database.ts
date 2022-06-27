@@ -4,6 +4,7 @@
 
 import {
   outputJson as fsOutputJson,
+  outputFile as fsOutputFile,
   pathExists as fsPathExists,
   readdir as fsreaddir,
   readJson as fsReadJson,
@@ -11,13 +12,15 @@ import {
 } from "fs-extra";
 import { read } from "jimp";
 
-import { MicrosoftProduct, Game } from "../types";
+import { MicrosoftProduct, Game, Data } from "../types";
 
 const readdir = (path: string) => fsreaddir(`./scripts/data/${path}`);
 const readJson = (path: string) => fsReadJson(`./scripts/data/${path}`);
 const readJsonSync = (path: string) => fsReadJsonSync(`./scripts/data/${path}`);
 const writeJson = (path: string, data: any) =>
   fsOutputJson(`./scripts/data/${path}`, data);
+export const writeFile = (path: string, data: any) =>
+  fsOutputFile(`./scripts/data/${path}`, data);
 const doesPathExist = (path: string) => fsPathExists(`./scripts/data/${path}`);
 
 /*
@@ -30,6 +33,12 @@ export const setGame = (game: Game) => writeJson(`game/${game.id}.json`, game);
 */
 export const getGames = (): Promise<Record<string, Game>> => readJson(`games.json`);
 export const setGames = (games: Record<string, Game>) => writeJson(`games.json`, games);
+
+/*
+  Data.json
+*/
+export const getData = (): Promise<Data> => readJson(`data.json`);
+export const setData = (data: Data) => writeJson(`data.json`, data);
 
 /*
   GamePass.json
@@ -47,13 +56,14 @@ export const setGamePassProductIds = async (productIds: Array<string>) => {
 */
 export const getMegaList = (): Promise<{ productIds: Array<string> }> =>
   fsReadJson(`./scripts/MegaList.json`);
+
 export const addToMegaList = async (productIds: Array<string>) => {
   const { productIds: existingProductIds } = await getMegaList();
-  const filteredProductIds = productIds
+  const newProductIds = productIds
     .map((id) => id.toUpperCase()) // make sure product ids are always uppper case
     .filter((id) => !existingProductIds.includes(id)); // remove any duplicate product ids that are already in MegaList
   await fsOutputJson(`./scripts/MegaList.json`, {
-    productIds: [...existingProductIds, ...filteredProductIds].sort(),
+    productIds: [...existingProductIds, ...newProductIds].sort(),
   });
 };
 

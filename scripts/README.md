@@ -4,14 +4,22 @@ This directory contains alll the stuff to scrape data from microsoft and generat
 
 ## How to Scrape Everything
 
-Run `yarn scripts ./scripts/execute/[yourScript]` for each of the following scripts, in this order.
+Run `yarn scripts ./scripts/execute/[yourScript].ts` for each of the following scripts, in this order.
 
-1. scrapeRecoPublic, scrapeStoreSearch, scrapeGamePass (doesn't matter which order)
+1. scrapeRecoPublic, scrapeStoreSearch, scrapeGamePass
+    * Will get you any new product IDs the scripts can find from their various sources.
+    * `MegaList.json`` is stored in git so you should already have a large list of product IDs, so unless you are wanting to get your MegaList.json to have new product IDs then I would not worry about running this.
+    * The order when running these 3 scripts does not matter.
 2. scrapeProducts
+    * Scrapes the product data for each product ID in MegaList.json
 3. scrapeBundles
+    * Adds any unknown product IDs found in bundled products to MegaList.json and scrapes the products for those new product IDs
 4. createGamesJson
+    * Using all the product data, creates the `games.json` file which is the file used on the site with the minimum amount of data needed
 5. scrapeImages
+    * Scrapes/downloads all product images
 6. createImages
+    * Using the product images, creates the gamepleasethanks images
 
 After everything is scraped and created, copy the following files/directories into the `assets` folder
 - `/scripts/data/games.json`
@@ -33,7 +41,7 @@ Other than MegaList.json and GamePass.json, scripts will generate files into `/s
 | ----------- | ----------- |
 | /data/games.json | entire database for games data. to be used in assets folder in firebase hosting       |
 | /data/gameImage/[id].jpeg | generated games images to be used in assets folder in firebase hosting        |
-| /data/game/[id].json | same as games.json, but split out by id        |
+| /data/game/[id].json | same as games.json, but split out by id. only generated so that the dev can easily find game data.        |
 | /data/product/[id].json | product data scraped from microsoft        |
 | /data/productImage/[id].jpeg | product image scraped from microsoft        |
 
