@@ -11,7 +11,7 @@ import {
 import { useCurrentUser } from "./currentUser";
 import { currentUserIdAtom } from "./currentUserId";
 import { useFriends } from "./friends";
-import { useGame } from "./games";
+import { useGame, useGames } from "./games";
 import { useUsers, useUser, updatedUsersAtom } from "./users";
 
 export const useCurrentUserId = () => {
@@ -45,11 +45,14 @@ export const useUserDataForGame = (gameId: string): UserProfileGameEntity | null
 
 export const useGamesOwnedIds = () => {
   const currentUser = useCurrentUser();
+  const games = useGames();
   return !currentUser
     ? []
-    : Object.keys(currentUser.games).filter(
-        (gameId) => currentUser.games[gameId].isOwned,
-      );
+    : Object.keys(currentUser.games)
+        .filter((gameId) => currentUser.games[gameId].isOwned)
+        .sort((gameId1, gameId2) => {
+          return games[gameId1].name.localeCompare(games[gameId2].name);
+        });
 };
 
 export const useCurrentUserIdAndFriendIdsSortedByName = () => {
