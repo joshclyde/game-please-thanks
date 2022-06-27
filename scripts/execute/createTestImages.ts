@@ -1,4 +1,4 @@
-import { createImage } from "../utils/image";
+import { createProductImage } from "../utils/image";
 
 /*
   Use this whenever I am testing changes to the createImage function
@@ -29,7 +29,7 @@ const execute = async () => {
   const errors: Array<{ productId: string; e: any }> = [];
   for (const productId of productIds) {
     try {
-      await createImage(productId);
+      await createProductImage(productId);
       console.log(`SUCCESS: ${productId}`);
     } catch (e) {
       console.log(`FAILED productId ${productId} | ERROR: ${e}`);

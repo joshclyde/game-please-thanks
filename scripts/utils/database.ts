@@ -107,5 +107,3 @@ export const getProductImageIds = async (): Promise<Array<string>> => {
   const files = await readdir(`productImage`);
   return files.map((value) => value.replace(`.jpeg`, ``));
 };
-export const getProductImage = (productId: string) =>
-  read(`./scripts/data/productImage/${productId}.jpeg`);

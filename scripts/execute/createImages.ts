@@ -1,5 +1,5 @@
 import { getProductImageIds } from "../utils/database";
-import { createImage } from "../utils/image";
+import { createProductImage } from "../utils/image";
 
 const execute = async () => {
   const productIds = await getProductImageIds();
@@ -9,7 +9,7 @@ const execute = async () => {
   for (const productId of productIds) {
     left--;
     try {
-      await createImage(productId);
+      await createProductImage(productId);
       console.log(`SUCCESS: ${productId}`);
     } catch (e) {
       console.log(`FAILED productId ${productId} | ERROR: ${e}`);
