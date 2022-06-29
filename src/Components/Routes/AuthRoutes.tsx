@@ -52,6 +52,7 @@ const AuthRoutesFC: FC<{}> = () => {
         {/* only show the logo if we're for sure on the home page */}
         <Routes>
           <Route path="/" element={<LoadingRoute />} />
+          <Route path="*" element={null} />
         </Routes>
       </Div>
     );
