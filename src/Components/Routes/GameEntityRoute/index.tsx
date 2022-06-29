@@ -31,6 +31,11 @@ const FriendName: FC<{ friendId: string }> = ({ friendId }) => {
   return <Text>{name}</Text>;
 };
 
+const priceText = (price: number, gamePass: boolean) => {
+  const priceString = price === 0 ? `FREE` : `\$${price}`;
+  return gamePass ? `GAME PASS (or ${priceString})` : priceString;
+};
+
 const GameEntityRouteFC: FC<{}> = () => {
   const params = useParams<{ gameId: string }>();
   const gameId = params.gameId as string;
@@ -46,8 +51,7 @@ const GameEntityRouteFC: FC<{}> = () => {
       <Img gameId={gameId} />
       <GameList header="Details">
         <Text>{getPlayersText(minPlayers, maxPlayers)}</Text>
-        {isOnGamePass ? <Text>Available through game pass</Text> : null}
-        <Text>{price === 0 ? `FREE` : `\$${price}`}</Text>
+        <Text>{priceText(price, isOnGamePass)}</Text>
         <Text>{size}</Text>
         {isAuthenticated && (
           <>
