@@ -77,7 +77,6 @@ const useSelectFilteredGameIds = ({
     });
     return results
       .map((x) => {
-        console.log(x);
         return x.obj.gameId;
       })
       .sort((gameId1, gameId2) => {

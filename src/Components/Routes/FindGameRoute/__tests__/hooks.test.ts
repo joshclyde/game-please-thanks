@@ -28,6 +28,8 @@ describe(`getGameIds`, () => {
               },
             } as any,
             size: 100,
+            rating: 2,
+            ratingCount: 100,
           },
           testGame2: {
             id: `testGame2`,
@@ -43,6 +45,8 @@ describe(`getGameIds`, () => {
               },
             } as any,
             size: 100,
+            rating: 2,
+            ratingCount: 100,
           },
         },
         true,

@@ -56,7 +56,7 @@ const useOnSubmit = () => {
       page: 1,
       sortBy: sortBy as any,
     });
-    navigate(url);
+    navigate(url, { replace: true });
   }, [navigate, searchTerm, playerCount, ownedByFriend, isOnGamePass, sortBy]);
   return onSubmit;
 };

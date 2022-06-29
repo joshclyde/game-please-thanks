@@ -39,9 +39,16 @@ const priceText = (price: number, gamePass: boolean) => {
 const GameEntityRouteFC: FC<{}> = () => {
   const params = useParams<{ gameId: string }>();
   const gameId = params.gameId as string;
-  const { name, minPlayers, maxPlayers, isOnGamePass, price, externalUrl } = useGame(
-    gameId,
-  );
+  const {
+    name,
+    minPlayers,
+    maxPlayers,
+    isOnGamePass,
+    price,
+    externalUrl,
+    rating,
+    ratingCount,
+  } = useGame(gameId);
   const friendIds = useCurrentUserAndFriendIdsThatOwnGame(gameId);
   const isAuthenticated = useIsAuthenticated();
   const size = useGameSizeHumanReadable(gameId);
@@ -53,6 +60,9 @@ const GameEntityRouteFC: FC<{}> = () => {
         <Text>{getPlayersText(minPlayers, maxPlayers)}</Text>
         <Text>{priceText(price, isOnGamePass)}</Text>
         <Text>{size}</Text>
+        <Text>
+          {rating}/5 ({ratingCount} reviews)
+        </Text>
         {isAuthenticated && (
           <>
             <UserDataForGameCheckbox gameId={gameId} attribute="isOwned" />

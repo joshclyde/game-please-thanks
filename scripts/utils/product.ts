@@ -24,6 +24,20 @@ const getSize = (product: MicrosoftProduct) =>
     0,
   );
 
+const getRatingData = (product: MicrosoftProduct) => {
+  const y = product.MarketProperties?.[0].UsageData?.find(
+    (x) => x.AggregateTimeSpan === `AllTime`,
+  );
+  if (y) {
+    return {
+      rating: y.AverageRating,
+      ratingCount: y.RatingCount,
+    };
+  } else {
+    console.log(`No rating for ${getName(product)}`);
+  }
+};
+
 export const getBundleProductIds = (
   microsoftProduct: MicrosoftProduct,
 ): Array<string> => {
@@ -122,6 +136,7 @@ export const convertProductToGame = (
         .MSRP,
     isOnGamePass,
     size: getSize(product),
+    ...getRatingData(product),
   };
   return game;
 };

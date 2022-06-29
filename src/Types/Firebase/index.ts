@@ -64,4 +64,6 @@ export interface Game {
   // <-> not on MicrosoftProduct
   isOnGamePass: boolean;
   size: number;
+  rating: number;
+  ratingCount: number;
 }
