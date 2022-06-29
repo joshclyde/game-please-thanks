@@ -1,27 +1,14 @@
 import fuzzysort from "fuzzysort";
 import React, { FC, useRef } from "react";
-import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import { ListOfGames, Heading } from "@Common";
 import { useGames, useFriends } from "@State";
 
-import { QUERY_PARAM, SORT_BY_OPTIONS, defaultSort } from "../shared";
+import { SORT_BY_OPTIONS, defaultSort, useSearchParams } from "../shared";
 
 import { EmptyResults } from "./EmptyResults";
 import { Pagination } from "./Pagination";
-
-type ConvertMethod<T> = (value: any) => T;
-const convertParam = <T extends any>(
-  value: string | null,
-  convertMethod: ConvertMethod<T>,
-  defaultValue?: T,
-) => {
-  if (value != null) {
-    return convertMethod(value);
-  }
-  return defaultValue;
-};
 
 const Div = styled.div`
   display: flex;
@@ -92,14 +79,14 @@ const useSelectFilteredGameIds = ({
 
 export const Games: FC<{}> = () => {
   const scrollRef = useRef(null);
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const searchTerm = convertParam(params.get(QUERY_PARAM.SEARCH_TERM), String);
-  const playerCount = convertParam(params.get(QUERY_PARAM.PLAYER_COUNT), Number);
-  const ownedByFriend = convertParam(params.get(QUERY_PARAM.OWNED_BY_FRIEND), Boolean);
-  const isOnGamePass = convertParam(params.get(QUERY_PARAM.IS_ON_GAME_PASS), Boolean);
-  const page = convertParam(params.get(QUERY_PARAM.PAGE), Number, 1) as number;
-  const sortBy = convertParam(params.get(QUERY_PARAM.SORT_BY), String);
+  const {
+    searchTerm,
+    playerCount,
+    ownedByFriend,
+    isOnGamePass,
+    page,
+    sortBy,
+  } = useSearchParams();
   const gameIds = useSelectFilteredGameIds({
     searchTerm,
     playerCount,

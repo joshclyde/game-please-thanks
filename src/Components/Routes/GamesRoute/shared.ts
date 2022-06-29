@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+
 import { useFormInput } from "@Redux";
 import { Game } from "@Types";
 
@@ -126,4 +128,29 @@ export const makeSearchUrl = ({
   sortBy && searchParams.append(QUERY_PARAM.SORT_BY, String(sortBy));
   searchParams.append(QUERY_PARAM.PAGE, String(page));
   return `/games?${searchParams.toString()}`;
+};
+
+type ConvertMethod<T> = (value: any) => T;
+const convertParam = <T extends any>(
+  value: string | null,
+  convertMethod: ConvertMethod<T>,
+  defaultValue?: T,
+) => {
+  if (value != null) {
+    return convertMethod(value);
+  }
+  return defaultValue;
+};
+
+export const useSearchParams = () => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  return {
+    searchTerm: convertParam(params.get(QUERY_PARAM.SEARCH_TERM), String),
+    playerCount: convertParam(params.get(QUERY_PARAM.PLAYER_COUNT), Number),
+    ownedByFriend: convertParam(params.get(QUERY_PARAM.OWNED_BY_FRIEND), Boolean),
+    isOnGamePass: convertParam(params.get(QUERY_PARAM.IS_ON_GAME_PASS), Boolean),
+    page: convertParam(params.get(QUERY_PARAM.PAGE), Number, 1) as number,
+    sortBy: convertParam(params.get(QUERY_PARAM.SORT_BY), String),
+  };
 };

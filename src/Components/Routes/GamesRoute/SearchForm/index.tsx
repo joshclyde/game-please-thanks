@@ -22,6 +22,7 @@ import {
   FORM_ID,
   makeSearchUrl,
   SORT_BY_OPTIONS,
+  useSearchParams,
 } from "../shared";
 
 const Div = styled.div`
@@ -61,13 +62,38 @@ const useOnSubmit = () => {
   return onSubmit;
 };
 
+const addIfTruthy = (obj: Record<string, any>, key: string, value: any) => {
+  if (value) {
+    obj[key] = value;
+  }
+};
+
+const useInitialState = () => {
+  const {
+    searchTerm,
+    playerCount,
+    ownedByFriend,
+    isOnGamePass,
+    sortBy,
+  } = useSearchParams();
+  const initState: Record<string, any> = {};
+  addIfTruthy(initState, ID.SEARCH_TERM, searchTerm);
+  addIfTruthy(initState, ID.PLAYER_COUNT, playerCount);
+  addIfTruthy(initState, ID.OWNED_BY_FRIEND, ownedByFriend);
+  addIfTruthy(initState, ID.IS_ON_GAME_PASS, isOnGamePass);
+  addIfTruthy(initState, ID.SORT_BY, sortBy);
+
+  return initState;
+};
+
 export const SearchForm: FC<{}> = () => {
   const isAuthenticated = useIsAuthenticated();
   const onSubmit = useOnSubmit();
+  const initState = useInitialState();
   return (
     <Div>
       <Heading>Filters</Heading>
-      <FormContainer formId={FORM_ID} onSubmit={onSubmit} initialState={{}}>
+      <FormContainer formId={FORM_ID} onSubmit={onSubmit} initialState={initState}>
         <FormTextInput
           id={ID.SEARCH_TERM}
           formId={FORM_ID}
