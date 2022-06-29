@@ -83,7 +83,7 @@ const GameEntityRouteFC: FC<{}> = () => {
       )}
       <List>
         <Text>
-          <LinkExternal to={externalUrl}>view at microsoft.com</LinkExternal>
+          <LinkExternal to={externalUrl}>view at xbox.com</LinkExternal>
         </Text>
       </List>
     </Page>
