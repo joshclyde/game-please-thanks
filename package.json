@@ -34,6 +34,7 @@
     "@types/url-parse": "^1.4.1",
     "axios": "^0.21.1",
     "firebase": "9.8.3",
+    "fuzzysort": "^2.0.1",
     "jotai": "^1.7.2",
     "lodash": "^4.17.15",
     "mousetrap": "^1.6.0",

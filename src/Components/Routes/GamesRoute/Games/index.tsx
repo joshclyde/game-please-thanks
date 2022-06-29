@@ -1,3 +1,4 @@
+import fuzzysort from "fuzzysort";
 import React, { FC, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
@@ -43,20 +44,13 @@ const useSelectFilteredGameIds = ({
   ownedByFriend?: boolean;
   isOnGamePass?: boolean;
   sortBy?: string;
-}) => {
+}): Array<string> => {
   const games = useGames();
   const friends = useFriends();
   const sortMethod =
     SORT_BY_OPTIONS.find(({ value }) => value === sortBy)?.sort || defaultSort;
-  return Object.keys(games)
-    .filter((gameId) => {
-      const game = games[gameId];
-      if (
-        searchTerm != null &&
-        !game.name.toLowerCase().includes(searchTerm.toLowerCase())
-      ) {
-        return false;
-      }
+  const gamesForFuzzySort = Object.entries(games)
+    .filter(([gameId, game]) => {
       if (
         playerCount != null &&
         (playerCount < game.minPlayers || playerCount > game.maxPlayers)
@@ -75,6 +69,23 @@ const useSelectFilteredGameIds = ({
       }
       return true;
     })
+    .map(([gameId, { name }]) => ({ gameId, name }));
+  if (searchTerm) {
+    const results = fuzzysort.go(searchTerm, gamesForFuzzySort, {
+      key: `name`,
+      threshold: -100000,
+    });
+    return results
+      .map((x) => {
+        console.log(x);
+        return x.obj.gameId;
+      })
+      .sort((gameId1, gameId2) => {
+        return sortMethod(games[gameId1], games[gameId2]);
+      });
+  }
+  return gamesForFuzzySort
+    .map((x) => x.gameId)
     .sort((gameId1, gameId2) => {
       return sortMethod(games[gameId1], games[gameId2]);
     });
