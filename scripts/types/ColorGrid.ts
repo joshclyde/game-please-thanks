@@ -41,9 +41,16 @@ export class ColorGrid {
     );
   }
 
-  // get image(): Jimp {
-
-  // }
+  get image(): Jimp {
+    const image = new Jimp(this.width, this.height);
+    const self = this;
+    image.scan(0, 0, image.bitmap.width, image.bitmap.height, function (x, y, idx) {
+      this.bitmap.data[idx + 0] = self.grid[x][y].red;
+      this.bitmap.data[idx + 1] = self.grid[x][y].green;
+      this.bitmap.data[idx + 2] = self.grid[x][y].blue;
+    });
+    return image;
+  }
 
   // TODO: change this to an iterator
   forEachColor(exec: (color: Color, x: number, y: number) => void) {
