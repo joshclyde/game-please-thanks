@@ -7,7 +7,7 @@ import { makeLoading } from "../";
 
 describe(`GIVEN a redux store created from makeLoading ReduxUtils`, () => {
   let store: ReturnType<typeof createStore>;
-  let wrapper: React.FC<{}>;
+  let wrapper: React.FC<{ children: React.ReactNode }>;
   let useLoad: () => (...args: Array<any>) => void;
   let mockExecute = jest.fn();
   let resolveLoad: (value?: any) => void;

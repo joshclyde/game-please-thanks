@@ -16,7 +16,7 @@ describe(`GIVEN a redux store created from ReduxUtils`, () => {
   */
   let store: ReturnType<typeof createStore>;
   let useDispatchAction: () => (value: string) => void;
-  let wrapper: React.FC;
+  let wrapper: React.FC<{ children: React.ReactNode }>;
   let useSelector: () => string;
   beforeEach(() => {
     const { reducer, addCase } = makeReducer({

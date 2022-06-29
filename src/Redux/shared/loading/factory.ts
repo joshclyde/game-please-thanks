@@ -32,7 +32,8 @@ export const loadFactory = ({
     const dispatch = useDispatch();
     const hasAttemptedLoad = useSelectHasAttemptedLoad();
     if (!hasAttemptedLoad) {
-      dispatch(thunkLoad);
+      // I'm eventually gonna move from redux to jotai, so just any this for now
+      dispatch(thunkLoad as any);
     }
   };
 

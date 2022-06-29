@@ -45,6 +45,7 @@ const StyledBottomIcons = styled(BottomIcons)`
 
 interface Props {
   header: string;
+  children: React.ReactNode;
 }
 
 export const Page: FC<Props> = ({ header, children }) => {
