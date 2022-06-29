@@ -1,26 +1,12 @@
-import { Color, ColorGrid } from "./types";
-import {
-  createColorCountsArray,
-  createNewColorGrid,
-  roundColor,
-  parseColorString,
-  forEachColor,
-  addColor,
-  closestColor,
-} from "./utils";
+import { Color, ColorGrid } from "../../types";
 
 // Reduce colors to most popular.
-const limitColors = (colorGrid: ColorGrid, numOfColors: number) => {
-  const colorCounts = createColorCountsArray(colorGrid);
-  const validColors = colorCounts.slice(0, numOfColors).map<Color>(([key]) => {
-    return parseColorString(key);
-  });
-
-  const newColorGrid: ColorGrid = {};
-  forEachColor(colorGrid, (color, x, y) => {
-    addColor(newColorGrid, closestColor(color, validColors), x, y);
-  });
-  return newColorGrid;
+const limitColors = (colors: ColorGrid, numOfColors: number) => {
+  return colors.transformCloset(
+    colors.colorCounts
+      .slice(0, numOfColors)
+      .map(([colorString]) => Color.fromStringify(colorString)),
+  );
 };
 
 /*
@@ -32,9 +18,6 @@ const limitColors = (colorGrid: ColorGrid, numOfColors: number) => {
   Cons
   - Doing the straight up most popular colors makes some look a bit odd. (minecrat + chicken horse)
 */
-export const algorithm1 = (colorGrid: ColorGrid): ColorGrid => {
-  return limitColors(
-    createNewColorGrid(colorGrid, (color) => roundColor(color, 3)),
-    6,
-  );
+export const algorithm1 = (colors: ColorGrid): ColorGrid => {
+  return limitColors(colors.transformRounded(3), 6);
 };

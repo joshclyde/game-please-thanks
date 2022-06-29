@@ -1,19 +1,11 @@
-import { Color, ColorGrid } from "./types";
-import {
-  createColorCountsArray,
-  createNewColorGrid,
-  roundColor,
-  parseColorString,
-  forEachColor,
-  createNewColorGridClosestColor,
-  addColor,
-  closestColor,
-  lengthBetweenColors,
-} from "./utils";
+import { Color, ColorGrid } from "../../types";
 
-// Reduce colors to a light, medium, and dark color.
-const limitColors = (colorGrid: ColorGrid, numOfColors: number) => {
-  const colorCounts = createColorCountsArray(colorGrid);
+/*
+  Reduce colors to a light, 3 medium and a dark color
+*/
+const limitColors = (colors: ColorGrid) => {
+  const { colorCounts } = colors;
+
   let light: Color | null = null;
   let medium: Color | null = null;
   let medium2: Color | null = null;
@@ -22,19 +14,15 @@ const limitColors = (colorGrid: ColorGrid, numOfColors: number) => {
 
   let i = 0;
   while (!(light && medium && medium2 && medium3 && dark) && i < colorCounts.length) {
-    const [colorString] = colorCounts[i];
-    const color = parseColorString(colorString);
-    // const darkLength = lengthBetweenColors(color, { red: 0, green: 0, blue: 0 });
-    // const lightLength = lengthBetweenColors(color, { red: 255, green: 255, blue: 255 });
-    // if (!dark && darkLength < 100) {
-    //   dark = color;
-    // } else if (!light && lightLength < 50) {
-    //   light = color;
+    const color = Color.fromStringify(colorCounts[i][0]);
+
     const lightness = (((color.red + color.green + color.blue) / 3) * 100) / 255;
+
     const diff1 = Math.abs(color.red - color.green);
     const diff2 = Math.abs(color.red - color.blue);
     const diff3 = Math.abs(color.green - color.blue);
     const greyness = Math.max(diff1, diff2, diff3);
+
     if (!dark && lightness < 20) {
       dark = color;
     } else if (!light && lightness > 90) {
@@ -49,15 +37,13 @@ const limitColors = (colorGrid: ColorGrid, numOfColors: number) => {
     i++;
   }
 
-  return createNewColorGridClosestColor(
-    colorGrid,
-    [light, medium, medium2, medium3, dark].filter((x) => x),
+  return colors.transformCloset(
+    [light, medium, medium2, medium3, dark].filter<Color>(
+      (color): color is Color => color != null,
+    ),
   );
 };
 
 export const algorithm3 = (colorGrid: ColorGrid): ColorGrid => {
-  return limitColors(
-    createNewColorGrid(colorGrid, (color) => roundColor(color, 6)),
-    6,
-  );
+  return limitColors(colorGrid.transformRounded(6));
 };

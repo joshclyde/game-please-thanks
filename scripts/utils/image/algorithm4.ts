@@ -1,76 +1,39 @@
-import { Color, ColorGrid } from "./types";
-import {
-  createColorCountsArray,
-  createNewColorGrid,
-  roundColor,
-  parseColorString,
-  forEachColor,
-  addColor,
-  createNewColorGridClosestColor,
-  closestColor,
-  lengthBetweenColors,
-} from "./utils";
+import { Color, ColorGrid } from "../../types";
 
-const getMostPopularColors = (colorGrid: ColorGrid, numOfColors: number) => {
-  const colorCounts = createColorCountsArray(colorGrid);
-  let colors: Array<Color> = [];
+const getMostPopularColors = (colors: ColorGrid, numOfColors: number): Array<Color> => {
+  const { colorCounts } = colors;
+  let colorPool: Array<Color> = [];
   let i = 0;
-  while (colors.length < numOfColors && i < colorCounts.length) {
-    const color = parseColorString(colorCounts[i][0]);
-    let shouldAdd = true;
-    colors.forEach((validColor) => {
-      const length = lengthBetweenColors(color, validColor);
-      if (length < 100) {
-        shouldAdd = false;
-      }
-    });
-    if (shouldAdd) {
-      colors.push(color);
+  while (colorPool.length < numOfColors && i < colorCounts.length) {
+    const color = Color.fromStringify(colorCounts[i][0]);
+    if (!colorPool.some((x) => x.lengthBetween(color) < 100)) {
+      colorPool.push(color);
     }
     i++;
   }
 
-  if (colors.length != numOfColors) {
-    let j = 0;
-    while (colors.length < numOfColors) {
-      const color = parseColorString(colorCounts[j][0]);
-      let shouldAdd = true;
-      colors.forEach((validColor) => {
-        if (color === validColor) {
-          shouldAdd = false;
-        }
-      });
-      if (shouldAdd) {
-        colors.push(color);
-      }
-      j++;
+  i = 0;
+  while (colorPool.length < numOfColors) {
+    const color = Color.fromStringify(colorCounts[i][0]);
+    if (!colorPool.some((x) => x.isEqual(color))) {
+      colorPool.push(color);
     }
+    i++;
   }
 
-  return colors;
+  return colorPool;
 };
 
-const addLightAndDarkColors = (colors: Array<Color>): Array<Color> => {
+const getDarkColors = (colors: Array<Color>): Array<Color> => {
   const newColors = [...colors];
   colors.forEach((color) => {
-    newColors.push({
-      red: color.red * 0.7,
-      green: color.green * 0.7,
-      blue: color.blue * 0.7,
-    });
+    newColors.push(
+      new Color(color.red * 0.7, color.green * 0.7, color.blue * 0.7, color.alpha * 0.7),
+    );
   });
   return newColors;
 };
 
-export const algorithm4 = (colorGrid: ColorGrid): ColorGrid => {
-  // return createNewColorGridClosestColor(
-  //   colorGrid,
-  //   addLightAndDarkColors(getMostPopularColors(colorGrid, 6)),
-  // );
-
-  // return createNewColorGrid(colorGrid, (color) => roundColor(color, 6));
-  return createNewColorGridClosestColor(
-    colorGrid,
-    addLightAndDarkColors(getMostPopularColors(colorGrid, 6)),
-  );
+export const algorithm4 = (colors: ColorGrid): ColorGrid => {
+  return colors.transformCloset(getDarkColors(getMostPopularColors(colors, 6)));
 };

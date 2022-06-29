@@ -4,7 +4,7 @@ import { GamePassResponse } from "../types";
 import { setGamePassProductIds, addToMegaList } from "../utils/database";
 
 const hasId = (
-  value,
+  value: any,
 ): value is {
   id: string;
 } => `id` in value;

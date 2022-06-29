@@ -5,3 +5,5 @@ export * from "./RecoPublicResponse";
 export * from "./TitleHub";
 export * from "./Title";
 export * from "./Data";
+export * from "./Color";
+export * from "./ColorGrid";
