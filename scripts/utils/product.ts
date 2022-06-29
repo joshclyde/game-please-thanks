@@ -51,6 +51,9 @@ export const getBundleProductIds = (
 export const getProductType = (microsoftProduct: MicrosoftProduct) =>
   microsoftProduct.ProductType;
 
+export const getIsDemo = (microsoftProduct: MicrosoftProduct) =>
+  microsoftProduct.Properties.IsDemo;
+
 const getMin = (microsoftProduct: MicrosoftProduct) => {
   const value1 = microsoftProduct.Properties.Attributes?.find(
     ({ Name }) => Name === `XblOnlineCoop`,
