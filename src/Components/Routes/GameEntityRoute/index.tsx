@@ -48,6 +48,7 @@ const GameEntityRouteFC: FC<{}> = () => {
     externalUrl,
     rating,
     ratingCount,
+    releaseDate,
   } = useGame(gameId);
   const friendIds = useCurrentUserAndFriendIdsThatOwnGame(gameId);
   const isAuthenticated = useIsAuthenticated();
@@ -63,6 +64,7 @@ const GameEntityRouteFC: FC<{}> = () => {
         <Text>
           {rating}/5 ({ratingCount} reviews)
         </Text>
+        <Text>Released {new Date(releaseDate).toISOString().substring(0, 10)}</Text>
         {isAuthenticated && (
           <>
             <UserDataForGameCheckbox gameId={gameId} attribute="isOwned" />

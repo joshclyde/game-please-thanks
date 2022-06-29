@@ -36,6 +36,7 @@ export interface Game {
   isOnGamePass: boolean;
   // <--> MicrosoftProduct.DisplaySkuAvailabilities[0].Sku.Properties.Packages[0].MaxDownloadSizeInBytes
   size: number;
+  releaseDate: string;
   rating: number;
   ratingCount: number;
 }

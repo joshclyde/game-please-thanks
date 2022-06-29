@@ -25,17 +25,24 @@ const getSize = (product: MicrosoftProduct) =>
   );
 
 const getRatingData = (product: MicrosoftProduct) => {
-  const y = product.MarketProperties?.[0].UsageData?.find(
+  const data = product.MarketProperties?.[0].UsageData?.find(
     (x) => x.AggregateTimeSpan === `AllTime`,
   );
-  if (y) {
+  if (data) {
     return {
-      rating: y.AverageRating,
-      ratingCount: y.RatingCount,
+      rating: data.AverageRating,
+      ratingCount: data.RatingCount,
     };
   } else {
     console.log(`No rating for ${getName(product)}`);
   }
+};
+
+const getReleaseDate = (product: MicrosoftProduct) => {
+  if (!product.MarketProperties?.[0].OriginalReleaseDate) {
+    console.log(`No release date for ${getName(product)}`);
+  }
+  return product.MarketProperties?.[0].OriginalReleaseDate;
 };
 
 export const getBundleProductIds = (
@@ -139,6 +146,7 @@ export const convertProductToGame = (
         .MSRP,
     isOnGamePass,
     size: getSize(product),
+    releaseDate: getReleaseDate(product),
     ...getRatingData(product),
   };
   return game;
