@@ -28,6 +28,11 @@ const sortGames = (
     : -1;
 };
 
+const sortByReleaseDate = (game1: Game, game2: Game, ascending = true) => {
+  const x = new Date(game1.releaseDate) > new Date(game2.releaseDate) ? 1 : -1;
+  return ascending ? x : -x;
+};
+
 export const defaultSort = (game1: Game, game2: Game) => sortGames(game1, game2, `name`);
 
 export const SORT_BY_OPTIONS = [
@@ -80,6 +85,16 @@ export const SORT_BY_OPTIONS = [
     value: `priceDescending`,
     content: `Price (Descending)`,
     sort: (game1: Game, game2: Game) => sortGames(game1, game2, `price`, false),
+  },
+  {
+    value: `releaseDateOldest`,
+    content: `Release Date (Oldest)`,
+    sort: (game1: Game, game2: Game) => sortByReleaseDate(game1, game2),
+  },
+  {
+    value: `releaseDateNewest`,
+    content: `Release Date (Newest)`,
+    sort: (game1: Game, game2: Game) => sortByReleaseDate(game1, game2, false),
   },
 ];
 
