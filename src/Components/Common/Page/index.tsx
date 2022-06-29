@@ -14,6 +14,7 @@ const PageHeader = styled.h1`
   margin-top: 32px;
   margin-bottom: 32px;
   align-self: center;
+  text-align: center;
 `;
 
 const Div2 = styled.div`

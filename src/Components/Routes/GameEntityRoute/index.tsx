@@ -42,29 +42,34 @@ const GameEntityRouteFC: FC<{}> = () => {
   const size = useGameSizeHumanReadable(gameId);
 
   return (
-    <Page header="GAMES">
+    <Page header={name}>
       <Img gameId={gameId} />
-      <GameList header={name}>
+      <GameList header="Details">
         <Text>{getPlayersText(minPlayers, maxPlayers)}</Text>
-        <Text>
-          Additional details at{` `}
-          <LinkExternal to={externalUrl}>microsoft.com</LinkExternal>
-        </Text>
         {isOnGamePass ? <Text>Available through game pass</Text> : null}
-        <Text>{price === 0 ? `This game is free.` : `Buy for \$${price}.`}</Text>
+        <Text>{price === 0 ? `FREE` : `\$${price}`}</Text>
         <Text>{size}</Text>
+        {isAuthenticated && (
+          <>
+            <UserDataForGameCheckbox gameId={gameId} attribute="isOwned" />
+            <UserDataForGameCheckbox gameId={gameId} attribute="isInstalled" />
+          </>
+        )}
       </GameList>
-      {isAuthenticated ? (
-        <List header="Who owns this">
+      {isAuthenticated && (
+        <List header="Friends">
           {friendIds.length > 0 ? (
             friendIds.map((friendId) => <FriendName key={friendId} friendId={friendId} />)
           ) : (
             <Text>No friends own {name}</Text>
           )}
-          <UserDataForGameCheckbox gameId={gameId} attribute="isOwned" />
-          <UserDataForGameCheckbox gameId={gameId} attribute="isInstalled" />
         </List>
-      ) : null}
+      )}
+      <List>
+        <Text>
+          <LinkExternal to={externalUrl}>view at microsoft.com</LinkExternal>
+        </Text>
+      </List>
     </Page>
   );
 };
