@@ -121,8 +121,9 @@ export const convertProductToGame = (
     name,
     minPlayers: getMin(product),
     maxPlayers: getMax(product),
+    // OLD: `https://www.microsoft.com/en-us/p/${urlTitle}/${productId}?activetab=pivot:overviewtab`
     externalUrl: urlTitle
-      ? `https://www.microsoft.com/en-us/p/${urlTitle}/${productId}?activetab=pivot:overviewtab`
+      ? `https://www.xbox.com/en-us/games/store/${urlTitle}/${productId}`
       : `none`,
     images: {
       TitledWide: {
