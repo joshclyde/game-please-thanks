@@ -1,1 +1,0 @@
-export { useSelectCurrentFriendGroupId } from "./selectors";
