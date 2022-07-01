@@ -8,14 +8,15 @@ import {
   pathExists as fsPathExists,
   readdir as fsreaddir,
   readJson as fsReadJson,
+  readFile as fsReadFile,
   readJsonSync as fsReadJsonSync,
 } from "fs-extra";
-import { read } from "jimp";
 
 import { MicrosoftProduct, Game, Data } from "../types";
 
 const readdir = (path: string) => fsreaddir(`./scripts/data/${path}`);
 const readJson = (path: string) => fsReadJson(`./scripts/data/${path}`);
+export const readFile = (path: string) => fsReadFile(`./scripts/data/${path}`, `utf8`);
 const readJsonSync = (path: string) => fsReadJsonSync(`./scripts/data/${path}`);
 const writeJson = (path: string, data: any) =>
   fsOutputJson(`./scripts/data/${path}`, data);
@@ -26,6 +27,7 @@ const doesPathExist = (path: string) => fsPathExists(`./scripts/data/${path}`);
 /*
   Game
 */
+export const getGame = (gameId: string): Promise<Game> => readJson(`game/${gameId}.json`);
 export const setGame = (game: Game) => writeJson(`game/${game.id}.json`, game);
 
 /*
@@ -33,6 +35,13 @@ export const setGame = (game: Game) => writeJson(`game/${game.id}.json`, game);
 */
 export const getGames = (): Promise<Record<string, Game>> => readJson(`games.json`);
 export const setGames = (games: Record<string, Game>) => writeJson(`games.json`, games);
+
+/*
+  ProductPages
+*/
+// TODO: move this into ProductPage class?
+export const setProductPage = (productId: string, data: any) =>
+  writeFile(`productPages/${productId}.html`, data);
 
 /*
   Data.json

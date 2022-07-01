@@ -12,6 +12,7 @@ import {
 } from "@State";
 import { getPlayersText, COLORS } from "@Utils";
 
+import { PeopleAlsoLike } from "./PeopleAlsoLike";
 import { UserDataForGameCheckbox } from "./UserDataForGameCheckbox";
 
 const Img = styled(GameImg)`
@@ -81,6 +82,7 @@ const GameEntityRouteFC: FC<{}> = () => {
           )}
         </List>
       )}
+      <PeopleAlsoLike gameId={gameId} />
       <List>
         <Text>
           <LinkExternal to={externalUrl}>view at xbox.com</LinkExternal>

@@ -7,3 +7,4 @@ export * from "./Title";
 export * from "./Data";
 export * from "./Color";
 export * from "./ColorGrid";
+export * from "./ProductPage";

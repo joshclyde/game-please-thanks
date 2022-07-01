@@ -1,4 +1,4 @@
-import { Game } from "../types";
+import { Game, ProductPage } from "../types";
 import {
   getGamePassProductIds,
   getMicrosoftProducts,
@@ -18,10 +18,11 @@ import {
 const execute = async () => {
   const products = await getMicrosoftProducts();
   const { productIds: gamePassProductIds } = await getGamePassProductIds();
+  const pages = await ProductPage.all();
 
   const games: Record<string, Game> = {};
-  Object.keys(products).forEach((id) => {
-    const product = products[id];
+  Object.keys(products).forEach((productId) => {
+    const product = products[productId];
     /*
       Filter only products that are a game.
     */
@@ -30,7 +31,12 @@ const execute = async () => {
       getProductType(product) === `Game` &&
       !getIsDemo(product)
     ) {
-      const game = convertProductToGame(product, gamePassProductIds.includes(id));
+      const game = convertProductToGame(
+        product,
+        gamePassProductIds.includes(productId),
+        pages[productId],
+      );
+
       setGame(game);
       games[game.id] = game;
     }

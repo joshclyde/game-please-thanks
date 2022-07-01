@@ -1,4 +1,4 @@
-import { MicrosoftProduct, Game } from "../types";
+import { MicrosoftProduct, Game, ProductPage } from "../types";
 
 // TODO: clean this up
 
@@ -104,6 +104,7 @@ export const getImageUrl = (microsoftProduct: MicrosoftProduct, imagePurpose: st
 export const convertProductToGame = (
   product: MicrosoftProduct,
   isOnGamePass: boolean,
+  page?: ProductPage,
 ): Game => {
   const productId = product.ProductId;
   const name = getName(product);
@@ -149,6 +150,7 @@ export const convertProductToGame = (
     size: getSize(product),
     releaseDate: getReleaseDate(product),
     ...getRatingData(product),
+    productIdsPAL: page?.productIdsPAL || [],
   };
   return game;
 };

@@ -67,4 +67,5 @@ export interface Game {
   releaseDate: string;
   rating: number;
   ratingCount: number;
+  productIdsPAL: Array<string>;
 }
