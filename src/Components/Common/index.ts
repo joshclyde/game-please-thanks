@@ -1,4 +1,3 @@
-export * from "./Checkbox";
 export * from "./Logo";
 export * from "./LinkFancy";
 export * from "./Text";
