@@ -14,8 +14,11 @@ yarn-error.log*
 /.changelog
 .firebase
 assets/gameImages/
+assets/productImage/
 assets/restyled/
 assets/images/
 assets/games.json
 scripts/data
 ui-debug.log
+firestore-debug.log
+firebase-debug.log
